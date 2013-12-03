@@ -1,0 +1,83 @@
+#inspection-form .row .custom-checkbox {
+	display : inline-block;
+	position : relative;
+	margin : 7px 0 0 20px;
+}
+
+#inspection-form .row .custom-checkbox:first-child {
+	margin : 7px 0 0 0;
+}
+
+#inspection-form .row .custom-checkbox input {
+	position : absolute;
+	background : transparent;
+	left : 0;
+	top : 0;
+	margin : 0;
+	z-index : -1;
+	width : 13px;
+	height : 13px;
+}
+
+#inspection-form .row .custom-checkbox label {
+	display : inline-block;
+	position : relative;
+	top : 0;
+	padding : 0 0 0 23px;
+	margin : 0;
+	font-size : 12px/13px Arial;
+	color : #1c1c1c;
+	cursor : pointer;
+	width : auto;
+	height : 15px;
+}
+
+#inspection-form .row .custom-checkbox label {
+	background : url(../../gfx/checkbox.gif) no-repeat;
+}
+
+#inspection-form .row .custom-checkbox label.hover,
+#inspection-form .row .custom-checkbox label.focus,
+#inspection-form .row .custom-checkbox label {
+	background-position : left bottom;
+}
+
+#inspection-form .row .custom-checkbox label.checked, 
+#inspection-form .row .custom-checkbox label.checkedHover, 
+#inspection-form .row .custom-checkbox label.checkedFocus {
+	background-position : left top;
+}
+
+#inspection-form .section .box .content .section .box {
+	margin:0 !important;
+}
+
+#inspection-form .content .slope {
+	padding-right:0 !important;
+}
+
+#inspection-form .content .slope .custom-checkbox {
+	float:left;
+	width:155px;
+	margin:7px 0 0 0 !important;
+}
+
+#inspection-form .chk_type_of_roofing .custom-checkbox,
+#inspection-form .chk_fallen_tree_damages .custom-checkbox,
+#inspection-form .chk_excess_debris_location .custom-checkbox,
+#inspection-form .chk_standing_water_select .custom-checkbox,
+#inspection-form .chk_workmanship_flashing .custom-checkbox,
+#inspection-form .chk_aged_worn .custom-checkbox,
+#inspection-form .chk_fire_damages .custom-checkbox {
+	float:left;
+	width:147px;
+	margin:7px 0 0 0 !important;
+}
+
+#inspection-form .chk_prev_repairs .custom-checkbox {
+	float:left;
+	margin:7px 0 0 0 !important;
+	width:110px;
+}
+
+
