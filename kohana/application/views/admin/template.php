@@ -24,7 +24,7 @@
 <body>
 
 <div id="wrapper">
-	<div id="container" class="">
+	<div id="container" class="<?php echo $homepage ? 'no-bg' : ''; ?>">
 		<div id="top">
 			<h1 id="logo"><a href="/"></a></h1>
 			<div id="labels">
@@ -42,7 +42,7 @@
 			<div id="menu">
 				<ul> 
 					<li>
-						<a href="http://admin.trinity.is/">Work Orders</a>
+						<a href="/account">Work Orders</a>
 							<ul> 
 								<li>
 									<a href="http://admin.trinity.is/workorders/submit">Submit New</a>
@@ -64,10 +64,10 @@
 							</ul> 
 					</li> 
 					<li>
-						<a href="/account/users">Users</a>
+						<a href="/users">Users</a>
 							<ul> 
 								<li >
-									<a href="http://admin.trinity.is/users/create">Create New</a>
+									<a href="/users/new">Create New</a>
 								</li>
 							</ul> 
 						</li> 
@@ -75,6 +75,8 @@
 			</div>
 		</div> 
 		<div class="plain">&nbsp;</div>
+		<?php if (!$homepage) {  ?>
+
 		<div id="left">
 					<div class="box submenu">
 						<div class="content">
@@ -91,7 +93,8 @@
 						</div>
 					</div>				
 		</div>
-		<div id="right" class="">
+		<?php } ?>
+		<div id="right" class="<?php echo $homepage ? ' margin-small ' : null; ?>">
 			<?php echo $content; ?>
 		</div>
 	</div>

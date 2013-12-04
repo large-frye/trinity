@@ -10,6 +10,8 @@ class Controller_Account extends Controller_Master {
 
     protected $_post = null;
 
+    protected $_homepage = false;
+
     public static $logged_in = false;
 
     public function __construct(Kohana_Request $request, Kohana_Response $response) {
@@ -40,6 +42,12 @@ class Controller_Account extends Controller_Master {
 
             $this->template->admin = true;
         }
+
+        if ($this->request->controller() === 'Account' && $this->request->action() === 'index') {
+            $this->_homepage = true;
+        }
+
+        $this->template->homepage = $this->_homepage;
     }
 
 
@@ -90,7 +98,10 @@ class Controller_Account extends Controller_Master {
 
 
     public function action_users() {
-        $this->template->content = View::factory('users/index');
+        $view = View::factory('users/index');
+        $view->users = $this->account_model->get_user_list(0);
+        $view->deleted_users = $this->account_model->get_user_list(1);
+        $this->template->content = $view;
     }
 
 

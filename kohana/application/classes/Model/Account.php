@@ -30,16 +30,6 @@ class Model_Account extends Model_Base {
 
 
 
-    public function create_user($post) {
-        // Make sure that $post has `email` & `password_confirm` field or Kohana Authentication
-        // will fail. 
-        $user = ORM::factory('User')->create_user($post, array('username', 'password', 'email'));
-
-        $post = array();
-    }
-
-
-
     public function get_work_orders($user_id) {
 
         $result = DB::query(Database::SELECT, 'SELECT w.*, CONCAT(uf.first_name, " ", uf.last_name) as adjuster_name,
@@ -63,9 +53,27 @@ class Model_Account extends Model_Base {
 
 
     public function get_user_list($type) {
-        $result = DB::query(Database::SELECT, 'SELECT u.* FROM '.$this->_roles_users_table. ' ru
-                                               LEFT JOIN '.$this->_table_name.' u ON ru.user_id = u.id  
-                                               LEFT JOIN '.$this->_roles_table.' r ON r.id = ru.role_id  
-                                               WHERE r.code != "superadmin');
+        $result = DB::query(Database::SELECT, 'SELECT u.* 
+                                               FROM users u 
+                                               LEFT JOIN profiles p ON u.id = p.user_id
+                                               GROUP BY u.id')
+                      ->parameters(array(':type' => $type))
+                      ->as_object()
+                      ->execute($this->db);
+
+        return $result;
+    }
+
+
+
+    /**
+     * Return roles to controller
+     *
+     * @return MySQL_Database Object
+     */
+    public function get_roles() {
+        return DB::query(Database::SELECT, 'SELECT * FROM roles WHERE id > 1')
+                   ->as_object()
+                   ->execute($this->db);
     }
 }

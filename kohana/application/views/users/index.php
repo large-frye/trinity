@@ -16,17 +16,19 @@
 					</tr>
 				</thead>
 				<tbody>
+					<?php foreach($users as $user) { ?> 
 					<tr>
-						<td>{{id}}</td>
-						<td>{{username}}</td>
-						<td>{{email}}</td>
-						<td>{{created_on_utc}}</td>
+						<td><?php echo $user->id; ?></td>
+						<td><?php echo $user->username; ?></td>
+						<td><?php echo $user->email ?></td>
+						<td><?php echo $user->created_on_utc ?></td>
 						<td>
-								<a href="{{edit_url}}/{{id}}">Edit</a>&nbsp;|&nbsp;
+								<a href="/users/edit/<?php echo $user->id; ?>">Edit</a>&nbsp;|&nbsp;
 								<a onclick="return confirm('Are you sure you want to soft delete {{username}}?');" href="{{softdelete_url}}/{{id}}">Soft Delete</a>&nbsp;|&nbsp;
 								<a onclick="return confirm('Are you sure you want to delete {{username}}?');" href="{{delete_url}}/{{id}}">Delete</a>
 						</td>
 					</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 		</div>
@@ -51,17 +53,19 @@
 					</tr>
 				</thead>
 				<tbody>
+                    <?php foreach($deleted_users as $user) { ?> 
 					<tr>
-						<td>{{id}}</td>
-						<td>{{username}}</td>
-						<td>{{email}}</td>
-						<td>{{created_on_utc}}</td>
+						<td><?php echo $user->id; ?></td>
+						<td><?php echo $user->username; ?></td>
+						<td><?php echo $user->email ?></td>
+						<td><?php echo $user->created_on_utc ?></td>
 						<td>
 								<a href="{{edit_url}}/{{id}}">Edit</a>&nbsp;|&nbsp;
 								<a onclick="return confirm('Are you sure you want to re-activate {{username}}?');" href="{{softdelete_url}}/{{id}}">Activate</a>&nbsp;|&nbsp;
 								<a onclick="return confirm('Are you sure you want to delete {{username}}?');" href="{{delete_url}}/{{id}}">Delete</a>								
 						</td>
 					</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 		</div>
