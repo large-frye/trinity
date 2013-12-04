@@ -13,16 +13,16 @@
 			<table cellspacing="0" cellpadding="0" border="0" class="all"> 
 				<thead> 
 					<tr>
-						<th>ID Num.</th>
-						<th>Status</th>
-						<th>Insured</th>
-						<th>Adjuster Name</th>
-						<th>Policy Number</th>
-						<th>Inspector Name</th>
-						<th>Date of inspection</th>
-						<th>Progress State</th>
-						<th>Date Created</th>
-						<th>Actions</th>
+						<th class="sorting" rowspan="1" colspan="1">ID Num.</th>
+						<th class="sorting" rowspan="1" colspan="1">Status</th>
+						<th class="sorting" rowspan="1" colspan="1">Insured</th>
+						<th class="sorting" rowspan="1" colspan="1">Adjuster Name</th>
+						<th class="sorting" rowspan="1" colspan="1">Policy Number</th>
+						<th class="sorting" rowspan="1" colspan="1">Inspector Name</th>
+						<th class="sorting" rowspan="1" colspan="1">Date of inspection</th>
+						<th class="sorting" rowspan="1" colspan="1">Progress State</th>
+						<th class="sorting" rowspan="1" colspan="1">Date Created</th>
+						<th class="sorting" rowspan="1" colspan="1">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -55,6 +55,7 @@
 				<?php } ?>
 				</tbody>
 			</table>
+		</div>
 		</div>
 	</div>
 </div>

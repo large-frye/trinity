@@ -24,7 +24,7 @@
 <body>
 
 <div id="wrapper">
-	<div id="container" class=" no-bg ">
+	<div id="container" class="">
 		<div id="top">
 			<h1 id="logo"><a href="/"></a></h1>
 			<div id="labels">
@@ -50,7 +50,7 @@
 							</ul> 
 					</li> 
 					<li >
-						<a href="http://admin.trinity.is/settings">Settings</a>
+						<a href="/settings">Settings</a>
 							<ul> 
 								<li>
 									<a href="http://admin.trinity.is/settings/email">Email Templates</a>
@@ -64,7 +64,7 @@
 							</ul> 
 					</li> 
 					<li>
-						<a href="http://admin.trinity.is/users">Users</a>
+						<a href="/account/users">Users</a>
 							<ul> 
 								<li >
 									<a href="http://admin.trinity.is/users/create">Create New</a>
@@ -75,7 +75,23 @@
 			</div>
 		</div> 
 		<div class="plain">&nbsp;</div>
-		<div id="right" class=" margin-small ">
+		<div id="left">
+					<div class="box submenu">
+						<div class="content">
+							<ul>
+								<li class="current" >
+									<a href="http://admin.trinity.is/users/index">Users</a>
+									<ul>
+											<li >
+												<a href="http://admin.trinity.is/users/create">Add new User</a>
+											</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>				
+		</div>
+		<div id="right" class="">
 			<?php echo $content; ?>
 		</div>
 	</div>

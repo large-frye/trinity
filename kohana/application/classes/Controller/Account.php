@@ -89,6 +89,12 @@ class Controller_Account extends Controller_Master {
 
 
 
+    public function action_users() {
+        $this->template->content = View::factory('users/index');
+    }
+
+
+
     public function after() {
         parent::after();
     }

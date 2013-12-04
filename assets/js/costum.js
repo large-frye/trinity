@@ -1,4 +1,4 @@
-$(document).ready(function(){ 
+$(document).ready(function() {
 	
 	$(function() {
 		if (window.innerWidth < 850 && window.innerHeight < 850) {} else {

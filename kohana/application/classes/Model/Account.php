@@ -59,4 +59,13 @@ class Model_Account extends Model_Base {
 
         return $result;
     }
+
+
+
+    public function get_user_list($type) {
+        $result = DB::query(Database::SELECT, 'SELECT u.* FROM '.$this->_roles_users_table. ' ru
+                                               LEFT JOIN '.$this->_table_name.' u ON ru.user_id = u.id  
+                                               LEFT JOIN '.$this->_roles_table.' r ON r.id = ru.role_id  
+                                               WHERE r.code != "superadmin');
+    }
 }

@@ -20,7 +20,7 @@ class Model_Master extends Model {
     	             array('name' => 'Services',
     	             	   'url'  => '/services'),
     	             array('name' => 'Damage Types',
-    	             	   'url'  => '/damage-types'),
+    	             	   'url'  => '/damagetypes'),
     	             array('name' => 'Testimonials',
     	             	   'url'  => '/testimonials'),
     	             array('name' => 'Contact',
@@ -73,7 +73,7 @@ class Model_Master extends Model {
     		              "/trinity/assets/js/costum.js",);
 
     	foreach($js_files as $js_file) {
-    		$this->js[] = HTML::style($js_file);
+    		$this->js[] = HTML::script($js_file);
     	}
     }
 }
