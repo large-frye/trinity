@@ -30,12 +30,12 @@
 			<div id="labels">
 				<ul>
 					<li>
-						<a href="/" class="user">
-							<span class="bar">Welcome andrew</span>
+						<a href="/account" class="user">
+							<span class="bar">Welcome </span>
 						</a>
 					</li>
-					<li><a href="http://admin.trinity.is/my/profile" class="settings"></a></li>
-					<li><a href="http://admin.trinity.is/logout" class="logout"></a></li>
+					<li><a href="/account/my/profile" class="settings"></a></li>
+					<li><a href="/account/logout" class="logout"></a></li>
 				</ul>
 			</div>
 			

@@ -71,8 +71,10 @@ class Controller_Master extends Controller_Template {
 
 
     private function _set_template() {
-        $this->template = in_array($this->request->current()->controller(), array('Account', 'Users')) ? 
-                          'admin/template' : 
-                          'template';
+        $this->template = 'template';
+
+        if (in_array($this->request->current()->controller(), array('Account', 'Users')) && $this->request->action() !== 'login') {
+            $this->template = 'admin/template';
+        }
     }
 } // End Master
