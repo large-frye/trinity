@@ -10,10 +10,40 @@ class Model_Users extends Model_Base {
 
     public function create_user($post) {
         // Make sure that $post has `email` & `password_confirm` field or Kohana Authentication
-        // will fail. 
-        $user = ORM::factory('User')->create_user($post, array('username', 'password', 'email'));
+        // will fail.
+        try { 
+            $user = ORM::factory('User');
+            $user->username = $post['username'];
+            $user->email    = $post['email'];
+            $user->password = $post['password']; 
+            $user->save();
 
-        // Need to add user_profile
+        } catch (ORM_Validation_Exception $e) {
+            print_r($e);
+        }
+
+        $parameters = array(':id' => null,
+                            ':user_id' => $user->id,
+                            ':first_name' => $post['first_name'],
+                            ':last_name'  => $post['last_name'],
+                            ':phone'      => $post['phone'],
+                            ':geographic_region' => $post['geographic_region'],
+                            ':insurance_company' => $post['insurance_company']);
+
+        $roles_params = array(':user_id' => $user->id,
+                              ':role_id' => $post['role_id']);
+
+        // Need to add user_profiles
+        DB::insert('profiles')
+            ->values(array_keys($parameters))
+            ->parameters($parameters)
+            ->execute($this->db);
+
+        // Need to add roles
+        DB::insert('roles_users')
+            ->values(array_keys($roles_params))
+            ->parameters($roles_params)
+            ->execute($this->db);
 
         $post = array();
     }
@@ -38,7 +68,7 @@ class Model_Users extends Model_Base {
                     ->rule('password_confirm', 'matches', array(':validation', 'password_confirm', 'password'));
 
           if ($valid_post->check()) {
-
+              return true;
           } else {
               print_r($valid_post->errors('default'));
           }

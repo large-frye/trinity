@@ -85,9 +85,9 @@
 				</div>
 				
 				<div class="row">
-				    <?php echo Form::label('confirm_password', 'Confirm Password') .
+				    <?php echo Form::label('password_confirm', 'Confirm Password') .
 					           "<div class=\"right\">" .
-					           Form::input('confirm_password', '', array('id' => 'confirm_password')) .
+					           Form::input('password_confirm', '', array('id' => 'password_confirm')) .
 					           "</div>"; ?>
 				</div>
 

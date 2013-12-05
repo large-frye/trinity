@@ -54,7 +54,7 @@ class Controller_Users extends Controller_Account {
 
         if ($this->request->method() === 'POST') {
         	if ($this->_user_model->validate_create_user_form($this->_post)) {
-                $this->_user_model->create_user();
+                $this->_user_model->create_user($this->_post);
             } else {
                 $view->user = (object) $this->_post;
             }
