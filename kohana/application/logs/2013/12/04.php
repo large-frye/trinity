@@ -166,3 +166,30 @@
 #5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
 #6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
 #7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16
+2013-12-04 21:55:44 --- EMERGENCY: Kohana_Exception [ 0 ]: View variable is not set: homepage ~ SYSPATH/classes/Kohana/View.php [ 171 ] in /Users/frye/Documents/elance/trinity/kohana/application/classes/Controller/Settings.php:11
+2013-12-04 21:55:44 --- DEBUG: #0 /Users/frye/Documents/elance/trinity/kohana/application/classes/Controller/Settings.php(11): Kohana_View->__get('homepage')
+#1 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Controller.php(69): Controller_Settings->before()
+#2 [internal function]: Kohana_Controller->execute()
+#3 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Settings))
+#4 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 /Users/frye/Documents/elance/trinity/kohana/index.php(118): Kohana_Request->execute()
+#7 {main} in /Users/frye/Documents/elance/trinity/kohana/application/classes/Controller/Settings.php:11
+2013-12-04 21:55:59 --- EMERGENCY: Kohana_Exception [ 0 ]: View variable is not set: homepage ~ SYSPATH/classes/Kohana/View.php [ 171 ] in /Users/frye/Documents/elance/trinity/kohana/application/classes/Controller/Settings.php:11
+2013-12-04 21:55:59 --- DEBUG: #0 /Users/frye/Documents/elance/trinity/kohana/application/classes/Controller/Settings.php(11): Kohana_View->__get('homepage')
+#1 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Controller.php(69): Controller_Settings->before()
+#2 [internal function]: Kohana_Controller->execute()
+#3 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Settings))
+#4 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 /Users/frye/Documents/elance/trinity/kohana/index.php(118): Kohana_Request->execute()
+#7 {main} in /Users/frye/Documents/elance/trinity/kohana/application/classes/Controller/Settings.php:11
+2013-12-04 21:56:39 --- EMERGENCY: Kohana_Exception [ 0 ]: View variable is not set: homepage ~ SYSPATH/classes/Kohana/View.php [ 171 ] in /Users/frye/Documents/elance/trinity/kohana/application/classes/Controller/Settings.php:11
+2013-12-04 21:56:39 --- DEBUG: #0 /Users/frye/Documents/elance/trinity/kohana/application/classes/Controller/Settings.php(11): Kohana_View->__get('homepage')
+#1 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Controller.php(69): Controller_Settings->before()
+#2 [internal function]: Kohana_Controller->execute()
+#3 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Settings))
+#4 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 /Users/frye/Documents/elance/trinity/kohana/index.php(118): Kohana_Request->execute()
+#7 {main} in /Users/frye/Documents/elance/trinity/kohana/application/classes/Controller/Settings.php:11

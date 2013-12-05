@@ -75,7 +75,10 @@
 			</div>
 		</div> 
 		<div class="plain">&nbsp;</div>
-		<?php if (!$homepage) {  ?>
+		<?php if (!$homepage) {  
+			      if (isset($side_bar)) {
+                      echo $side_bar;
+			      } else { ?>
 
 		<div id="left">
 					<div class="box submenu">
@@ -93,7 +96,7 @@
 						</div>
 					</div>				
 		</div>
-		<?php } ?>
+		<?php }} ?>
 		<div id="right" class="<?php echo $homepage ? ' margin-small ' : null; ?>">
 			<?php echo $content; ?>
 		</div>
