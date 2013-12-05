@@ -83,3 +83,20 @@
 #7 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request.php(995): Kohana_Request_Client->execute(Object(Request))
 #8 /Users/frye/Documents/elance/trinity/kohana/index.php(118): Kohana_Request->execute()
 #9 {main} in /Users/frye/Documents/elance/trinity/kohana/modules/database/classes/Kohana/Database/Query.php:251
+2013-12-04 20:35:29 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Model_User::roles() ~ APPPATH/classes/Model/users.php [ 61 ] in file:line
+2013-12-04 20:35:29 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-04 20:46:07 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Session.php:125
+2013-12-04 20:46:07 --- DEBUG: #0 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /Users/frye/Documents/elance/trinity/kohana/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /Users/frye/Documents/elance/trinity/kohana/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /Users/frye/Documents/elance/trinity/kohana/application/classes/Controller/Account.php(28): Kohana_Auth::instance()
+#5 /Users/frye/Documents/elance/trinity/kohana/application/classes/Controller/Users.php(18): Controller_Account->before()
+#6 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Controller.php(69): Controller_Users->before()
+#7 [internal function]: Kohana_Controller->execute()
+#8 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Users))
+#9 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#10 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#11 /Users/frye/Documents/elance/trinity/kohana/index.php(118): Kohana_Request->execute()
+#12 {main} in /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Session.php:125

@@ -9,19 +9,6 @@ class Model_Users extends Model_Base {
 
 
     public function create_user($post) {
-        // Make sure that $post has `email` & `password_confirm` field or Kohana Authentication
-        // will fail.
-        try { 
-            $user = ORM::factory('User');
-            $user->username = $post['username'];
-            $user->email    = $post['email'];
-            $user->password = $post['password']; 
-            $user->save();
-
-        } catch (ORM_Validation_Exception $e) {
-            print_r($e);
-        }
-
         $parameters = array(':id' => null,
                             ':user_id' => $user->id,
                             ':first_name' => $post['first_name'],
@@ -33,17 +20,64 @@ class Model_Users extends Model_Base {
         $roles_params = array(':user_id' => $user->id,
                               ':role_id' => $post['role_id']);
 
-        // Need to add user_profiles
-        DB::insert('profiles')
-            ->values(array_keys($parameters))
-            ->parameters($parameters)
-            ->execute($this->db);
+        try { 
+            $user = ORM::factory('User');
+            $user->username = $post['username'];
+            $user->email    = $post['email'];
+            $user->password = $post['password']; 
+            $user->save();
 
-        // Need to add roles
-        DB::insert('roles_users')
-            ->values(array_keys($roles_params))
-            ->parameters($roles_params)
-            ->execute($this->db);
+            // Need to add user_profiles
+            DB::insert('profiles')
+                ->values(array_keys($parameters))
+                ->parameters($parameters)
+                ->execute($this->db);
+
+            // Need to add roles
+            DB::insert('roles_users')
+                ->values(array_keys($roles_params))
+                ->parameters($roles_params)
+                ->execute($this->db);
+        } catch (ORM_Validation_Exception $e) {
+            print_r($e);
+        }
+
+        $post = array();
+    }
+
+
+
+    public function edit_user($post, $user_id) {
+        try { 
+            $user = ORM::factory('User', $user_id);
+            $user->username = $post['username'];
+            $user->email    = $post['email'];
+            $user->password = $post['password']; 
+            $user->save();
+
+            $role = DB::query(Database::SELECT, "SELECT role_id FROM roles_users WHERE user_id = :user_id AND role_id != 1")
+                        ->parameters(array(':user_id' => $user_id))
+                        ->as_object()
+                        ->execute($this->db)
+                        ->current();
+
+            // Update `roles_users`
+            DB::update('roles_users')->set(array('role_id' => $post['role_id']))->where('role_id', '=', ':role_id')
+                ->parameters(array(':role_id' => $role->role_id))
+                ->execute($this->db);
+
+            // Update `profiles`
+            DB::update('profiles')->set(array('first_name' => $post['first_name'],
+                                              'last_name'  => $post['last_name'],
+                                              'phone'      => $post['phone'],
+                                              'geographic_region' => $post['geographic_region'],
+                                              'insurance_company' => $post['insurance_company']))->where('user_id', '=', ':user_id')
+                ->parameters(array(':user_id' => $user_id))
+                ->execute($this->db);
+        } catch (ORM_Validation_Exception $e) {
+            print_r($e);
+            die();
+        }
 
         $post = array();
     }
@@ -68,9 +102,9 @@ class Model_Users extends Model_Base {
                     ->rule('password_confirm', 'matches', array(':validation', 'password_confirm', 'password'));
 
           if ($valid_post->check()) {
-              return true;
+              return array('error' => false);
           } else {
-              print_r($valid_post->errors('default'));
+              return array('error' => true, 'errors' => $valid_post->errors('default'));
           }
     }
 

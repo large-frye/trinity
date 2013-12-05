@@ -1,5 +1,14 @@
 
 <?php 
+    if (isset($errors)) {
+    	echo '<div class="message error">';
+
+    	foreach($errors as $error) {
+    		echo '<span>' . $error . '</span>';
+    	}
+
+    	echo '</div>';
+    }
     echo Form::open('', array('id' => 'workorder-submit-form')); 
 ?>
 <!-- <div class="message error"><span>AndreW</span></div> error -->
