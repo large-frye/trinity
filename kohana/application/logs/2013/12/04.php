@@ -112,3 +112,57 @@
 #8 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
 #9 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
 #10 {main} in file:line
+2013-12-04 21:52:52 --- CRITICAL: Kohana_Exception [ 0 ]: View variable is not set: homepage ~ SYSPATH\classes\Kohana\View.php [ 171 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16
+2013-12-04 21:52:52 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php(16): Kohana_View->__get('homepage')
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Settings->action_index()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Settings))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16
+2013-12-04 21:53:48 --- CRITICAL: Kohana_Exception [ 0 ]: View variable is not set: homepage ~ SYSPATH\classes\Kohana\View.php [ 171 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16
+2013-12-04 21:53:48 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php(16): Kohana_View->__get('homepage')
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Settings->action_index()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Settings))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16
+2013-12-04 21:53:49 --- CRITICAL: Kohana_Exception [ 0 ]: View variable is not set: homepage ~ SYSPATH\classes\Kohana\View.php [ 171 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16
+2013-12-04 21:53:49 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php(16): Kohana_View->__get('homepage')
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Settings->action_index()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Settings))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16
+2013-12-04 21:53:54 --- CRITICAL: Kohana_Exception [ 0 ]: View variable is not set: homepage ~ SYSPATH\classes\Kohana\View.php [ 171 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16
+2013-12-04 21:53:54 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php(16): Kohana_View->__get('homepage')
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Settings->action_index()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Settings))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16
+2013-12-04 21:53:54 --- CRITICAL: Kohana_Exception [ 0 ]: View variable is not set: homepage ~ SYSPATH\classes\Kohana\View.php [ 171 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16
+2013-12-04 21:53:54 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php(16): Kohana_View->__get('homepage')
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Settings->action_index()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Settings))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16
+2013-12-04 21:53:54 --- CRITICAL: Kohana_Exception [ 0 ]: View variable is not set: homepage ~ SYSPATH\classes\Kohana\View.php [ 171 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16
+2013-12-04 21:53:54 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php(16): Kohana_View->__get('homepage')
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Settings->action_index()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Settings))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php:16

@@ -31,21 +31,20 @@
 				<!-- {{#is_logged_in}} -->
 				<div id="labels">
 					<ul>
-						<!-- {{#top_navigation}} -->
+					<!-- 	
 							<li>
 								<a href="{{url_profile}}" class="user">
 									<span class="bar">Welcome {{username}}</span>
 								</a>
 							</li>
 							<li><a href="{{url_settings}}" class="settings"></a></li>
-							<li><a href="{{url_logout}}" class="logout"></a></li>
-						<!-- {{/top_navigation}} -->
+							<li><a href="{{url_logout}}" class="logout"></a></li>-->
 					</ul>
 				</div>
 				<!-- {{/is_logged_in}}
 				{{^is_logged_in}} -->
 				<div id="labels">
-					<a href="/login">Login</a>
+					<a href="/account">Login</a>
 				</div>
 				<!-- {{/is_logged_in}} !-->
 
