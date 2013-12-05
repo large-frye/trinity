@@ -5,6 +5,7 @@ class Model_Master extends Model {
 	public $css;
 	public $js;
 
+	
     public function __construct() {
     	$this->get_css_files();
     	$this->get_js_files();
@@ -30,7 +31,8 @@ class Model_Master extends Model {
 
 
     public function get_css_files() {
-        $css_files = scandir('/Users/frye/Documents/elance/trinity/assets/css');
+		
+        $css_files = scandir($_SERVER['DOCUMENT_ROOT'] . "/trinity/assets/css/" );
 
     	foreach($css_files as $css_file) {
     		$this->css[] = HTML::style('/trinity/assets/css/' . $css_file);
@@ -73,7 +75,7 @@ class Model_Master extends Model {
     		              "/trinity/assets/js/costum.js",);
 
     	foreach($js_files as $js_file) {
-    		$this->js[] = HTML::script($js_file);
+    		$this->js[] = HTML::script($js_file);	
     	}
     }
 }

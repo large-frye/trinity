@@ -100,3 +100,15 @@
 #10 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request.php(995): Kohana_Request_Client->execute(Object(Request))
 #11 /Users/frye/Documents/elance/trinity/kohana/index.php(118): Kohana_Request->execute()
 #12 {main} in /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Session.php:125
+2013-12-04 21:08:08 --- CRITICAL: ErrorException [ 2 ]: scandir(/Users/frye/Documents/elance/trinity/assets/css,/Users/frye/Documents/elance/trinity/assets/css): The system cannot find the path specified. (code: 3) ~ APPPATH\classes\Model\Master.php [ 33 ] in file:line
+2013-12-04 21:08:08 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'scandir(/Users/...', 'C:\wamp\www\tri...', 33, Array)
+#1 C:\wamp\www\trinity\kohana\application\classes\Model\Master.php(33): scandir('/Users/frye/Doc...')
+#2 C:\wamp\www\trinity\kohana\application\classes\Model\Master.php(9): Model_Master->get_css_files()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Model.php(26): Model_Master->__construct()
+#4 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(20): Kohana_Model::factory('master')
+#5 [internal function]: Controller_Master->__construct(Object(Request), Object(Response))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(94): ReflectionClass->newInstance(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#9 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#10 {main} in file:line
