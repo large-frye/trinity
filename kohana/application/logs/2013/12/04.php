@@ -193,3 +193,26 @@
 #5 /Users/frye/Documents/elance/trinity/kohana/system/classes/Kohana/Request.php(995): Kohana_Request_Client->execute(Object(Request))
 #6 /Users/frye/Documents/elance/trinity/kohana/index.php(118): Kohana_Request->execute()
 #7 {main} in /Users/frye/Documents/elance/trinity/kohana/application/classes/Controller/Settings.php:11
+2013-12-04 22:31:38 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected end of file, expecting function (T_FUNCTION) ~ APPPATH\classes\Model\Settings.php [ 18 ] in file:line
+2013-12-04 22:31:38 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-04 22:32:03 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: content ~ APPPATH\views\admin\template.php [ 101 ] in C:\wamp\www\trinity\kohana\application\views\admin\template.php:101
+2013-12-04 22:32:03 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\admin\template.php(101): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 101, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#5 C:\wamp\www\trinity\kohana\application\classes\Controller\Settings.php(30): Controller_Master->after()
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Settings->after()
+#7 [internal function]: Kohana_Controller->execute()
+#8 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Settings))
+#9 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#11 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#12 {main} in C:\wamp\www\trinity\kohana\application\views\admin\template.php:101
+2013-12-04 22:38:11 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '}', expecting ',' or ';' ~ APPPATH\classes\Model\Settings.php [ 21 ] in file:line
+2013-12-04 22:38:11 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-04 22:38:51 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '}', expecting ',' or ';' ~ APPPATH\classes\Model\Settings.php [ 21 ] in file:line
+2013-12-04 22:38:51 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
