@@ -2,7 +2,7 @@
 <?php 
     echo Form::open('', array('id' => 'workorder-submit-form')); 
 ?>
-<div class="message error"><span>AndreW</span></div>
+<!-- <div class="message error"><span>AndreW</span></div> error -->
 	<div class="section">
 		<div class="box">
 			<div class="title">User</div>

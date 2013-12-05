@@ -13,6 +13,8 @@ class Model_Users extends Model_Base {
         // will fail. 
         $user = ORM::factory('User')->create_user($post, array('username', 'password', 'email'));
 
+        // Need to add user_profi
+
         $post = array();
     }
 
