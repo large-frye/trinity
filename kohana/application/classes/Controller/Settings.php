@@ -11,11 +11,11 @@ class Controller_Settings extends Controller_Master {
    	public function before(){
    		parent::before();
    		$this->template->homepage = false;
+         $this->template->side_bar = View::factory('settings/side_bar');
    	}
 
 
    	public function action_index(){
-   		$this->template->side_bar = View::factory('settings/side_bar');
    	   $this->template->content=View::factory('settings/index');
    	}
 
@@ -28,6 +28,11 @@ class Controller_Settings extends Controller_Master {
    		$emailTemplate = $this->settings_model->get_email_template();
    		$this->template->content=$view;
    	}
+
+
+      public function action_prices() {
+          $view = View::factory('settings/prices');
+      }
 
       public function after() {
          parent::after();
