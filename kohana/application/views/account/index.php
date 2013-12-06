@@ -1,7 +1,7 @@
 <div class="section">
 	<div>&nbsp;</div>
 	<div class="content">
-		<a href="{{add_url}}">Submit New</a>
+		<a href="/workorders/submit">Submit New</a>
 	</div>	
 	<div class="box">
 		<div class="title">

@@ -36,10 +36,10 @@ class Model_Account extends Model_Base {
                                                       CONCAT(_uf.first_name, " ", _uf.last_name) as inspector_name,
                                                       wos.name as status_name, _is.name as inspection_status
                                                FROM work_orders w
-                                               LEFT JOIN auth_users u ON u.id = w.user_id
-                                               LEFT JOIN user_profiles uf ON uf.user_id = u.id
-                                               LEFT JOIN auth_users _u ON _u.id = w.inspector_id
-                                               LEFT JOIN user_profiles _uf ON _uf.user_id = _u.id
+                                               LEFT JOIN users u ON u.id = w.user_id
+                                               LEFT JOIN profiles uf ON uf.user_id = u.id
+                                               LEFT JOIN users _u ON _u.id = w.inspector_id
+                                               LEFT JOIN profiles _uf ON _uf.user_id = _u.id
                                                LEFT JOIN work_order_statuses wos ON wos.id = w.status
                                                LEFT JOIN inspection_statuses _is ON _is.id = w.inspection_status
                                                WHERE 1=1')
@@ -75,5 +75,20 @@ class Model_Account extends Model_Base {
         return DB::query(Database::SELECT, 'SELECT * FROM roles WHERE id > 1')
                    ->as_object()
                    ->execute($this->db);
+    }
+
+
+
+    public function get_clients() {
+        $_clients = DB::query(Database::SELECT, 'SELECT u.id, u.email FROM users u LEFT JOIN roles_users ru ON u.id = ru.user_id WHERE ru.role_id = 4')
+                        ->as_object()
+                        ->execute($this->db);
+        $clients = array();
+
+        foreach($_clients as $client) {
+            $clients[$client->id] = $client->email;
+        }
+
+        return $clients;
     }
 }
