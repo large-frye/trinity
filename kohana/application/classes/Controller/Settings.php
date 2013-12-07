@@ -9,6 +9,7 @@ class Controller_Settings extends Controller_Master {
    		parent::__construct($request, $response);
    		$this->settings_model=Model::factory('Settings');
 
+
    	}
 
    	public function before(){
@@ -25,13 +26,25 @@ class Controller_Settings extends Controller_Master {
 
 
 
-      // Darren you get to do this method, real quick and will help you with creating a model. 
-      // TODO: action_email
+    // Darren you get to do this method, real quick and will help you with creating a model. 
+    // TODO: action_email
    	public function action_email(){
-   		$view = View::factory('settings/email');
-   		$emailTemplate = $this->settings_model->get_email_template();
-   		$this->template->content=$view;
+      $view = View::factory('settings/email');
+      if ($this->request->method() === 'POST') {
+            $validate_result= $this->settings_model->validate_email_update($this->_post);
+      
+        if (!$validate_result['error']) {
+         
+                $this->settings_model->update_emails($this->_post);
+            } else {
+                $view->errors = $validate_result['errors'];
+                $view->user = (object) $this->_post;
+            }
+       }
+       $view->emailTemplate = $this->settings_model->get_email(); 
+      $this->template->content=$view;
    	}
+
 
 
       public function action_prices() {

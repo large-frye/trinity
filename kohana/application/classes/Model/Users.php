@@ -100,7 +100,6 @@ class Model_Users extends Model_Base {
                     ->rule('password', 'not_empty')
                     ->rule('password', 'min_length', array(':value', '6'))
                     ->rule('password_confirm', 'matches', array(':validation', 'password_confirm', 'password'));
-
           if ($valid_post->check()) {
               return array('error' => false);
           } else {

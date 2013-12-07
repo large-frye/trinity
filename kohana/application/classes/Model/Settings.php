@@ -8,19 +8,36 @@ class Model_Settings extends Model_Base {
 
 
 
-    public function get_email_template(){
-    	$results = DB::query(Database::SELECT, 'select * from settings where description is not null')
+    public function get_email(){
+    	$result = DB::query(Database::SELECT, "SELECT * FROM settings WHERE name NOT LIKE '%workorder_type_price%'")
         			   ->as_object()
         			   ->execute($this->db);
-
-        echo "<pre>";
-
-        foreach ($results as $key => $value) {
-        	echo $value->name.'</br>';
-        }
+            return $result;
     }
 
 
+    public function update_emails($post){
+
+         foreach($post as $key =>$email) {
+             DB::update('settings')->set(array('value' => $email))->where('id', '=', ':id')
+                ->parameters(array(':id' => $key))
+                ->execute($this->db);
+         }
+    }
+
+    public function validate_email_update($post){
+        $valid_post = Validation::factory($post);
+        foreach($post as $key =>$email) {
+            if($key!='submit'){
+                   $valid_post->rule($key, 'not_empty');
+            }
+          }
+          if ($valid_post->check()) {
+              return array('error' => false);
+          } else {
+              return array('error' => true, 'errors' => $valid_post->errors('default'));
+          }
+    }
 
     /**
      * Get current prices in `settings` table. 
