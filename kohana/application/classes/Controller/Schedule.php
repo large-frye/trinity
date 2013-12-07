@@ -1,18 +1,33 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 
-class Controller_Settings extends Controller_Master {
-
-      protected $_post = null;
-
-   		public function __construct(Kohana_Request $request, Kohana_Response $response){
-		   		parent::__construct($request, $response);
-		   		$this->schedule_model=Model::factory('schedule');
-		   	}
+class Controller_Schedule extends Controller_Master {
 
 
+     	public function __construct(Kohana_Request $request, Kohana_Response $response){
+     		parent::__construct($request, $response);
+     		$this->settings_model=Model::factory('schedule');
+     	}
+
+   	public function before(){
+   		parent::before();
+   		$this->template->hide_right_side = true;
+   		$this->template->whole_page= true;
+         $this->_post = $this->request->post();
+   	}
+
+
+ public function after() {
+         parent::after();
+      }
+
+  public function action_index()
+	{
+
+		$this->template->content = View::factory('schedule/index');	
+	}
 
    }
 
 
-   ?>
+?>

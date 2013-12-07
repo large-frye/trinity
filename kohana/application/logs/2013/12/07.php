@@ -477,3 +477,56 @@
 2013-12-07 11:04:57 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected 'die' (T_EXIT) ~ APPPATH\classes\Model\Settings.php [ 33 ] in file:line
 2013-12-07 11:04:57 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
 #1 {main} in file:line
+2013-12-07 14:03:18 --- CRITICAL: View_Exception [ 0 ]: The requested view Sschedule/index could not be found ~ SYSPATH\classes\Kohana\View.php [ 257 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php:137
+2013-12-07 14:03:18 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(137): Kohana_View->set_filename('Sschedule/index')
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(30): Kohana_View->__construct('Sschedule/index', NULL)
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Schedule.php(9): Kohana_View::factory('Sschedule/index')
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Schedule->action_index()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Schedule))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php:137
+2013-12-07 14:03:18 --- CRITICAL: View_Exception [ 0 ]: The requested view Sschedule/index could not be found ~ SYSPATH\classes\Kohana\View.php [ 257 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php:137
+2013-12-07 14:03:18 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(137): Kohana_View->set_filename('Sschedule/index')
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(30): Kohana_View->__construct('Sschedule/index', NULL)
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Schedule.php(9): Kohana_View::factory('Sschedule/index')
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Schedule->action_index()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Schedule))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php:137
+2013-12-07 14:07:52 --- CRITICAL: ErrorException [ 4096 ]: Argument 1 passed to Controller_Master::__construct() must be an instance of Kohana_Request, none given, called in C:\wamp\www\trinity\kohana\application\classes\Controller\Schedule.php on line 8 and defined ~ APPPATH\classes\Controller\Master.php [ 16 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php:16
+2013-12-07 14:07:52 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(16): Kohana_Core::error_handler(4096, 'Argument 1 pass...', 'C:\wamp\www\tri...', 16, Array)
+#1 C:\wamp\www\trinity\kohana\application\classes\Controller\Schedule.php(8): Controller_Master->__construct()
+#2 [internal function]: Controller_Schedule->__construct(Object(Request), Object(Response))
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(94): ReflectionClass->newInstance(Object(Request), Object(Response))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php:16
+2013-12-07 14:08:18 --- CRITICAL: ErrorException [ 4096 ]: Argument 1 passed to Controller_Master::__construct() must be an instance of Kohana_Request, none given, called in C:\wamp\www\trinity\kohana\application\classes\Controller\Schedule.php on line 9 and defined ~ APPPATH\classes\Controller\Master.php [ 16 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php:16
+2013-12-07 14:08:18 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(16): Kohana_Core::error_handler(4096, 'Argument 1 pass...', 'C:\wamp\www\tri...', 16, Array)
+#1 C:\wamp\www\trinity\kohana\application\classes\Controller\Schedule.php(9): Controller_Master->__construct()
+#2 [internal function]: Controller_Schedule->__construct(Object(Request), Object(Response))
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(94): ReflectionClass->newInstance(Object(Request), Object(Response))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php:16
+2013-12-07 14:09:52 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: content ~ APPPATH\views\template.php [ 122 ] in C:\wamp\www\trinity\kohana\application\views\template.php:122
+2013-12-07 14:09:52 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\template.php(122): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 122, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Master->after()
+#6 [internal function]: Kohana_Controller->execute()
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Schedule))
+#8 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#10 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#11 {main} in C:\wamp\www\trinity\kohana\application\views\template.php:122

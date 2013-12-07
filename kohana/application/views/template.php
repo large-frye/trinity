@@ -118,7 +118,10 @@
 				
 				{{#is_alert}} </div> {{/is_alert}}
 			</div> !-->
-	<div id="leftside" class="lft-no-margin">
+	  <?php if (!isset($whole_page)) {
+	echo '<div id="leftside" class="lft-no-margin">';
+}
+?>
         <?php echo $content; ?>
     </div>
     <?php if (isset($hide_right_side) && $hide_right_side) {

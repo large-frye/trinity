@@ -109,4 +109,10 @@ class Controller_Account extends Controller_Master {
     public function after() {
         parent::after();
     }
+
+    public function new_account(){
+         $view = View::factory('/account/signup');
+
+          $this->template->content = $view;
+    }
 }
