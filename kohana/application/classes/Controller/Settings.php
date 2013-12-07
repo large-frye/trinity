@@ -47,17 +47,40 @@ class Controller_Settings extends Controller_Master {
 
 
      public function action_categories(){
-       $view = View::factory('settings/categories');
-       $view->categories = $this->settings_model->get_categories();
+
+        if ($this->request->method() === 'POST') {
+             $validate_result= $this->settings_model->validate_edit_categories($this->_post);
+             
+          if (!$validate_result['error']) {
+             foreach($this->_post as $key =>$request) {
+
+               switch ($key) {
+                    case 'edit_category':
+                        $this->settings_model->edit_categories($this->_post);
+                        break;
+                    case 'delete_category':
+                       $this->settings_model->delete_categories($this->_post);
+                        break;
+                    case 'add_category':
+                          $this->settings_model->add_categories($this->_post);
+                        break;
+                     case 'change_parent':
+                          $this->settings_model->change_parent_categories($this->_post);
+                        break;
+                }
+              }
+            }
+        }
+
+       if($this->request->param('id')==='edit'){
+         $view = View::factory('settings/edit');
+         $view->categories = $this->settings_model->get_categories();
+       }else {
+         $view = View::factory('settings/categories');
+         $view->categories = $this->settings_model->get_categories();
+     }
        $this->template->content=$view;
     }
-
-     public function action_edit_categories(){
-       $view = View::factory('settings/edit');
-       $view->categories = $this->settings_model->get_categories();
-       $this->template->content=$view;
-    }
-
 
 
       public function action_prices() {

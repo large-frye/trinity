@@ -4,6 +4,7 @@ class Model_Settings extends Model_Base {
     
     public function __construct() {
     	parent::__construct();
+        $this->custom_validation_model=Model::factory('custom');
     }
 
 
@@ -24,30 +25,58 @@ class Model_Settings extends Model_Base {
          }
     }
 
-    /*
+/*
+    *to do
+    */
+    public function change_parent_categories($post){
+        print_r($post);
+        die();
+            DB::update('categories')->set(array('name' => $post['name']))->where('id', '=', ':id')
+                ->parameters(array(':id' =>$post['category'] ))
+                ->execute($this->db);  
+
+    }
+    /*  
     *to do
     */
     public function edit_categories($post){
-
-
+         DB::update('categories')->set(array('name' => $post['name']))->where('id', '=', ':id')
+                ->parameters(array(':id' =>$post['category'] ))
+                ->execute($this->db);
     }
 
     /*
     *to do
     */
     public function add_categories($post){
-
-
+            $parameters = array(':id' => null,
+                            ':parent_id' => $post['parent'],
+                            ':name' => $post['name'],
+                            ':slug' => str_replace(' ', '-',strtolower($post['name']))
+                            );
+         DB::insert('categories')
+                ->values(array_keys($parameters))
+                ->parameters($parameters)
+                ->execute($this->db);
     }
+
     /*
     *to do
     */
     public function delete_categories($post){
-
-
+       $result  =  DB::delete('categories')
+                    ->where('id','=', $post['category'])
+                    ->execute($this->db);
     }
 
-    
+
+    public function validate_edit_categories($post){
+          $valid_post = Validation::factory($post);
+          $valid_post->rule('name', array($this->custom_validation_model, 'validate_name'), array($post));
+          return $valid_post->check() ? array('error' =>false) : array('error' => true, 'errors'=> $valid_post->errors('default'));
+    }
+
+
     public function get_categories(){
             $result =  DB::query(Database::SELECT, "SELECT * FROM `categories` ORDER BY parent_id")
                    ->as_object()
