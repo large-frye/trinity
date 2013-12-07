@@ -126,7 +126,7 @@
     } else { ?>
     <div id="rightside">
     <div>
-		<a href="/schedule-claim" target="_self">
+		<a href="/schedule" target="_self">
             <img src="/trinity/assets/gfx/_banner-02.jpg" onmouseover="this.src=' /trinity/assets/gfx/_banner-02-high.jpg '" onmouseout="this.src=' /trinity/assets/gfx/_banner-02.jpg '" width="300" />
 		</a>
     </div>
