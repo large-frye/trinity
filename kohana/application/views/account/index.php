@@ -1,7 +1,7 @@
 <div class="section">
 	<div>&nbsp;</div>
 	<div class="content">
-		<a href="/workorders/submit">Submit New</a>
+		<a href="/workorders/submit" class="button-three-d">Submit New</a>
 	</div>	
 	<div class="box">
 		<div class="title">

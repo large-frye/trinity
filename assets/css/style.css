@@ -2785,3 +2785,52 @@ img { border: 0; }
 #wrapper #footer .col ul { padding: 15px 0 0 0px; list-style-type: none; }
 #wrapper #footer .col li { padding-bottom: 10px; }
 #wrapper #footer .line { background: url(images/copyright.jpg) repeat-x top  ; height: 13px; width: 100%; }
+
+
+
+/* This button was generated using CSSButtonGenerator.com */
+.button-three-d {
+	-moz-box-shadow:inset 0px 1px 0px 0px #590000;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #590000;
+	box-shadow:inset 0px 1px 0px 0px #590000;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #76292c), color-stop(1, #590000) );
+	background:-moz-linear-gradient( center top, #76292c 5%, #590000 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#76292c', endColorstr='#590000');
+	background-color:#76292c;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #76292c;
+	display:inline-block;
+	color:#ffffff !important;
+	font-family:Arial;
+	font-size:15px;
+	font-style:normal;
+	height:40px;
+	line-height:40px;
+	width:100px;
+	text-decoration:none !important;
+	text-align:center;
+	font-weight: 100;
+}
+.button-three-d:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #590000), color-stop(1, #76292c) );
+	background:-moz-linear-gradient( center top, #590000 5%, #76292c 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#590000', endColorstr='#76292c');
+	background-color:#590000;
+	text-decoration: underline !important;
+}.button-three-d:active {
+	position:relative;
+	top:1px;
+}
+/* This button was generated using CSSButtonGenerator.com */

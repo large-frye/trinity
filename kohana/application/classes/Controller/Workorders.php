@@ -11,7 +11,7 @@ class Controller_Workorders extends Controller_Account {
     public function before() {
     	parent::before();
     	$this->template->homepage = false;
-    	$this->template->side_bar = View::factory('workorders/side-bar');
+    	
     }
 
 
@@ -19,7 +19,14 @@ class Controller_Workorders extends Controller_Account {
     public function action_submit() {
     	$view = View::factory('workorders/submit');
     	$view->clients = $this->account_model->get_clients();
+        $this->template->side_bar = View::factory('workorders/side-bar');
     	$this->template->content = $view;
+    }
+
+
+
+    public function action_index() {
+        parent::action_index();
     }
 
 
