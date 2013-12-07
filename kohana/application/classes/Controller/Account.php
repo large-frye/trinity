@@ -111,8 +111,7 @@ class Controller_Account extends Controller_Master {
     }
 
     public function new_account(){
-         $view = View::factory('/account/signup');
-
-          $this->template->content = $view;
+        $view = View::factory('account/signup');
+        $this->template->content = $view;
     }
 }

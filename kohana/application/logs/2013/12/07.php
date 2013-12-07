@@ -530,3 +530,25 @@
 #9 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
 #10 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
 #11 {main} in C:\wamp\www\trinity\kohana\application\views\template.php:122
+2013-12-07 14:51:58 --- CRITICAL: View_Exception [ 0 ]: The requested view testimonials/index could not be found ~ SYSPATH\classes\Kohana\View.php [ 257 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php:137
+2013-12-07 14:51:58 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(137): Kohana_View->set_filename('testimonials/in...')
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(30): Kohana_View->__construct('testimonials/in...', NULL)
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Testimonials.php(29): Kohana_View::factory('testimonials/in...')
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Testimonials->action_index()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Testimonials))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php:137
+2013-12-07 14:52:00 --- CRITICAL: View_Exception [ 0 ]: The requested view testimonials/index could not be found ~ SYSPATH\classes\Kohana\View.php [ 257 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php:137
+2013-12-07 14:52:00 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(137): Kohana_View->set_filename('testimonials/in...')
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(30): Kohana_View->__construct('testimonials/in...', NULL)
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Testimonials.php(29): Kohana_View::factory('testimonials/in...')
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Testimonials->action_index()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Testimonials))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php:137

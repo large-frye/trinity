@@ -25,14 +25,11 @@
 				</div>
 				
 				<div class="row">
-					<label for="password">Password</label>
-					
+					<label for="password">Password</label>	
 					<div class="right">
 						<input type="password" name="password" id="password">
 					</div>
-					
 				</div>
-				
 				<div class="row">	
 					<div class="right">
 						<input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
@@ -40,7 +37,7 @@
 						&nbsp;&nbsp;
 						<a href="account/forgot-pasword" class="forgot-password"><em>Forgot your password?</em></a>
 						&nbsp;|&nbsp;
-						<a href="account/sign-up" class="forgot-password"><em>Don`t have account? Sign up here</em></a>
+						<a href="account/signup" class="forgot-password"><em>Don`t have account? Sign up here</em></a>
 					</div>
 				</div>
 			<?php echo Form::close(); ?>
