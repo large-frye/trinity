@@ -3,7 +3,7 @@
 						<div class="content">
 							<ul>
 								<li class="current" >
-									<a href="/settings">Settings</a>
+									<a href="">Settings</a>
 									<ul>
 											<li >
 												<a href="/settings/email">Email Templates</a>
