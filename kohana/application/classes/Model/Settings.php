@@ -17,12 +17,42 @@ class Model_Settings extends Model_Base {
 
 
     public function update_emails($post){
-
          foreach($post as $key =>$email) {
              DB::update('settings')->set(array('value' => $email))->where('id', '=', ':id')
                 ->parameters(array(':id' => $key))
                 ->execute($this->db);
          }
+    }
+
+    /*
+    *to do
+    */
+    public function edit_categories($post){
+
+
+    }
+
+    /*
+    *to do
+    */
+    public function add_categories($post){
+
+
+    }
+    /*
+    *to do
+    */
+    public function delete_categories($post){
+
+
+    }
+
+    
+    public function get_categories(){
+            $result =  DB::query(Database::SELECT, "SELECT * FROM `categories` ORDER BY parent_id")
+                   ->as_object()
+                   ->execute($this->db);  
+             return $result;
     }
 
     public function validate_email_update($post){

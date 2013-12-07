@@ -12,10 +12,10 @@
 												<a href="/settings/prices">Work Order Prices</a>
 											</li>
 											<li >
-												<a href="/categories">Categories</a>
+												<a href="/settings/categories">Categories</a>
 											</li>
 											<li >
-												<a href="/categories/edit">Edit categories</a>
+												<a href="/settings/categories/edit">Edit categories</a>
 											</li>
 									</ul>
 								</li>

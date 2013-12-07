@@ -41,9 +41,22 @@ class Controller_Settings extends Controller_Master {
                 $view->user = (object) $this->_post;
             }
        }
-       $view->emailTemplate = $this->settings_model->get_email(); 
+      $view->emailTemplate = $this->settings_model->get_email(); 
       $this->template->content=$view;
    	}
+
+
+     public function action_categories(){
+       $view = View::factory('settings/categories');
+       $view->categories = $this->settings_model->get_categories();
+       $this->template->content=$view;
+    }
+
+     public function action_edit_categories(){
+       $view = View::factory('settings/edit');
+       $view->categories = $this->settings_model->get_categories();
+       $this->template->content=$view;
+    }
 
 
 

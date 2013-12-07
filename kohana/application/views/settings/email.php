@@ -10,7 +10,6 @@
 								 	echo "<div class=\"row\">";
 								 	echo "<label for=".$email->name.">".$email->nice_name."</label>";
 		         					echo "<div class=\"right\">";
-		         					
 		         					echo "<textarea name=".$email->id." id=".$email->name." class=\"grow\" style=\"height: 162px; overflow: hidden;\">";
 		         					echo $email->value;
 		         					echo "</textarea>";
