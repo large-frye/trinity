@@ -25,16 +25,15 @@ class Model_Settings extends Model_Base {
          }
     }
 
-/*
+    /*
     *to do
     */
     public function change_parent_categories($post){
-        print_r($post);
-        die();
-            DB::update('categories')->set(array('name' => $post['name']))->where('id', '=', ':id')
+      // print_r($post);
+       // die();
+                DB::update('categories')->set(array('parent_id' => $post['parent']))->where('id', '=', $post['category'])
                 ->parameters(array(':id' =>$post['category'] ))
                 ->execute($this->db);  
-
     }
     /*  
     *to do
