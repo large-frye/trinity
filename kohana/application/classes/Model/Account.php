@@ -2,12 +2,13 @@
 
 class Model_Account extends Model_Base {
 
+    const ADMIN     = 2;
+    const INSPECTOR = 3;
+    const CLIENT    = 4;
 
-
-	public function __construct() {
-		parent::__construct();
-		
-	}
+	  public function __construct() {
+		    parent::__construct();
+    }
 
 
 
@@ -17,7 +18,7 @@ class Model_Account extends Model_Base {
      * @param  object $post
      * @return array
      */
-	public function validate_login_post($post) {
+	   public function validate_login_post($post) {
         $valid_post = Validation::factory($post);
 
         $valid_post->rule('username', 'not_empty')
@@ -26,7 +27,7 @@ class Model_Account extends Model_Base {
         return $valid_post->check() ? array('status' => true) 
                                     : array('status' => false, 
                                     	    'errors' => $valid_post->errors('default'));
-	}
+	    }
 
 
 
@@ -90,5 +91,31 @@ class Model_Account extends Model_Base {
         }
 
         return $clients;
+    }
+
+
+
+    /**
+     * Return the current user's role_type
+     *
+     * @param  int $user_id
+     * @return int
+     */
+    public function get_user_type($user_id) {
+        $result = DB::query(Database::SELECT, "SELECT role_id FROM roles_users where user_id = :user_id")
+                      ->parameters(array(':user_id' => $user_id))
+                      ->as_object()
+                      ->execute($this->db);
+
+        foreach($result as $_result) {
+            switch ($_result->role_id) {
+                case $this::ADMIN :
+                    return $this::ADMIN;
+                case $this::INSPECTOR :
+                    return $this::INSPECTOR;
+                case $this::CLIENT :
+                    return $this::CLIENT;
+            }
+        }
     }
 }

@@ -98,6 +98,7 @@
 		</div>
 		<?php }} ?>
 		<div id="right" class="<?php echo $homepage ? ' margin-small ' : null; ?>">
+			<?php echo isset($success_message) ? "<div class=\"section\"><div class=\"message info\"><span>" . $success_message . "</span></div></div>" : null; ?>
 			<?php echo $content; ?>
 		</div>
 	</div>

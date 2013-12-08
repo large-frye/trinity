@@ -52,40 +52,40 @@
 					echo '<div id="menu">
 					<ul> 
 							<li >
-								<a href="http://admin.trinity.is/">Work Orders</a>
+								<a href="/account">Work Orders</a>
 								
 								 <ul> 
 									
 										<li >
-											<a href="http://admin.trinity.is/workorders/submit">Submit New</a>
+											<a href="/workorders/submit">Submit New</a>
 										</li>
 									
 								 </ul> 
 							</li> 
 							<li >
-								<a href="http://admin.trinity.is/settings">Settings</a>
+								<a href="/settings">Settings</a>
 								
 								 <ul> 
 									
 										<li >
-											<a href="http://admin.trinity.is/settings/email">Email Templates</a>
+											<a href="/settings/email">Email Templates</a>
 										</li>
 										<li >
-											<a href="http://admin.trinity.is/settings/prices">Work Order Prices</a>
+											<a href="/settings/prices">Work Order Prices</a>
 										</li>
 										<li >
-											<a href="http://admin.trinity.is/categories">Categories</a>
+											<a href="/categories">Categories</a>
 										</li>
 									
 								 </ul> 
 							</li> 
 							<li >
-								<a href="http://admin.trinity.is/users">Users</a>
+								<a href="/users">Users</a>
 								
 								 <ul> 
 									
 										<li >
-											<a href="http://admin.trinity.is/users/create">Create New</a>
+											<a href="/users/create">Create New</a>
 										</li>
 									
 								 </ul> 

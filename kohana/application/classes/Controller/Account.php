@@ -1,9 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 class Controller_Account extends Controller_Master {
-
-
-
+    
     protected $_auth = null;
 
     protected $_user = null;
@@ -48,6 +46,16 @@ class Controller_Account extends Controller_Master {
         }
 
         $this->template->homepage = $this->_homepage;
+
+        // Determine the type of the user
+        $this->user_type = $this->account_model->get_user_type($this->_user->id);
+
+        // Need to check Session::instance to see if a recent order was added. 
+        $recent_work_order_added = Session::instance()->get('add_new_work_order');
+        if (isset($recent_work_order_added)) {
+            $this->template->success_message = "Your work order has been added successfully.";
+            Session::instance()->delete('add_new_work_order');
+        }
     }
 
 
