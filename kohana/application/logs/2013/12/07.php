@@ -552,3 +552,483 @@
 #7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
 #8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
 #9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php:137
+2013-12-07 15:13:15 --- CRITICAL: ErrorException [ 8 ]: Trying to get property of non-object ~ APPPATH\classes\Controller\Account.php [ 61 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:61
+2013-12-07 15:13:15 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(61): Kohana_Core::error_handler(8, 'Trying to get p...', 'C:\wamp\www\tri...', 61, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_index()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:61
+2013-12-07 15:14:19 --- CRITICAL: ErrorException [ 8 ]: Trying to get property of non-object ~ APPPATH\classes\Controller\Account.php [ 62 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:62
+2013-12-07 15:14:19 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(62): Kohana_Core::error_handler(8, 'Trying to get p...', 'C:\wamp\www\tri...', 62, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_index()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:62
+2013-12-07 15:15:25 --- CRITICAL: ErrorException [ 8 ]: Trying to get property of non-object ~ APPPATH\classes\Controller\Account.php [ 61 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:61
+2013-12-07 15:15:25 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(61): Kohana_Core::error_handler(8, 'Trying to get p...', 'C:\wamp\www\tri...', 61, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_index()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:61
+2013-12-07 15:15:32 --- CRITICAL: ErrorException [ 8 ]: Trying to get property of non-object ~ APPPATH\classes\Controller\Account.php [ 61 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:61
+2013-12-07 15:15:32 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(61): Kohana_Core::error_handler(8, 'Trying to get p...', 'C:\wamp\www\tri...', 61, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_index()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:61
+2013-12-07 15:15:33 --- CRITICAL: ErrorException [ 8 ]: Trying to get property of non-object ~ APPPATH\classes\Controller\Account.php [ 61 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:61
+2013-12-07 15:15:33 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(61): Kohana_Core::error_handler(8, 'Trying to get p...', 'C:\wamp\www\tri...', 61, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_index()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:61
+2013-12-07 15:15:36 --- CRITICAL: ErrorException [ 8 ]: Trying to get property of non-object ~ APPPATH\classes\Controller\Account.php [ 61 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:61
+2013-12-07 15:15:36 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(61): Kohana_Core::error_handler(8, 'Trying to get p...', 'C:\wamp\www\tri...', 61, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_index()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:61
+2013-12-07 15:32:54 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected ' ~ APPPATH\classes\Controller\Account.php [ 99 ] in file:line
+2013-12-07 15:32:54 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 15:40:30 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected ''signup'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' ~ APPPATH\classes\Controller\Master.php [ 77 ] in file:line
+2013-12-07 15:40:30 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 15:40:35 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '{' ~ APPPATH\classes\Controller\Master.php [ 77 ] in file:line
+2013-12-07 15:40:35 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 15:40:44 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '{' ~ APPPATH\classes\Controller\Master.php [ 77 ] in file:line
+2013-12-07 15:40:44 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 15:40:47 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '{' ~ APPPATH\classes\Controller\Master.php [ 77 ] in file:line
+2013-12-07 15:40:47 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 16:23:08 --- CRITICAL: ErrorException [ 4096 ]: Argument 1 passed to Kohana_Validation::factory() must be of the type array, null given, called in C:\wamp\www\trinity\kohana\application\classes\Model\Account.php on line 75 and defined ~ SYSPATH\classes\Kohana\Validation.php [ 19 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:23:08 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php(19): Kohana_Core::error_handler(4096, 'Argument 1 pass...', 'C:\wamp\www\tri...', 19, Array)
+#1 C:\wamp\www\trinity\kohana\application\classes\Model\Account.php(75): Kohana_Validation::factory(NULL)
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(99): Model_Account->validate_new_user(NULL)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:23:35 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected ')' ~ APPPATH\classes\Model\Account.php [ 87 ] in file:line
+2013-12-07 16:23:35 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 16:23:46 --- CRITICAL: ErrorException [ 4096 ]: Argument 1 passed to Kohana_Validation::factory() must be of the type array, null given, called in C:\wamp\www\trinity\kohana\application\classes\Model\Account.php on line 75 and defined ~ SYSPATH\classes\Kohana\Validation.php [ 19 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:23:46 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php(19): Kohana_Core::error_handler(4096, 'Argument 1 pass...', 'C:\wamp\www\tri...', 19, Array)
+#1 C:\wamp\www\trinity\kohana\application\classes\Model\Account.php(75): Kohana_Validation::factory(NULL)
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(99): Model_Account->validate_new_user(NULL)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:23:54 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected ')' ~ APPPATH\classes\Model\Account.php [ 86 ] in file:line
+2013-12-07 16:23:54 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 16:24:00 --- CRITICAL: ErrorException [ 4096 ]: Argument 1 passed to Kohana_Validation::factory() must be of the type array, null given, called in C:\wamp\www\trinity\kohana\application\classes\Model\Account.php on line 75 and defined ~ SYSPATH\classes\Kohana\Validation.php [ 19 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:24:00 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php(19): Kohana_Core::error_handler(4096, 'Argument 1 pass...', 'C:\wamp\www\tri...', 19, Array)
+#1 C:\wamp\www\trinity\kohana\application\classes\Model\Account.php(75): Kohana_Validation::factory(NULL)
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(99): Model_Account->validate_new_user(NULL)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:24:22 --- CRITICAL: ErrorException [ 4096 ]: Argument 1 passed to Kohana_Validation::factory() must be of the type array, null given, called in C:\wamp\www\trinity\kohana\application\classes\Model\Account.php on line 75 and defined ~ SYSPATH\classes\Kohana\Validation.php [ 19 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:24:22 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php(19): Kohana_Core::error_handler(4096, 'Argument 1 pass...', 'C:\wamp\www\tri...', 19, Array)
+#1 C:\wamp\www\trinity\kohana\application\classes\Model\Account.php(75): Kohana_Validation::factory(NULL)
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(99): Model_Account->validate_new_user(NULL)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:24:40 --- CRITICAL: ErrorException [ 4096 ]: Argument 1 passed to Kohana_Validation::factory() must be of the type array, null given, called in C:\wamp\www\trinity\kohana\application\classes\Model\Account.php on line 75 and defined ~ SYSPATH\classes\Kohana\Validation.php [ 19 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:24:40 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php(19): Kohana_Core::error_handler(4096, 'Argument 1 pass...', 'C:\wamp\www\tri...', 19, Array)
+#1 C:\wamp\www\trinity\kohana\application\classes\Model\Account.php(75): Kohana_Validation::factory(NULL)
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(99): Model_Account->validate_new_user(NULL)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:25:52 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected ')' ~ APPPATH\classes\Model\Account.php [ 86 ] in file:line
+2013-12-07 16:25:52 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 16:26:00 --- CRITICAL: ErrorException [ 4096 ]: Argument 1 passed to Kohana_Validation::factory() must be of the type array, null given, called in C:\wamp\www\trinity\kohana\application\classes\Model\Account.php on line 75 and defined ~ SYSPATH\classes\Kohana\Validation.php [ 19 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:26:00 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php(19): Kohana_Core::error_handler(4096, 'Argument 1 pass...', 'C:\wamp\www\tri...', 19, Array)
+#1 C:\wamp\www\trinity\kohana\application\classes\Model\Account.php(75): Kohana_Validation::factory(NULL)
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(99): Model_Account->validate_new_user(NULL)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:27:12 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: validate_result ~ APPPATH\classes\Controller\Account.php [ 100 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:100
+2013-12-07 16:27:12 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(100): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 100, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:100
+2013-12-07 16:27:21 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: content ~ APPPATH\views\template.php [ 125 ] in C:\wamp\www\trinity\kohana\application\views\template.php:125
+2013-12-07 16:27:21 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 125, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#5 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(121): Controller_Master->after()
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#7 [internal function]: Kohana_Controller->execute()
+#8 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#9 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#11 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#12 {main} in C:\wamp\www\trinity\kohana\application\views\template.php:125
+2013-12-07 16:28:55 --- CRITICAL: ErrorException [ 4096 ]: Argument 1 passed to Kohana_Validation::factory() must be of the type array, null given, called in C:\wamp\www\trinity\kohana\application\classes\Model\Account.php on line 75 and defined ~ SYSPATH\classes\Kohana\Validation.php [ 19 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:28:55 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php(19): Kohana_Core::error_handler(4096, 'Argument 1 pass...', 'C:\wamp\www\tri...', 19, Array)
+#1 C:\wamp\www\trinity\kohana\application\classes\Model\Account.php(75): Kohana_Validation::factory(NULL)
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(100): Model_Account->validate_new_user(NULL)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:29:31 --- CRITICAL: ErrorException [ 8 ]: Use of undefined constant _post - assumed '_post' ~ APPPATH\classes\Controller\Account.php [ 100 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:100
+2013-12-07 16:29:31 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(100): Kohana_Core::error_handler(8, 'Use of undefine...', 'C:\wamp\www\tri...', 100, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:100
+2013-12-07 16:29:38 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: post ~ APPPATH\classes\Controller\Account.php [ 100 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:100
+2013-12-07 16:29:38 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(100): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 100, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:100
+2013-12-07 16:29:48 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: post ~ APPPATH\classes\Controller\Account.php [ 100 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:100
+2013-12-07 16:29:48 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(100): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 100, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:100
+2013-12-07 16:33:19 --- CRITICAL: ErrorException [ 4096 ]: Argument 1 passed to Kohana_Validation::factory() must be of the type array, null given, called in C:\wamp\www\trinity\kohana\application\classes\Model\Account.php on line 75 and defined ~ SYSPATH\classes\Kohana\Validation.php [ 19 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:33:19 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php(19): Kohana_Core::error_handler(4096, 'Argument 1 pass...', 'C:\wamp\www\tri...', 19, Array)
+#1 C:\wamp\www\trinity\kohana\application\classes\Model\Account.php(75): Kohana_Validation::factory(NULL)
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(102): Model_Account->validate_new_user(NULL)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:35:00 --- CRITICAL: ErrorException [ 4096 ]: Argument 1 passed to Kohana_Validation::factory() must be of the type array, object given, called in C:\wamp\www\trinity\kohana\application\classes\Model\Account.php on line 75 and defined ~ SYSPATH\classes\Kohana\Validation.php [ 19 ] in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:35:00 --- DEBUG: #0 C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php(19): Kohana_Core::error_handler(4096, 'Argument 1 pass...', 'C:\wamp\www\tri...', 19, Array)
+#1 C:\wamp\www\trinity\kohana\application\classes\Model\Account.php(75): Kohana_Validation::factory(Object(Request))
+#2 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(102): Model_Account->validate_new_user(Object(Request))
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\trinity\kohana\system\classes\Kohana\Validation.php:19
+2013-12-07 16:35:39 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '$this' (T_VARIABLE) ~ APPPATH\classes\Controller\Account.php [ 29 ] in file:line
+2013-12-07 16:35:39 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 16:39:50 --- CRITICAL: ErrorException [ 8 ]: Array to string conversion ~ APPPATH\classes\Controller\Account.php [ 100 ] in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:100
+2013-12-07 16:39:50 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(100): Kohana_Core::error_handler(8, 'Array to string...', 'C:\wamp\www\tri...', 100, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(84): Controller_Account->action_signup()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php:100
+2013-12-07 16:58:51 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '[' ~ APPPATH\views\account\signup.php [ 19 ] in file:line
+2013-12-07 16:58:51 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 17:49:03 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '{' ~ APPPATH\views\account\signup.php [ 53 ] in file:line
+2013-12-07 17:49:03 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 17:49:45 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: errors ~ APPPATH\views\account\signup.php [ 8 ] in C:\wamp\www\trinity\kohana\application\views\account\signup.php:8
+2013-12-07 17:49:45 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\account\signup.php(8): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 8, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(228): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_View->__toString()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#8 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#9 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(124): Controller_Master->after()
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#13 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#15 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#16 {main} in C:\wamp\www\trinity\kohana\application\views\account\signup.php:8
+2013-12-07 17:49:55 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: errors ~ APPPATH\views\account\signup.php [ 8 ] in C:\wamp\www\trinity\kohana\application\views\account\signup.php:8
+2013-12-07 17:49:55 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\account\signup.php(8): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 8, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(228): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_View->__toString()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#8 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#9 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(124): Controller_Master->after()
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#13 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#15 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#16 {main} in C:\wamp\www\trinity\kohana\application\views\account\signup.php:8
+2013-12-07 17:50:14 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: errors ~ APPPATH\views\account\signup.php [ 53 ] in C:\wamp\www\trinity\kohana\application\views\account\signup.php:53
+2013-12-07 17:50:14 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\account\signup.php(53): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 53, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(228): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_View->__toString()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#8 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#9 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(124): Controller_Master->after()
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#13 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#15 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#16 {main} in C:\wamp\www\trinity\kohana\application\views\account\signup.php:53
+2013-12-07 17:50:15 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: errors ~ APPPATH\views\account\signup.php [ 53 ] in C:\wamp\www\trinity\kohana\application\views\account\signup.php:53
+2013-12-07 17:50:15 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\account\signup.php(53): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 53, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(228): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_View->__toString()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#8 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#9 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(124): Controller_Master->after()
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#13 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#15 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#16 {main} in C:\wamp\www\trinity\kohana\application\views\account\signup.php:53
+2013-12-07 17:50:45 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: errors ~ APPPATH\views\account\signup.php [ 53 ] in C:\wamp\www\trinity\kohana\application\views\account\signup.php:53
+2013-12-07 17:50:45 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\account\signup.php(53): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 53, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(228): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_View->__toString()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#8 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#9 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(124): Controller_Master->after()
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#13 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#15 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#16 {main} in C:\wamp\www\trinity\kohana\application\views\account\signup.php:53
+2013-12-07 17:50:46 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: errors ~ APPPATH\views\account\signup.php [ 53 ] in C:\wamp\www\trinity\kohana\application\views\account\signup.php:53
+2013-12-07 17:50:46 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\account\signup.php(53): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 53, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(228): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_View->__toString()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#8 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#9 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(124): Controller_Master->after()
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#13 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#15 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#16 {main} in C:\wamp\www\trinity\kohana\application\views\account\signup.php:53
+2013-12-07 17:51:08 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected ';' ~ APPPATH\views\account\signup.php [ 55 ] in file:line
+2013-12-07 17:51:08 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 17:51:18 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected ';' ~ APPPATH\views\account\signup.php [ 55 ] in file:line
+2013-12-07 17:51:18 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 17:51:19 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected ';' ~ APPPATH\views\account\signup.php [ 55 ] in file:line
+2013-12-07 17:51:19 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 17:51:22 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected ';' ~ APPPATH\views\account\signup.php [ 55 ] in file:line
+2013-12-07 17:51:22 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 17:51:36 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: errors ~ APPPATH\views\account\signup.php [ 8 ] in C:\wamp\www\trinity\kohana\application\views\account\signup.php:8
+2013-12-07 17:51:36 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\account\signup.php(8): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 8, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(228): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_View->__toString()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#8 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#9 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(124): Controller_Master->after()
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#13 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#15 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#16 {main} in C:\wamp\www\trinity\kohana\application\views\account\signup.php:8
+2013-12-07 17:52:44 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected ')', expecting ',' or ';' ~ APPPATH\views\account\signup.php [ 54 ] in file:line
+2013-12-07 17:52:44 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-07 17:54:06 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: errors ~ APPPATH\views\account\signup.php [ 54 ] in C:\wamp\www\trinity\kohana\application\views\account\signup.php:54
+2013-12-07 17:54:06 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\account\signup.php(54): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 54, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(228): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_View->__toString()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#8 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#9 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(124): Controller_Master->after()
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#13 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#15 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#16 {main} in C:\wamp\www\trinity\kohana\application\views\account\signup.php:54
+2013-12-07 17:54:26 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: errors ~ APPPATH\views\account\signup.php [ 54 ] in C:\wamp\www\trinity\kohana\application\views\account\signup.php:54
+2013-12-07 17:54:26 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\account\signup.php(54): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 54, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(228): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_View->__toString()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#8 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#9 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(124): Controller_Master->after()
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#13 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#15 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#16 {main} in C:\wamp\www\trinity\kohana\application\views\account\signup.php:54
+2013-12-07 17:54:27 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: errors ~ APPPATH\views\account\signup.php [ 54 ] in C:\wamp\www\trinity\kohana\application\views\account\signup.php:54
+2013-12-07 17:54:27 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\account\signup.php(54): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 54, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(228): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_View->__toString()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#8 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#9 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(124): Controller_Master->after()
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#13 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#15 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#16 {main} in C:\wamp\www\trinity\kohana\application\views\account\signup.php:54
+2013-12-07 17:54:35 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: errors ~ APPPATH\views\account\signup.php [ 54 ] in C:\wamp\www\trinity\kohana\application\views\account\signup.php:54
+2013-12-07 17:54:35 --- DEBUG: #0 C:\wamp\www\trinity\kohana\application\views\account\signup.php(54): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\tri...', 54, Array)
+#1 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(228): Kohana_View->render()
+#4 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_View->__toString()
+#5 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#8 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#9 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(124): Controller_Master->after()
+#10 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#13 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#15 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#16 {main} in C:\wamp\www\trinity\kohana\application\views\account\signup.php:54
+2013-12-07 17:55:40 --- CRITICAL: ErrorException [ 2 ]: strpos(): Empty needle ~ APPPATH\views\account\signup.php [ 56 ] in file:line
+2013-12-07 17:55:40 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'strpos(): Empty...', 'C:\wamp\www\tri...', 56, Array)
+#1 C:\wamp\www\trinity\kohana\application\views\account\signup.php(56): strpos('default.phone.V...', '')
+#2 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#3 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#4 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(228): Kohana_View->render()
+#5 C:\wamp\www\trinity\kohana\application\views\template.php(125): Kohana_View->__toString()
+#6 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(61): include('C:\wamp\www\tri...')
+#7 C:\wamp\www\trinity\kohana\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\tri...', Array)
+#8 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#9 C:\wamp\www\trinity\kohana\application\classes\Controller\Master.php(68): Kohana_Controller_Template->after()
+#10 C:\wamp\www\trinity\kohana\application\classes\Controller\Account.php(124): Controller_Master->after()
+#11 C:\wamp\www\trinity\kohana\system\classes\Kohana\Controller.php(87): Controller_Account->after()
+#12 [internal function]: Kohana_Controller->execute()
+#13 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#14 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#15 C:\wamp\www\trinity\kohana\system\classes\Kohana\Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#16 C:\wamp\www\trinity\kohana\index.php(118): Kohana_Request->execute()
+#17 {main} in file:line
+2013-12-07 17:56:36 --- CRITICAL: ErrorException [ 1 ]: Call to undefined function ststr() ~ APPPATH\views\account\signup.php [ 56 ] in file:line
+2013-12-07 17:56:36 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
