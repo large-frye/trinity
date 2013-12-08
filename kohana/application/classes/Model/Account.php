@@ -65,6 +65,39 @@ class Model_Account extends Model_Base {
         return $result;
     }
 
+public function add_new_user($post){
+
+print_r($post);
+
+}
+
+
+  
+
+
+ public function validate_new_user($post){
+
+    $valid_post = Validation::factory($post);
+
+         $valid_post->rule('first_name', 'not_empty')
+                    ->rule('last_name', 'not_empty')
+                    ->rule('phone', 'not_empty')
+                    ->rule('phone', 'Valid::phone')
+                    ->rule('geographic_region', 'not_empty')
+                    ->rule('username', 'not_empty')
+                    ->rule('email', 'Valid::email')
+                    ->rule('insurance_company', 'not_empty')
+                    ->rule('password', 'not_empty')
+                    ->rule('confirm-password', 'not_empty')
+                    ->rule('password', 'min_length', array(':value', '6'))
+                    ->rule('confirm-password', 'matches', array(':validation', 'confirm-password', 'password'));
+          if ($valid_post->check()) {
+              return array('error' => false);
+          } else {
+              return array('error' => true, 'errors' => $valid_post->errors('default'));
+          }
+
+ }
 
 
     /**

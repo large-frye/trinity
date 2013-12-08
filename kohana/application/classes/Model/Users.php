@@ -82,6 +82,20 @@ class Model_Users extends Model_Base {
         $post = array();
     }
 
+    public function create_user_rules(){
+
+                
+        return array(
+            'user' => array(
+                'not_empty' => 'You must provide a username.',
+                'Valid::phone' => 'Please provide a valid phone number.',
+                'Valid::email' => 'Please enter an e-mail address.',
+                'username_available' => 'This username is not available.',
+                'password_confirm' => 'Passwords do not match.',
+                'min_length' => 'Password must be atleast 6 characters.',
+            )
+        );
+    }
 
 
     public function validate_create_user_form($post) {
@@ -96,7 +110,6 @@ class Model_Users extends Model_Base {
                     // ->rule('username', '') Call unique username function
                     ->rule('email', 'not_empty')
                     ->rule('email', 'Valid::email')
-                    ->rule('email', 'Valid::email_domain')
                     ->rule('password', 'not_empty')
                     ->rule('password', 'min_length', array(':value', '6'))
                     ->rule('password_confirm', 'matches', array(':validation', 'password_confirm', 'password'));

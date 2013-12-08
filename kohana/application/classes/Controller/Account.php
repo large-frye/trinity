@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 class Controller_Account extends Controller_Master {
-    
+
     protected $_auth = null;
 
     protected $_user = null;
@@ -24,14 +24,14 @@ class Controller_Account extends Controller_Master {
     	parent::before();
     	
     	$this->_auth = Auth::instance();
-
+        $this->_post= $this->request->post();
     	$this->_user = $this->_auth->get_user();
 
         $this::$logged_in = !$this->_user ? false : true;
-        
-        if (!$this::$logged_in) {
-            if ($this->request->action() != 'login') {
-                $this->request->redirect('/account/login');
+            
+        if (!$this::$logged_in) { 
+            if (!in_array($this->request->action() , array('login','signup'))) {
+                 $this->request->redirect('/account/login');
             }
         } else {
             if ($this->request->action() === 'login') {
@@ -99,11 +99,26 @@ class Controller_Account extends Controller_Master {
 
     public function action_logout() {
         $this->_auth->logout();
-
         $this->request->redirect('/account/login');
     }
 
-
+ public function action_signup(){
+    $view = View::factory('account/signup');
+     if ($this->request->method() === 'POST') {    
+         $validate_result= $this->account_model->validate_new_user($this->_post);
+        if (!$validate_result['error']) {
+              $this->settings_model->add_new_user($this->_post);
+         }else{
+            $view->errors=$validate_result['errors'];
+            $view->post = $this->_post;   
+         }
+     }
+        
+        $this->template->homepage=true;
+        $this->template->hide_right_side = false;
+        $this->template->content = $view;
+      
+    }
 
     public function action_users() {
         $view = View::factory('users/index');
@@ -117,4 +132,6 @@ class Controller_Account extends Controller_Master {
     public function after() {
         parent::after();
     }
+
+   
 }

@@ -1,13 +1,15 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 
-class Controller_Schedule extends Controller_Master {
+class Controller_Testimonials extends Controller_Master {
 
+      protected $_post = null;
 
      	public function __construct(Kohana_Request $request, Kohana_Response $response){
      		parent::__construct($request, $response);
-     		$this->settings_model=Model::factory('schedule');
+     		$this->testimonials_model=Model::factory('Testimonials');
      	}
+
 
    	public function before(){
    		parent::before();
@@ -24,10 +26,12 @@ class Controller_Schedule extends Controller_Master {
   public function action_index()
 	{
 
-		$this->template->content = View::factory('schedule/index');	
+		$this->template->content = View::factory('testimonials/index');	
 	}
 
-   }
 
+
+
+}
 
 ?>
