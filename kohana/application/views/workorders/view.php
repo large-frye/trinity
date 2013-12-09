@@ -15,41 +15,26 @@
 					<div class="row">
 						<label for="id">Status: </label>
 						<div class="right">
-							<select name="status">
-								{{#statuses}}
-									<option value="{{id}}" {{#selected}} selected="selected" {{/selected}}>{{name}}</option>
-								{{/statuses}}	
-							</select>
+							<?php echo Form::select('status', $workorder_statuses, $details->work_order_status); ?>
 						</div>
 					</div>	
 					
 					<div class="row">						
 						<label>Date of Inspection: </label>
 						<div class="right">
-								<input readonly="readonly" class="datepicker" type="text" name="date_of_inspection" id="date_of_inspection" value="{{data.date_of_inspection}}" placeholder="mm-dd-yyyy">
-						</div>	
-
-						{{#errors.date_of_inspection}}
-							<div class="right error">
-								{{errors.date_of_inspection}}
-							</div>
-						{{/errors.date_of_inspection}}								
+							    <?php echo Form::input('date_of_inspection', $details->date_of_inspection, array('placeholder' => 'mm-dd-yyyy',
+							    	                                                                             'readonly'    => 'readonly',
+							    	                                                                             'class'       => 'datepicker')); ?>
+						</div>
+						<!-- <div class="right error"></div> -->
 					</div>					
 
 					<div class="row">						
 						<label for="id">Time of Inspection: </label>
 						<div class="right">
-							<select name="hour_of_inspection" class="small">
-								{{#hours}}
-									<option value="{{hour}}" {{#selected}} selected="selected" {{/selected}}>{{hour}}</option>
-								{{/hours}}	
-							</select>
+							<?php echo Form::select('hour_of_inspection', $hours, date('h', strtotime($details->time_of_inspection)), array('class' => 'small')); ?>
 						&nbsp;<span style="display:inline-block;margin-top:4px;vertical-align:top;">:</span>&nbsp;	
-							<select name="min_of_inspection" class="small">
-								{{#mins}}
-									<option value="{{min}}" {{#selected}} selected="selected" {{/selected}}>{{min}}</option>
-								{{/mins}}
-							</select>							
+						    <?php echo Form::select('min_of_inspection', $minutes, date('i', strtotime($details->time_of_inspection)), array('class' => 'small')); ?>
 						</div>					
 					</div>		
 
@@ -58,19 +43,8 @@
 					<div class="row">									
 						<label for="id">Select Inspector: </label>						
 						<div class="right">
-							<select name="inspector_id">
-								<option value="">--Select Inspector--</option>
-								{{#inspectors}}
-									<option value="{{id}}" {{#selected}} selected="selected" {{/selected}}>{{username}}</option>
-								{{/inspectors}}	
-							</select>
-						</div>	
-
-						{{#errors.inspector_id}}
-							<div class="right error">
-								{{errors.inspector_id}}
-							</div>
-						{{/errors.inspector_id}}							
+							<?php echo Form::select('inspector_id', $inspectors, $details->inspector_id); ?>
+						</div>							
 						
 					</div>	
 					
@@ -93,9 +67,7 @@
 			</div>
 		</div>		
 	</form>
-		
-	
-	{{#show_inspection_status}}	
+
 	<form action="{{post_url}}" method="post" accept-charset="utf-8" id="inspection-status-form">
 		<div class="section hide-print">
 			<div class="box">
@@ -105,11 +77,7 @@
 					<div class="row">
 						<label for="id">Status: </label>
 						<div class="right">
-							<select name="inspection_status">
-								{{#inspection_statuses}}
-									<option value="{{id}}" {{#selected}} selected="selected" {{/selected}}>{{name}}</option>
-								{{/inspection_statuses}}	
-							</select>
+							<?php echo Form::select('inspection_status', $inspection_statuses, $details->inspection_status); ?>
 						</div>
 					</div>		
 					<div class="row inspection-alert" style="display:none;">						
@@ -141,21 +109,21 @@
 				<div class="row">
 					<label for="id">Inspection #: </label>
 					<div class="right">
-						<strong>&nbsp;{{data.id}}</strong>
+						<strong>&nbsp;<?php echo $details->id; ?></strong>
 					</div>
 				</div>		
 		
 				<div class="row">	
 					<label for="created_on_utc">Date Received: </label>
 					<div class="right">
-						<strong>&nbsp;{{data.created_on_utc}}</strong>
+						<strong>&nbsp;<?php echo $details->created_on_utc; ?></strong>
 					</div>
 				</div>
 				
 				<div class="row">	
 					<label for="special_instructions">Special Instructions: </label>
 					<div class="right">
-						<strong>&nbsp;{{data.special_instructions}}</strong>
+						<strong>&nbsp;<?php echo $details->special_instructions; ?></strong>
 					</div>
 				</div>				
 			</div>
@@ -173,63 +141,63 @@
 				<div class="row">
 					<label for="phone">Phone #: </label>
 					<div class="right">
-						<strong>&nbsp;{{data.phone}}</strong>
+						<strong>&nbsp;<?php echo $details->phone; ?></strong>
 					</div>
 				</div>			
 				
 				<div class="row">
 					<label for="phone">Alternate Phone #: </label>
 					<div class="right">
-						<strong>&nbsp;{{data.phone2}}</strong>
+						<strong>&nbsp;<?php echo $details->phone2; ?></strong>
 					</div>
 				</div>					
 				
 				<div class="row">
 					<label>Policy Number: </label>
 					<div class="right">
-						<strong>&nbsp;{{data.policy_number}}</strong>
+						<strong>&nbsp;<?php echo $details->policy_number; ?></strong>
 					</div>
 				</div>
 				
 				<div class="row">
 					<label for="first_name">First Name: </label>
 					<div class="right">
-						<strong>&nbsp;{{data.first_name}}</strong>
+						<strong>&nbsp;<?php echo $details->first_name; ?></strong>
 					</div>
 				</div>
 			
 				<div class="row">	
 					<label for="last_name">Last Name: </label>		
 					<div class="right">
-						<strong>&nbsp;{{data.last_name}}</strong>
+						<strong>&nbsp;<?php echo $details->last_name; ?></strong>
 					</div>
 				</div>
 			
 				<div class="row">		
 					<label for="street_address">Street Address: </label>			
 					<div class="right">	
-						<strong>&nbsp;{{data.street_address}}</strong>
+						<strong>&nbsp;<?php echo $details->street_address; ?></strong>
 					</div>
 				</div>
 			
 				<div class="row">
 					<label for="city">City</label>
 					<div class="right">
-						<strong>&nbsp;{{data.city}}</strong>
+						<strong>&nbsp;<?php echo $details->city; ?></strong>
 					</div>
 				</div>
 				
 				<div class="row">
 					<label>State</label>
 					<div class="right">
-						<strong>&nbsp;{{data.state}}</strong>
+						<strong>&nbsp;<?php echo $details->state; ?></strong>
 					</div>
 				</div>
 
 				<div class="row">
 					<label for="zip">Zip Code: </label>
 					<div class="right">
-						<strong>&nbsp;{{data.zip}}</strong>
+						<strong>&nbsp;<?php echo $details->zip; ?></strong>
 					</div>
 				</div>
 
@@ -246,28 +214,28 @@
 				<div class="row">
 					<label for="damage_type">Type of Damage: </label>
 					<div class="right">
-						<strong>&nbsp;{{data.damage_type}}</strong>
+						<strong><?php echo $details->damage_type; ?></strong>
 					</div>
 				</div>
 
 				<div class="row">
 					<label for="date_of_loss">Date of Loss: </label>
 					<div class="right">
-						<strong>&nbsp;{{data.date_of_loss}}</strong>
+						<strong><?php echo $details->date_of_loss; ?></strong>
 					</div>
 				</div>
 
 				<div class="row">	
 					<label for="tarped">Tarped: </label>
 					<div class="right">
-						<strong>&nbsp;{{tarped}}</strong>
+						<strong><?php echo $details->tarped == 0 ? "No" : "Yes"; ?></strong>
 					</div>
 				</div>
 
 				<div class="row">
 					<label for="estimate_scope_requirement">Estimate/Scope Requirment: </label>
 					<div class="right">
-						<strong>&nbsp;{{data.estimate_scope_requirement}}</strong>
+						<strong><?php echo $details->estimate_scope_requirement; ?></strong>
 					</div>
 				</div>	
 				
@@ -275,5 +243,30 @@
 		</div>
 	</div>	
 	
-	{{{v_comments}}}
+	<form action="" method="post" accept-charset="utf-8" id="comments-form">
+	<div class="section hide-print">
+		<div class="box">
+			<div class="title">Comments</div>
+			
+			<div class="content">	
+				
+				<div class="row">
+					<label for="message">Message: </label>
+
+					<div class="right">
+						<textarea name="message"></textarea>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<input type="hidden" name="csrf_token" value="7RR9zmx1Wlx6oF0jIoLPKHN">
+					<div class="right">
+						<button type="submit" name="only_comment"><span>Comment</span></button>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+</form>
 

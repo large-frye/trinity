@@ -57,6 +57,11 @@ class Controller_Workorders extends Controller_Account {
     public function action_view() {
         $view = View::factory('workorders/view');
         $view->details = $this->workorders_model->get_workorder_details($this->request->param('id'));
+        $view->workorder_statuses = $this->workorders_model->get_workorder_statuses();
+        $view->hours = $this->workorders_model->get_workorder_hours();
+        $view->minutes = $this->workorders_model->get_workorder_minutes();
+        $view->inspectors = $this->workorders_model->get_inspectors();
+        $view->inspection_statuses = $this->workorders_model->get_inspection_statuses();
         $view->admin = $this->user_type === Model_Account::ADMIN ? true : false;
         
         $this->template->content = $view;
