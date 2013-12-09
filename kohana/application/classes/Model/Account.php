@@ -72,8 +72,37 @@ print_r($post);
 }
 
 
-  
+/**
+* Check if the email already exists in the database
+* @param $username
+* @return boolean
+*/
+public static function unique_username($username)
+{
+    //check to see if username existsin the database
+    return ! DB::select(array(DB::expr('COUNT(username)'), 'total'))
+        ->from('users')
+        ->where('username', '=', $username)
+        ->execute()
+        ->get('total');
+}
 
+
+/**
+* Check if the email already exists in the database
+* @param $email
+* @return boolean
+*/
+  public static function unique_email($email)
+{
+    
+    return ! DB::select(array(DB::expr('COUNT(email)'), 'total'))
+        ->from('users')
+        ->where('email', '=', $email)
+        ->execute()
+        ->get('total');
+}
+  
 
  public function validate_new_user($post){
 
@@ -85,7 +114,9 @@ print_r($post);
                     ->rule('phone', 'Valid::phone')
                     ->rule('geographic_region', 'not_empty')
                     ->rule('username', 'not_empty')
+                    ->rule('username', 'Model_Account::unique_username')
                     ->rule('email', 'Valid::email')
+                    ->rule('email', 'Model_Account::unique_email')
                     ->rule('insurance_company', 'not_empty')
                     ->rule('password', 'not_empty')
                     ->rule('confirm-password', 'not_empty')
@@ -96,7 +127,7 @@ print_r($post);
           } else {
               return array('error' => true, 'errors' => $valid_post->errors('default'));
           }
-
+                   
  }
 
 

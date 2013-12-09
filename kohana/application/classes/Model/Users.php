@@ -9,17 +9,7 @@ class Model_Users extends Model_Base {
 
 
     public function create_user($post) {
-        $parameters = array(':id' => null,
-                            ':user_id' => $user->id,
-                            ':first_name' => $post['first_name'],
-                            ':last_name'  => $post['last_name'],
-                            ':phone'      => $post['phone'],
-                            ':geographic_region' => $post['geographic_region'],
-                            ':insurance_company' => $post['insurance_company']);
-
-        $roles_params = array(':user_id' => $user->id,
-                              ':role_id' => $post['role_id']);
-
+      
         try { 
             $user = ORM::factory('User');
             $user->username = $post['username'];
@@ -27,17 +17,34 @@ class Model_Users extends Model_Base {
             $user->password = $post['password']; 
             $user->save();
 
+
+              $parameters = array(':id' => null,
+                                        ':user_id' => $user->id,
+                                        ':first_name' => $post['first_name'],
+                                        ':last_name'  => $post['last_name'],
+                                        ':phone'      => $post['phone'],
+                                        ':geographic_region' => $post['geographic_region'],
+                                        ':insurance_company' => $post['insurance_company']);
+
+                    $roles_params = array(':user_id' => $user->id,
+                                          ':role_id' => $post['role_id'],
+                                          ':_role_id' => 1
+                                          );
+
+
+
             // Need to add user_profiles
             DB::insert('profiles')
                 ->values(array_keys($parameters))
                 ->parameters($parameters)
                 ->execute($this->db);
 
-            // Need to add roles
-            DB::insert('roles_users')
-                ->values(array_keys($roles_params))
-                ->parameters($roles_params)
-                ->execute($this->db);
+       
+      $insert = DB::insert('roles_users'); $roles = array(1, $post['role_id']); 
+      foreach($roles as $role) { 
+             $insert->values(array($user->id, $role));
+           } 
+         $insert->execute($this->db);
         } catch (ORM_Validation_Exception $e) {
             print_r($e);
         }
@@ -45,7 +52,17 @@ class Model_Users extends Model_Base {
         $post = array();
     }
 
+    public function send_confirmation_email($post){
 
+        $to      = $post['email'];
+        $subject = 'New Account on Trinity';
+        $message = 'Hello '.$post['first_name'].' '.$post['last_name'].'  Thank you for creating an account on Trinity Inspections';
+        $headers = 'From: admin@trinity.com' . "\r\n" .
+            'Reply-To: admin@trinity.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        mail($to, $subject, $message, $headers);
+    }
 
     public function edit_user($post, $user_id) {
         try { 
@@ -82,20 +99,7 @@ class Model_Users extends Model_Base {
         $post = array();
     }
 
-    public function create_user_rules(){
 
-                
-        return array(
-            'user' => array(
-                'not_empty' => 'You must provide a username.',
-                'Valid::phone' => 'Please provide a valid phone number.',
-                'Valid::email' => 'Please enter an e-mail address.',
-                'username_available' => 'This username is not available.',
-                'password_confirm' => 'Passwords do not match.',
-                'min_length' => 'Password must be atleast 6 characters.',
-            )
-        );
-    }
 
 
     public function validate_create_user_form($post) {
@@ -107,7 +111,6 @@ class Model_Users extends Model_Base {
                     ->rule('phone', 'Valid::phone')
                     ->rule('geographic_region', 'not_empty')
                     ->rule('username', 'not_empty')
-                    // ->rule('username', '') Call unique username function
                     ->rule('email', 'not_empty')
                     ->rule('email', 'Valid::email')
                     ->rule('password', 'not_empty')

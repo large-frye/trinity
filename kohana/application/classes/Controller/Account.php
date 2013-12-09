@@ -17,6 +17,7 @@ class Controller_Account extends Controller_Master {
 
     	// Account Model
     	$this->account_model = Model::factory('account');
+        $this->_users_model = Model::factory('users');
     }
 
 
@@ -35,9 +36,12 @@ class Controller_Account extends Controller_Master {
             }
         } else {
             if ($this->request->action() === 'login') {
+
                 $this->request->redirect('/account');
             }
 
+             // Determine the type of the user
+            $this->user_type = $this->account_model->get_user_type($this->_user->id);
             $this->template->admin = true;
         }
 
@@ -47,8 +51,6 @@ class Controller_Account extends Controller_Master {
 
         $this->template->homepage = $this->_homepage;
 
-        // Determine the type of the user
-        $this->user_type = $this->account_model->get_user_type($this->_user->id);
 
         // Need to check Session::instance to see if a recent order was added. 
         $recent_work_order_added = Session::instance()->get('add_new_work_order');
@@ -107,7 +109,10 @@ class Controller_Account extends Controller_Master {
      if ($this->request->method() === 'POST') {    
          $validate_result= $this->account_model->validate_new_user($this->_post);
         if (!$validate_result['error']) {
-              $this->settings_model->add_new_user($this->_post);
+            $this->_post['role_id']=4;
+            $this->_users_model->create_user($this->_post);
+            $this->_users_model->send_confirmation_email($this->_post);
+            $this->request->redirect('/account');
          }else{
             $view->errors=$validate_result['errors'];
             $view->post = $this->_post;   

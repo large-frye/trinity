@@ -43,7 +43,6 @@
 										</div>	
 										<?php
 											if(isset($errors['phone'])){
-												echo strstr($errors['phone'],'Default');
 												echo '<div class="right error">'.ucfirst($errors['phone']).'</div>';
 											}
 											?>
@@ -66,9 +65,9 @@
 										</div>
 										<?php
 											if(isset($errors['username'])){
-												echo '<div class="right error">Username cannot be empty</div>';
+												echo '<div class="right error">'.ucfirst($errors['username']).'</div>';
 											}
-											?>	
+											?>
 									</div>
 									<div class="row">
 										<label for="email">E-mail</label>
@@ -76,14 +75,12 @@
 										<div class="right">
 											<input type="text" name="email"  placeholder="Ex.: email@server.com" value="<?php echo isset($post['email']) ? $post['email'] : null; ?>" />	
 										</div>	
-											<?php
-
+										<?php
 											if(isset($errors['email'])){
-												echo '<div class="right error">Please enter a valid email</div>';
-
+												//echo strpos($errors['email'], 'unique_email');
+												echo '<div class="right error">'.ucfirst($errors['email']).'</div>';
 											}
-
-											?>	
+											?>
 									</div>
 									<div class="row">
 										<label for="insurance_company">Insurance Company</label>

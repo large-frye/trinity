@@ -25,5 +25,7 @@ return array(
 	'range'         => ':field must be within the range of :param2 to :param3',
 	'regex'         => ':field does not match the required format',
 	'url'           => ':field must be a url',
+	'Model_Account::unique_username' => 'This username already exists in the system',
+	'Model_Account::unique_email' => 'This email address already exists in the system',
 
 );
