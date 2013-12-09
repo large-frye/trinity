@@ -111,4 +111,95 @@ class Model_Workorders extends Model_Base {
     	           ->execute($this->db)
     	           ->current(); // Returns the current row, should only have one row.
     }
+
+
+
+    /**
+     * Return the work order statuses available
+     * 
+     * @return array
+     */
+    public function get_workorder_statuses() {
+    	$results = DB::query(Database::SELECT, "SELECT * FROM work_order_statuses")
+    	               ->as_object()
+    	               ->execute($this->db);
+
+    	$statuses = array();
+    	foreach($results as $result) {
+    		$statuses[$result->id] = $result->name;
+    	}
+
+    	return $statuses;
+    }
+
+
+
+    public function get_inspection_statuses() {
+    	$results = DB::query(Database::SELECT, "SELECT * FROM inspection_statuses")
+    	               ->as_object()
+    	               ->execute($this->db);
+    	$inspection_statuses = array();
+    	foreach($results as $result) {
+    		$inspection_statuses[$result->id] = $result->name;
+    	}
+
+    	return $inspection_statuses;
+    }
+
+
+ 
+    /**
+     * Return all the hours possible, 24 hr format
+     *
+     * @return array
+     */
+    public function get_workorder_hours() {
+    	$hours = array();
+        for($i = 0; $i < 24; $i++) {
+        	if ($i < 10) {
+        		$hours[$i] = '0' . $i;
+        	} else {
+        		$hours[$i] = $i;
+        	}
+        }
+
+        return $hours;
+    }
+
+
+
+    /**
+     * Return all the minutes
+     *
+     * @return array
+     */
+    public function get_workorder_minutes() {
+    	$minutes = array();
+        for($i = 0; $i < 60; $i++) {
+        	if ($i < 10) {
+        		$minutes[$i] = '0' . $i;
+        	} else {
+        		$minutes[$i] = $i;
+        	}
+        }
+
+        return $minutes;
+    }
+
+
+
+    public function get_inspectors() {
+    	$inspectors = array('' => '--Select Inspector');
+    	$results = DB::query(Database::SELECT, "SELECT u.username, u.id
+    		                                    FROM users u 
+    		                                    WHERE u.id IN (SELECT inspector_id FROM work_orders)")
+    	               ->as_object()
+    	               ->execute($this->db);
+
+    	foreach($results as $result) {
+    		$inspectors[$result->id] = $result->username;
+    	}
+
+    	return $inspectors;
+    }
 }
