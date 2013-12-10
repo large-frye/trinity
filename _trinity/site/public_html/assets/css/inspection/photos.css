@@ -1,0 +1,55 @@
+.upload-button {
+	margin:0 0 0 100px;
+}
+
+.thumb-highlight {
+	border:2px solid #FF0000 !important;
+	box-shadow:1px 1px 0 #BAEAFF !important;
+}
+
+.thumb-item {
+	cursor:pointer;
+}
+
+
+.cat-widget {
+	display:none;
+}
+
+.cat-widget li {
+	overflow:hidden;
+	white-space:nowrap;
+	height:24px;
+	border-bottom:1px solid #eee;
+	padding:0 0 0 13px !important;
+	margin:0 !important;
+}
+
+.cat-widget li a {
+	text-decoration:none;
+	display:block;
+}
+
+.cat-widget li.p {
+	background:url("../../gfx/icon-submenu.gif") no-repeat center right;
+}
+
+.cat-widget li.c {
+	display:none;
+}
+
+.cat-widget li.back {
+	background:#4DACDF !important;
+	color:#FFF !important;
+	margin:0 0 13px 0 !important;
+	display:none;
+}
+
+.cat-widget li.back a {
+	color:#FFF !important;
+}
+
+.cat-widget li.selected {
+	background:#BCE8FF !important;
+	color:#000 !important;
+}

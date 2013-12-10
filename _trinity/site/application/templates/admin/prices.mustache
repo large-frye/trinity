@@ -1,0 +1,30 @@
+<div class="section">
+	<div class="box">
+		<div class="title">Work Order Prices</div>
+		
+		<div class="content">
+			<form action="{{form_action_url}}" method="post">
+				<input type="hidden" name="csrf_token" value="{{csrf_token}}">
+				
+				{{#prices}}
+				<div class="row">	
+					<label for="{{name}}">{{nice_name}}</label>
+					<div class="right">
+						<input type="text" class="{{#error}}error{{/error}} spin-dec" name="{{name}}" id="{{name}}" value="{{value}}">
+						{{#error}}
+							<label class="error" for="{{name}}">{{error}}</label>
+						{{/error}}
+					</div>
+				</div>
+				{{/prices}}
+				
+				<div class="row">
+					<div class="right">
+						<button type="submit" name="submit"><span>Save changes</span></button>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</div>

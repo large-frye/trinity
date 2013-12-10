@@ -1,0 +1,76 @@
+#container
+{
+	width:1000px;
+	margin:auto;
+}
+.nav
+{
+	width:100%;
+	padding: 2px;
+}
+.nav ul
+{
+	margin:0 !important;
+	
+}
+.nav ul li
+{
+	background-color:#999;
+	display:block;
+	float:left;
+	width:100px;
+	text-align:center;
+}
+.nav ul li a
+{
+	text-decoration:none;
+	color:#fff;
+}
+.nav ul li:hover
+{
+	background-color:#ccc;
+	color:blue;
+}
+.nav ul li:hover a
+{
+	text-decoration:none;
+	color:blue;
+}
+
+.left-column
+{
+	width:69%;
+	float:left;
+}
+.right-column
+{
+	width:29%;
+	float:right;
+	height:1000px;
+	overflow:auto;
+	background-color:#ddd;
+	margin:10px;
+}
+.update
+{
+	margin:5px;
+	border:1px solid #444;
+}
+.update .btn
+{
+	float:right;
+}
+.left-column .input-xlarge
+{
+	width:100%;
+}
+.selected
+{
+	background-color:#A0DBF2;
+}
+.done{
+	background-color:#9DED7E;
+}
+.not-done{
+	background-color:#F2BDC6;
+}

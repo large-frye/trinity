@@ -1,0 +1,25 @@
+<div class="section">
+	<div class="box">
+		<div class="title">Recover Password</div>
+		
+		<div class="content" style="width:auto;">
+			<form action="{{post_url}}" method="post" accept-charset="utf-8" id="login-form">
+				
+				<div class="row">
+					<label for="email">E-mail Address</label>
+					
+					<div class="right">
+						<input type="text" name="email" id="email">
+					</div>	
+				</div>
+				
+				<div class="row">	
+					<div class="right">
+						<input type="hidden" name="csrf_token" value="{{csrf_token}}">
+						<button type="submit"><span>Submit</span></button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,60 @@
+<div class="section">
+	<div class="box">
+		<div class="title">Categories</div>
+		
+		<div class="content">
+			<form action="{{post_action_url}}" method="post">
+				<input type="hidden" name="csrf_token" value="{{csrf_token}}">
+				
+				<div class="row">
+					<label for="category">Select category</label>
+					<div class="right">
+						<select name="category">
+							<option value="0">Select a category<option>
+							{{#categories}}
+								<option value="{{id}}">{{name}}</option>
+								{{#children}}
+									<option value="{{id}}">&nbsp;--{{name}}</option>
+								{{/children}}
+							{{/categories}}
+						</select>
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<label for="name">Name: </label>
+					<div class="right">
+						<input type="text" name="name" id="name">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="right">
+						<button type="submit" name="add_category"><span>Add</span></button>
+						<button type="submit" name="edit_category"><span>Edit</span></button>
+						<button type="submit" name="delete_category"><span>Delete</span></button>
+					</div>
+				</div>
+				
+				<div class="row">
+					<label for="parent">Select parent</label>
+					<div class="right">
+						<select name="parent">
+							<option value="0">Select a parent<option>
+							{{#categories}}
+								<option value="{{id}}">{{name}}</option>
+							{{/categories}}
+						</select>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="right">
+						<button type="submit" name="change_parent"><span>Change Parent</span></button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

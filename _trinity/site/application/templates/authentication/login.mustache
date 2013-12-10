@@ -1,0 +1,43 @@
+<div class="section">
+	<div class="box">
+		<div class="title">Sign In</div>
+		
+		<div class="content" style="width:auto;">
+			<form action="{{login_post_url}}" method="post">
+				
+				<div class="row">
+					<label for="username">Username</label>
+					
+					<div class="right">
+						<input type="text" name="username" id="username">
+					</div>
+					
+				</div>
+				
+				<div class="row">
+					<label for="password">Password</label>
+					
+					<div class="right">
+						<input type="password" name="password" id="password">
+					</div>
+					
+				</div>
+				
+				<div class="row">	
+					<div class="right">
+						<input type="hidden" name="csrf_token" value="{{csrf_token}}">
+						<button type="submit"><span>Sign In</span></button>
+						&nbsp;&nbsp;
+						<a href="{{forgot_password_url}}" class="forgot-password"><em>Forgot your password?</em></a>
+						&nbsp;|&nbsp;
+						<a href="{{signup_url}}" class="forgot-password"><em>Don`t have account? Sign up here</em></a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+

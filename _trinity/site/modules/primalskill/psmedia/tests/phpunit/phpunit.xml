@@ -1,0 +1,10 @@
+<phpunit colors="true" bootstrap="../../../../public_html/test-index.php">
+	<testsuites>
+		<testsuite name="PHMK Tests">
+			<file>test_psmedia.php</file>
+		</testsuite>
+	</testsuites>
+	<php>
+		<server name="SERVER_NAME" value="http://www.peervidz.dev" />
+	</php>
+</phpunit>

@@ -1,0 +1,306 @@
+
+<form action="{{post_url}}{{#is_edit}}/{{data.id}}{{/is_edit}}" method="post" accept-charset="utf-8" id="workorder-submit-form">
+
+	<div class="section">
+		<div class="box">
+			<div class="title">{{^is_admin}}Submit New Inspection{{/is_admin}}{{#is_admin}}Edit Work Order{{/is_admin}}</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="box">
+			<div class="title">Work Order</div>
+			<div class="content">
+					{{#is_admin}}			
+					<div class="row">
+						<label for="username">Select Client</label>
+
+						<div class="right">
+							<select name="user_id" class="{validate:{required:true, messages:{required:'Select one option'}}}">
+							{{#clients}}
+								<option value="{{id}}" {{#selected}} selected="selected" {{/selected}}>{{username}}</option>
+							{{/clients}}	
+							</select>
+						</div>
+					</div>		
+				{{/is_admin}}
+		
+		
+				<div class="row">	
+
+					<label for="type">Work Order Type</label>
+
+					<div class="right">
+						<select name="type">
+						{{#inspection_types}}
+							<option value="{{code}}" {{#selected}} selected="selected" {{/selected}}>{{name}}</option>
+						{{/inspection_types}}	
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	{{#is_admin}}
+		<div class="section">
+			<div class="box">
+				<div class="title">Price of Work Order</div>
+				
+				<div class="content">
+					<div class="row">
+						<label for="price">Price</label>
+						<div class="right">
+							<input type="text" class="{{#errors.price}}error{{/errors.price}} spin-dec" name="price" id="price" value="{{data.price}}">
+							{{#errors.price}}
+								<label class="error" for="price">{{errors.price}}</label>
+							{{/errors.price}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{{/is_admin}}
+	
+	<div class="section">
+		<div class="box">
+			<div class="title">Insured's Information</div>
+			
+			<div class="content">
+				
+				<div class="row">
+					<label for="policy_number">Policy Number</label>
+
+					<div class="right">
+						<input type="text" name="policy_number" id="policy_number" value="{{data.policy_number}}">
+					</div>
+				</div>
+
+				{{#errors.policy_number}}
+					<div class="row">
+						<div class="right error">
+							{{errors.policy_number}}
+						</div>
+					</div>
+				{{/errors.policy_number}}
+				
+				<div class="row">
+					<label for="first_name">First Name</label>
+
+					<div class="right">
+						<input type="text" name="first_name" id="first_name" value="{{data.first_name}}">
+					</div>
+				</div>
+
+				{{#errors.first_name}}
+					<div class="row">
+						<div class="right error">
+							{{errors.first_name}}
+						</div>
+					</div>
+				{{/errors.first_name}}
+			
+				<div class="row">
+				
+					<label for="last_name">Last Name</label>
+				
+					<div class="right">
+						<input type="text" name="last_name" id="last_name" value="{{data.last_name}}">
+					</div>
+				</div>
+
+				{{#errors.last_name}}
+					<div class="row">
+						<div class="right error">
+							{{errors.last_name}}
+						</div>
+					</div>
+				{{/errors.last_name}}	
+			
+				<div class="row">
+				
+					<label for="street_address">Street Address</label>
+				
+					<div class="right">	
+						<input type="text" name="street_address" id="street_address" value="{{data.street_address}}">
+					</div>
+				</div>
+
+				{{#errors.street_address}}
+					<div class="row">
+						<div class="right error">
+							{{errors.street_address}}
+						</div>
+					</div>
+				{{/errors.street_address}}
+			
+				<div class="row">
+
+					<label for="city">City</label>
+
+					<div class="right">
+						<input type="text" name="city" id="city" value="{{data.city}}">	
+					</div>
+				</div>
+
+				{{#errors.city}}
+					<div class="row">
+						<div class="right error">
+							{{errors.city}}
+						</div>
+					</div>
+				{{/errors.city}}
+				
+				<div class="row">
+
+					<label for="state">State</label>
+
+					<div class="right">
+						<input type="text" name="state" id="state" value="{{data.state}}">	
+					</div>
+				</div>
+
+				{{#errors.state}}
+					<div class="row">
+						<div class="right error">
+							{{errors.state}}
+						</div>
+					</div>
+				{{/errors.state}}
+			
+				<div class="row">
+					<label for="zip">Zip Code</label>
+
+					<div class="right">
+						<input type="text" name="zip" id="zip" value="{{data.zip}}">	
+					</div>
+				</div>
+
+				{{#errors.zip}}
+					<div class="row">
+						<div class="right error">
+							{{errors.zip}}
+						</div>
+					</div>
+				{{/errors.zip}}
+			
+				<div class="row">
+					<label for="phone">Phone Number</label>
+
+					<div class="right">
+						<input type="text" name="phone" id="phone" value="{{data.phone}}">
+					</div>
+				</div>
+
+				{{#errors.phone}}
+					<div class="row">
+						<div class="right error">
+							{{errors.phone}}
+						</div>
+					</div>
+				{{/errors.phone}}
+				
+				<div class="row">
+					<label for="phone2">Alternate Phone Number</label>
+
+					<div class="right">
+						<input type="text" name="phone2" id="phone2" value="{{data.phone2}}">
+					</div>
+				</div>
+
+				{{#errors.phone2}}
+					<div class="row">
+						<div class="right error">
+							{{errors.phone2}}
+						</div>
+					</div>
+				{{/errors.phone2}}
+				
+				<div class="row">
+					<label for="is_expert">Auto upgrade to fully documented expert inspection when there is no damage found on a basic report</label>
+
+					<div class="right">
+						<input type="checkbox" {{#checked_is_expert}} checked="checked" {{/checked_is_expert}} name="is_expert" id="is_expert" value="1" >
+					</div>
+				</div>				
+			
+			</div>	
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="box">
+			<div class="title">Inspection Information</div>
+			
+			<div class="content">
+				
+				<div class="row">
+					<label for="damage_type">Type of Damage:</label>
+	
+					<div class="right">
+						<input type="text" name="damage_type" id="damage_type" value="{{data.damage_type}}">	
+					</div>
+				</div>
+
+				<div class="row">
+					<label for="date_of_loss">Date of Loss</label>
+
+					<div class="right">
+						<input readonly="readonly" class="datepicker" type="text" name="date_of_loss" id="date_of_loss" value="{{data.date_of_loss}}"  placeholder="mm-dd-yyyy">	
+					</div>
+				</div>
+
+				{{#errors.date_of_loss}}
+					<div class="row">
+						<div class="right error">
+							{{errors.date_of_loss}}
+						</div>
+					</div>
+				{{/errors.date_of_loss}}	
+
+				<div class="row">	
+					<label for="tarped">Tarped</label>
+
+					<div class="right">
+						<select name="tarped">
+							<option value="0" >No</option>
+							<option value="1" {{#selected_tarped}} selected="selected" {{/selected_tarped}}>Yes</option>
+						</select>
+					</div>
+				</div>		
+
+				<div class="row">
+					<label for="estimate_scope_requirement">Estimate/Scope Requirment</label>
+
+					<div class="right">
+						<input type="text" name="estimate_scope_requirement" id="estimate_scope_requirement" value="{{data.estimate_scope_requirement}}">	
+					</div>
+				</div>	
+
+				<div class="row">
+					<label for="special_instructions">Special Instructions</label>
+
+					<div class="right">
+						<input type="text" name="special_instructions" id="special_instructions" value="{{data.special_instructions}}">
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="box">
+			
+			<div class="content">
+				<div class="row">
+					<input type="hidden" name="csrf_token" value="{{csrf_token}}">
+					<div class="right">
+						<button type="submit"><span>Submit</span></button>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</form>	

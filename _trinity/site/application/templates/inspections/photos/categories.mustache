@@ -1,0 +1,12 @@
+<ul class="cat-widget">
+	<li class="back"><a href="#">Back</a></li>
+	
+	{{#categories}}
+		<li class="p"><a href="#i{{id}}">{{name}}</a></li>
+			{{#children}}
+				<li class="c pid{{parent_id}}" rel="{{parent_id}}"><a href="#i{{id}}">{{name}}</a></li>
+			{{/children}}	
+		</li>
+	{{/categories}}
+	
+</ul>
