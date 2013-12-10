@@ -3,7 +3,7 @@
 						<div class="content">
 							<ul>
 								<li class="current" >
-									<a href="/workorders">Inspection Orders</a>
+									<a href="/account">Inspection Orders</a>
 									<ul>
 											<li class="current">
 												<a href="/workorders/submit">Submit New Inspction</a>

@@ -1,4 +1,8 @@
-
+<?php if (isset($success)) {
+	echo "<div class=\"message info\"><span>" . $success . "</span></div>";
+} else if (isset($error)) {
+    echo "<div class=\"message error\"><span>" . $error . "</span></div>";
+}?>
 	<div class="section hide-print">
 		<div class="box">
 			<div class="title">Work Order</div>
@@ -6,7 +10,7 @@
 	</div>
 	
 	<?php if ($admin) { ?>
-	<form action="{{post_url}}" method="post" accept-charset="utf-8" id="status-form">
+	<?php echo Form::open(''); ?>
 		<div class="section">
 			<div class="box hide-print">
 				<div class="title">Status</div>
@@ -15,7 +19,7 @@
 					<div class="row">
 						<label for="id">Status: </label>
 						<div class="right">
-							<?php echo Form::select('status', $workorder_statuses, $details->work_order_status); ?>
+							<?php echo Form::select('status', $workorder_statuses, $details->status); ?>
 						</div>
 					</div>	
 					
@@ -68,7 +72,7 @@
 		</div>		
 	</form>
 
-	<form action="{{post_url}}" method="post" accept-charset="utf-8" id="inspection-status-form">
+	<?php echo Form::open(''); ?>
 		<div class="section hide-print">
 			<div class="box">
 				<div class="title">Inspection Status</div>
@@ -248,7 +252,7 @@
 		<div class="box">
 			<div class="title">Comments</div>
 			
-			<div class="content">	
+			<div class="content">
 				
 				<div class="row">
 					<label for="message">Message: </label>

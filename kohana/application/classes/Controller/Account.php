@@ -53,10 +53,14 @@ class Controller_Account extends Controller_Master {
 
 
         // Need to check Session::instance to see if a recent order was added. 
-        $recent_work_order_added = Session::instance()->get('add_new_work_order');
-        if (isset($recent_work_order_added)) {
-            $this->template->success_message = "Your work order has been added successfully.";
-            Session::instance()->delete('add_new_work_order');
+        $session_variables = array('add_new_work_order'  => Session::instance()->get('add_new_work_order'),
+                                   'edit_new_work_order' => Session::instance()->get('edit_new_work_order'));
+
+        foreach($session_variables as $key => $var) {
+            if (isset($var)) {
+                $this->template->success_message = $var;
+                Session::instance()->delete($key);
+            }
         }
     }
 

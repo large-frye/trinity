@@ -93,13 +93,108 @@ class Model_Workorders extends Model_Base {
 
 
 
+    public function edit_workorder($post, $workorder_id) {
+        $parameters = array(':id'                         => $workorder_id,
+                            ':type'                       => $post['type'],
+                            ':user_id'                    => $post['user_id'],
+                            ':policy_number'              => $post['policy_number'],
+                            ':first_name'                 => $post['first_name'],
+                            ':last_name'                  => $post['last_name'],
+                            ':street_address'             => $post['street_address'],
+                            ':city'                       => $post['city'],
+                            ':state'                      => $post['state'],
+                            ':zip'                        => $post['zip'],
+                            ':phone'                      => $post['phone'],
+                            ':phone2'                     => $post['phone2'],
+                            ':is_expert'                  => isset($post['is_expert']) ? true : false,
+                            ':damage_type'                => $post['damage_type'],
+                            ':date_of_loss'               => $post['date_of_loss'],
+                            ':tarped'                     => $post['tarped'],
+                            ':estimate_scope_requirement' => $post['estimate_scope_requirement'],
+                            ':special_instructions'       => $post['special_instructions'],
+                            ':price'                      => $post['price']);
+        $values = array();
+        foreach($parameters as $parameter => $value) {
+            $values[str_replace(':', '', $parameter)] = $parameter; 
+        }
+
+        try {
+            DB::update('work_orders')->set($values)->where('id', '=', ':id')
+                ->parameters($parameters)
+                ->execute($this->db);
+            return array('status' => true);
+        } catch (Exception $e) {
+            return array('status' => false, 'error' => $e->message);
+        }
+    }
+
+
+
+    /**
+     * Set workorder status
+     *
+     * @param  array $post
+     * @param  int   $workorder_id
+     * @return boolean
+     */
+    public function set_workorder_status($post, $workorder_id) {
+        $hour = $post['hour_of_inspection'] < 10 ? '0' . $post['hour_of_inspection'] : $post['hour_of_inspection'];
+        $min = $post['min_of_inspection'] < 10 ? '0' . $post['min_of_inspection'] : $post['min_of_inspection'];
+        $parameters = array(':id'                 => $workorder_id,
+                            ':status'             => $post['status'],
+                            ':date_of_inspection' => $post['date_of_inspection'],
+                            ':time_of_inspection' => $hour . ':' . $min,
+                            ':inspector_id'       => $post['inspector_id']);
+
+        $values = array();
+        foreach($parameters as $key => $value) {
+            $values[str_replace(':', '', $key)] = $key;
+        }
+
+        try {
+            $status = DB::update('work_orders')->set($values)->where('id', '=', ':id')
+                ->parameters($parameters)
+                ->execute($this->db);
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+
+    
+    /**
+     * Set workorder inspection status
+     *
+     * @param  array $post
+     * @param  int   $workorder_id
+     * @return boolean
+     */
+    public function set_workorder_inspection_status($post, $workorder_id) {
+        $parameters = array(':id' => $workorder_id,
+                            ':inspection_status' => $post['inspection_status']);
+        $values = array();
+        foreach($parameters as $key => $value) { $values[str_replace(':', '', $key)] = $key; }
+
+        try {
+            DB::update('work_orders')->set($values)->where('id', '=', ':id')
+                ->parameters($parameters)
+                ->execute($this->db);
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+
+
     /**
      * Get workorder details
      *
      * @param int $workorder_id
      */
     public function get_workorder_details($workorder_id) {
-    	return DB::query(Database::SELECT, "SELECT wo.*, wos.name as work_order_status, _is.name as inspection_status,
+    	return DB::query(Database::SELECT, "SELECT wo.*, wos.name as work_order_status, _is.name as _inspection_status,
     	                                           u.username 
     		                                FROM work_orders wo
     		                                LEFT JOIN work_order_statuses wos ON wos.id = wo.status
