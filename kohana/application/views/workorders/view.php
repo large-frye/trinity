@@ -71,6 +71,7 @@
 			</div>
 		</div>		
 	</form>
+	<?php } else if ($admin || $inspector) { ?>
 
 	<?php echo Form::open(''); ?>
 		<div class="section hide-print">

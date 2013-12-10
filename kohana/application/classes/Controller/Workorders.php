@@ -6,10 +6,11 @@ class Controller_Workorders extends Controller_Account {
 
     protected $_admin = null;
 
+    protected $_inpsector = null;
+
     public function __construct(Kohana_Request $request, Kohana_Response $response) {
     	parent::__construct($request, $response);
         $this->workorders_model = Model::factory('workorders');
-        $this->_admin = Model_Account::ADMIN ? true : false;
     }
 
 
@@ -17,8 +18,10 @@ class Controller_Workorders extends Controller_Account {
     public function before() {
     	parent::before();
     	$this->template->homepage = false;
-        $this->template->side_bar = View::factory('workorders/side-bar');
         $this->_post = $this->request->post();
+        $this->template->side_bar = View::factory('workorders/side-bar');
+        $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
+        $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
     }
 
 
@@ -65,6 +68,7 @@ class Controller_Workorders extends Controller_Account {
         $view->inspectors = $this->workorders_model->get_inspectors();
         $view->inspection_statuses = $this->workorders_model->get_inspection_statuses();
         $view->admin = $this->_admin;
+        $view->inspector = $this->_inspector;
 
         if ($this->request->method() === 'POST') {
             if (isset($this->_post['set_status'])) {

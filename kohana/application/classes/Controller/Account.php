@@ -43,6 +43,7 @@ class Controller_Account extends Controller_Master {
              // Determine the type of the user
             $this->user_type = $this->account_model->get_user_type($this->_user->id);
             $this->template->admin = true;
+            $this->_set_admin_menu();
         }
 
         if ($this->request->controller() === 'Account' && $this->request->action() === 'index') {
@@ -67,13 +68,11 @@ class Controller_Account extends Controller_Master {
 
 
     public function action_index() {
-        // Need to hide right side bar
         $this->template->hide_right_side = true;
-
         $view = View::factory('account/index');
-
-        $view->orders = $this->account_model->get_work_orders($this->_user->id);
-
+        $view->admin = $this->user_type == 2 ? true : false;
+        $view->orders = $this->account_model->get_work_orders($this->_user->id, $this->user_type);
+        $view->options = $this->_get_options($view->orders);
         $this->template->content = $view;
     }
 
@@ -142,5 +141,53 @@ class Controller_Account extends Controller_Master {
         parent::after();
     }
 
-   
+
+
+    /**
+     * Set admin menu
+     *
+     */
+    private function _set_admin_menu() {
+        $view = View::factory('admin/admin_menu');
+        $view->user_type = $this->user_type;
+        $this->template->admin_menu = $view;
+    }
+
+    
+
+    private function _get_options($orders) {
+        $options = array();
+        foreach($orders as $_order) {
+            switch ($this->user_type) {
+                case Model_Account::ADMIN : 
+                    $options[$_order->id] = array('/workorders/view/' . $_order->id => 'View',
+                                                  '/workorders/edit/' . $_order->id => 'Edit',
+                                                  '/invoice/index/' . $_order->id   => 'Edit Invoice',
+                                                  '/invoice/generate/' . $_order_id => 'Generate Invoice',
+                                                  '/workorders/report/' . $order_id => 'Report');
+                    break;
+                case Model_Account::INSPECTOR :
+                    $options[$_order->id] = array('/inspections/view/' . $_order->id         => 'View',
+                                                  '/inspections/form/' . $_order->id        => 'Inspection Form',
+                                                  '/inspections/estimates/' . $_order->id   => 'Estimates',
+                                                  '/inspections/viewphotos/' . $_order->id  => 'Photos');
+                    break;
+            }
+        }
+
+        return $options;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

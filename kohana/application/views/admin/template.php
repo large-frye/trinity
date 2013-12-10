@@ -38,41 +38,8 @@
 					<li><a href="/account/logout" class="logout"></a></li>
 				</ul>
 			</div>
-			
-			<div id="menu">
-				<ul> 
-					<li>
-						<a href="/account">Work Orders</a>
-							<ul> 
-								<li>
-									<a href="/workorders/submit">Submit New</a>
-								</li>
-							</ul> 
-					</li> 
-					<li >
-						<a href="/settings">Settings</a>
-							<ul> 
-								<li>
-									<a href="/settings/email">Email Templates</a>
-								</li>
-								<li>
-									<a href="/settings/prices">Work Order Prices</a>
-								</li>
-								<li>
-									<a href="/categories">Categories</a>
-								</li>
-							</ul> 
-					</li> 
-					<li>
-						<a href="/users">Users</a>
-							<ul> 
-								<li >
-									<a href="/users/new">Create New</a>
-								</li>
-							</ul> 
-						</li> 
-				</ul>
-			</div>
+
+			<?php echo $admin_menu; ?>
 		</div> 
 		<div class="plain">&nbsp;</div>
 		<?php if (!$homepage) {  

@@ -31,7 +31,17 @@ class Model_Account extends Model_Base {
 
 
 
-    public function get_work_orders($user_id) {
+    public function get_work_orders($user_id, $user_type) {
+        $where_clause = "1=1";
+
+        switch ($user_type) {
+            case '3' :
+                $where_clause = "inspector_id = :user_id";
+                break;
+            case '4' :
+                $where_clause = "user_id = :user_id";
+                break;
+        }
 
         $result = DB::query(Database::SELECT, 'SELECT w.*, CONCAT(uf.first_name, " ", uf.last_name) as adjuster_name,
                                                       CONCAT(_uf.first_name, " ", _uf.last_name) as inspector_name,
@@ -43,7 +53,7 @@ class Model_Account extends Model_Base {
                                                LEFT JOIN profiles _uf ON _uf.user_id = _u.id
                                                LEFT JOIN work_order_statuses wos ON wos.id = w.status
                                                LEFT JOIN inspection_statuses _is ON _is.id = w.inspection_status
-                                               WHERE 1=1')
+                                               WHERE ' . $where_clause)
                       ->parameters(array(':user_id' => $user_id))
                       ->as_object()
                       ->execute($this->db);
@@ -166,7 +176,7 @@ public static function unique_username($username)
      * @return int
      */
     public function get_user_type($user_id) {
-        $result = DB::query(Database::SELECT, "SELECT role_id FROM roles_users where user_id = :user_id")
+        $result = DB::query(Database::SELECT, "SELECT role_id FROM roles_users where user_id = :user_id AND role_id != 1")
                       ->parameters(array(':user_id' => $user_id))
                       ->as_object()
                       ->execute($this->db);
