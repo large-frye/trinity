@@ -163,8 +163,8 @@ class Controller_Account extends Controller_Master {
                     $options[$_order->id] = array('/workorders/view/' . $_order->id => 'View',
                                                   '/workorders/edit/' . $_order->id => 'Edit',
                                                   '/invoice/index/' . $_order->id   => 'Edit Invoice',
-                                                  '/invoice/generate/' . $_order_id => 'Generate Invoice',
-                                                  '/workorders/report/' . $order_id => 'Report');
+                                                  '/invoice/generate/' . $_order->id => 'Generate Invoice',
+                                                  '/workorders/report/' . $order->id => 'Report');
                     break;
                 case Model_Account::INSPECTOR :
                     $options[$_order->id] = array('/inspections/view/' . $_order->id         => 'View',
