@@ -83,10 +83,9 @@ class Controller_Workorders extends Controller_Account {
                 } else {
                     $view->error = "There was an error updating this order's status. Please try again.";
                 }
-            }
+            } 
         }
         $view->details = $this->workorders_model->get_workorder_details($this->request->param('id'));
-        
         $this->template->content = $view;
     }
 

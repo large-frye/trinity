@@ -124,8 +124,6 @@ public static function user_exists($email){
  public function send_forgotpassword($post){
 
 
-
-
  }
  public function validate_lost_password($post){
      $valid_post = Validation::factory($post);
@@ -177,14 +175,7 @@ public static function user_exists($email){
     }
 
 
-    /**
-    *
-    *
-    *
-    */
-    public function set_temp_pass($user_id){
-      
-    }
+   
     public function get_clients() {
         $_clients = DB::query(Database::SELECT, 'SELECT u.id, u.email FROM users u LEFT JOIN roles_users ru ON u.id = ru.user_id WHERE ru.role_id = 4')
                         ->as_object()

@@ -38,10 +38,13 @@ class Controller_Inspections extends Controller_Account {
                 } else {
                     $view->error = "There was an error updating this order's status. Please try again.";
                 }
+            }else if(isset($this->_post['add_comment'])){
+                $this->workorders_model->add_comment($this->_post, $this->request->param('id'));
             }
         }
 
         $view->details = $this->workorders_model->get_workorder_details($this->request->param('id'));
+        $view->messages  = $this->workorders_model->get_workorder_comments($this->request->param('id'));
         $this->template->content = $view;
     }
 

@@ -129,6 +129,48 @@ class Model_Workorders extends Model_Base {
     }
 
 
+    /**
+    * Obtain comments for specific workorder
+    * 
+    * @param int $workorder_id
+    */
+
+    public function get_workorder_comments($workorder_id){
+            $result = DB::query(Database::SELECT, "SELECT work_order_id,date_time_utc, message, username FROM 
+                messages AS t1 INNER JOIN users AS t2 ON t1.from_id = t2.id WHERE work_order_id =".$workorder_id)
+                       ->as_object()
+                       ->execute($this->db);
+            return $result;
+
+    }
+
+
+ /**
+    * add comment for specific workorder
+    * 
+    * @param int $workorder_id
+    */
+
+    public function add_comment($post, $id){
+        date_default_timezone_set("UTC");
+
+              $parameters = array(':id' => null,
+                            ':work_order_id' => $id,
+                            ':date_time_utc' => date("Y-m-d H:i:s", time()),
+                            ':from_id' => $id,
+                            ':to_id' =>null,
+                            ':type' => null,
+                            ':subject' =>null,
+                            ':message' =>  $post['message'],
+                            ':status' => null
+                            );
+         DB::insert('messages')
+                ->values(array_keys($parameters))
+                ->parameters($parameters)
+                ->execute($this->db);
+
+    }
+
 
     /**
      * Set workorder status

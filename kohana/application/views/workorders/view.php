@@ -253,8 +253,17 @@
 		<div class="box">
 			<div class="title">Comments</div>
 			
-			<div class="content">
-				
+			<div class="content">			
+					<?php
+
+					if(isset($messages)){
+						foreach($messages as $message) { 
+						echo "<div class=\"row\"><div><strong>".$message->username."  -  </strong>".date("d-m-Y H:i:s",strtotime($message->date_time_utc))."</div>";
+						echo "<div>".$message->message."</div></div>";
+
+						}
+					}
+					?>
 				<div class="row">
 					<label for="message">Message: </label>
 
@@ -263,14 +272,12 @@
 					</div>
 
 				</div>
-
 				<div class="row">
-					<input type="hidden" name="csrf_token" value="7RR9zmx1Wlx6oF0jIoLPKHN">
+					<input type="hidden" name="csrf_token" value="eqylUOtprRvM8A13A7do8f4RqGv9">
 					<div class="right">
-						<button type="submit" name="only_comment"><span>Comment</span></button>
+						<button type="submit" name="add_comment"><span>Comment</span></button>
 					</div>
-				</div>			
-			</div>
+				</div>		
 		</div>
 	</div>
 </form>
