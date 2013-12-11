@@ -75,11 +75,6 @@ class Model_Account extends Model_Base {
         return $result;
     }
 
-public function add_new_user($post){
-
-print_r($post);
-
-}
 
 
 /**
@@ -113,7 +108,36 @@ public static function unique_username($username)
         ->get('total');
 }
   
+public static function user_exists($email){
+  $result = DB::select(array(DB::expr('COUNT(email)'), 'total'))
+        ->from('users')
+        ->where('email', '=', $email)
+        ->execute()
+        ->get('total');
+        if($result==0){
+          return false;
+        }else{
+        return true;
+      }
+}
 
+ public function send_forgotpassword($post){
+
+
+
+
+ }
+ public function validate_lost_password($post){
+     $valid_post = Validation::factory($post);
+     $valid_post->rule('email', 'Model_Account::user_exists');
+
+  if ($valid_post->check()) {
+              return array('error' => false);
+          } else {
+              return array('error' => true, 'errors' => $valid_post->errors('default'));
+          }
+                   
+ }
  public function validate_new_user($post){
 
     $valid_post = Validation::factory($post);
@@ -153,7 +177,14 @@ public static function unique_username($username)
     }
 
 
-
+    /**
+    *
+    *
+    *
+    */
+    public function set_temp_pass($user_id){
+      
+    }
     public function get_clients() {
         $_clients = DB::query(Database::SELECT, 'SELECT u.id, u.email FROM users u LEFT JOIN roles_users ru ON u.id = ru.user_id WHERE ru.role_id = 4')
                         ->as_object()

@@ -1,7 +1,8 @@
 <div id="leftside" class="lft-no-margin">
 	<?php 
-							if(isset($errors)){
 
+							if(isset($errors)){
+								
 								echo '<div class="message error"><span>Something went wrong. Please check the fields again.</span></div>';
 							}
 						?>		
@@ -91,7 +92,6 @@
 
 											if(isset($errors['insurance_company'])){
 												echo '<div class="right error">Insurance Company cannot be left blank</div>';
-
 											}
 											?>	
 									</div>									

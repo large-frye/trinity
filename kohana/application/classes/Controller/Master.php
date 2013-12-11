@@ -75,7 +75,7 @@ class Controller_Master extends Controller_Template {
         $exception_controllers = array('Account', 'Users', 'Settings', 'Workorders', 'Inspections');
 
         if (in_array($this->request->current()->controller(), $exception_controllers) && 
-            !in_array($this->request->action(), array('login','signup'))){
+            !in_array($this->request->action(), array('login','signup', 'forgotpassword'))){
             $this->template = 'admin/template';
         }
     }

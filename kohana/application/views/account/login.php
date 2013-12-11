@@ -35,7 +35,7 @@
 						<input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
 						<button type="submit"><span>Sign In</span></button>
 						&nbsp;&nbsp;
-						<a href="account/forgotpasword" class="forgot-password"><em>Forgot your password?</em></a>
+						<a href="/account/forgotpassword" class="forgot-password"><em>Forgot your password?</em></a>
 						&nbsp;|&nbsp;
 						<a href="/account/signup" class="forgot-password"><em>Don`t have account? Sign up here</em></a>
 					</div>

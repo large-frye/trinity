@@ -61,7 +61,14 @@ class Model_Users extends Model_Base {
             'Reply-To: admin@trinity.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-        mail($to, $subject, $message, $headers);
+$smtp = Mail::factory('smtp', array(
+        'host' => 'ssl://smtp.gmail.com',
+        'port' => '465',
+        'auth' => true,
+        'username' => 'dholmblad@gmail.com',
+        'password' => 'Airpass1'
+    ));
+        $mail = $smtp->send($to, $headers, $message);
     }
 
     public function edit_user($post, $user_id) {

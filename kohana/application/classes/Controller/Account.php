@@ -31,12 +31,11 @@ class Controller_Account extends Controller_Master {
         $this::$logged_in = !$this->_user ? false : true;
             
         if (!$this::$logged_in) { 
-            if (!in_array($this->request->action() , array('login','signup'))) {
+            if (!in_array($this->request->action() , array('login','signup', 'forgotpassword'))) {
                  $this->request->redirect('/account/login');
             }
         } else {
             if ($this->request->action() === 'login') {
-
                 $this->request->redirect('/account');
             }
 
@@ -78,6 +77,9 @@ class Controller_Account extends Controller_Master {
 
 
 
+
+
+
     public function action_login() {
         $this::$logged_in ? $this->request->redirect('/account') : null;
 
@@ -107,6 +109,25 @@ class Controller_Account extends Controller_Master {
         $this->request->redirect('/account/login');
     }
 
+
+
+    public function action_forgotpassword(){
+        $view = View::factory('account/forgotpassword');
+             if ($this->request->method() === 'POST') {  
+                //check if user exists
+                $validate_result= $this->account_model->validate_lost_password($this->_post);
+                  if (!$validate_result['error']) {
+                     $this->_users_model->send_forgotpassword($this->_post);
+                     $this->request->redirect('/account');
+                  }else{
+                $view->errors=$validate_result['errors'];
+                $view->post = $this->_post;   
+                  }
+             }
+               $this->template->content = $view;
+    }
+
+
  public function action_signup(){
     $view = View::factory('account/signup');
      if ($this->request->method() === 'POST') {    
@@ -121,12 +142,12 @@ class Controller_Account extends Controller_Master {
             $view->post = $this->_post;   
          }
      }
-        
         $this->template->homepage=true;
         $this->template->hide_right_side = false;
         $this->template->content = $view;
-      
     }
+
+
 
     public function action_users() {
         $view = View::factory('users/index');
