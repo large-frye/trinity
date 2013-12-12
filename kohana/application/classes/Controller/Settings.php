@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 
-class Controller_Settings extends Controller_Master {
+class Controller_Settings extends Controller_Account {
 
       protected $_post = null;
 

@@ -20,7 +20,7 @@ class Model_Mailer extends Model_Base {
     public function send_mail($to, $from, $subject, $body, $cc = array(), $bcc = array()) {
         $mail = new PHPMailer();
         $mail->IsSMTP();
-        $mail->SMTPDebug = 1;
+        $mail->SMTPDebug = 0;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'ssl';
         $mail->Host = $this->_host;
