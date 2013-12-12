@@ -52,6 +52,12 @@ class Model_Users extends Model_Base {
         $post = array();
     }
 
+
+
+    /**
+     * Send confirmationi email.
+     *
+     */
     public function send_confirmation_email($post){
 
         $to      = $post['email'];

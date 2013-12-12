@@ -50,6 +50,15 @@ class Controller_Inspections extends Controller_Account {
 
 
 
+    public function action_form() {
+        $view = View::factory('inspections/form');
+        $view->workorder_details = $this->workorders_model->get_workorder_details($this->request->param('id'));
+
+        $this->template->content = $view;
+    }
+
+
+
     public function after() {
         parent::after();
     }

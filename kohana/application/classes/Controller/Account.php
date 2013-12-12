@@ -28,7 +28,7 @@ class Controller_Account extends Controller_Master {
         $this->_post= $this->request->post();
     	$this->_user = $this->_auth->get_user();
 
-        $this::$logged_in = !$this->_user ? false : true;
+        $this::$logged_in = !$this->_user->id ? false : true;
             
         if (!$this::$logged_in) { 
             if (!in_array($this->request->action() , array('login','signup', 'forgotpassword'))) {
