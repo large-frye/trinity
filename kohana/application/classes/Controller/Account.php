@@ -12,23 +12,36 @@ class Controller_Account extends Controller_Master {
 
     public static $logged_in = false;
 
-    public function __construct(Kohana_Request $request, Kohana_Response $response) {
-    	parent::__construct($request, $response);
 
-    	// Account Model
-    	$this->account_model = Model::factory('account');
+
+    /**
+     * Construct method, inherit from Controller_master
+     *
+     * @param Kohana_Request  $request
+     * @param Kohana_Response $response
+     */
+    public function __construct(Kohana_Request $request, Kohana_Response $response) {
+        parent::__construct($request, $response);
+
+        // Account Model
+        $this->account_model = Model::factory('account');
         $this->_users_model = Model::factory('users');
     }
 
 
+    
+    /**
+     * Before method, inherited from parent
+     *
+     */
     public function before() {
-    	parent::before();
-    	
-    	$this->_auth = Auth::instance();
+        parent::before();
+        
+        $this->_auth = Auth::instance();
         $this->_post= $this->request->post();
-    	$this->_user = $this->_auth->get_user();
+        $this->_user = $this->_auth->get_user();
 
-        $this::$logged_in = !$this->_user->id ? false : true;
+        $this::$logged_in = !isset($this->_user->id) ? false : true;
             
         if (!$this::$logged_in) { 
             if (!in_array($this->request->action() , array('login','signup', 'forgotpassword'))) {
@@ -66,6 +79,10 @@ class Controller_Account extends Controller_Master {
 
 
 
+    /**
+     * Action: index
+     *
+     */
     public function action_index() {
         $this->template->hide_right_side = true;
         $view = View::factory('account/index');
@@ -77,33 +94,38 @@ class Controller_Account extends Controller_Master {
 
 
 
-
-
-
+    /**
+     * Action: login
+     *
+     */
     public function action_login() {
         $this::$logged_in ? $this->request->redirect('/account') : null;
 
-    	$view = View::factory('account/login');
-    	$view->csrf_token = Text::random('alnum', rand(20, 30));
+        $view = View::factory('account/login');
+        $view->csrf_token = Text::random('alnum', rand(20, 30));
 
-    	if ($this->request->current()->method() === HTTP_Request::POST) {
-    		$this->_post = $this->request->post();
+        if ($this->request->current()->method() === HTTP_Request::POST) {
+            $this->_post = $this->request->post();
 
-    		// Sanitize user_name and password with Validation class
-    		if($this->account_model->validate_login_post($this->_post)['status']) {
-    			if(!$this->_auth->login($this->_post['username'], $this->_post['password'])) {
+            // Sanitize user_name and password with Validation class
+            if($this->account_model->validate_login_post($this->_post)['status']) {
+                if(!$this->_auth->login($this->_post['username'], $this->_post['password'])) {
                     $view->login_failed = true;
                 } else {
                     $this->request->redirect('/account/');
                 }
-    		}
-    	}
+            }
+        }
 
         $this->template->content = $view;
     }
 
 
 
+    /**
+     * Action: logout
+     *
+     */
     public function action_logout() {
         $this->_auth->logout();
         $this->request->redirect('/account/login');
@@ -111,37 +133,47 @@ class Controller_Account extends Controller_Master {
 
 
 
+    /**
+     * Action: forgot password
+     *
+     */
     public function action_forgotpassword(){
         $view = View::factory('account/forgotpassword');
-             if ($this->request->method() === 'POST') {  
-                //check if user exists
-                $validate_result= $this->account_model->validate_lost_password($this->_post);
-                  if (!$validate_result['error']) {
-                     $this->_users_model->send_forgotpassword($this->_post);
-                     $this->request->redirect('/account');
-                  }else{
+         if ($this->request->method() === 'POST') {  
+            $validate_result= $this->account_model->validate_lost_password($this->_post);
+            if (!$validate_result['error']) {
+                $this->_users_model->send_forgotpassword($this->_post);
+                $this->request->redirect('/account');
+            } else { 
                 $view->errors=$validate_result['errors'];
                 $view->post = $this->_post;   
-                  }
-             }
-               $this->template->content = $view;
+            }
+        }
+        
+        $this->template->content = $view;
     }
 
 
- public function action_signup(){
-    $view = View::factory('account/signup');
-     if ($this->request->method() === 'POST') {    
-         $validate_result= $this->account_model->validate_new_user($this->_post);
-        if (!$validate_result['error']) {
-            $this->_post['role_id']=4;
-            $this->_users_model->create_user($this->_post);
-            $this->_users_model->send_confirmation_email($this->_post);
-            $this->request->redirect('/account');
-         }else{
-            $view->errors=$validate_result['errors'];
-            $view->post = $this->_post;   
-         }
-     }
+
+    /** 
+     * Action: Signup view
+     *
+     */
+    public function action_signup(){
+        $view = View::factory('account/signup');
+        if ($this->request->method() === 'POST') {    
+            $validate_result= $this->account_model->validate_new_user($this->_post);
+            if (!$validate_result['error']) {
+                $this->_post['role_id']=4;
+                $this->_users_model->create_user($this->_post);
+                $this->_users_model->send_confirmation_email($this->_post);
+                $this->request->redirect('/account');
+            } else {
+                $view->errors=$validate_result['errors'];
+                $view->post = $this->_post;   
+            }
+        }
+
         $this->template->homepage=true;
         $this->template->hide_right_side = false;
         $this->template->content = $view;
@@ -149,6 +181,10 @@ class Controller_Account extends Controller_Master {
 
 
 
+    /**
+     * Action: Users view
+     *
+     */
     public function action_users() {
         $view = View::factory('users/index');
         $view->users = $this->account_model->get_user_list(0);
@@ -158,6 +194,10 @@ class Controller_Account extends Controller_Master {
 
 
 
+    /**
+     * After method, inherit from parent. 
+     *
+     */
     public function after() {
         parent::after();
     }
@@ -176,6 +216,12 @@ class Controller_Account extends Controller_Master {
 
     
 
+    /**
+     * Get options for admin dashboard dropdowns
+     *
+     * @param  MySQL_Result Object
+     * @return array
+     */
     private function _get_options($orders) {
         $options = array();
         foreach($orders as $_order) {
