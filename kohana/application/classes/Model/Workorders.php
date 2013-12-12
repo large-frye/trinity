@@ -151,13 +151,13 @@ class Model_Workorders extends Model_Base {
     * @param int $workorder_id
     */
 
-    public function add_comment($post, $id){
+    public function add_comment($post, $workorder_id, $id){
         date_default_timezone_set("UTC");
 
               $parameters = array(':id' => null,
-                            ':work_order_id' => $id,
+                            ':work_order_id' => $workorder_id,
                             ':date_time_utc' => date("Y-m-d H:i:s", time()),
-                            ':from_id' => $id,
+                            ':from_id' => $id,    
                             ':to_id' =>null,
                             ':type' => null,
                             ':subject' =>null,

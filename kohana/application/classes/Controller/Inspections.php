@@ -39,7 +39,7 @@ class Controller_Inspections extends Controller_Account {
                     $view->error = "There was an error updating this order's status. Please try again.";
                 }
             }else if(isset($this->_post['add_comment'])){
-                $this->workorders_model->add_comment($this->_post, $this->request->param('id'));
+                $this->workorders_model->add_comment($this->_post, $this->request->param('id'), $this->_user->id);
             }
         }
 
