@@ -26,6 +26,7 @@ class Controller_Account extends Controller_Master {
         // Account Model
         $this->account_model = Model::factory('account');
         $this->_users_model = Model::factory('users');
+        $this->mailer_model = Model::factory('mailer');
     }
 
 
@@ -90,6 +91,8 @@ class Controller_Account extends Controller_Master {
         $view->orders = $this->account_model->get_work_orders($this->_user->id, $this->user_type);
         $view->options = $this->_get_options($view->orders);
         $this->template->content = $view;
+
+        $this->mailer_model->send_mail('dholmblad@gmail.com', 'a.frye4@gmail.com', 'You smell awful', 'This is a test');
     }
 
 

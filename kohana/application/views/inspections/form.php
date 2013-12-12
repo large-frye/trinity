@@ -99,7 +99,10 @@
 				<label for="was_insured_present">Was insured present?</label>
 
 				<div class="right">
-					{{{e_was_insured_present}}}
+					<?php echo Form::radio('was_insured_present', 1, false, array('id' => 'was_insured_present0')) .
+					           Form::label('was_insured_present0', 'Yes') .
+					           Form::radio('was_insured_present', 0, true, array('id' => 'was_insured_present1')) .
+					           Form::label('was_insured_present1', 'No'); ?>
 				</div>
 			</div>		
 

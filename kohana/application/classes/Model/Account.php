@@ -6,8 +6,8 @@ class Model_Account extends Model_Base {
     const INSPECTOR = 3;
     const CLIENT    = 4;
 
-	  public function __construct() {
-		    parent::__construct();
+      public function __construct() {
+            parent::__construct();
     }
 
 
@@ -18,7 +18,7 @@ class Model_Account extends Model_Base {
      * @param  object $post
      * @return array
      */
-	   public function validate_login_post($post) {
+       public function validate_login_post($post) {
         $valid_post = Validation::factory($post);
 
         $valid_post->rule('username', 'not_empty')
@@ -26,8 +26,8 @@ class Model_Account extends Model_Base {
 
         return $valid_post->check() ? array('status' => true) 
                                     : array('status' => false, 
-                                    	    'errors' => $valid_post->errors('default'));
-	    }
+                                            'errors' => $valid_post->errors('default'));
+        }
 
 
 
