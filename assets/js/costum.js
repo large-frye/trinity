@@ -710,6 +710,11 @@ $(document).ready(function() {
         piro_scroll : true
     });	
 
+    // Slope select stuff 
+    $('.has_slope_select').change(function () {
+    	$(this).parent().next().find('.content').show();
+    });
+
 	
 	
 });

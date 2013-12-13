@@ -104,53 +104,21 @@
 					           Form::radio('was_insured_present', 0, true, array('id' => 'was_insured_present1')) .
 					           Form::label('was_insured_present1', 'No'); ?>
 				</div>
-			</div>		
-
-			<!-- <div class="row">
-				<label for="roof_access">Roof Access</label>
-
-				<div class="right">
-					{{{e_roof_access}}}
-				</div>
-			</div> -->		
-
-			<!-- <div class="row">
-				<label for="did_use_ladder">Did you use a 40' Ladder</label>
-
-				<div class="right">
-					{{{e_did_use_ladder}}}
-				</div>
-			</div>	-->		
-
-			<!-- <div class="row">
-				<label for="why_not_walked_on_roof">Please describe why you didn't walk on the roof: </label>
-
-				<div class="right">
-					{{{e_why_not_walked_on_roof}}}
-				</div>
-			</div>	-->
+			</div>
 
 			<div class="row">
 				<label for="roof_square_feet">Roof Square Feet</label>
 
 				<div class="right">
-					<input type="text" name="roof_square_feet" id="roof_square_feet" value="{{data.roof_square_feet}}">
+					<input type="text" name="roof_square_feet" id="roof_square_feet" value="">
 				</div>
 			</div>
-
-			{{#errors.roof_square_feet}}
-				<div class="row">
-					<div class="right">
-						<label class="error">{{errors.roof_square_feet}}</label>
-					</div>
-				</div>
-			{{/errors.roof_square_feet}}	
 
 			<div class="row">
 				<label for="estimated_age_of_roof">Estimated age of roof: </label>
 
 				<div class="right">
-					{{{e_estimated_age_of_roof}}}
+					<?php echo Form::select('estimated_age_of_roof', $roof_ages); ?>
 				</div>
 			</div>
 							
@@ -159,7 +127,7 @@
 				<label for="roof_height">Roof height: </label>
 			
 				<div class="right">
-					{{{e_roof_height}}}
+					<?php echo Form::select('roof_height', $roof_heights); ?>
 				</div>
 			</div>		
 
@@ -167,7 +135,7 @@
 				<label for="type_of_framing">Type of framing: </label>
 
 				<div class="right">
-					{{{e_type_of_framing}}}
+					<?php echo Form::select('type_of_framing', $framing_types); ?>
 				</div>
 			</div>		
 
@@ -175,7 +143,7 @@
 				<label for="pitch_1">Pitch 1: </label>
 
 				<div class="right">
-					{{{e_pitch_1}}}
+					<?php echo Form::select('pitch_1', $pitches); ?>
 				</div>
 			</div>			
 
@@ -183,7 +151,7 @@
 				<label for="pitch_2">Pitch 2: </label>
 
 				<div class="right">
-					{{{e_pitch_2}}}
+					<?php echo Form::select('pitch_2', $pitches); ?>
 				</div>
 			</div>	
 
@@ -191,7 +159,7 @@
 				<label for="pitch_3">Pitch 3: </label>
 
 				<div class="right">
-					{{{e_pitch_3}}}
+					<?php echo Form::select('pitch_3', $pitches); ?>
 				</div>
 			</div>		
 
@@ -199,7 +167,7 @@
 				<label for="layers">Layers: </label>
 
 				<div class="right">
-					{{{e_layers}}}
+					<?php echo Form::select('layers', $layers); ?>
 				</div>
 			</div>	
 
@@ -207,7 +175,14 @@
 				<label for="type_of_roofing">Type of roofing: </label>
 
 				<div class="right chk_type_of_roofing">
-					{{{e_type_of_roofing}}}
+					<?php 
+                    $count = 0;
+					foreach($roofing_types as $key => $roofing_type) {
+                        echo Form::checkbox('type_of_roofing[]', $key, false, array('id' => 'type_of_roofing' . $count)) . "\n" .
+                             Form::label('type_of_roofing' . $count, $roofing_type) . "\n";
+
+                        $count++;
+					} ?>
 					
 					<div class="cl"></div>
 				</div>
@@ -217,7 +192,14 @@
 				<label for="if_rolled">If rolled: </label>
 
 				<div class="right">
-					{{{e_if_rolled}}}
+					<?php 
+                    $count = 0;
+					foreach($if_rolled as $key => $rolled) {
+                        echo Form::checkbox('if_rolled[]', $key, false, array('id' => 'if_rolled' . $count)) . "\n" .
+                             Form::label('if_rolled' . $count, $rolled) . "\n";
+
+                        $count++;
+					} ?>
 				</div>
 			</div>		
 
@@ -225,7 +207,7 @@
 				<label for="condition">Condition: </label>
 
 				<div class="right">
-					{{{e_condition}}}
+					<?php echo Form::select('condition', $conditions); ?>
 				</div>
 			</div>	
 
@@ -233,7 +215,7 @@
 				<label for="remove_reset_tarp">Remove &amp; Reset Tarp: </label>
 
 				<div class="right">
-					{{{e_remove_reset_tarp}}}
+					<?php echo Form::select('remove_reset_tarp', $remove_reset_tarp); ?>
 				</div>
 			</div>		
 
@@ -242,7 +224,7 @@
 				<label for="lift_up_minor_reset_tarp">Lift up &amp; Minor Reset Tarp: </label>
 
 				<div class="right">
-					{{{e_lift_up_minor_reset_tarp}}}
+					<?php echo Form::select('lift_up_minor_reset_tarp', $lift_up_minor_reset_tarp); ?>
 				</div>
 			</div>	
 
@@ -250,7 +232,13 @@
 				<label for="previous_repairs_made">Previous repairs made: </label>
 
 				<div class="right chk_prev_repairs">
-					{{{e_previous_repairs_made}}}
+					<?php
+					foreach($previous_repairs as $key => $repairs) {
+                        echo Form::checkbox('previous_repairs_made[]', $key, false, array('id' => 'previous_repairs_made' . $count)) . "\n" .
+                             Form::label('previous_repairs_made' . $count, $repairs) . "\n";
+
+                        $count++;
+					} ?>
 					
 					<div class="cl"></div>
 				</div>
@@ -260,7 +248,7 @@
 				<label for="collateral_damages_to_property">Collateral Damages to property: </label>
 
 				<div class="right">
-					{{{e_collateral_damages_to_property}}}
+					<?php echo Form::select('collateral_damages_to_property', $collateral_damamges); ?>
 				</div>
 			</div>	
 
@@ -269,7 +257,7 @@
 
 				<div class="right">
 											
-					<textarea name="collateral_damage_detail_description" class="grow" style="height:100px;">{{data.collateral_damage_detail_description}}</textarea>
+					<textarea name="collateral_damage_detail_description" class="grow" style="height:100px;"></textarea>
 				</div>
 			</div>
 		</div>
@@ -282,12 +270,6 @@
 	<p>
 		At least one "Cause of Loss" must be selected. In addition, whenever a corresponding "Slope" is available next to a selection you have made, at least one Slope also becomes required.
 	</p>
-
-	{{#errors.causes_of_loss}}
-		<div class="row">
-			<label class="error">{{errors.causes_of_loss}}</label>
-		</div>
-	{{/errors.causes_of_loss}}
 
 </div>
 
@@ -303,41 +285,33 @@
 				<div class="row">
 					
 					<div>
-						<input type="checkbox" {{#checked_wind}}checked="checked"{{/checked_wind}} name="wind" id="wind" value="1" class="check_if_apply" />
-						<label for="wind"><strong>Check if apply</strong></label>
+						<?php echo Form::checkbox('wind_damage', 1, false, array('id' => 'wind')) .
+						           Form::label('wind', 'Check if apply'); ?>
 					</div>
 				</div>	
-
-				{{#errors.wind}}
-					<div class="row">
-						<div class="right">
-							<label class="error">{{errors.wind}}</label>
-						</div>
-					</div>
-				{{/errors.wind}}
 				
 				<div class="row">
 					<label for="wind_shingles_damaged">Shingles damaged</label>
 
 					<div class="right">
-						<input type="text" name="wind_shingles_damaged" id="wind_shingles_damaged" value="{{data.wind_shingles_damaged}}" class="has_slope" rel="slope_shingles" />
+						<input type="text" name="wind_shingles_damaged" id="wind_shingles_damaged" value="" class="has_slope" rel="slope_shingles" />
 					</div>
-				</div>
+				</div>	
 
-				{{#errors.wind_shingles_damaged}}
-					<div class="row">
-						<div class="right">
-							<label class="error">{{errors.wind_shingles_damaged}}</label>
-						</div>
-					</div>
-				{{/errors.wind_shingles_damaged}}		
-
-				<div class="row slope" id="slope_shingles">
+				<div class="row slope" id="slope_shingles" style="display: block !important;">
 					<div class="section">
 						<div class="box">
 							<div class="title">Select Slope (Shingles Damaged)</div>
-							<div class="content">
-								{{{e_wind_shingles_damaged_slope}}}
+							<div class="content" style="display: block !important">
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('wind_shingles_damaged_slope[]', $key, false, 
+								    		     array('id' => 'wind_shingles_damaged_slope' . $count)) . "\n" .
+								    	Form::label('wind_shingles_damaged_slope' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -349,7 +323,7 @@
 					<label for="wind_roof_peeled_back">Roof Peeled Back</label>
 
 					<div class="right has_slope_select" rel="slope_wind_roof_peeled_back">
-						{{{e_wind_roof_peeled_back}}}
+						<?php echo Form::select('wind_roof_peeled_back', $wind_roof_peeled_back); ?>
 					</div>
 				</div>		
 
@@ -358,7 +332,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Roof Peeled Back)</div>
 							<div class="content">
-								{{{e_wind_roof_peeled_back_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_wind_roof_peeled_back[]', $key, false, 
+								    		     array('id' => 'slope_wind_roof_peeled_back' . $count)) . "\n" .
+								    	Form::label('slope_wind_roof_peeled_back' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -369,6 +351,7 @@
 		</div>
 </div>
 
+
 <div class="section">
 	<div class="box">
 			<div class="title">
@@ -378,41 +361,34 @@
 			<div class="content">
 				
 				<div class="row">
-					<input type="checkbox" {{#checked_hail}}checked="checked"{{/checked_hail}} name="hail" id="hail" value="1" class="check_if_apply" />
+					<input type="checkbox" name="hail" id="hail" value="1" class="check_if_apply" />
 					<label for="hail"><strong>Check if apply</strong></label>
 
-				</div>
-				
-				{{#errors.hail}}
-					<div class="row">
-						<div class="right">
-							<label class="error">{{errors.hail}}</label>
-						</div>
-					</div>
-				{{/errors.hail}}			
+				</div>		
 				
 				<div class="row">
 					<label for="hail_amount_damaged">Amount damaged:</label>
 
 					<div class="right">
-						<input type="text" name="hail_amount_damaged" id="hail_amount_damaged" value="{{data.hail_amount_damaged}}" class="has_slope" rel="slope_hail_amound_damaged" />
+						<input type="text" name="hail_amount_damaged" id="hail_amount_damaged" value="" 
+						       class="has_slope" rel="slope_hail_amound_damaged" />
 					</div>
 				</div>
 
-				{{#errors.hail_amount_damaged}}
-					<div class="row">
-						<div class="right">
-							<label class="error">{{errors.hail_amount_damaged}}</label>
-						</div>
-					</div>
-				{{/errors.hail_amount_damaged}}		
-
-				<div class="row slope" id="slope_hail_amound_damaged">
+				<div class="row slope" id="slope_hail_amound_damaged" style="display: block !important">
 					<div class="section">
 						<div class="box">
 							<div class="title">Select Slope (Amount Damaged)</div>
-							<div class="content">
-								{{{e_hail_amount_damaged_slope}}}
+							<div class="content" style="display: block !important">
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_hail_amount_damaged[]', $key, false, 
+								    		     array('id' => 'slope_hail_amount_damaged' . $count)) . "\n" .
+								    	Form::label('slope_hail_amount_damaged' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>

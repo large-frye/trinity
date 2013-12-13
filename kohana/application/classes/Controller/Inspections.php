@@ -5,6 +5,7 @@ class Controller_Inspections extends Controller_Account {
     public function __construct($request, $response) {
         parent::__construct($request, $response);
         $this->workorders_model = Model::factory('workorders');
+        $this->inspections_model = Model::factory('inspections');
     }
 
 
@@ -53,6 +54,20 @@ class Controller_Inspections extends Controller_Account {
     public function action_form() {
         $view = View::factory('inspections/form');
         $view->workorder_details = $this->workorders_model->get_workorder_details($this->request->param('id'));
+        $view->roof_ages = $this->inspections_model->get_roof_ages();
+        $view->roof_heights = $this->inspections_model->get_roof_heights();
+        $view->framing_types = $this->inspections_model->get_type_of_framing();
+        $view->pitches = $this->inspections_model->get_pitches();
+        $view->layers = $this->inspections_model->get_layers();
+        $view->roofing_types = $this->inspections_model->get_type_of_roofing();
+        $view->if_rolled = $this->inspections_model->get_if_rolled();
+        $view->conditions = $this->inspections_model->get_condition();
+        $view->remove_reset_tarp = $this->inspections_model->get_remove_reset_trap();
+        $view->lift_up_minor_reset_tarp = $this->inspections_model->get_lift_up_minor_reset_trap();
+        $view->previous_repairs = $this->inspections_model->get_previous_repairs_made();
+        $view->collateral_damamges = $this->inspections_model->get_collateral_damages();
+        $view->slopes = $this->inspections_model->get_slopes();
+        $view->wind_roof_peeled_back = $this->inspections_model->get_wind_roof_peeled_back();
 
         $this->template->content = $view;
     }

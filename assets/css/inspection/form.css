@@ -74,6 +74,10 @@
 	margin:7px 0 0 0 !important;
 }
 
+#inspection-form .chk_type_of_roofing .custom-checkbox {
+	width: 170px;
+}
+
 #inspection-form .chk_prev_repairs .custom-checkbox {
 	float:left;
 	margin:7px 0 0 0 !important;

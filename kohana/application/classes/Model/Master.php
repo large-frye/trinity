@@ -37,6 +37,12 @@ class Model_Master extends Model {
     	foreach($css_files as $css_file) {
     		$this->css[] = HTML::style('/trinity/assets/css/' . $css_file);
     	}
+
+        $_insepction_files = scandir($_SERVER['DOCUMENT_ROOT'] . "/trinity/assets/css/inspection/");
+
+        foreach ($_insepction_files as $inspection_file) {
+            $this->css[] = HTML::style('/trinity/assets/css/inspection/' . $inspection_file);
+        }
     }
 
 
@@ -72,7 +78,8 @@ class Model_Master extends Model {
     		              "/trinity/assets/js/plugins/wysiwyg.rmFormat.js",
     		              "/trinity/assets/vendor/fancybox/jquery.fancybox.pack.js",
     		              "/trinity/assets/js/pirobox.extended.min.js",
-    		              "/trinity/assets/js/costum.js",);
+    		              "/trinity/assets/js/costum.js",
+                          "/trinity/assets/js/inspection/form.js",);
 
     	foreach($js_files as $js_file) {
     		$this->js[] = HTML::script($js_file);	

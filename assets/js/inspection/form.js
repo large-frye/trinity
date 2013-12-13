@@ -94,6 +94,7 @@ var inspectionForm = {
 	
 	eventSlopeSelect : function( element, slopeContainer )
 	{
+		console.log(element);
 		if ( element.val() == 'blank' )
 		{
 			slopeContainer.hide();
