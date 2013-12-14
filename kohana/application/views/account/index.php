@@ -39,21 +39,10 @@
 						         "<td>" . $_order->date_of_inspection . "</td>" .
 						         "<td>" . $_order->inspection_status . "</td>" .
 						         "<td>" . $_order->created_on_utc . "</td>" .
-						         "<td>test</td>"; ?>
+						         "<td>" . $_order->inspection_type . "</td>"; ?>
 						    <td>
 							<?php echo Form::select('wo-actions', $options[$_order->id], '', array('class' => 'wo-actions wo-links')); ?>
 						    </td>
-							<!-- <select name="wo-actions" class="wo-actions wo-links">
-
-								<option value="workorders/view/<?php echo $_order->id; ?>">View</option>
-								<option value="workorders/edit/<?php echo $_order->id; ?>">Edit</option>
-								<option value="{{inspection_form_url}}/{{id}}">Inspection Form</option>
-								<option value="{{estimates_url}}/{{id}}">Estimates</option>
-								<option value="{{photos_url}}/{{id}}">Photos</option>
-								<option value="{{invoice_url}}/{{id}}">Edit Invoice</option>
-								<option value="{{generate_url}}/{{id}}">Generate Invoice</option>
-								<option value="{{report_url}}/{{id}}">Report</option>
-							</select> -->
 					</tr>
 				<?php } ?>
 				</tbody>

@@ -185,7 +185,7 @@ class Model_Workorders extends Model_Base {
         $min = $post['min_of_inspection'] < 10 ? '0' . $post['min_of_inspection'] : $post['min_of_inspection'];
         $parameters = array(':id'                 => $workorder_id,
                             ':status'             => $post['status'],
-                            ':date_of_inspection' => $post['date_of_inspection'],
+                            ':date_of_inspection' => date('Y-m-d', strtotime(str_replace('-', '/', $post['date_of_inspection']))),
                             ':time_of_inspection' => $hour . ':' . $min,
                             ':inspector_id'       => $post['inspector_id']);
 

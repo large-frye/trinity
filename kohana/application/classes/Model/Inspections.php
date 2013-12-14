@@ -80,19 +80,29 @@ class Model_Inspections extends Model_Base {
 
     public function get_type_of_roofing() {
     	return array(
-			0 => 'Jet',
-			1 => 'Steel',
-			2 => '3 Tab',
-			3 => 'Tile',
-			4 => 'T-Lock',
-			5 => 'Wood Shake',
-			6 => 'Laminated Architectural',
-			7 => 'Fiberglass',
-			8 => 'Slate',
-			9 => 'Rolled',
-			10 => 'Terracotta',
-			11 => 'Others',
-			12 => 'Metal'
+			'jet' => 'Jet',
+			'steel' => 'Steel',
+			'20_year 3_tab' => '20-Year 3-Tab',
+            '25_year 3_tab' => '25-Year 3-Tab',
+            '40_year 3_tab' => '40-Year 3-Tab',
+            '50_year 3_tab' => '50-Year 3-Tab',
+			'tile' => 'Tile',
+			't_lock' => 'T-Lock',
+			'wood shake' => 'Wood Shake',
+			'30_year laminated' => '30-Year Laminated',
+            '40_year laminated' => '40-Year Laminated',
+            '50_year laminated' => '50-Year Laminated',
+            'tpo' => 'TPO',
+            'pvc' => 'PVC',
+            'epdm' => 'EPDM',
+            'modified bituminous' => 'Modified Bituminous',
+            'built_up membrane' => 'Built-Up Membrane',
+			'fiberglass' => 'Fiberglass',
+			'slate' => 'Slate',
+			'rolled' => 'Rolled',
+			'terracotta' => 'Terracotta',
+			'others' => 'Others',
+			'metal' => 'Metal'
 		);
     }
 
@@ -261,5 +271,36 @@ class Model_Inspections extends Model_Base {
     	             	                         2 => '1-5 sq ft',
     	             	                         3 => '5-10 sq ft',
     	             	                         4 => 'Over 10 sq ft'));
+    }
+
+
+
+    public function get_siding_types() {
+        return array('vinyl' => 'Vinyl',
+                     'brick' => 'Brick',
+                     'stucco' => 'Stucco',
+                     'wood composite' => 'Wood Composite',
+                     'alumnium'       => 'Alumnium',
+                     'cedar shake'    => 'Cedar Shake',
+                     'metal panel'    => 'Metal Panel');
+    }
+
+
+
+    public function get_miscellanous_damages() {
+        return array('interior damage' => 'Interior Damage',
+                     'brittle test failure' => 'Brittle Test Failure',
+                     'mechanical damage'    => 'Mechanical Damage',
+                     'high nailing'         => 'High Nailing',
+                     'nail extrusions'      => 'Nail Extrusions',
+                     'water intrusion'      => 'Water Instrusion',
+                     'vent pipe failing failure' => 'Vent Pipe Flashing Failure',
+                     'missing shingles'          => 'Missing Shingles',
+                     'lichen growth'             => 'Lichen Growth',
+                     'algae growth'              => 'Algae Growth',
+                     'spatter present'           => 'Spatter Present',
+                     'blistering'                => 'Blistering',
+                     'slippage'                  => 'Slippage',
+                     'flashing breach'           => 'Flashing Breach');
     }
 }

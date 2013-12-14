@@ -24,14 +24,6 @@
 			</div>
 			
 			<div class="row">
-				<label>Policy Number: </label>
-
-				<div class="right">	
-					<?php echo $workorder_details->policy_number; ?>&nbsp;
-				</div>
-			</div>
-			
-			<div class="row">
 				<label for="first_name">First Name</label>
 
 				<div class="right">
@@ -95,24 +87,13 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<label for="was_insured_present">Was insured present?</label>
-
-				<div class="right">
-					<?php echo Form::radio('was_insured_present', 1, false, array('id' => 'was_insured_present0')) .
-					           Form::label('was_insured_present0', 'Yes') .
-					           Form::radio('was_insured_present', 0, true, array('id' => 'was_insured_present1')) .
-					           Form::label('was_insured_present1', 'No'); ?>
-				</div>
-			</div>
-
-			<div class="row">
+			<!-- <div class="row">
 				<label for="roof_square_feet">Roof Square Feet</label>
 
 				<div class="right">
 					<input type="text" name="roof_square_feet" id="roof_square_feet" value="">
 				</div>
-			</div>
+			</div> -->
 
 			<div class="row">
 				<label for="estimated_age_of_roof">Estimated age of roof: </label>
@@ -131,13 +112,13 @@
 				</div>
 			</div>		
 
-			<div class="row">
+			<!-- <div class="row">
 				<label for="type_of_framing">Type of framing: </label>
 
 				<div class="right">
 					<?php echo Form::select('type_of_framing', $framing_types); ?>
 				</div>
-			</div>		
+			</div>	-->	
 
 			<div class="row">
 				<label for="pitch_1">Pitch 1: </label>
@@ -189,6 +170,17 @@
 			</div>	
 
 			<div class="row">
+				<label for="was_insured_present">Was insured present?</label>
+
+				<div class="right">
+					<?php echo Form::radio('was_insured_present', 1, false, array('id' => 'was_insured_present0')) .
+					           Form::label('was_insured_present0', 'Yes') .
+					           Form::radio('was_insured_present', 0, true, array('id' => 'was_insured_present1')) .
+					           Form::label('was_insured_present1', 'No'); ?>
+				</div>
+			</div>
+
+			<!-- <div class="row">
 				<label for="if_rolled">If rolled: </label>
 
 				<div class="right">
@@ -201,6 +193,83 @@
                         $count++;
 					} ?>
 				</div>
+			</div>		-->
+
+			<div class="row">
+				<label for="stories">How many stories was this house? </label>
+
+				<div class="right">
+					<?php echo Form::input('stories', ''); ?>
+				</div>
+			</div>
+
+			<div class="row">
+				<label for="siding_type">What was the type of siding? </label>
+
+				<div class="right chk_prev_repairs">
+					<?php
+								    $count = 0;
+								    foreach($siding_types as $key => $siding_type) {
+								    	echo Form::checkbox('siding_type[]', $key, false, 
+								    		     array('id' => 'siding_type' . $count)) . "\n" .
+								    	Form::label('siding_type' . $count, $siding_type) . "\n";
+
+								    	$count++;
+								    } ?>
+	                <div class="cl"></div>
+				</div>
+			</div>
+
+			<div class="row">
+				<label for="roofer">Roofer: </label>
+
+				<div class="right">
+					<?php echo Form::input('roofer', ''); ?>
+				</div>
+			</div>	
+
+			<div class="row">
+				<label for="roofer_climbed">Was the roof climbed by the roofer? </label>
+
+				<div class="right">
+					<?php echo Form::radio('was_roof_climbed', 1, false, array('id' => 'was_roof_climbed0')) .
+					           Form::label('was_roof_climbed0', 'Yes') .
+					           Form::radio('was_roof_climbed', 0, true, array('id' => 'was_roof_climbed1')) .
+					           Form::label('was_roof_climbed1', 'No'); ?>
+				</div>
+			</div>	
+
+			<div class="row">
+				<label for="agreed_wind">Did the roofer agree with wind assessment? </label>
+
+				<div class="right">
+					<?php echo Form::radio('agreed_wind', 1, false, array('id' => 'agreed_wind0')) .
+					           Form::label('agreed_wind0', 'Yes') .
+					           Form::radio('agreed_wind', 0, true, array('id' => 'agreed_wind1')) .
+					           Form::label('agreed_wind1', 'No'); ?>
+				</div>
+			</div>	
+
+			<div class="row">
+				<label for="agreed_hailed">Did the roofer agree with hail assessment? </label>
+
+				<div class="right">
+					<?php echo Form::radio('agreed_hail', 1, false, array('id' => 'agreed_hail0')) .
+					           Form::label('agreed_hail0', 'Yes') .
+					           Form::radio('agreed_hail', 0, true, array('id' => 'agreed_hail1')) .
+					           Form::label('agreed_hail1', 'No'); ?>
+				</div>
+			</div>
+
+			<div class="row">
+				<label for="refused_test_squares">Did the roofer refuse test squares? </label>
+
+				<div class="right">
+					<?php echo Form::radio('refused_test_squares', 1, false, array('id' => 'refused_test_squares0')) .
+					           Form::label('refused_test_squares0', 'Yes') .
+					           Form::radio('refused_test_squares', 0, true, array('id' => 'refused_test_squares1')) .
+					           Form::label('refused_test_squares1', 'No'); ?>
+				</div>
 			</div>		
 
 			<div class="row">
@@ -211,7 +280,7 @@
 				</div>
 			</div>	
 
-			<div class="row">
+			<!-- <div class="row">
 				<label for="remove_reset_tarp">Remove &amp; Reset Tarp: </label>
 
 				<div class="right">
@@ -226,7 +295,7 @@
 				<div class="right">
 					<?php echo Form::select('lift_up_minor_reset_tarp', $lift_up_minor_reset_tarp); ?>
 				</div>
-			</div>	
+			</div>	-->
 
 			<div class="row">
 				<label for="previous_repairs_made">Previous repairs made: </label>
@@ -242,7 +311,24 @@
 					
 					<div class="cl"></div>
 				</div>
-			</div>		
+			</div>
+
+			<div class="row">
+				<label for="miscellanous_damages">Miscellanous Damages: </label>
+
+				<div class="right chk_type_of_roofing">
+					<?php
+						$count = 0;
+						foreach($miscellanous_damages as $key => $miscellanous_damage) {
+							echo Form::checkbox('miscellanous_damages[]', $key, false, array('id' => 'miscellanous_damages' . $count)) . "\n" .
+								 Form::label('miscellanous_damages' . $count, $miscellanous_damage) . "\n";
+
+								 $count++;
+		                } 
+		            ?>
+	                <div class="cl"></div>
+				</div>
+			</div>	
 
 			<div class="row">
 				<label for="collateral_damages_to_property">Collateral Damages to property: </label>

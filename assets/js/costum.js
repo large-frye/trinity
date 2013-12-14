@@ -708,12 +708,12 @@ $(document).ready(function() {
         piro_speed : 700,
         bg_alpha : 0.5,
         piro_scroll : true
-    });	
-
-    // Slope select stuff 
-    $('.has_slope_select').change(function () {
-    	// $(this).parent().next().find('.content').show();
     });
+
+    $('.slope').children().children().children(".content").find('input[type=checkbox]').click(function() {
+    	var answer = prompt("How many shingles were affected?");
+    	$(this).next().append("&nbsp;(<a href='#' class='change-shingle-amount'>" + answer + "</a>)");
+    })
 
 	
 	
