@@ -9,7 +9,7 @@
 
 				<div class="triples">
 					<div>
-						<a href="http://client.trinity.is/workorder/submit?type=0" target="_self">
+						<a href="/workorders/submit/0" target="_self">
 							<img src="/trinity/assets/gfx/inspect-01-basic-off.png " onmouseover="this.src='/trinity/assets/gfx/inspect-01-basic-on.png '" onmouseout="this.src='/trinity/assets/gfx/inspect-01-basic-off.png '" width="316">
 						</a>
 					</div>
@@ -27,7 +27,7 @@
 
 				<div class="triples">
 					<div>
-						<a href="http://client.trinity.is/workorder/submit?type=1" target="_self"><img src="/trinity/assets/gfx/inspect-02-expert-on.png " onmouseover="this.src='/trinity/assets/gfx/inspect-02-expert-on.png '" onmouseout="this.src='/trinity/assets/gfx/inspect-02-expert-off.png '" width="316">
+						<a href="/workorders/submit/1" target="_self"><img src="/trinity/assets/gfx/inspect-02-expert-on.png " onmouseover="this.src='/trinity/assets/gfx/inspect-02-expert-on.png '" onmouseout="this.src='/trinity/assets/gfx/inspect-02-expert-off.png '" width="316">
 						</a>
 					</div>
 					
@@ -50,7 +50,7 @@
 					
 				<div class="triples">
 					<div>
-						<a href="http://client.trinity.is/workorder/submit?type=2" target="_self"><img src="/trinity/assets/gfx/inspect-03-engineer-off.png " onmouseover="this.src='/trinity/assets/gfx/inspect-03-engineer-on.png '" onmouseout="this.src='/trinity/assets/gfx/inspect-03-engineer-off.png '" width="316">
+						<a href="/workorders/submit/2" target="_self"><img src="/trinity/assets/gfx/inspect-03-engineer-off.png " onmouseover="this.src='/trinity/assets/gfx/inspect-03-engineer-on.png '" onmouseout="this.src='/trinity/assets/gfx/inspect-03-engineer-off.png '" width="316">
 						</a>
 					</div>
 					
