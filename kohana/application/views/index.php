@@ -6,6 +6,9 @@
 <div id="breadcrumbs">
 	<ul>
 		<li></li>
+		<?php
+			//$user_type === Model_Account::ADMIN;
+		?>
 		<li><a href="/">Home</a></li>
 		<li><a href="/login">Login</a></li>
 	</ul>

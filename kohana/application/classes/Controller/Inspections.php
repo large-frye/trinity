@@ -57,6 +57,7 @@ class Controller_Inspections extends Controller_Account {
                 if ($this->workorders_model->set_workorder_inspection_status($this->_post, $this->request->param('id'))) {
                     $view->success = "Work order has been updated.";
                 } else {
+
                     $view->error = "There was an error updating this order's status. Please try again.";
                 }
             }else if(isset($this->_post['add_comment'])){
