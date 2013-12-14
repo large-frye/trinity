@@ -290,13 +290,13 @@
 					</div>
 				</div>	
 				
-				<div class="row">
+				<!-- <div class="row">
 					<label for="wind_shingles_damaged">Shingles damaged</label>
 
 					<div class="right">
 						<input type="text" name="wind_shingles_damaged" id="wind_shingles_damaged" value="" class="has_slope" rel="slope_shingles" />
 					</div>
-				</div>	
+				</div> -->	
 
 				<div class="row slope" id="slope_shingles" style="display: block !important;">
 					<div class="section">

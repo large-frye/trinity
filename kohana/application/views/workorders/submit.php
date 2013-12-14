@@ -11,7 +11,7 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 <!-- Work Order Section -->
 <div class="section">
 	<div class="box">
-		<div class="title">Work Order</div>
+		<div class="title">Inspection Request</div>
 			<div class="content">
 				<?php if (!$client) { ?>
 				<div class="row">
@@ -22,7 +22,7 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 				</div>
 				<?php } ?>
 				<div class="row">	
-					<label for="type">Work Order Type</label>
+					<label for="type">Inspection Type</label>
 						<div class="right">
 							<?php echo Form::select('type', $inspection_types, $type_selected); ?>
 						</div>
@@ -190,19 +190,19 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 			
 			<div class="content">
 				
-				<div class="row">
+				<!-- <div class="row">
 					<label for="damage_type">Type of Damage:</label>
 	
 					<div class="right">
 						<input type="text" name="damage_type" id="damage_type" value="">	
 					</div>
-				</div>
+				</div> -->
 
 				<div class="row">
-					<label for="date_of_loss">Date of Loss</label>
+					<label for="date_of_loss">Requested Date of Inspection</label>
 
 					<div class="right">
-						<input readonly="readonly" class="datepicker" type="text" name="date_of_loss" id="date_of_loss" value=""  placeholder="mm-dd-yyyy">	
+						<input readonly="readonly" class="datepicker" type="text" name="requested_date_of_inspection" id="date_of_loss" value=""  placeholder="mm-dd-yyyy">	
 					</div>
 				</div>
 
@@ -229,7 +229,7 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 					<label for="special_instructions">Special Instructions</label>
 
 					<div class="right">
-						<input type="text" name="special_instructions" id="special_instructions" value="">
+						<textarea name="special_instructions" id="special_instructions"></textarea>
 					</div>
 				</div>
 				

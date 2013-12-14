@@ -39,7 +39,7 @@ class Model_Account extends Model_Base {
                 $where_clause = "inspector_id = :user_id";
                 break;
             case '4' :
-                $where_clause = "user_id = :user_id";
+                $where_clause = "uf.user_id = :user_id";
                 break;
         }
 

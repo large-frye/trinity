@@ -94,6 +94,8 @@ class Controller_Account extends Controller_Master {
         $this->template->hide_right_side = true;
         $view = View::factory('account/index');
         $view->admin = $this->user_type == 2 ? true : false;
+        $view->client = $this->user_type == 4 ? true : false;
+        $view->inspector = $this->user_type == 3 ? true : false;
         $view->orders = $this->account_model->get_work_orders($this->_user->id, $this->user_type);
         $view->options = $this->_get_options($view->orders);
         $view->statuses = array('New' => 'yellow', 'Called PH' => 'blue', 'Alert' => 'red', 'Scheduled' => 'green');
