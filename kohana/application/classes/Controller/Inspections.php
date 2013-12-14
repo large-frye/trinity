@@ -68,6 +68,10 @@ class Controller_Inspections extends Controller_Account {
         $view->collateral_damamges = $this->inspections_model->get_collateral_damages();
         $view->slopes = $this->inspections_model->get_slopes();
         $view->wind_roof_peeled_back = $this->inspections_model->get_wind_roof_peeled_back();
+        $view->lighting_amount_damaged = $this->inspections_model->get_lighting_amount_damaged();
+        $view->lighting_damages = $this->inspections_model->get_lighting_damages();
+        $view->get_vermin_choices = $this->inspections_model->get_vermin_choices();
+        $view->vandalism_choices = $this->inspections_model->get_vandalism_choices();
 
         $this->template->content = $view;
     }

@@ -29,7 +29,7 @@
 					<?php foreach($orders as $_order) { 
 						
 					    echo "<tr><td>" . $_order->id . "</td>" .
-						         "<td>" . $_order->status_name . "</td>" . 
+						         "<td class=\"" . $statuses[$_order->status_name] . "\">" . $_order->status_name . "</td>" . 
 						         "<td>" . $_order->first_name . " " . $_order->last_name . "</td>" . 
 						         "<td>" . $_order->adjuster_name . "</td>" . 
 						         "<td>" . $_order->policy_number . "</td>" .

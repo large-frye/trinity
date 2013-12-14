@@ -193,6 +193,7 @@ class Model_Inspections extends Model_Base {
 
     public function get_wind_roof_peeled_back() {
     	return array(
+    		'blank' => 'Please Select One',
 			0 => 'N/A',
 			1 => '1-10 sq ft',
 			2 => '10-25 sq ft',
@@ -201,5 +202,64 @@ class Model_Inspections extends Model_Base {
 			5 => '75-100 sq ft',
 			6 => 'Over 100 sq ft'
 		);
+    }
+
+
+
+    public function get_lighting_amount_damaged() {
+    	return array(
+    		'blank' => 'Please Select One',
+			0 => 'N/A',
+			1 => '0 sq ft',
+			2 => '1-50 sq ft',
+			3 => '50-100 sq ft',
+			4 => 'Over 100 sq ft'
+		);
+    }
+
+
+
+    public function get_lighting_damages() {
+    	return array(
+			0 => 'Roofing',
+			1 => 'Antenna',
+			2 => 'Sheathing/Framing',
+			3 => 'Flashing',
+			4 => 'Chimney'
+		);
+    }
+
+
+
+    public function get_vermin_choices() {
+    	return array('blank'   => 'Please Select One',
+    		         'roofing' => array(0 => 'N/A',
+    		         	                1 => '0 sq ft',
+    		         	                2 => '1-5 sq ft',
+    		         	                3 => '5-10 sq ft',
+    		         	                4 => 'Over 10 sq ft'),
+    		         'fascia' => array(0 => 'N/A',
+    		         	               1 => '0 In ft',
+    		         	               2 => '1-5 In ft',
+    		         	               3 => 'Over 5 In ft'),
+    		         'vent' => array(0 => 'N/A',
+    		         	             1 => '0 sq ft',
+    		         	             2 => '1 sq ft',
+    		         	             3 => '2 sq ft',
+    		         	             4 => '3 sq ft'));
+    }
+
+
+
+    public function get_vandalism_choices() {
+    	return array('skylights' => array(0 => 'N/A',
+    		                              1 => '1',
+    		                              2 => '2',
+    		                              3 => '3'),
+    	             'roof_decking_cut' => array(0 => 'N/A',
+    	             	                         1 => '0 sq ft',
+    	             	                         2 => '1-5 sq ft',
+    	             	                         3 => '5-10 sq ft',
+    	             	                         4 => 'Over 10 sq ft'));
     }
 }

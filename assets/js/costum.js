@@ -712,7 +712,7 @@ $(document).ready(function() {
 
     // Slope select stuff 
     $('.has_slope_select').change(function () {
-    	$(this).parent().next().find('.content').show();
+    	// $(this).parent().next().find('.content').show();
     });
 
 	

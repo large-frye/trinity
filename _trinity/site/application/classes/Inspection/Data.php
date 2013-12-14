@@ -251,7 +251,7 @@ class Inspection_Data
 	
 	public static $wind_roof_peeled_back = array(
 		'type' => 'select',
-		'data' => array(
+		'data' => array(			
 			0 => 'N/A',
 			1 => '1-10 sq ft',
 			2 => '10-25 sq ft',
