@@ -167,7 +167,7 @@ class Controller_Account extends Controller_Master {
             if (!$validate_result['error']) {
                 $this->_post['role_id']=4;
                 $this->_users_model->create_user($this->_post);
-                $this->_users_model->send_confirmation_email($this->_post);
+                // $this->mailer_model->send_mail('dholmblad@gmail.com', 'a.frye4@gmail.com', 'test', 'rest');
                 $this->request->redirect('/account');
             } else {
                 $view->errors=$validate_result['errors'];

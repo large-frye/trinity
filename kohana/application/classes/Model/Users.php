@@ -60,21 +60,8 @@ class Model_Users extends Model_Base {
      */
     public function send_confirmation_email($post){
 
-        $to      = $post['email'];
-        $subject = 'New Account on Trinity';
-        $message = 'Hello '.$post['first_name'].' '.$post['last_name'].'  Thank you for creating an account on Trinity Inspections';
-        $headers = 'From: admin@trinity.com' . "\r\n" .
-            'Reply-To: admin@trinity.com' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
-
-$smtp = Mail::factory('smtp', array(
-        'host' => 'ssl://smtp.gmail.com',
-        'port' => '465',
-        'auth' => true,
-        'username' => 'dholmblad@gmail.com',
-        'password' => 'Airpass1'
-    ));
-        $mail = $smtp->send($to, $headers, $message);
+       print_r($post);
+       die();
     }
 
     public function edit_user($post, $user_id) {
