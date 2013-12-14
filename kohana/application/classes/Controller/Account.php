@@ -47,8 +47,8 @@ class Controller_Account extends Controller_Master {
             
         if (!$this::$logged_in) { 
             if (!in_array($this->request->action() , array('login','signup', 'forgotpassword'))) {
-                echo "<pre>";
-                print_r($_SERVER);
+                //echo "<pre>";
+                //print_r($_SERVER);
                 if (preg_match('/\/workorders\/submit/', $_SERVER['REQUEST_URI'])) {
                     Session::instance()->set('_redirect', $_SERVER['REQUEST_URI']);
                 }
