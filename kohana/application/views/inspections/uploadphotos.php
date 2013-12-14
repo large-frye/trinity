@@ -5,7 +5,7 @@
 							<span class="hide"></span>
 						</div>
 						<div class="content nopadding">
-							<div class="gallery">
+							<!--<div class="gallery">
 								<div id="dropzone">
 								<form id="demo-upload" >
 								<div id="container">
@@ -13,7 +13,13 @@
 								</ul>
 								</div>
 								</form>
-								</div>		
+								</div>	-->
+
+
+									<form action="" method="POST" enctype="multipart/form-data">
+								    <input type="file" name="files[]" />
+								    <input type="submit"/>
+								</form>									
 							</div>
 						</div>
 					</div>
