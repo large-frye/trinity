@@ -23,6 +23,26 @@ class Controller_Inspections extends Controller_Account {
     	parent::action_index();
     }
 
+  
+      public function action_viewphotos() {
+            $view = View::factory('inspections/viewphotos');
+            $this->template->side_bar = View::factory('inspections/photo-sidebar');
+                       $this->template->content = $view;
+      }
+
+       public function action_editphotos() {
+            $view = View::factory('inspections/editphotos');
+            $this->template->side_bar = View::factory('inspections/photo-sidebar');
+                       $this->template->content = $view;
+      }
+
+      public function action_uploadphotos() {
+            $view = View::factory('inspections/uploadphotos');
+              //  $this->get_js_files();
+            $this->template->side_bar = View::factory('inspections/photo-sidebar');
+             $this->template->content = $view;
+      }
+
 
 
     public function action_view() {
@@ -43,7 +63,6 @@ class Controller_Inspections extends Controller_Account {
                 $this->workorders_model->add_comment($this->_post, $this->request->param('id'), $this->_user->id);
             }
         }
-
         $view->details = $this->workorders_model->get_workorder_details($this->request->param('id'));
         $view->messages  = $this->workorders_model->get_workorder_comments($this->request->param('id'));
         $this->template->content = $view;

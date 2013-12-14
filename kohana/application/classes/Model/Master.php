@@ -79,7 +79,11 @@ class Model_Master extends Model {
     		              "/trinity/assets/vendor/fancybox/jquery.fancybox.pack.js",
     		              "/trinity/assets/js/pirobox.extended.min.js",
     		              "/trinity/assets/js/costum.js",
-                          "/trinity/assets/js/inspection/form.js",);
+                          "/trinity/assets/js/inspection/form.js",
+                          "/trinity/assets/js/inspection/dropzone.js",
+                          "/trinity/assets/js/inspection/gridster.js",  
+                          "/trinity/assets/js/inspection/imgUploader.js",
+                          "http://code.jquery.com/ui/1.10.3/jquery-ui.js")  ;
 
     	foreach($js_files as $js_file) {
     		$this->js[] = HTML::script($js_file);	
