@@ -46,7 +46,12 @@ class Controller_Account extends Controller_Master {
             
         if (!$this::$logged_in) { 
             if (!in_array($this->request->action() , array('login','signup', 'forgotpassword'))) {
-                 $this->request->redirect('/account/login');
+                echo "<pre>";
+                print_r($_SERVER);
+                if (preg_match('/\/workorders\/submit/', $_SERVER['REQUEST_URI'])) {
+                    Session::instance()->set('_redirect', $_SERVER['REQUEST_URI']);
+                }
+                $this->request->redirect('/account/login');
             }
         } else {
             if ($this->request->action() === 'login') {
@@ -101,6 +106,7 @@ class Controller_Account extends Controller_Master {
      *
      */
     public function action_login() {
+        $redirect = Session::instance()->get('_redirect');
         $this::$logged_in ? $this->request->redirect('/account') : null;
 
         $view = View::factory('account/login');
@@ -114,6 +120,11 @@ class Controller_Account extends Controller_Master {
                 if(!$this->_auth->login($this->_post['username'], $this->_post['password'])) {
                     $view->login_failed = true;
                 } else {
+                    if (isset($redirect)) {
+                        Session::instance()->delete('_redirect');
+                        $this->request->redirect($redirect);
+                    }
+
                     $this->request->redirect('/account/');
                 }
             }

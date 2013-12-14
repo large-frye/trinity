@@ -13,16 +13,18 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 	<div class="box">
 		<div class="title">Work Order</div>
 			<div class="content">
+				<?php if (!$client) { ?>
 				<div class="row">
 					<label for="username">Select Client</label>
 						<div class="right">
 							<?php echo Form::select('user_id', $clients); ?>
 						</div>
 				</div>
+				<?php } ?>
 				<div class="row">	
 					<label for="type">Work Order Type</label>
 						<div class="right">
-							<?php echo Form::select('type', $inspection_types); ?>
+							<?php echo Form::select('type', $inspection_types, $type_selected); ?>
 						</div>
 				</div>
 			</div>
@@ -32,6 +34,7 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 
 
 <!-- Price of Work Order Section -->
+<?php if (!$client) { ?>
 <div class="section">
 			<div class="box">
 				<div class="title">Price of Work Order</div>
@@ -47,6 +50,7 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 				</div>
 			</div>
 </div>
+<?php } ?>
 
 <!-- Insured's Information -->
 <div class="section">

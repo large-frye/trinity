@@ -22,6 +22,7 @@ class Controller_Workorders extends Controller_Account {
         $this->template->side_bar = View::factory('workorders/side-bar');
         $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
         $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
+        $this->_client = $this->user_type === Model_Account::CLIENT ? true : false;
     }
 
 
@@ -31,6 +32,9 @@ class Controller_Workorders extends Controller_Account {
     	$view->clients = $this->account_model->get_clients();
         $view->inspection_types = array('Basic Inspections', 'Expert Inspections', 'Engineer Reports');
         $view->price = $this->workorders_model->get_price();
+        $view->client = $this->_client;
+        $type_selected = $this->request->param('id');
+        $view->type_selected = isset($type_selected) ? $type_selected : null;
 
         // Handle $_POST
         if ($this->request->method() === 'POST') {
