@@ -710,10 +710,37 @@ $(document).ready(function() {
         piro_scroll : true
     });
 
-    $('.slope').children().children().children(".content").find('input[type=checkbox]').click(function() {
-    	var answer = prompt("How many shingles were affected?");
-    	$(this).next().append("&nbsp;(<a href='#' class='change-shingle-amount'>" + answer + "</a>)");
-    })
+    /* Adds shingle amounts to slope type in slope */
+    $('.slope').children().children().children(".content").on('click', 'input[type=checkbox]', function() {
+    	var shingle_class = $($(this)[0].nextSibling).children();
+    	var el = $(this);
+        
+        if (shingle_class.hasClass('change-shingle-amount')) {
+            shingle_class.remove();
+        }
+
+        if ($(this)[0].checked) {
+            var answer = prompt("How many shingles were affected?");
+            if (answer !== null && answer !== "") {
+                $(this).next().append("<span class=\"change-shingle-amount\">&nbsp;(<a href='#'>" + answer + "</a>)</span>");
+                el.val($(this).val() + "_" + answer);
+            }
+        }
+    });
+
+    $(document).on('click', '.change-shingle-amount a', function() {
+    	var answer = prompt("How many shingles were affected?", $(this).text());
+        if (answer !== null && answer !== "") {
+            $(this).text(answer);
+            var checkbox = $(this).parent().parent().parent().find('input[type=checkbox]');
+            var checkbox_str_pos = checkbox.val().indexOf("_");
+            var new_value = checkbox.val().substring(0, checkbox_str_pos);
+            checkbox.val(new_value + "_" + answer);
+        }
+
+        return false;
+    });
+
 
 	
 	

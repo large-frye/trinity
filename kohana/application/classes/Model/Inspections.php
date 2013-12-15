@@ -182,20 +182,20 @@ class Model_Inspections extends Model_Base {
 
     public function get_slopes() {
     	return array(
-			0 => 'Front',
-			1 => 'Rear',
-			2 => 'Front Left',
-			3 => 'Rear Left',
-			4 => 'Rear Right',
-			5 => 'Side Left',
-			6 => 'Side Right',
-			7 => 'Rear Sub Roof',
-			8 => 'Front Sub Roof',
-			9 => 'Right Side Sub Roof',
-			10 => 'Left Side Sub Roof',
-			11 => 'Entire Roof',
-			12 => 'Front Right',
-			13 => 'Ridge'
+			'front' => 'Front',
+			'rear' => 'Rear',
+			'front left' => 'Front Left',
+			'rear left' => 'Rear Left',
+			'rear right' => 'Rear Right',
+			'side left' => 'Side Left',
+			'side right' => 'Side Right',
+			'rear sub roof' => 'Rear Sub Roof',
+			'front sub roof' => 'Front Sub Roof',
+			'right side sub roof' => 'Right Side Sub Roof',
+			'left side sub roof' => 'Left Side Sub Roof',
+			'entire roof' => 'Entire Roof',
+			'front right' => 'Front Right',
+			'ridge' => 'Ridge'
 		);
     }
 
