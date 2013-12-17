@@ -1,5 +1,6 @@
 $(document).on('dblclick', '.dz-preview', function() {
     renameFile(this);
+	
 });
 
  $(function() {
@@ -17,3 +18,27 @@ function renameFile(div){
 	var cache = $(customName).children();
 	$(customName).text(name+"."+ftype).append(cache);
 }
+
+
+	$( ".catClick" ).click(function() {
+		var copy = this;
+		console.log($(copy).attr('selected'));
+		if($(copy).attr('selected')===undefined){
+		$(copy).attr('selected', 'true');
+		$('#rightcol').append(copy);
+		} else{
+		var parentUL = $('ul#'+$(copy).attr('parentid'));
+		console.log(parentUL);
+		$(copy).removeAttr('selected');
+		$(parentUL).append(this);
+		}
+	});
+	
+	
+$( ".catClick" ).hover(
+function() {
+$( this ).css("background-color","#B6BDD2");
+}, function() {
+$( this ).css("background-color","transparent");
+}
+);

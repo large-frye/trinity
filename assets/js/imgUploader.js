@@ -17,3 +17,11 @@ function renameFile(div){
 	var cache = $(customName).children();
 	$(customName).text(name+"."+ftype).append(cache);
 }
+
+$( ".catClick" ).hover(
+function() {
+$( this ).css("background-color","#B6BDD2");
+}, function() {
+$( this ).css("background-color","transparent");
+}
+);

@@ -7,9 +7,15 @@
 					
 
             <div id="photoContainer">
-                test
-                test
-                test    
+              
+                <div id="dropzone">
+                <form id="demo-upload" >
+           
+                <ul id="sort1"  class="dropzone dz-clickable" action="http://www.torrentplease.com/dropzone.php">
+                </ul>
+             
+                </form>
+                </div>
             </div>
             <div id="photoWrapper">
             <div  id="leftcol" data-collapse="accordion persist">
@@ -20,14 +26,12 @@
                                 for ($i = 0; $i < $count; $i++) {
                                     if($categories[$i]->parent_id==='0'){
                                         $cur =  $categories[$i]->id;
-                        
-    
-                                        echo '<h2 style="background-color:grey; width:250px">'.$categories[$i]->name.'</h2>';
-                                        echo '<ul>';
-                                       
+                                        echo '<h2 class="imgUP">'.$categories[$i]->name.'</h2>';
+                                        echo '<ul id="'.$categories[$i]->id.'">';
+                                            $p = $categories[$i]->id;
                                              foreach($innerCategories as $inner) {
                                                 if($cur==$inner->parent_id){
-                                                    echo '<li>&nbsp;--'.$inner->name.'</li>';
+                                                    echo '<li parentid="'.$p.'" id="'.$inner->id.'" class="catClick">&nbsp;--'.$inner->name.'</li>';
                                                 }
                                              }
                                          
@@ -43,7 +47,7 @@
                         </div>
                     </div>
                     <div id="rightcol">
-                        test
+                        
                     </div>
                     </div>
 		</div>
