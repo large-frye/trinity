@@ -1,0 +1,16 @@
+
+#leftcol {
+   float:left;
+   width:300px;
+}
+#rightcol {
+   float:right;
+   width:300px;
+}
+
+#photoContainer {
+		background-color:grey;
+		width: 500px; 
+		height: 500px;
+
+}

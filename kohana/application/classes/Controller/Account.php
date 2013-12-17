@@ -182,6 +182,7 @@ class Controller_Account extends Controller_Master {
             if (!$validate_result['error']) {
                 $this->_post['role_id']=4;
                 $this->_users_model->create_user($this->_post);
+              //  $body = $this->get_template(DB::query(Database::SELECT, "SELECT value FROM settings WHERE name = 'email_template_recovery_password'");
                 // $this->mailer_model->send_mail('dholmblad@gmail.com', 'a.frye4@gmail.com', 'test', 'rest');
                 $this->request->redirect('/account');
             } else {

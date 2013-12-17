@@ -83,7 +83,9 @@ class Model_Master extends Model {
                           "/trinity/assets/js/inspection/dropzone.js",
                           "/trinity/assets/js/inspection/gridster.js",  
                           "/trinity/assets/js/inspection/imgUploader.js",
-                          "http://code.jquery.com/ui/1.10.3/jquery-ui.js");
+                          "/trinity/assets/js/jquery.collapsible.min.js",
+                          "/trinity/assets/js/jquery.collapse_cookie_storage.js",
+                          "/trinity/assets/js/jquery.collapse_storage.js",);
 
     	foreach($js_files as $js_file) {
     		$this->js[] = HTML::script($js_file);	

@@ -6,6 +6,7 @@ class Controller_Inspections extends Controller_Account {
         parent::__construct($request, $response);
         $this->workorders_model = Model::factory('workorders');
         $this->inspections_model = Model::factory('inspections');
+         $this->settings_model = Model::factory('settings');
     }
 
 
@@ -37,9 +38,10 @@ class Controller_Inspections extends Controller_Account {
       }
 
       public function action_uploadphotos() {
-            $view = View::factory('inspections/uploadphotos');
-              //  $this->get_js_files();
-            $this->template->side_bar = View::factory('inspections/photo-sidebar');
+             $view = View::factory('inspections/uploadphotos');
+             $view->categories = $this->settings_model->get_categories();
+           //  print_r($this->categories);
+             $this->template->side_bar = View::factory('inspections/photo-sidebar');
              $this->template->content = $view;
       }
 
