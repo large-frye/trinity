@@ -22,13 +22,13 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 				<div class="row">
 					<label for="username">Select Client</label>
 						<div class="right">
-							<?php echo Form::select('user_id', $clients); ?>
+							<?php echo Form::select('user_id', $clients, $details->user_id); ?>
 						</div>
 				</div>
 				<div class="row">	
 					<label for="type">Work Order Type</label>
 						<div class="right">
-							<?php echo Form::select('type', $inspection_types); ?>
+							<?php echo Form::select('type', $inspection_types, $details->type); ?>
 						</div>
 				</div>
 			</div>

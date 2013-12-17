@@ -303,4 +303,77 @@ class Model_Inspections extends Model_Base {
                      'slippage'                  => 'Slippage',
                      'flashing breach'           => 'Flashing Breach');
     }
+
+
+
+    public function get_appliances_information() {
+        return array('skylights' => array('grass cracked' => 'Glass Cracked',
+                                          'flashing cracked' => 'Flashing Cracked',
+                                          'flashing clogged' => 'Flashing Clogged'),
+                     'antenna'   => array('supports' => 'Supports'),
+                     'ac_units'  => array('supports' => 'Supports',
+                                          'flashing' => 'Flashing',
+                                          'plumbing/wiring' => 'Plumbing/Wiring')
+        );
+    }
+
+
+
+    public function get_fall_tree_information() {
+        return array('amount_of_damage' => array('blank' => 'Please Select One', 
+                                                 'n_a' => 'N/A',
+                                                 '0' => '0 sq ft',
+                                                 '1-25' => '1-25 sq ft',
+                                                 '25-50' => '25-50 sq ft',
+                                                 '50-100' => '50-100 sq ft',
+                                                 'Over 100' => 'Over 100 sq ft'),
+                     'damages' => array('roofing scratched' => 'Roofing Scratched',
+                                        'flashing' => 'Flashing',
+                                        'holes in decking' => 'Holes in Decking',
+                                        'venting' => 'Venting',
+                                        'framing' => 'Framing',
+                                        'antenna' => 'Antenna',
+                                        'fascia' => 'Fascia',
+                                        'ac' => 'A/C Unit',
+                                        'gutters' => 'Gutters',
+                                        'roofing damaged or missing' => 'Roofing Damaged or Missing',
+                                        'skylights/windows' => 'Skylights/Windows')
+        );
+    }
+
+
+
+    public function get_excess_debris() {
+        return array(
+            'on decking' => 'On Decking',
+            'in valleys' => 'In Valleys',
+            'in drains' => 'In Drains',
+            'around skylights' => 'Around Skylights',
+            'in gutters' => 'In Gutters',
+            'gable ends' => 'Gable Ends'
+        );
+    }
+
+
+
+    public function get_water_damages() {
+        return array(
+            'improper drainage' => 'Improper Drainage',
+            'roof pitched incorrectly' => 'Roof Pitched Incorrectly',
+            'clogged drains' => 'Clogged Drains'
+        );
+    }
+
+
+
+    public function get_product_defects() {
+        return array(
+            'blank' => 'Please Select One',
+            'n_a' => 'N/A',
+            '10%' => '10%',
+            '25%' => '25%',
+            '50%' => '50%',
+            '100%' => '100%'
+        );
+    }
 }

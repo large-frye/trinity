@@ -826,24 +826,22 @@
 			<div class="content">
 			
 				<div class="row">
-					<input type="checkbox" {{#checked_appliances}}checked="checked"{{/checked_appliances}} name="appliances" id="appliances" value="1" class="check_if_apply" />
+					<input type="checkbox"  name="appliances" id="appliances" value="1" class="check_if_apply" />
 						
 					<label for="appliances"><strong>Check if apply</strong></label>
 				</div>	
-				
-				{{#errors.appliances}}
-					<div class="row">
-						<div class="right">
-							<label class="error">{{errors.appliances}}</label>
-						</div>
-					</div>
-				{{/errors.appliances}}		
-
+	
 				<div class="row">
 					<label for="appliances_skylights">Skylights</label>
 
 					<div class="right has_slope_checkbox" rel="slope_appliances_skylights">
-						{{{e_appliances_skylights}}}
+						<?php
+				        $count = 0;
+						foreach($appliances['skylights'] as $key => $option) {
+                            echo Form::checkbox('appliance_skylights[]', $key, null, array('id' => 'appliance_skylights' . $count)) . 
+                                 Form::label('appliance_skylights' . $count, $option);
+                            $count++;
+						} ?>
 					</div>
 				</div>	
 
@@ -852,7 +850,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Skylights)</div>
 							<div class="content">
-								{{{e_appliances_skylights_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_appliances_skylights[]', $key, false, 
+								    		     array('id' => 'slope_appliances_skylights' . $count)) . "\n" .
+								    	Form::label('slope_appliances_skylights' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -865,7 +871,13 @@
 					<label for="appliances_antenna_sattelite_dish">Antenna/satellite dish</label>
 
 					<div class="right has_slope_checkbox" rel="slope_appliances_antenna">
-						{{{e_appliances_antenna_sattelite_dish}}}
+						<?php
+				        $count = 0;
+						foreach($appliances['antenna'] as $key => $option) {
+                            echo Form::checkbox('appliances_antenna_sattelite_dish[]', $key, null, array('id' => 'appliances_antenna_sattelite_dish' . $count)) . 
+                                 Form::label('appliances_antenna_sattelite_dish' . $count, $option);
+                            $count++;
+						} ?>
 					</div>
 				</div>	
 
@@ -874,7 +886,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Antenna / Satellite Dish)</div>
 							<div class="content">
-								{{{e_appliances_antenna_sattelite_dish_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_appliances_antenna[]', $key, false, 
+								    		     array('id' => 'slope_appliances_antenna' . $count)) . "\n" .
+								    	Form::label('slope_appliances_antenna' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -886,7 +906,13 @@
 					<label for="appliances_ac_units">A/C Units</label>
 
 					<div class="right has_slope_checkbox" rel="slope_appliances_ac_units">
-						{{{e_appliances_ac_units}}}
+						<?php
+				        $count = 0;
+						foreach($appliances['ac_units'] as $key => $option) {
+                            echo Form::checkbox('appliances_ac_units[]', $key, null, array('id' => 'appliances_ac_units' . $count)) . 
+                                 Form::label('appliances_ac_units' . $count, $option);
+                            $count++;
+						} ?>
 					</div>
 				</div>	
 
@@ -895,7 +921,15 @@
 						<div class="box">
 							<div class="title">Select Slope (A/C Units)</div>
 							<div class="content">
-								{{{e_appliances_ac_units_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_appliances_ac_units[]', $key, false, 
+								    		     array('id' => 'slope_appliances_ac_units' . $count)) . "\n" .
+								    	Form::label('slope_appliances_ac_units' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -915,23 +949,18 @@
 			<div class="content">
 			
 				<div class="row">
-					<input type="checkbox" {{#checked_fallen_tree}}checked="checked"{{/checked_fallen_tree}} name="fallen_tree" id="fallen_tree" value="1" class="check_if_apply" />
+					<input type="checkbox" name="fallen_tree" id="fallen_tree" value="1" class="check_if_apply" />
 						
 					<label for="fallen_tree"><strong>Check if apply</strong></label>						
-				</div>		
-				
-				{{#errors.fallen_tree}}
-					<div class="row">
-						<div class="right">
-							<label class="error">{{errors.fallen_tree}}</label>
-						</div>
-					</div>
-				{{/errors.fallen_tree}}		
+				</div>
 
 				<div class="row">
 					<label for="fallen_tree_amount_of_damage">Amount of Damage</label>
 					<div class="right has_slope_select" rel="slope_fallen_tree_amount_damage">
-						{{{e_fallen_tree_amount_of_damage}}}
+						<?php                            
+						    echo Form::select('fallen_tree_amount_of_damage', $tree_information['amount_of_damage'], null) . 
+                                 Form::label('fallen_tree_amount_of_damage', "Amount of Damage");
+						?>
 					</div>
 				</div>	
 
@@ -940,7 +969,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Amount of Damage)</div>
 							<div class="content">
-								{{{e_fallen_tree_amount_of_damage_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_fallen_tree_amount_damage[]', $key, false, 
+								    		     array('id' => 'slope_fallen_tree_amount_damage' . $count)) . "\n" .
+								    	Form::label('slope_fallen_tree_amount_damage' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -952,7 +989,13 @@
 					<label for="fallen_tree_damages">Damages</label>
 
 					<div class="right chk_fallen_tree_damages">
-						{{{e_fallen_tree_damages}}}
+						<?php
+				        $count = 0;
+						foreach($tree_information['damages'] as $key => $option) {
+                            echo Form::checkbox('fallen_tree_damages[]', $key, null, array('id' => 'fallen_tree_damages' . $count)) . 
+                                 Form::label('fallen_tree_damages' . $count, $option);
+                            $count++;
+						} ?>
 						
 						<div class="cl"></div>
 					</div>
@@ -974,21 +1017,19 @@
 					<input type="checkbox" {{#checked_excess_debris}}checked="checked"{{/checked_excess_debris}} name="excess_debris" id="excess_debris" value="1" class="check_if_apply" />
 						
 					<label for="excess_debris"><strong>Check if apply</strong></label>
-				</div>	
-				
-				{{#errors.excess_debris}}
-					<div class="row">
-						<div class="right">
-							<label class="error">{{errors.excess_debris}}</label>
-						</div>
-					</div>
-				{{/errors.excess_debris}}			
+				</div>
 
 				<div class="row">
 					<label for="excess_debris_location">Location</label>
 
 					<div class="right has_slope_checkbox chk_excess_debris_location" rel="slope_excess_debris_location">
-						{{{e_excess_debris_location}}}
+						<?php
+				        $count = 0;
+						foreach($debris as $key => $option) {
+                            echo Form::checkbox('excess_debris_location[]', $key, null, array('id' => 'excess_debris_location' . $count)) . 
+                                 Form::label('excess_debris_location' . $count, $option);
+                            $count++;
+						} ?>
 						
 						<div class="cl"></div>
 					</div>
@@ -999,7 +1040,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Location)</div>
 							<div class="content">
-								{{{e_excess_debris_location_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_excess_debris_location[]', $key, false, 
+								    		     array('id' => 'slope_excess_debris_location' . $count)) . "\n" .
+								    	Form::label('slope_excess_debris_location' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1018,24 +1067,30 @@
 			<div class="content">
 			
 				<div class="row">
-					<input type="checkbox" {{#checked_standing_water}}checked="checked"{{/checked_standing_water}} name="standing_water" id="standing_water" value="1" class="check_if_apply" />
+					<input type="checkbox" name="standing_water" id="standing_water" value="1" class="check_if_apply" />
 					
 				 	<label for="standing_water"><strong>Check if apply</strong></label>
 				</div>	
 				
-				{{#errors.standing_water}}
+				<!-- {{#errors.standing_water}}
 					<div class="row">
 						<div class="right">
 							<label class="error">{{errors.standing_water}}</label>
 						</div>
 					</div>
-				{{/errors.standing_water}}			
+				{{/errors.standing_water}} -->
 
 				<div class="row">
 					<label for="standing_water_select">Select</label>
 
 					<div class="right has_slope_checkbox chk_standing_water_select" rel="slope_standing_water">
-						{{{e_standing_water_select}}}
+						<?php
+				        $count = 0;
+						foreach($water_damages as $key => $option) {
+                            echo Form::checkbox('standing_water_select[]', $key, null, array('id' => 'standing_water_select' . $count)) . 
+                                 Form::label('standing_water_select' . $count, $option);
+                            $count++;
+						} ?>
 						
 						<div class="cl"></div>
 					</div>
@@ -1046,7 +1101,15 @@
 						<div class="box">
 							<div class="title">Select Slope</div>
 							<div class="content">
-								{{{e_standing_water_select_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_standing_water[]', $key, false, 
+								    		     array('id' => 'slope_standing_water' . $count)) . "\n" .
+								    	Form::label('slope_standing_water' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1072,19 +1135,21 @@
 						<label for="product_defects"><strong>Check if apply</strong></label>
 				</div>	
 				
-				{{#errors.product_defects}}
+				<!-- {{#errors.product_defects}}
 					<div class="row">
 						<div class="right">
 							<label class="error">{{errors.product_defects}}</label>
 						</div>
 					</div>
-				{{/errors.product_defects}}		
+				{{/errors.product_defects}}		-->
 
 				<div class="row">
 					<label for="product_defects_asphalt_coating_defect">Asphalt Coating Defect</label>
 
 					<div class="right has_slope_select" rel="slope_product_defects_asphalt">
-						{{{e_product_defects_asphalt_coating_defect}}}
+						<?php echo Form::select('product_defects_asphalt_coating_defect', $product_defects) .
+						           Form::label('product_defects_asphalt_coating_defect', 'Asphalt Coating Defect');
+						?>
 					</div>
 				</div>	
 
@@ -1093,7 +1158,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Asphalt Coating Defect)</div>
 							<div class="content">
-								{{{e_product_defects_asphalt_coating_defect_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_product_defects_asphalt[]', $key, false, 
+								    		     array('id' => 'slope_product_defects_asphalt' . $count)) . "\n" .
+								    	Form::label('slope_product_defects_asphalt' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1106,7 +1179,9 @@
 					<label for="product_defects_blistering">Blistering</label>
 
 					<div class="right has_slope_select" rel="slope_product_defects_blistering">
-						{{{e_product_defects_blistering}}}
+						<?php echo Form::select('product_defects_blistering', $product_defects) .
+						           Form::label('product_defects_blistering', 'Blistering');
+						?>
 					</div>
 				</div>	
 
@@ -1115,7 +1190,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Blistering)</div>
 							<div class="content">
-								{{{e_product_defects_blistering_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_product_defects_blistering[]', $key, false, 
+								    		     array('id' => 'slope_product_defects_blistering' . $count)) . "\n" .
+								    	Form::label('slope_product_defects_blistering' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1127,7 +1210,9 @@
 					<label for="product_defects_flaking">Flaking</label>
 
 					<div class="right has_slope_select" rel="slope_product_defects_flaking">
-						{{{e_product_defects_flaking}}}
+						<?php echo Form::select('product_defects_flaking', $product_defects) .
+						           Form::label('product_defects_flaking', 'Flaking');
+						?>
 					</div>
 				</div>	
 
@@ -1136,7 +1221,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Flaking)</div>
 							<div class="content">
-								{{{e_product_defects_flaking_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_product_defects_flaking[]', $key, false, 
+								    		     array('id' => 'slope_product_defects_flaking' . $count)) . "\n" .
+								    	Form::label('slope_product_defects_flaking' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>

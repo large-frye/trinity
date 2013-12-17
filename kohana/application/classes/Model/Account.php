@@ -46,7 +46,7 @@ class Model_Account extends Model_Base {
         $result = DB::query(Database::SELECT, 'SELECT w.*, CONCAT(uf.first_name, " ", uf.last_name) as adjuster_name,
                                                       CONCAT(_uf.first_name, " ", _uf.last_name) as inspector_name,
                                                       wos.name as status_name, _is.name as inspection_status,
-                                                      IF(i.status IS NULL, "No Type", i.status) as inspection_type
+                                                      IF(it.name IS NULL, "No Type", it.name) as inspection_type
                                                FROM work_orders w
                                                LEFT JOIN users u ON u.id = w.user_id
                                                LEFT JOIN profiles uf ON uf.user_id = u.id
@@ -54,6 +54,7 @@ class Model_Account extends Model_Base {
                                                LEFT JOIN profiles _uf ON _uf.user_id = _u.id
                                                LEFT JOIN work_order_statuses wos ON wos.id = w.status
                                                LEFT JOIN inspection_statuses _is ON _is.id = w.inspection_status
+                                               LEFT JOIN inspection_types it ON it.id = w.type
                                                LEFT JOIN inspections i ON i.work_order_id = w.id
                                                WHERE ' . $where_clause)
                       ->parameters(array(':user_id' => $user_id))

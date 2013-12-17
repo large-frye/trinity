@@ -23,6 +23,10 @@ class Controller_Workorders extends Controller_Account {
         $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
         $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
         $this->_client = $this->user_type === Model_Account::CLIENT ? true : false;
+
+        if ($this->_inspector) {
+            $this->request->redirect('/account');
+        }
     }
 
 

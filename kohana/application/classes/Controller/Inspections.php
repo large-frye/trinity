@@ -94,6 +94,11 @@ class Controller_Inspections extends Controller_Account {
         $view->vandalism_choices = $this->inspections_model->get_vandalism_choices();
         $view->siding_types = $this->inspections_model->get_siding_types();
         $view->miscellanous_damages = $this->inspections_model->get_miscellanous_damages();
+        $view->appliances = $this->inspections_model->get_appliances_information();
+        $view->tree_information = $this->inspections_model->get_fall_tree_information();
+        $view->debris = $this->inspections_model->get_excess_debris();
+        $view->water_damages = $this->inspections_model->get_water_damages();
+        $view->product_defects = $this->inspections_model->get_product_defects();
 
         $this->template->content = $view;
     }

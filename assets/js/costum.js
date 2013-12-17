@@ -712,8 +712,10 @@ $(document).ready(function() {
 
     /* Adds shingle amounts to slope type in slope */
     $('.slope').children().children().children(".content").on('click', 'input[type=checkbox]', function() {
-    	var shingle_class = $($(this)[0].nextSibling).children();
-    	var el = $(this);
+        var shingle_class = $($(this)[0].nextSibling).children();
+        var el = $(this);
+       // $('.slope').prev().children().find('input[type=checkbox]')[0].checked = true;
+       // $('.slope').prev().children().find('label').addClass('checked');
         
         if (shingle_class.hasClass('change-shingle-amount')) {
             shingle_class.remove();
@@ -724,6 +726,9 @@ $(document).ready(function() {
             if (answer !== null && answer !== "") {
                 $(this).next().append("<span class=\"change-shingle-amount\">&nbsp;(<a href='#'>" + answer + "</a>)</span>");
                 el.val($(this).val() + "_" + answer);
+            } else {
+                el.next().removeClass('checked');
+                el[0].checked = false;
             }
         }
     });
