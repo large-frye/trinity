@@ -101,6 +101,15 @@ class Controller_Inspections extends Controller_Account {
         $view->debris = $this->inspections_model->get_excess_debris();
         $view->water_damages = $this->inspections_model->get_water_damages();
         $view->product_defects = $this->inspections_model->get_product_defects();
+        $view->workmanship = $this->inspections_model->get_workmanship();
+        $view->aged_worn = $this->inspections_model->get_aged_worn();
+        $view->fire_damages = $this->inspections_model->get_fire_damages();
+
+        if ($this->request->method() === "POST") {
+            echo "<pre>";
+            print_r($this->_post);
+            die();
+        }
 
         $this->template->content = $view;
     }

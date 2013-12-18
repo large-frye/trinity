@@ -1,4 +1,4 @@
-<form enctype="multipart/form-data" action="{{post_url}}/{{workorder_data.id}}" method="post" accept-charset="utf-8" id="inspection-form">
+<form enctype="multipart/form-data" action="" method="post" accept-charset="utf-8" id="inspection-form">
 	
 <div class="section">
 	<div class="box">
@@ -1249,25 +1249,31 @@
 			<div class="content">
 			
 				<div class="row">						
-					<input type="checkbox" {{#checked_improper_installation}}checked="checked"{{/checked_improper_installation}} name="workmanship" id="workmanship" value="1" class="check_if_apply" />
+					<input type="checkbox" name="workmanship" id="workmanship" value="1" class="check_if_apply" />
 						
 					<label for="workmanship"><strong>Check if apply</strong></label>
 	
 				</div>		
 				
-				{{#errors.workmanship}}
+				<!-- {{#errors.workmanship}}
 					<div class="row">
 						<div class="right">
 							<label class="error">{{errors.workmanship}}</label>
 						</div>
 					</div>
-				{{/errors.workmanship}}		
+				{{/errors.workmanship}}	-->	
 
 				<div class="row">
 					<label for="workmanship_improper_nailing">Improper Nailing</label>
 
 					<div class="right has_slope_checkbox" rel="slope_workmanship_improper_nailing">
-						{{{e_improper_installation_nailing}}}
+						<?php
+				        $count = 0;
+						foreach($workmanship['improper_nailing'] as $key => $option) {
+                            echo Form::checkbox('workmanship_improper_nailing[]', $key, null, array('id' => 'workmanship_improper_nailing' . $count)) . 
+                                 Form::label('workmanship_improper_nailing' . $count, $option);
+                            $count++;
+						} ?>
 					</div>
 				</div>	
 
@@ -1276,7 +1282,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Improper Nailing)</div>
 							<div class="content">
-								{{{e_improper_installation_nailing_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_workmanship_improper_nailing[]', $key, false, 
+								    		     array('id' => 'slope_workmanship_improper_nailing' . $count)) . "\n" .
+								    	Form::label('slope_workmanship_improper_nailing' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1293,7 +1307,7 @@
 					
 						<input type="hidden" name="workmanship_improper_overlap" value="blank" />
 						
-						<input type="checkbox" {{#checked_workmanship_improper_overlap}}checked="checked"{{/checked_workmanship_improper_overlap}} name="workmanship_improper_overlap" id="workmanship_improper_overlap" value="1" />
+						<input type="checkbox" name="workmanship_improper_overlap" id="workmanship_improper_overlap" value='yes' />
 						
 						<label for="workmanship_improper_overlap">Yes</label>
 
@@ -1305,7 +1319,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Improper Overlap)</div>
 							<div class="content">
-								{{{e_improper_overlap_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_workmanship_improper_overlap[]', $key, false, 
+								    		     array('id' => 'slope_workmanship_improper_overlap' . $count)) . "\n" .
+								    	Form::label('slope_workmanship_improper_overlap' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1318,7 +1340,13 @@
 					<label for="workmanship_flashing">Flashing</label>
 
 					<div class="right has_slope_checkbox chk_workmanship_flashing" rel="slope_workmanship_flashing">
-						{{{e_improper_installation_flashing}}}
+						<?php
+								    $count = 0;
+								    foreach($workmanship['flashing'] as $key => $option) {
+								    	echo Form::checkbox('workmanship_flashing[]', $key, null, array('id' => 'workmanship_flashing' . $count)) . 
+								    	Form::label('workmanship_flashing' . $count, $option);
+								    	$count++;
+								} ?>
 						
 						<div class="cl"></div>
 					</div>
@@ -1329,7 +1357,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Flashing)</div>
 							<div class="content">
-								{{{e_improper_installation_flashing_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_workmanship_flashing[]', $key, false, 
+								    		     array('id' => 'slope_workmanship_flashing' . $count)) . "\n" .
+								    	Form::label('slope_workmanship_flashing' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1341,7 +1377,13 @@
 					<label for="workmanship_flashing_missing">Flashing Missing</label>
 
 					<div class="right has_slope_checkbox" rel="slope_workmanship_flashing_missing">
-						{{{e_improper_installation_flashing_missing}}}
+						<?php
+								    $count = 0;
+								    foreach($workmanship['flashing_missing'] as $key => $option) {
+								    	echo Form::checkbox('workmanship_flashing_missing[]', $key, null, array('id' => 'workmanship_flashing_missing' . $count)) . 
+								    	Form::label('workmanship_flashing_missing' . $count, $option);
+								    	$count++;
+								} ?>
 					</div>
 				</div>	
 
@@ -1350,7 +1392,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Flashing Missing)</div>
 							<div class="content">
-								{{{e_improper_installation_flashing_missing_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_workmanship_flashing_missing[]', $key, false, 
+								    		     array('id' => 'slope_workmanship_flashing_missing' . $count)) . "\n" .
+								    	Form::label('slope_workmanship_flashing_missing' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1363,7 +1413,13 @@
 					<label for="workmanship_venting">Venting</label>
 	
 					<div class="right has_slope_checkbox" rel="slope_workmanship_venting">
-						{{{e_improper_installation_venting}}}
+						<?php
+								    $count = 0;
+								    foreach($workmanship['venting'] as $key => $option) {
+								    	echo Form::checkbox('workmanship_venting[]', $key, null, array('id' => 'workmanship_venting' . $count)) . 
+								    	Form::label('workmanship_venting' . $count, $option);
+								    	$count++;
+								} ?>
 					</div>
 				</div>	
 
@@ -1372,7 +1428,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Venting)</div>
 							<div class="content">
-								{{{e_improper_installation_venting_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_workmanship_venting[]', $key, false, 
+								    		     array('id' => 'slope_workmanship_venting' . $count)) . "\n" .
+								    	Form::label('slope_workmanship_venting' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1389,7 +1453,7 @@
 					
 						<input type="hidden" name="workmanship_incorrect_materials" value="blank" />					
 
-						<input type="checkbox" {{#checked_workmanship_incorrect_materials}}checked="checked"{{/checked_workmanship_incorrect_materials}} name="workmanship_incorrect_materials" id="workmanship_incorrect_materials" value="1" />
+						<input type="checkbox" name="workmanship_incorrect_materials" id="workmanship_incorrect_materials" value="yes" />
 						
 						<label for="workmanship_incorrect_materials">Yes</label>
 						
@@ -1401,7 +1465,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Incorrect Materials)</div>
 							<div class="content">
-								{{{e_workmanship_incorrect_materials_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_workmanship_incorrect_materials[]', $key, false, 
+								    		     array('id' => 'slope_workmanship_incorrect_materials' . $count)) . "\n" .
+								    	Form::label('slope_workmanship_incorrect_materials' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1418,7 +1490,7 @@
 					
 						<input type="hidden" name="workmanship_excessive_layers" value="blank" />					
 						
-						<input type="checkbox" {{#checked_workmanship_excessive_layers}}checked="checked"{{/checked_workmanship_excessive_layers}} name="workmanship_excessive_layers" id="workmanship_excessive_layers" value="1" />
+						<input type="checkbox" name="workmanship_excessive_layers" id="workmanship_excessive_layers" value="yes" />
 						
 						<label for="workmanship_excessive_layers">Yes</label>
 						
@@ -1430,7 +1502,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Excessive Layers)</div>
 							<div class="content">
-								{{{e_workmanship_excessive_layers_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_workmanship_excessive_layers[]', $key, false, 
+								    		     array('id' => 'slope_workmanship_excessive_layers' . $count)) . "\n" .
+								    	Form::label('slope_workmanship_excessive_layers' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1443,7 +1523,13 @@
 					<label for="workmanship_sub_par_deck">Sub Par Deck</label>
 
 					<div class="right has_slope_checkbox" rel="slope_workmanship_suppardeck">
-						{{{e_workmanship_sub_par_deck}}}
+						<?php
+								    $count = 0;
+								    foreach($workmanship['sub_par_deck'] as $key => $option) {
+								    	echo Form::checkbox('workmanship_sub_par_deck[]', $key, null, array('id' => 'workmanship_sub_par_deck' . $count)) . 
+								    	Form::label('workmanship_sub_par_deck' . $count, $option);
+								    	$count++;
+								} ?>
 					</div>
 				</div>	
 
@@ -1452,7 +1538,15 @@
 						<div class="box">
 							<div class="title">Select Slope (Sub Par Deck)</div>
 							<div class="content">
-								{{{e_workmanship_sub_par_deck_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_workmanship_suppardeck[]', $key, false, 
+								    		     array('id' => 'slope_workmanship_suppardeck' . $count)) . "\n" .
+								    	Form::label('slope_workmanship_suppardeck' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1466,7 +1560,7 @@
 
 						<div class="right">
 
-							<input type="checkbox" {{#checked_workmanship_other}}checked="checked"{{/checked_workmanship_other}} name="workmanship_other" value="1" id="workmanship_other" />
+							<input type="checkbox" name="workmanship_other" value="yes" id="workmanship_other" />
 							
 							<label for="workmanship_other">Yes</label>
 							
@@ -1477,7 +1571,7 @@
 					<label for="workmanship_comments">Comments</label>
 
 					<div class="right">
-						<textarea name="workmanship_comments">{{data.workmanship_comments}}</textarea>
+						<textarea name="workmanship_comments"></textarea>
 					</div>
 				</div>
 			</div>
@@ -1493,25 +1587,31 @@
 			<div class="content">
 			
 				<div class="row">
-					<input type="checkbox" {{#checked_aged_worn}}checked="checked"{{/checked_aged_worn}} name="aged_worn" id="aged_worn" value="1"  class="check_if_apply" />
+					<input type="checkbox" name="aged_worn" id="aged_worn" value="1"  class="check_if_apply" />
 						
 					<label for="aged_worn"><strong>Check if apply</strong></label>
 						
 				</div>		
 				
-				{{#errors.aged_worn}}
+				<!-- {{#errors.aged_worn}}
 					<div class="row">
 						<div class="right">
 							<label class="error">{{errors.aged_worn}}</label>
 						</div>
 					</div>
-				{{/errors.aged_worn}}	
+				{{/errors.aged_worn}}	-->
 
 				<div class="row">
 					<label for="aged_worn_check_that_apply">Check All that Apply</label>
 
 					<div class="right has_slope_checkbox chk_aged_worn" rel="slope_aged_worn">
-						{{{e_aged_worn}}}
+						<?php
+								    $count = 0;
+								    foreach($aged_worn as $key => $option) {
+								    	echo Form::checkbox('aged_worn_check_that_apply[]', $key, null, array('id' => 'aged_worn_check_that_apply' . $count)) . 
+								    	Form::label('aged_worn_check_that_apply' . $count, $option);
+								    	$count++;
+								} ?>
 						
 						<div class="cl"></div>
 					</div>
@@ -1522,7 +1622,15 @@
 						<div class="box">
 							<div class="title">Select Slope</div>
 							<div class="content">
-								{{{e_aged_worn_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_aged_worn[]', $key, false, 
+								    		     array('id' => 'slope_aged_worn' . $count)) . "\n" .
+								    	Form::label('slope_aged_worn' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1542,25 +1650,31 @@
 			<div class="content">
 			
 				<div class="row">
-					<input type="checkbox" {{#checked_fire_damages}}checked="checked"{{/checked_fire_damages}} name="fire_damages" id="fire_damages" value="1" class="check_if_apply" />
+					<input type="checkbox" name="fire_damages" id="fire_damages" value="1" class="check_if_apply" />
 						
 					<label for="fire_damages"><strong>Check if apply</strong></label>
 					
 				</div>		
 				
-				{{#errors.fire_damages}}
+				<!-- {{#errors.fire_damages}}
 					<div class="row">
 						<div class="right">
 							<label class="error">{{errors.fire_damages}}</label>
 						</div>
 					</div>
-				{{/errors.fire_damages}}		
+				{{/errors.fire_damages}}	-->	
 
 				<div class="row">
 					<label for="fire_damages_check_that_apply">Check All that Apply</label>
 
 					<div class="right has_slope_checkbox chk_fire_damages" rel="slope_fire_damages">
-						{{{e_fire_damages}}}
+						<?php
+								    $count = 0;
+								    foreach($fire_damages as $key => $option) {
+								    	echo Form::checkbox('fire_damages_check_that_apply[]', $key, null, array('id' => 'fire_damages_check_that_apply' . $count)) . 
+								    	Form::label('fire_damages_check_that_apply' . $count, $option);
+								    	$count++;
+								} ?>
 						
 						<div class="cl"></div>
 					</div>
@@ -1571,7 +1685,15 @@
 						<div class="box">
 							<div class="title">Select Slope</div>
 							<div class="content">
-								{{{e_fire_damages_slope}}}
+								<?php
+								    $count = 0;
+								    foreach($slopes as $key => $slope) {
+								    	echo Form::checkbox('slope_fire_damages[]', $key, false, 
+								    		     array('id' => 'slope_fire_damages' . $count)) . "\n" .
+								    	Form::label('slope_fire_damages' . $count, $slope) . "\n";
+
+								    	$count++;
+								    } ?>
 								
 								<div class="cl"></div>
 							</div>
@@ -1593,11 +1715,10 @@
 				<label for="general_comments">Comments</label>
 
 				<div class="right">
-					<textarea name="general_comments">{{data.general_comments}}</textarea>
+					<textarea name="general_comments"></textarea>
 				</div>
 			</div>
-			
-			{{#show_expert}}
+		
 				<div class="row">
 				
 					<div class="left">
@@ -1606,7 +1727,6 @@
 						<label for="is_expert_inspector">Auto upgrade to fully documented expert inspection when there is no damage found on a basic report</label>
 					</div>
 				</div>
-			{{/show_expert}}
 			
 			<div class="row">
 

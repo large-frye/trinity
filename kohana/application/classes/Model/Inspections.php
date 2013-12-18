@@ -376,4 +376,59 @@ class Model_Inspections extends Model_Base {
             '100%' => '100%'
         );
     }
+
+
+
+    public function get_workmanship() {
+        return array('blank' => 'Please Select One',
+                     'improper_nailing' => array('over nailer' => 'Over Nailed',
+                                                 'under nailed' => 'Under Nailed',
+                                                 'top nailed' => 'Top Nailed',
+                                                 'high nailing' => 'High Nailing'),
+                     'improper_overlap' => array('yes' => 'Yes'),
+                     'flashing'         => array('flashing missing' => 'Flashing Missing',
+                                                 'crushed'          => 'Crushed',
+                                                 'top nailed'       => 'Top Nailed',
+                                                 'improper materials' => 'Improper Materials',
+                                                 'raised/loose'       => 'Raised/Loose'),
+                     'flashing_missing' => array('apron' => 'Apron', 
+                                                 'step'  => 'Step',
+                                                 'valley' => 'Valley',
+                                                 'chimney' => 'Chimney'),
+                     'venting'          => array('missing' => 'Missing',
+                                                 'insufficient' => 'Insufficient'),
+                     'incorrect_materials' => array('yes' => 'Yes'),
+                     'excessive_layers'    => array('yes' => 'Yes'),
+                     'sub_par_deck'        => array('incorrect sheathing size' => 'Incorrect Sheathing Size'),
+                     'other'               => array('yes' => 'Yes'));
+    }
+
+
+
+    public function get_aged_worn() {
+        return array('drying' => 'Drying',
+                     'significant granular loss' => 'Significant Granular Loss',
+                     'cupping' => 'Cupping',
+                     'splitting wood' => 'Splitting Wood',
+                     'blistering' => 'Blistering',
+                     'shrinkage' => 'Shrinkage',
+                     'delamination' => 'Delamination',
+                     'flashing missing' => 'Flashing missing',
+                     'cracking' => 'Cracking',
+                     'lichen/moss' => 'Lichen/Moss',
+                     'shading' => 'Shading');
+    }
+
+
+
+    public function get_fire_damages() {
+        return array('roofing burned' => 'Roofing Burned',
+                     'flashing burned' => 'Flashing Burned',
+                     'sheathing burned' => 'Sheathing Burned',
+                     'antenna burned' => 'Antenna Burned',
+                     'framing burned' => 'Framing Burned',
+                     'a/c burned' => 'A/C Burned',
+                     'skylights burned' => 'Skylights Burned'
+        );
+    }
 }
