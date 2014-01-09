@@ -59,7 +59,7 @@ class Controller_Workorders extends Controller_Account {
                 $new_work_order_result = $this->workorders_model->add_workorder($this->_post);
                 
                 if ($new_work_order_result['status']) {
-                    Session::instance()->set('add_new_work_order', true);
+                    Session::instance()->set('add_new_work_order', "Your work order has been added successfully.");
                     $this->request->redirect('/account');
                 } else {
                     $view->errors = $new_work_order_result['error'];

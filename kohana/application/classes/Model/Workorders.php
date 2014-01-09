@@ -63,14 +63,15 @@ class Model_Workorders extends Model_Base {
                             ':phone2'                     => $post['phone2'],
                             ':created_on_utc'             => date('Y-m-d h:i:s'),
                             ':is_expert'                  => isset($post['is_expert']) ? true : false,
-                            ':damage_type'                => $post['damage_type'],
-                            ':date_of_loss'               => $post['date_of_loss'],
+                            ':damage_type'                => null,
+                            ':date_of_loss'               => null,
                             ':tarped'                     => $post['tarped'],
                             ':estimate_scope_requirement' => $post['estimate_scope_requirement'],
                             ':special_instructions'       => $post['special_instructions'],
                             ':status'                     => 1,
                             ':inspector_id'               => null,
                             ':inspection_status'          => 1,
+                            ':inspection_type'            => null,
                             ':date_of_inspection'         => null,
                             ':time_of_inspection'         => null,
                             ':price'                      => $post['price'],
@@ -80,15 +81,29 @@ class Model_Workorders extends Model_Base {
                             ':comments'                   => null,
                             ':commenter_id'               => null);
 
+        $lat_long = $this->_generate_lat_long($post);
+        $parameters[':latitude'] = $lat_long['lat'];
+        $parameters[':longtitude'] = $lat_long['lng'];
 
         try {
             DB::insert('work_orders')->values(array_keys($parameters))
                 ->parameters($parameters)
                 ->execute($this->db);
             return array('status' => true);
-        } catch (Exception $e) {
+        } catch (Database_Exception $e) {
             return array('status' => false, 'error' => $e->message);
         }
+    }
+
+
+
+    private function _generate_lat_long($post) {
+        $url = "http://maps.googleapis.com/maps/api/geocode/json?address=" . str_replace(' ', '+', $post['street_address']) . "+" . $post['city'] . "+" . $post['state'] . "+" . $post['zip'] . "&sensor=true";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = json_decode(curl_exec($ch), true);
+        return $response['results'][0]['geometry']['location'];
     }
 
 
