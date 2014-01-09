@@ -1,8 +1,9 @@
 <form enctype="multipart/form-data" action="" method="post" accept-charset="utf-8" id="inspection-form">
+<?php echo Form::hidden('csrf', Security::token()); ?>
 	
 <div class="section">
 	<div class="box">
-		<div class="title">Inspection Report</div>
+		<div class="title">Workorder Information</div>
 		
 		<div class="content">
 						
@@ -86,6 +87,13 @@
 					<?php echo $workorder_details->phone2; ?>&nbsp;
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<div class="box">
+		<div class="title"><?php echo $inspection_type; ?> Report</div>
+
+		<div class="content">
 
 			<!-- <div class="row">
 				<label for="roof_square_feet">Roof Square Feet</label>
@@ -229,6 +237,25 @@
 			</div>	
 
 			<div class="row">
+				<label for="roofer_company_name">Roofer Company Name: </label>
+
+				<div class="right">
+					<?php echo Form::input('roofer_company_name', ''); ?>
+				</div>
+			</div>	
+
+			<div class="row">
+				<label for="roofer_present">Was the roofer present? </label>
+
+				<div class="right">
+					<?php echo Form::radio('was_roofer_present', 1, false, array('id' => 'was_roofer_present0')) .
+					           Form::label('was_roofer_present0', 'Yes') .
+					           Form::radio('was_roofer_present', 0, true, array('id' => 'was_roofer_present1')) .
+					           Form::label('was_roofer_present1', 'No'); ?>
+				</div>
+			</div>	
+
+			<div class="row">
 				<label for="roofer_climbed">Was the roof climbed by the roofer? </label>
 
 				<div class="right">
@@ -314,7 +341,7 @@
 			</div>
 
 			<div class="row">
-				<label for="miscellanous_damages">Miscellanous Damages: </label>
+				<label for="miscellanous_damages">Roof Conditions: </label>
 
 				<div class="right chk_type_of_roofing">
 					<?php
@@ -400,9 +427,12 @@
 								    } ?>
 								
 								<div class="cl"></div>
+								
 							</div>
+
 						</div>
-					</div>				
+
+					</div>		
 				</div>	
 
 				<div class="row">
@@ -410,6 +440,13 @@
 
 					<div class="right has_slope_select" rel="slope_wind_roof_peeled_back">
 						<?php echo Form::select('wind_roof_peeled_back', $wind_roof_peeled_back); ?>
+					</div>
+				</div>		
+				<div class="row">
+					<label for="wind_comments">Comments</label>
+
+					<div class="right has_slope_select" rel="slope_wind_roof_peeled_back">
+						<?php echo Form::input('wind_comments'); ?>
 					</div>
 				</div>		
 
@@ -661,7 +698,7 @@
 <div class="section">
 	<div class="box">
 			<div class="title">
-				Vandalism
+				Intentional Mechanical Damage
 				<span class="show"></span>
 			</div>
 			<div class="content">
@@ -1718,21 +1755,9 @@
 					<textarea name="general_comments"></textarea>
 				</div>
 			</div>
-		
-				<div class="row">
-				
-					<div class="left">
-						<input type="checkbox" {{#checked_is_expert}}checked="checked"{{/checked_is_expert}} name="is_expert_inspector" id="is_expert_inspector" value="1" />
-
-						<label for="is_expert_inspector">Auto upgrade to fully documented expert inspection when there is no damage found on a basic report</label>
-					</div>
-				</div>
 			
 			<div class="row">
-
-				<input type="hidden" name="csrf_token" value="{{csrf_token}}">
 				<button class="blue" type="submit"><span>Save</span></button>
-
 			</div>
 			
 		</div>

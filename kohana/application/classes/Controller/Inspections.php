@@ -6,49 +6,48 @@ class Controller_Inspections extends Controller_Account {
         parent::__construct($request, $response);
         $this->workorders_model = Model::factory('workorders');
         $this->inspections_model = Model::factory('inspections');
-         $this->settings_model = Model::factory('settings');
+        $this->settings_model = Model::factory('settings');
     }
 
 
     public function before() {
-    	parent::before();
-	    $this->template->homepage = false;
-    	$this->template->side_bar = View::factory('inspections/side-bar');
-    	$this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
-    	$this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
+        parent::before();
+        $this->template->homepage = false;
+        $this->template->side_bar = View::factory('inspections/side-bar');
+        $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
+        $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
     }
 
 
 
     public function action_index() {
-    	parent::action_index();
+        parent::action_index();
     }
 
   
-      public function action_viewphotos() {
-            $view = View::factory('inspections/viewphotos');
-            $this->template->side_bar = View::factory('inspections/photo-sidebar');
-                       $this->template->content = $view;
-      }
+    public function action_viewphotos() {
+        $view = View::factory('inspections/viewphotos');
+        $this->template->side_bar = View::factory('inspections/photo-sidebar');
+                   $this->template->content = $view;
+    }
 
-       public function action_editphotos() {
-            $view = View::factory('inspections/editphotos');
-            $this->template->side_bar = View::factory('inspections/photo-sidebar');
-                       $this->template->content = $view;
-      }
+    public function action_editphotos() {
+        $view = View::factory('inspections/editphotos');
+        $this->template->side_bar = View::factory('inspections/photo-sidebar');
+        $this->template->content = $view;
+    }
 
-      public function action_uploadphotos() {
-             $view = View::factory('inspections/uploadphotos');
-             $view->categories = $this->settings_model->get_categories();
-           //  print_r($this->categories);
-             $this->template->side_bar = View::factory('inspections/photo-sidebar');
-             $this->template->content = $view;
-      }
+    public function action_uploadphotos() {
+        $view = View::factory('inspections/uploadphotos');
+        $view->categories = $this->settings_model->get_categories();
+        $this->template->side_bar = View::factory('inspections/photo-sidebar');
+        $this->template->content = $view;
+    }
 
 
 
     public function action_view() {
-    	$view = View::factory('workorders/view');
+        $view = View::factory('workorders/view');
         $view->inspectors = $this->workorders_model->get_inspectors();
         $view->inspection_statuses = $this->workorders_model->get_inspection_statuses();
         $view->admin = $this->_admin;
@@ -62,12 +61,13 @@ class Controller_Inspections extends Controller_Account {
 
                     $view->error = "There was an error updating this order's status. Please try again.";
                 }
-            }else if(isset($this->_post['add_comment'])){
+            } else if(isset($this->_post['add_comment'])){
                 $this->workorders_model->add_comment($this->_post, $this->request->param('id'), $this->_user->id);
             }
         }
+
         $view->details = $this->workorders_model->get_workorder_details($this->request->param('id'));
-        $view->messages  = $this->workorders_model->get_workorder_comments($this->request->param('id'));
+        $view->messages = $this->workorders_model->get_workorder_comments($this->request->param('id'));
         $this->template->content = $view;
     }
 
@@ -75,7 +75,12 @@ class Controller_Inspections extends Controller_Account {
 
     public function action_form() {
         $view = View::factory('inspections/form');
+
+        // Will be empty if there is no inspection form save for this report. 
+        $pre_fill_inspection_data = $this->inspections_model->get_inspection_data($this->request->param('id'));
+
         $view->workorder_details = $this->workorders_model->get_workorder_details($this->request->param('id'));
+        $view->inspection_type = $view->workorder_details->is_expert == 1 ? "Expert Inspection" : "Basic Inspection";
         $view->roof_ages = $this->inspections_model->get_roof_ages();
         $view->roof_heights = $this->inspections_model->get_roof_heights();
         $view->framing_types = $this->inspections_model->get_type_of_framing();
@@ -106,6 +111,17 @@ class Controller_Inspections extends Controller_Account {
         $view->fire_damages = $this->inspections_model->get_fire_damages();
 
         if ($this->request->method() === "POST") {
+            $valid = Validation::factory($this->_post);
+
+            $valid->rule('csrf', 'not_empty')
+                  ->rule('csrf', 'Security::check');
+
+            if($valid->check()) {
+                echo 'passed';
+            } else {
+                echo 'failed';
+            }
+            echo Security::token();
             echo "<pre>";
             print_r($this->_post);
             die();

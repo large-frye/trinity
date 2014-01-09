@@ -31,6 +31,17 @@ class Controller_Workorders extends Controller_Account {
 
 
 
+    public function action_generate_pdf() {
+        echo phpinfo();
+        // $pdf = new PDFlib();
+
+        //if ($p->PDF_begin_document("", "") == 0) {
+        //   die ("Error: ") . $p->get_errmsg();
+        // }
+    }
+
+
+
     public function action_submit() {
     	$view = View::factory('workorders/submit');
     	$view->clients = $this->account_model->get_clients();
