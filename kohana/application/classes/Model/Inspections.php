@@ -424,6 +424,62 @@ class Model_Inspections extends Model_Base {
 
 
 
+    public function get_fraud_wind_input() {
+        return array('During the course of inspection, damages to the shingles were found to be inconsistent with natural wind damage. 
+                      These damages include the following.' => 'Intentional Mechanical Damage',
+                     'Seasonal debris was found beneath the mechanically damaged shingles. It is physically impossible for natural 
+                      wind to damage a shingle without removing this seasonal debris.' => 'Seasonal Debris',
+                     'Center fractures were found. A center fracture is a shingle that has been creased more heavily in the center 4-5 
+                      inches of the tab than on the outer edges of the tab.","Often, center fractured shingles have a severed reinforcing 
+                      mat, severed only in the center 4-5 inches. This is due to excessive force being applied in the middle - natural wind 
+                      cannot create a stress concentration solely in the center of the tab.' => 'Center Fractures',
+                     'Low heavy horizontal creases were found on the shingle tabs. There is no point of resistance at the vertical midpoint 
+                      of the shingle - the resistance point is the top of the keyways or the bottom edge of the overlaying shingle course.' => 'Low Heavy Creases',
+                     'Damages were limited to the walkable and easily accessible areas of the roof (i.e. within reach of valleys and ridges 
+                      and on low-pitch slopes' => 'Damage Walkable Areas Only',
+                     'No damages were found within several feet of the eaves. The eaves, especially at the corners, are among the most 
+                      susceptible areas of the roof to be wind damaged. However, no damages were found along the eaves.' => 'No Damage in 3ft of Eave',
+                     'Torn asphalt sealant strips were found beneath the creased and/or missing tabs with unbonded undamaged shingle tabs nearby. 
+                      The asphalt sealant strips were very well bonded and would therefore require considerable force to tear the top layer of the 
+                      asphalt from the shingle beneath. Natural wind would damage the unbonded shingles before tearing a well bonded shingle.' => 'Torn Asphalt',
+                     'Tool marks were found in the asphalt sealant strips and/or on the underside of the damaged shingle, indicating a tool 
+                      was used to separate a well-bonded shingles' => 'Tool Marks',
+                     'The bottom right or left corner of the shingles have a roughly a 2-inch by 2-inch area of granule loss, indicating 
+                      where force was applied when the shingle was manually lifted.' => 'Corner Granule Loss',
+                     'Failed attempts to lift the shingle tabs were also found. These failed attempts consist of edges and/or corners pulled
+                      up from the shingles below - with creases, tears, or granules removed where the tab was not fully pulled up from the 
+                      shingle beneath.' => 'Failed Attempts',
+                     'When a shingle is creased, the granules are released from the face of the shingle. Natural wind will remove these released granules 
+                      from the face of the shingle. Loose granules on the face of the shingle indicate that wind was not present at the time of the 
+                      shingle creasing.' => 'Granules on Face',
+                     'The damaged shingles were evenly distributed throughout all directional slopes which is not a characteristic of a naturally 
+                      occurring wind event. During naturallly occurring wind events, approximately 80% of damages will typically be found on the 
+                      windward slopes. The remaining approximately 20% of wind damages will typically be found on the leeward slopes.' => '80/20 Violation');
+    }
+
+
+
+    public function get_fraud_hail_input() {
+        return array('During the course of inspection, damages to the shingles were found to be inconsistent with natural hail damage. 
+                      These damages include the following.' => 'Intentional Mechanical Damage',
+                     'Damages present appeared to be due to a ball-pein type hammer, the impacts were all approximately the same size 
+                      and shape, were almost perfectly circular, and the granules were crushed and cracked at the points of impact.' => 'Ball Pein Hammer',
+                     'The asphalt in the damaged areas of the shingles was a lighter color (more brown/gray) than the surrounding asphalt. 
+                      This is a sign that the asphalt was agitated recently by a tool or object.' => 'Agitated Asphalt',
+                     'During the physical inspection of the damaged areas, no mat fracture was found at the location of the damaged areas.' => 'No Mat Fracture',
+                     'Within the damaged areas of the shingle, the granules have been crushed, severed, and have been embedded in the 
+                      asphalt. This indicates a hard object or tool was used to strike the shingle. Hail, which is ice, will extract 
+                      the granules, leaving exposed asphalt instead of crushing, severing, or embedding the granules.' => 'Crushed/Embedded Granules',
+                     'The damaged shingles were not consistent across the entire slope. Natural hail damage will be a consistent 
+                      pattern across the entire directional facing slope.' => 'Inconsistent Across Slope',
+                     'No damages were found within several feet of the eaves. Natural hail damage will be a consistent pattern 
+                      across the entire directional facing slope.' => 'No Damage Near Eave',
+                     'After forensically measuring the secondary hail indicators, which are soft metal denting and spatter 
+                     (where present), we found the hail size to be too small to damage the shingles.' => 'Inconsistent Secondary Indicators');
+    }
+
+
+
     public function get_inspection_data($id) {
         
     }

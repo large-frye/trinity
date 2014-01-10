@@ -78,6 +78,10 @@
 	width: 170px;
 }
 
+.fraud_wind_input .custom-checkbox {
+	width: 210px !important;
+}
+
 #inspection-form .chk_prev_repairs .custom-checkbox {
 	float:left;
 	margin:7px 0 0 0 !important;

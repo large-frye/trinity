@@ -19,6 +19,9 @@ class Controller_Master extends Controller_Template {
 		// Master Model
 		$this->masterModel = Model::factory('master');
 
+        // Users Model
+        $this->users_model = Model::factory('users');
+
         $this->request = Request::current();
 
         // Set current template
@@ -33,6 +36,9 @@ class Controller_Master extends Controller_Template {
     	$this->template->css = $this->load_css();
     	$this->template->js  = $this->load_js();
     	$this->template->nav = $this->masterModel->get_main_navigation();
+
+        // Check if user is logged in.
+        $this->_check_logged_in();
 
         // Depending on what is being used, switch to admin menu
         $this->template->admin = false;
@@ -77,6 +83,21 @@ class Controller_Master extends Controller_Template {
         if (in_array($this->request->current()->controller(), $exception_controllers) && 
             !in_array($this->request->action(), array('login','signup', 'forgotpassword'))){
             $this->template = 'admin/template';
+        }
+    }
+
+
+
+
+    private function _check_logged_in() {
+        $user = Auth::instance();
+
+        if (!isset($user->get_user()->id)) {
+            $this->template->logged_in = "<a href=\"/account\">Login</a>";
+        } else {
+            $view = View::factory('logged-in');
+            $view->user = $this->users_model->get_user($user->get_user()->id); // Return current user object. 
+            $this->template->logged_in = $view;
         }
     }
 } // End Master
