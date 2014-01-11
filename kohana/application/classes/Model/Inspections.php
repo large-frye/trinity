@@ -516,4 +516,54 @@ class Model_Inspections extends Model_Base {
     public function get_inspection_data($id) {
         
     }
+
+
+    public function get_estimates($id) {
+        return DB::query(Database::SELECT, "SELECT description, amount FROM estimates WHERE workorder_id = :id")
+                   ->parameters(array(':id' => $id))
+                   ->as_object()
+                   ->execute($this->db);
+    }
+
+
+
+    public function validate_estimate_form($post, $id) {
+        $_post = Validation::factory($post);
+        $_post->rule('descriptions', 'Valid::alpha_dash', array('descriptions'))
+              ->rule('ammounts', 'Valid::numeric');
+
+        if ($_post->check()) {
+            return $this->_update_estimate($post, $id);
+        } else {
+            Model_Inspections::$errors = $_post->errors('default');
+            return false;
+        }
+    }
+
+
+
+    private function _update_estimate($post, $id) {
+        $parameters = array();
+
+        try {
+            DB::delete('estimates')->where('workorder_id', '=', ':id')->parameters(array(':id' => $id))->execute($this->db);
+
+            for ($i = 0; $i < count($post['descriptions']); $i++) {
+                $parameters[] = array(':id' => null,
+                                      ':workorder_id' => $id,
+                                      ':description' => $post['descriptions'][$i],
+                                      ':amount'      => $post['amounts'][$i]);
+            }
+
+            foreach ($parameters as $params) {
+                DB::insert('estimates')->values(array_keys($params))->parameters($params)->execute($this->db);
+            }
+
+            return true;
+        } catch (Database_Exception $e) {
+            Model_Inspections::$errors = $e->get_message();
+            return false;
+        }
+    }
 }
+

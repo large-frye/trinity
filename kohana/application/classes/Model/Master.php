@@ -87,6 +87,7 @@ class Model_Master extends Model {
                           "/trinity/assets/js/jquery.collapse_storage.js",
                           // "/trinity/assets/js/jqueryUI.js",
                           "/trinity/assets/js/inspection/imgUploader.js",
+                          "/trinity/assets/js/admin/multi-row.js",
                           );
 
     	foreach($js_files as $js_file) {

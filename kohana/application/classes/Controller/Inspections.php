@@ -1,8 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-
-
 class Controller_Inspections extends Controller_Account {
+
+    protected $_workorder_id;
 
     public function __construct($request, $response) {
         parent::__construct($request, $response);
@@ -42,6 +42,7 @@ class Controller_Inspections extends Controller_Account {
         $this->template->side_bar = View::factory('inspections/side-bar');
         $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
         $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
+        $this->_workorder_id = $this->request->param('id');
 
 
 
@@ -168,6 +169,23 @@ class Controller_Inspections extends Controller_Account {
             }
         }
 
+        $this->template->content = $view;
+    }
+
+
+
+    public function action_estimates() {
+        $view = View::factory('inspections/estimates');
+
+        if ($this->request->method() === "POST") {
+            if ($this->inspections_model->validate_estimate_form($this->_post, $this->_workorder_id)) {
+                $view->success = "Your estimates were added successfully.";
+            } else {
+                $view->errors = Model_Inspections::$errors;
+            }
+        }
+
+        $view->estimates = $this->inspections_model->get_estimates($this->_workorder_id);
         $this->template->content = $view;
     }
 
