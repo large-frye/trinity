@@ -143,7 +143,9 @@ class Controller_Inspections extends Controller_Account {
 
         if ($this->request->method() === "POST") {
             if (gettype($this->inspections_model->validate_inpsection_report($this->_post)) !== "boolean") {
-
+                echo "<pre>";
+                print_r($this->_post);
+                die();
             } else {
                 $view->errors = Model_Inspections::$errors;
             }

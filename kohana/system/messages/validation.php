@@ -27,5 +27,6 @@ return array(
 	'url'           => ':field must be a url',
 	'Model_Account::unique_username' => 'This username already exists in the system',
 	'Model_Account::unique_email' => 'This email address already exists in the system',
+	'validate_dropdown_value' => ':field was not correctly selected',
 
 );

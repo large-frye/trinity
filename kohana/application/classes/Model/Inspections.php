@@ -6,6 +6,7 @@ class Model_Inspections extends Model_Base {
 
     public function __construct() {
         parent::__construct();
+        $this->custom_validation_model = Model::factory('custom');
     }
 
 
@@ -490,7 +491,17 @@ class Model_Inspections extends Model_Base {
               ->rule('siding_type', 'not_empty')
               ->rule('previous_repairs_made', 'not_empty')
               ->rule('miscellanous_damages', 'not_empty')
-              ;
+              ->rule('estimated_age_of_roof', array($this->custom_validation_model, 'validate_dropdown_value'), 
+                  array($post['estimated_age_of_roof'], 'n_a'))
+              ->rule('roof_height', array($this->custom_validation_model, 'validate_dropdown_value'), 
+                  array($post['roof_height'], 'n_a'))
+              ->rule('pitch_1', array($this->custom_validation_model, 'validate_dropdown_value'), 
+                  array($post['pitch_1'], 'n_a'));
+
+        if (isset($post['wind_shingles_damaged_slope'])) {
+            $valid->rule('wind_shingles_damaged_slope', array($this->custom_validation_model, 'validate_slope_values'),
+                array($post['wind_shingles_damaged_slope']));
+        }
 
         if ($valid->check()) {
             echo 'passed';

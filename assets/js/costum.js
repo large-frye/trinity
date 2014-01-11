@@ -702,7 +702,6 @@ $(document).ready(function() {
 
     /* Adds shingle amounts to slope type in slope */
     $('.slope').children().children().children(".content").on('click', 'input[type=checkbox]', function() {
-        console.log($('.house-face').val());
         var shingle_class = $($(this)[0].nextSibling).children();
         var el = $(this);
         var type = el.parent().parent().parent().parent().parent().parent().parent().find('.slope-title-helper');

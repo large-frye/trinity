@@ -115,6 +115,11 @@
 				<div class="right">
 					<?php echo Form::select('estimated_age_of_roof', $roof_ages); ?>
 				</div>
+
+				<?php if (isset($errors['estimated_age_of_roof'])) { 
+					echo "<div class=\"error\"><p>" . $errors['estimated_age_of_roof'] . "</p></div>";
+					  }
+			    ?>
 			</div>
 							
 			<div class="row">
@@ -124,6 +129,11 @@
 				<div class="right">
 					<?php echo Form::select('roof_height', $roof_heights); ?>
 				</div>
+
+				<?php if (isset($errors['roof_height'])) { 
+					echo "<div class=\"error\"><p>" . $errors['roof_height'] . "</p></div>";
+					  }
+			    ?>
 			</div>		
 
 			<!-- <div class="row">
@@ -140,6 +150,11 @@
 				<div class="right">
 					<?php echo Form::select('pitch_1', $pitches); ?>
 				</div>
+
+				<?php if (isset($errors['pitch_1'])) { 
+					echo "<div class=\"error\"><p>" . $errors['pitch_1'] . "</p></div>";
+					  }
+			     ?>
 			</div>			
 
 			<div class="row">
@@ -183,9 +198,7 @@
 				</div>
 
 				<?php if (isset($errors['type_of_roofing'])) { 
-					echo "<div>
-						      <label class=\"error\">" . $errors['type_of_roofing'] . "</label>
-						  </div>";
+					echo "<div class=\"error\"><p>" . $errors['type_of_roofing'] . "</p></div>";
 					  }
 			    ?>
 			</div>	
@@ -231,6 +244,11 @@
 								    } ?>
 	                <div class="cl"></div>
 				</div>
+
+				<?php if (isset($errors['siding_type'])) { 
+					echo "<div class=\"error\"><p>" . $errors['siding_type'] . "</p></div>";
+					  }
+			    ?>
 			</div>
 
 			<div class="row">
@@ -343,6 +361,11 @@
 					
 					<div class="cl"></div>
 				</div>
+
+				<?php if (isset($errors['previous_repairs_made'])) { 
+					echo "<div class=\"error\"><p>" . $errors['previous_repairs_made'] . "</p></div>";
+					  }
+			    ?>
 			</div>
 
 			<div class="row">
@@ -360,6 +383,11 @@
 		            ?>
 	                <div class="cl"></div>
 				</div>
+
+				<?php if (isset($errors['miscellanous_damages'])) { 
+					echo "<div class=\"error\"><p>" . $errors['miscellanous_damages'] . "</p></div>";
+					  }
+			    ?>
 			</div>	
 
 			<div class="row">
