@@ -85,8 +85,9 @@ class Model_Master extends Model {
                           "/trinity/assets/js/jquery.collapsible.min.js",
                           "/trinity/assets/js/jquery.collapse_cookie_storage.js",
                           "/trinity/assets/js/jquery.collapse_storage.js",
-                          "/trinity/assets/js/jqueryUI.js",
-                          "/trinity/assets/js/inspection/imgUploader.js",);
+                          //"/trinity/assets/js/jqueryUI.js",
+                          "/trinity/assets/js/inspection/imgUploader.js",
+                          );
 
     	foreach($js_files as $js_file) {
     		$this->js[str_replace('.js', '', $js_file)] = $js_file;

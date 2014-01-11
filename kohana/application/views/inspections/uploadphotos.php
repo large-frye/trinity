@@ -45,20 +45,7 @@
                     
                </div>   
 
-               <div>
-                <ol id="selectable">
-                  <li class="ui-widget-content"> Selectable section 1</li>
-                  <li class="ui-widget-content"> Selectable section 2</li>
-                  <li class="ui-widget-content"> Selectable section 3</li>
-                  <li class="ui-widget-content"> Selectable section 4</li>
-                  <li class="ui-widget-content"> Selectable section 5</li>
-                  <li class="ui-widget-content"> Selectable section 6</li>
-                  <li class="ui-widget-content"> Selectable section 7</li>
-                </ol>
-
-
-               </div>
-                  
+           
 		</div>
 					
 				

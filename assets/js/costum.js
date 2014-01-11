@@ -303,22 +303,7 @@ $(document).ready(function() {
         rangeSpan.val("" + $(this).slider("value"));
     });
 	
-	// SPINNERS
-	$(".spin").spinner({ 
-		places: 2
-	});
-	
-	$(".spin-dec").spinner({ 
-		places: 2,
-		step: 0.25
-	});
-	
-	$(".spin-cur").spinner({ 
-		places: 2,
-		step: 0.01,
-		prefix: '$ '
-	});
-	
+
 	// PIROBOX
 	
 	// FORM VALIDATION

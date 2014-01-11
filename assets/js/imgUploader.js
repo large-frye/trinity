@@ -25,6 +25,4 @@ $( this ).css("background-color","#B6BDD2");
 $( this ).css("background-color","transparent");
 }
 );
-  $(function() {
-    $( "#selectable" ).selectable();
-  });
+
