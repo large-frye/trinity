@@ -21,7 +21,12 @@ class Controller_Inspections extends Controller_Account {
         $this->template->side_bar = View::factory('inspections/side-bar');
         $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
         $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
+
         print_r($this->masterModel->js);
+
+
+        $this->masterModel->js;
+        
 
         ini_set("memory_limit", "120M");
         ini_set('display_errors', 1);
@@ -61,9 +66,8 @@ class Controller_Inspections extends Controller_Account {
     public function action_uploadphotos() {
         $view = View::factory('inspections/uploadphotos');
         $view->categories = $this->settings_model->get_categories();
-       //print_r($this->template->script);
-       // array('name' => 'src', ....) $this->template->scripts; 
-       // unset($this->template->scripts[''];
+       print_r($this->masterModel->js);
+ 
         $this->template->side_bar = View::factory('inspections/photo-sidebar');
         $this->template->content = $view;
     }
