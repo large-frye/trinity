@@ -40,6 +40,9 @@ class Controller_Inspections extends Controller_Account {
     public function action_uploadphotos() {
         $view = View::factory('inspections/uploadphotos');
         $view->categories = $this->settings_model->get_categories();
+       //print_r($this->template->script);
+       // array('name' => 'src', ....) $this->template->scripts; 
+       // unset($this->template->scripts[''];
         $this->template->side_bar = View::factory('inspections/photo-sidebar');
         $this->template->content = $view;
     }
