@@ -2,6 +2,12 @@
 <?php echo Form::hidden('csrf', Security::token()); ?>
 	
 <div class="section">
+	<?php if (isset($errors)) { 
+	    echo "<div class=\"message error\">
+	              <p>There were some errors on your form submission. Please fix them before submitting again.</p>
+	          </div>";
+    } ?>
+
 	<div class="box">
 		<div class="title">Workorder Information</div>
 		
@@ -161,7 +167,7 @@
 			</div>	
 
 			<div class="row">
-				<label for="type_of_roofing">Type of roofing: </label>
+				<label for="type_of_roofing" class="margin-bottom">Type of roofing: </label>
 
 				<div class="right chk_type_of_roofing">
 					<?php 
@@ -175,6 +181,13 @@
 					
 					<div class="cl"></div>
 				</div>
+
+				<?php if (isset($errors['type_of_roofing'])) { 
+					echo "<div>
+						      <label class=\"error\">" . $errors['type_of_roofing'] . "</label>
+						  </div>";
+					  }
+			    ?>
 			</div>	
 
 			<div class="row">
@@ -204,14 +217,6 @@
 			</div>		-->
 
 			<div class="row">
-				<label for="stories">How many stories was this house? </label>
-
-				<div class="right">
-					<?php echo Form::input('stories', ''); ?>
-				</div>
-			</div>
-
-			<div class="row">
 				<label for="siding_type">What was the type of siding? </label>
 
 				<div class="right chk_prev_repairs">
@@ -229,6 +234,17 @@
 			</div>
 
 			<div class="row">
+				<label for="roofer_present">Was the roofer present? </label>
+
+				<div class="right">
+					<?php echo Form::radio('was_roofer_present', 1, false, array('id' => 'was_roofer_present0', 'class' => 'roofer-present')) .
+					           Form::label('was_roofer_present0', 'Yes') .
+					           Form::radio('was_roofer_present', 0, true, array('id' => 'was_roofer_present1', 'class' => 'roofer-present')) .
+					           Form::label('was_roofer_present1', 'No'); ?>
+				</div>
+			</div>	
+
+			<div class="row roofer">
 				<label for="roofer">Roofer: </label>
 
 				<div class="right">
@@ -236,22 +252,11 @@
 				</div>
 			</div>	
 
-			<div class="row">
+			<div class="row roofer">
 				<label for="roofer_company_name">Roofer Company Name: </label>
 
 				<div class="right">
 					<?php echo Form::input('roofer_company_name', ''); ?>
-				</div>
-			</div>	
-
-			<div class="row">
-				<label for="roofer_present">Was the roofer present? </label>
-
-				<div class="right">
-					<?php echo Form::radio('was_roofer_present', 1, false, array('id' => 'was_roofer_present0')) .
-					           Form::label('was_roofer_present0', 'Yes') .
-					           Form::radio('was_roofer_present', 0, true, array('id' => 'was_roofer_present1')) .
-					           Form::label('was_roofer_present1', 'No'); ?>
 				</div>
 			</div>	
 
@@ -388,28 +393,28 @@
 
 
 <div class="section">
+	<div class="row">
+				<label for="house_face">What direction does the house face?</label>
+
+				<div class="right">
+					<?php echo Form::select('house_face', array('blank' => 'Please select', 'North' => 'North', 'Northeast' => 'Northeast'), null, 
+					                        array('class' => 'house-face')); ?>
+				</div>
+			</div>
 	<div class="box">
-			<div class="title">
+			<div class="title slope-title-helper">
 				Wind
 				<span class="show"></span>
 			</div>
 			
 			<div class="content">
-				<div class="row">
+				<!-- <div class="row">
 					
 					<div>
 						<?php echo Form::checkbox('wind_damage', 1, false, array('id' => 'wind')) .
 						           Form::label('wind', 'Check if apply'); ?>
 					</div>
-				</div>	
-				
-				<!-- <div class="row">
-					<label for="wind_shingles_damaged">Shingles damaged</label>
-
-					<div class="right">
-						<input type="text" name="wind_shingles_damaged" id="wind_shingles_damaged" value="" class="has_slope" rel="slope_shingles" />
-					</div>
-				</div> -->	
+				</div>	-->
 
 				<div class="row slope" id="slope_shingles" style="display: block !important;">
 					<div class="section">
@@ -441,7 +446,24 @@
 					<div class="right has_slope_select" rel="slope_wind_roof_peeled_back">
 						<?php echo Form::select('wind_roof_peeled_back', $wind_roof_peeled_back); ?>
 					</div>
-				</div>		
+				</div>	
+
+				<div class="row">
+				    <label for="fraud_wind_input">Fraud Wind Input: </label>
+				    <div class="right chk_type_of_roofing fraud_wind_input">
+					    <?php
+						    $count = 0;
+						    foreach($fraud_wind_input as $key => $value) {
+							    echo Form::checkbox('fraud_wind_input[]', $key, false, array('id' => 'fraud_wind_input' . $count)) . "\n" .
+								     Form::label('fraud_wind_input' . $count, $value) . "\n";
+
+							        $count++;
+		                    } 
+		                ?>
+	                    <div class="cl"></div>
+				    </div>
+			    </div>	
+
 				<div class="row">
 					<label for="wind_comments">Comments</label>
 
@@ -477,17 +499,17 @@
 
 <div class="section">
 	<div class="box">
-			<div class="title">
+			<div class="title slope-title-helper">
 				Hail
 				<span class="show"></span>
 			</div>
 			<div class="content">
 				
-				<div class="row">
+				<!--<div class="row">
 					<input type="checkbox" name="hail" id="hail" value="1" class="check_if_apply" />
 					<label for="hail"><strong>Check if apply</strong></label>
 
-				</div>		
+				</div>		-->
 				
 				<div class="row">
 					<label for="hail_amount_damaged">Amount damaged:</label>
@@ -518,6 +540,30 @@
 						</div>
 					</div>				
 				</div>
+
+				<div class="row">
+				    <label for="fraud_hail_input">Fraud Wind Input: </label>
+				    <div class="right chk_type_of_roofing fraud_wind_input">
+					    <?php
+						    $count = 0;
+						    foreach($fraud_hail_input as $key => $value) {
+							    echo Form::checkbox('fraud_hail_input[]', $key, false, array('id' => 'fraud_hail_input' . $count)) . "\n" .
+								     Form::label('fraud_hail_input' . $count, $value) . "\n";
+
+							        $count++;
+		                    } 
+		                ?>
+	                    <div class="cl"></div>
+				    </div>
+			    </div>	
+
+			    <div class="row">
+					<label for="hail_comments">Comments</label>
+
+					<div class="right">
+						<?php echo Form::input('hail_comments'); ?>
+					</div>
+				</div>
 				
 			</div>
 		</div>
@@ -533,11 +579,11 @@
 			</div>
 			<div class="content">
 				
-				<div class="row">
+				<!-- <div class="row">
 					<input type="checkbox" name="lightning" id="lightning" value="1" class="check_if_apply" />
 
 					<label for="lightning" id="lightning"><strong>Check if apply</strong></label>
-				</div>
+				</div> -->
 
 				<div class="row">
 					<label for="lightning_amount_damaged">Amount Damaged</label>
@@ -598,11 +644,11 @@
 			</div>
 			<div class="content">
 			
-				<div class="row">
+				<!-- <div class="row">
 					<input type="checkbox" name="vermin" id="vermin" value="1" class="check_if_apply" />
 
 					<label for="vermin"><strong>Check if apply</strong></label>
-				</div>		
+				</div>		-->
 
 				<div class="row">
 					<label for="vermin_roofing_damage">Roofing Damaged</label>
@@ -703,10 +749,10 @@
 			</div>
 			<div class="content">
 			
-				<div class="row">
+				<!-- <div class="row">
 					<input type="checkbox" name="vandalism" id="vandalism" value="1"  class="check_if_apply" />
 					<label for="vandalism"><strong>Check if apply</strong></label>			
-				</div>	
+				</div>	-->
 
 				<div class="row">
 					<label for="vandalism_skylights">Skylights</label>
@@ -777,10 +823,10 @@
 			</div>
 			<div class="content">
 			
-				<div class="row">
+				<!-- <div class="row">
 					<input type="checkbox" name="ice" id="ice" value="1" class="check_if_apply" />
 					<label for="ice"><strong>Check if apply</strong></label>
-				</div>		
+				</div>	-->	
 				
 				<div class="row">
 					
@@ -862,11 +908,11 @@
 			</div>
 			<div class="content">
 			
-				<div class="row">
+				<!-- <div class="row">
 					<input type="checkbox"  name="appliances" id="appliances" value="1" class="check_if_apply" />
 						
 					<label for="appliances"><strong>Check if apply</strong></label>
-				</div>	
+				</div>	-->
 	
 				<div class="row">
 					<label for="appliances_skylights">Skylights</label>
@@ -985,11 +1031,11 @@
 			</div>
 			<div class="content">
 			
-				<div class="row">
+				<!-- <div class="row">
 					<input type="checkbox" name="fallen_tree" id="fallen_tree" value="1" class="check_if_apply" />
 						
 					<label for="fallen_tree"><strong>Check if apply</strong></label>						
-				</div>
+				</div> -->
 
 				<div class="row">
 					<label for="fallen_tree_amount_of_damage">Amount of Damage</label>
@@ -1050,11 +1096,11 @@
 			</div>
 			<div class="content">
 			
-				<div class="row">						
+				<!-- <div class="row">						
 					<input type="checkbox" {{#checked_excess_debris}}checked="checked"{{/checked_excess_debris}} name="excess_debris" id="excess_debris" value="1" class="check_if_apply" />
 						
 					<label for="excess_debris"><strong>Check if apply</strong></label>
-				</div>
+				</div> -->
 
 				<div class="row">
 					<label for="excess_debris_location">Location</label>
@@ -1103,11 +1149,11 @@
 			</div>
 			<div class="content">
 			
-				<div class="row">
+				<!-- <div class="row">
 					<input type="checkbox" name="standing_water" id="standing_water" value="1" class="check_if_apply" />
 					
 				 	<label for="standing_water"><strong>Check if apply</strong></label>
-				</div>	
+				</div>	-->
 				
 				<!-- {{#errors.standing_water}}
 					<div class="row">
@@ -1166,11 +1212,11 @@
 			</div>
 			<div class="content">
 			
-				<div class="row">
+				<!-- <div class="row">
 					<input type="checkbox" {{#checked_product_defects}}checked="checked"{{/checked_product_defects}} name="product_defects" id="product_defects" value="1" class="check_if_apply" />
 
 						<label for="product_defects"><strong>Check if apply</strong></label>
-				</div>	
+				</div>	-->
 				
 				<!-- {{#errors.product_defects}}
 					<div class="row">
@@ -1285,12 +1331,12 @@
 			</div>
 			<div class="content">
 			
-				<div class="row">						
+				<!-- <div class="row">						
 					<input type="checkbox" name="workmanship" id="workmanship" value="1" class="check_if_apply" />
 						
 					<label for="workmanship"><strong>Check if apply</strong></label>
 	
-				</div>		
+				</div> -->		
 				
 				<!-- {{#errors.workmanship}}
 					<div class="row">
@@ -1623,12 +1669,12 @@
 			</div>
 			<div class="content">
 			
-				<div class="row">
+				<!-- <div class="row">
 					<input type="checkbox" name="aged_worn" id="aged_worn" value="1"  class="check_if_apply" />
 						
 					<label for="aged_worn"><strong>Check if apply</strong></label>
 						
-				</div>		
+				</div> -->		
 				
 				<!-- {{#errors.aged_worn}}
 					<div class="row">
@@ -1686,12 +1732,12 @@
 			</div>
 			<div class="content">
 			
-				<div class="row">
+				<!-- <div class="row">
 					<input type="checkbox" name="fire_damages" id="fire_damages" value="1" class="check_if_apply" />
 						
 					<label for="fire_damages"><strong>Check if apply</strong></label>
 					
-				</div>		
+				</div> -->		
 				
 				<!-- {{#errors.fire_damages}}
 					<div class="row">

@@ -44,7 +44,7 @@
 				<!-- {{/is_logged_in}}
 				{{^is_logged_in}} -->
 				<div id="labels">
-					<a href="/account">Login</a>
+					<?php echo $logged_in; ?>
 				</div>
 				<!-- {{/is_logged_in}} !-->
 

@@ -1,5 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
+
+
 class Controller_Inspections extends Controller_Account {
 
     public function __construct($request, $response) {
@@ -7,6 +9,9 @@ class Controller_Inspections extends Controller_Account {
         $this->workorders_model = Model::factory('workorders');
         $this->inspections_model = Model::factory('inspections');
         $this->settings_model = Model::factory('settings');
+
+        // Include PDF dompdf creation from HTML -> PDF
+        include($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php");
     }
 
 
@@ -16,7 +21,22 @@ class Controller_Inspections extends Controller_Account {
         $this->template->side_bar = View::factory('inspections/side-bar');
         $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
         $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
+
+        ini_set("memory_limit", "120M");
+        ini_set('display_errors', 1);
+        error_reporting(E_ALL);
+
+        $dompdf = new DOMPDF();
+        $pdf_html = View::factory('pdf/generated');
+        // $view = $_SERVER['DOCUMENT_ROOT'] . "/trinity/generated.php";
+        //$dompdf->load_html($pdf_html);
+        //$dompdf->render();
+        //$dompdf->stream('sample.pdf');
     }
+
+
+
+    public function action_test() { $this->template->content = View::factory('pdf/generated'); }
 
 
 
@@ -112,22 +132,15 @@ class Controller_Inspections extends Controller_Account {
         $view->workmanship = $this->inspections_model->get_workmanship();
         $view->aged_worn = $this->inspections_model->get_aged_worn();
         $view->fire_damages = $this->inspections_model->get_fire_damages();
+        $view->fraud_wind_input = $this->inspections_model->get_fraud_wind_input();
+        $view->fraud_hail_input = $this->inspections_model->get_fraud_hail_input();
 
         if ($this->request->method() === "POST") {
-            $valid = Validation::factory($this->_post);
+            if (gettype($this->inspections_model->validate_inpsection_report($this->_post)) !== "boolean") {
 
-            $valid->rule('csrf', 'not_empty')
-                  ->rule('csrf', 'Security::check');
-
-            if($valid->check()) {
-                echo 'passed';
             } else {
-                echo 'failed';
+                $view->errors = Model_Inspections::$errors;
             }
-            echo Security::token();
-            echo "<pre>";
-            print_r($this->_post);
-            die();
         }
 
         $this->template->content = $view;

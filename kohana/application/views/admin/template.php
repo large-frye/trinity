@@ -28,15 +28,7 @@
 		<div id="top">
 			<h1 id="logo"><a href="/"></a></h1>
 			<div id="labels">
-				<ul>
-					<li>
-						<a href="/account" class="user">
-							<span class="bar">Welcome </span>
-						</a>
-					</li>
-					<li><a href="/account/my/profile" class="settings"></a></li>
-					<li><a href="/account/logout" class="logout"></a></li>
-				</ul>
+				<?php echo $logged_in; ?>
 			</div>
 
 			<?php echo $admin_menu; ?>
