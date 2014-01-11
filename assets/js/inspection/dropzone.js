@@ -549,6 +549,9 @@ var re = /(?:\.([^.]+))?$/;
 		$(parent).find("div.customName").prepend(file.name);
 		var childObj = $(parent).find("div.customName").find("div.customPos");
 		
+
+ 
+
 		//$(childObj).prepend(photoCount);
 		//console.log("find" + childObj.text());
         //file.previewElement.querySelector("[data-dz-name]").textContent = photoCount + 	'.' + re.exec(file.name)[1];	

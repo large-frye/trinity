@@ -18,6 +18,8 @@ function renameFile(div){
 	$(customName).text(name+"."+ftype).append(cache);
 }
 
+
+
 $( ".catClick" ).hover(
 function() {
 $( this ).css("background-color","#B6BDD2");

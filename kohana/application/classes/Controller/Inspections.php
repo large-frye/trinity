@@ -10,6 +10,22 @@ class Controller_Inspections extends Controller_Account {
         $this->inspections_model = Model::factory('inspections');
         $this->settings_model = Model::factory('settings');
 
+
+
+        if($this->request->action() === 'uploadphotos'){
+        
+        //unset($this->masterModel->js = 
+        $this->masterModel->js = array('http://code.jquery.com/jquery-latest.min.js',
+                "http://code.jquery.com/ui/1.10.3/jquery-ui.js",
+                "/trinity/assets/js/inspection/dropzone.js",
+                "/trinity/assets/js/inspection/gridster.js",  
+                "/trinity/assets/js/inspection/imgUploader.js",
+
+            );
+        ksort($this->masterModel->js);
+      }
+
+
         // Include PDF dompdf creation from HTML -> PDF
     //include($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php");
     
@@ -27,7 +43,7 @@ class Controller_Inspections extends Controller_Account {
         $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
         $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
 
-       // $this->masterModel->js;
+
 
 // /       ini_set("memory_limit", "120M");
 //        ini_set('display_errors', 1);
@@ -66,9 +82,10 @@ class Controller_Inspections extends Controller_Account {
 
     public function action_uploadphotos() {
         $view = View::factory('inspections/uploadphotos');
+      
         $view->categories = $this->settings_model->get_categories();
       //  $this->masterModel->js
-        
+
         $this->template->side_bar = View::factory('inspections/photo-sidebar');
         $this->template->content = $view;
     }

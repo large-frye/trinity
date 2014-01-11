@@ -90,7 +90,7 @@ class Model_Master extends Model {
                           );
 
     	foreach($js_files as $js_file) {
-    		$this->js[str_replace('.js', '', $js_file)] = $js_file;
+    		$this->js[] = $js_file;
     	}
     }
 }

@@ -1,14 +1,4 @@
 
-#leftcol {
-   float:left;
-   width:300px;
-}
-
-
-#rightcol {
-   float:right;
-   width:300px;
-}
 
 #photoContainer {
 		background-color:grey;
@@ -20,8 +10,23 @@
 }
 
 
- #feedback { font-size: 1.4em; }
-#selectable .ui-selecting { background: #FECA40; }
-#selectable .ui-selected { background: #F39814; color: white; }
-#selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-#selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+.catSelections {
+	height: 400px;
+	width: 410px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+
+font-family: verdana;
+	font-size: .8em;
+	}
+	#feedback { font-size: 1.4em; }
+	.selectable .ui-selecting { background: #d3d3d3; }
+	.selectable .ui-selected { background: #64001f; color: white; }
+	.selectable { list-style-type: none; margin: 0; paddinxg: 0; width: 400px; }
+	.selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; background:grey;color:#fff;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	}
