@@ -35,13 +35,13 @@ class Model_Master extends Model {
         $css_files = scandir($_SERVER['DOCUMENT_ROOT'] . "/trinity/assets/css/" );
 
     	foreach($css_files as $css_file) {
-    		$this->css[] = HTML::style('/trinity/assets/css/' . $css_file);
+    		$this->css[str_replace('.css', '', $css_file)] = '/trinity/assets/css/' . $css_file;
     	}
 
         $_insepction_files = scandir($_SERVER['DOCUMENT_ROOT'] . "/trinity/assets/css/inspection/");
 
         foreach ($_insepction_files as $inspection_file) {
-            $this->css[] = HTML::style('/trinity/assets/css/inspection/' . $inspection_file);
+            $this->css[str_replace('.css', '', $css_file)] = '/trinity/assets/css/inspection/' . $inspection_file;
         }
     }
 
@@ -88,7 +88,7 @@ class Model_Master extends Model {
                           "/trinity/assets/js/jquery.collapse_storage.js",);
 
     	foreach($js_files as $js_file) {
-    		$this->js[] = HTML::script($js_file);	
+    		$this->js[str_replace('.js', '', $js_file)] = $js_file;
     	}
     }
 }

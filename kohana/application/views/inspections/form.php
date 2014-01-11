@@ -2,6 +2,12 @@
 <?php echo Form::hidden('csrf', Security::token()); ?>
 	
 <div class="section">
+	<?php if (isset($errors)) { 
+	    echo "<div class=\"message error\">
+	              <p>There were some errors on your form submission. Please fix them before submitting again.</p>
+	          </div>";
+    } ?>
+
 	<div class="box">
 		<div class="title">Workorder Information</div>
 		
@@ -161,7 +167,7 @@
 			</div>	
 
 			<div class="row">
-				<label for="type_of_roofing">Type of roofing: </label>
+				<label for="type_of_roofing" class="margin-bottom">Type of roofing: </label>
 
 				<div class="right chk_type_of_roofing">
 					<?php 
@@ -175,6 +181,13 @@
 					
 					<div class="cl"></div>
 				</div>
+
+				<?php if (isset($errors['type_of_roofing'])) { 
+					echo "<div>
+						      <label class=\"error\">" . $errors['type_of_roofing'] . "</label>
+						  </div>";
+					  }
+			    ?>
 			</div>	
 
 			<div class="row">
@@ -204,14 +217,6 @@
 			</div>		-->
 
 			<div class="row">
-				<label for="stories">How many stories was this house? </label>
-
-				<div class="right">
-					<?php echo Form::input('stories', ''); ?>
-				</div>
-			</div>
-
-			<div class="row">
 				<label for="siding_type">What was the type of siding? </label>
 
 				<div class="right chk_prev_repairs">
@@ -229,6 +234,17 @@
 			</div>
 
 			<div class="row">
+				<label for="roofer_present">Was the roofer present? </label>
+
+				<div class="right">
+					<?php echo Form::radio('was_roofer_present', 1, false, array('id' => 'was_roofer_present0', 'class' => 'roofer-present')) .
+					           Form::label('was_roofer_present0', 'Yes') .
+					           Form::radio('was_roofer_present', 0, true, array('id' => 'was_roofer_present1', 'class' => 'roofer-present')) .
+					           Form::label('was_roofer_present1', 'No'); ?>
+				</div>
+			</div>	
+
+			<div class="row roofer">
 				<label for="roofer">Roofer: </label>
 
 				<div class="right">
@@ -236,22 +252,11 @@
 				</div>
 			</div>	
 
-			<div class="row">
+			<div class="row roofer">
 				<label for="roofer_company_name">Roofer Company Name: </label>
 
 				<div class="right">
 					<?php echo Form::input('roofer_company_name', ''); ?>
-				</div>
-			</div>	
-
-			<div class="row">
-				<label for="roofer_present">Was the roofer present? </label>
-
-				<div class="right">
-					<?php echo Form::radio('was_roofer_present', 1, false, array('id' => 'was_roofer_present0')) .
-					           Form::label('was_roofer_present0', 'Yes') .
-					           Form::radio('was_roofer_present', 0, true, array('id' => 'was_roofer_present1')) .
-					           Form::label('was_roofer_present1', 'No'); ?>
 				</div>
 			</div>	
 
@@ -388,8 +393,16 @@
 
 
 <div class="section">
+	<div class="row">
+				<label for="house_face">What direction does the house face?</label>
+
+				<div class="right">
+					<?php echo Form::select('house_face', array('blank' => 'Please select', 'North' => 'North', 'Northeast' => 'Northeast'), null, 
+					                        array('class' => 'house-face')); ?>
+				</div>
+			</div>
 	<div class="box">
-			<div class="title">
+			<div class="title slope-title-helper">
 				Wind
 				<span class="show"></span>
 			</div>
@@ -486,7 +499,7 @@
 
 <div class="section">
 	<div class="box">
-			<div class="title">
+			<div class="title slope-title-helper">
 				Hail
 				<span class="show"></span>
 			</div>

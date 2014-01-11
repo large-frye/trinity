@@ -21,6 +21,7 @@ class Controller_Inspections extends Controller_Account {
         $this->template->side_bar = View::factory('inspections/side-bar');
         $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
         $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
+        print_r($this->masterModel->js);
 
         ini_set("memory_limit", "120M");
         ini_set('display_errors', 1);
@@ -29,9 +30,9 @@ class Controller_Inspections extends Controller_Account {
         $dompdf = new DOMPDF();
         $pdf_html = View::factory('pdf/generated');
         // $view = $_SERVER['DOCUMENT_ROOT'] . "/trinity/generated.php";
-        $dompdf->load_html($pdf_html);
-        $dompdf->render();
-        $dompdf->stream('sample.pdf');
+        //$dompdf->load_html($pdf_html);
+        //$dompdf->render();
+        //$dompdf->stream('sample.pdf');
     }
 
 
@@ -133,20 +134,11 @@ class Controller_Inspections extends Controller_Account {
         $view->fraud_hail_input = $this->inspections_model->get_fraud_hail_input();
 
         if ($this->request->method() === "POST") {
-            $valid = Validation::factory($this->_post);
+            if (gettype($this->inspections_model->validate_inpsection_report($this->_post)) !== "boolean") {
 
-            $valid->rule('csrf', 'not_empty')
-                  ->rule('csrf', 'Security::check');
-
-            if($valid->check()) {
-                echo 'passed';
             } else {
-                echo 'failed';
+                $view->errors = Model_Inspections::$errors;
             }
-            echo Security::token();
-            echo "<pre>";
-            print_r($this->_post);
-            die();
         }
 
         $this->template->content = $view;

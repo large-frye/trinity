@@ -47,10 +47,10 @@ class Controller_Master extends Controller_Template {
 
 
     private function load_css() {
-    	$_css = "";
+        $_css = "";
 
-    	foreach($this->masterModel->css as $css) {
-            $_css .= $css . "\n";
+    	foreach($this->masterModel->css as $key => $css) { 
+            $_css .= HTML::style($css) . "\n";
     	} 
 
     	return $_css;
@@ -62,7 +62,7 @@ class Controller_Master extends Controller_Template {
         $_js = "";
 
         foreach($this->masterModel->js as $js) {
-        	$_js .= $js . "\n";
+        	$_js .= HTML::script($js) . "\n";
         }
 
         return $_js;

@@ -710,12 +710,18 @@ $(document).ready(function() {
         piro_scroll : true
     });
 
+    var slope_statements = { "front" : "During our inspection of the {{house_face}} (Front) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                             "rear"  : "During our inspection of the {{house_face}} (Rear) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                             "left"  : "During our inspection of the {{house_face}} (Left) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                             "right" : "During our inspection of the {{house_face}} (Right) facing slopes we found {{damaged}} {{type}}-damaged shingles." };
+
     /* Adds shingle amounts to slope type in slope */
     $('.slope').children().children().children(".content").on('click', 'input[type=checkbox]', function() {
+        console.log($('.house-face').val());
         var shingle_class = $($(this)[0].nextSibling).children();
         var el = $(this);
-       // $('.slope').prev().children().find('input[type=checkbox]')[0].checked = true;
-       // $('.slope').prev().children().find('label').addClass('checked');
+        var type = el.parent().parent().parent().parent().parent().parent().parent().find('.slope-title-helper');
+        var stmt = slope_statements[$(this).val()];
         
         if (shingle_class.hasClass('change-shingle-amount')) {
             shingle_class.remove();
@@ -725,7 +731,10 @@ $(document).ready(function() {
             var answer = prompt("How many shingles were affected?");
             if (answer !== null && answer !== "") {
                 $(this).next().append("<span class=\"change-shingle-amount\">&nbsp;(<a href='#'>" + answer + "</a>)</span>");
-                el.val($(this).val() + "_" + answer);
+                stmt = stmt.replace("{{house_face}}", $('.house-face').val());
+                stmt = stmt.replace("{{damaged}}", answer);
+                stmt = stmt.replace("{{type}}", type.text().toLowerCase().trim());
+                el.val(stmt);
             } else {
                 el.next().removeClass('checked');
                 el[0].checked = false;
@@ -734,16 +743,24 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.change-shingle-amount a', function() {
-    	var answer = prompt("How many shingles were affected?", $(this).text());
+        var answer = prompt("How many shingles were affected?", $(this).text());
         if (answer !== null && answer !== "") {
             $(this).text(answer);
             var checkbox = $(this).parent().parent().parent().find('input[type=checkbox]');
-            var checkbox_str_pos = checkbox.val().indexOf("_");
-            var new_value = checkbox.val().substring(0, checkbox_str_pos);
-            checkbox.val(new_value + "_" + answer);
+            var pattern = "[0-9]+";
+            var res = checkbox.val().match(pattern);
+            console.log(res);
+            if (typeof res[0] !== "undefined") {
+                str = checkbox.val().replace(res[0], answer);
+                checkbox.val(str);
+            }
         }
 
         return false;
+    });
+
+    $('.roofer-present').click(function(e) {
+        $('.roofer').toggle(800);
     });
 
 

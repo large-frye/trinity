@@ -2,6 +2,7 @@
 
 class Model_Inspections extends Model_Base {
 
+    public static $errors = null;
 
     public function __construct() {
         parent::__construct();
@@ -476,6 +477,27 @@ class Model_Inspections extends Model_Base {
                       across the entire directional facing slope.' => 'No Damage Near Eave',
                      'After forensically measuring the secondary hail indicators, which are soft metal denting and spatter 
                      (where present), we found the hail size to be too small to damage the shingles.' => 'Inconsistent Secondary Indicators');
+    }
+
+
+
+    public function validate_inpsection_report($post) {
+        $valid = Validation::factory($post);
+
+        $valid->rule('csrf', 'not_empty')
+              ->rule('csrf', 'Security::check')
+              ->rule('type_of_roofing', 'not_empty')
+              ->rule('siding_type', 'not_empty')
+              ->rule('previous_repairs_made', 'not_empty')
+              ->rule('miscellanous_damages', 'not_empty')
+              ;
+
+        if ($valid->check()) {
+            echo 'passed';
+        } else {
+            $this::$errors = $valid->errors('default');
+            return false;
+        }
     }
 
 
