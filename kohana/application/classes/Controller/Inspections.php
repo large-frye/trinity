@@ -21,8 +21,11 @@ class Controller_Inspections extends Controller_Account {
         $this->template->side_bar = View::factory('inspections/side-bar');
         $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
         $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
+<<<<<<< HEAD
 
         print_r($this->masterModel->js);
+=======
+>>>>>>> 340c72de890d9cb40ed126951009a37ac80cf10e
 
 
         $this->masterModel->js;
