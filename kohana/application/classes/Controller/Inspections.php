@@ -21,6 +21,7 @@ class Controller_Inspections extends Controller_Account {
         $this->template->side_bar = View::factory('inspections/side-bar');
         $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
         $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
+        print_r($this->masterModel->js);
 
         ini_set("memory_limit", "120M");
         ini_set('display_errors', 1);
