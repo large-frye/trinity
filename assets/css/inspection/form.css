@@ -88,8 +88,13 @@
 	width:110px;
 }
 
-.roofer {
+.roofer, .siding, .house-direction {
 	display: none;
+}
+
+.message > p {
+	margin-left: 0px;
+	padding: 10px 5px 5px 5px;
 }
 
 

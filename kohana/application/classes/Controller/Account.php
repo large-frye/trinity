@@ -74,11 +74,17 @@ class Controller_Account extends Controller_Master {
 
         // Need to check Session::instance to see if a recent order was added. 
         $session_variables = array('add_new_work_order'  => Session::instance()->get('add_new_work_order'),
-                                   'edit_new_work_order' => Session::instance()->get('edit_new_work_order'));
+                                   'edit_new_work_order' => Session::instance()->get('edit_new_work_order'),
+                                   'invoice_does_not_exist' => array('type' => 'error', 'msg' => Session::instance()->get('invoice_does_not_exist')));
 
         foreach($session_variables as $key => $var) {
             if (isset($var)) {
-                $this->template->success_message = $var;
+                if (is_array($var) && $var['type'] === 'error') {
+                    $this->template->error = $var['msg'];
+                } else {
+                    $this->template->success_message = $var;
+                }
+                
                 Session::instance()->delete($key);
             }
         }

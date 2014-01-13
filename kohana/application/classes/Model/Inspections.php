@@ -4,6 +4,8 @@ class Model_Inspections extends Model_Base {
 
     public static $errors = null;
 
+    public static $messages = null;
+
     public function __construct() {
         parent::__construct();
         $this->custom_validation_model = Model::factory('custom');
@@ -279,7 +281,7 @@ class Model_Inspections extends Model_Base {
 
 
 
-    public function get_miscellanous_damages() {
+    public function get_roof_conditions() {
         return array('interior damage' => 'Interior Damage',
                      'brittle test failure' => 'Brittle Test Failure',
                      'mechanical damage'    => 'Mechanical Damage',
@@ -391,7 +393,6 @@ class Model_Inspections extends Model_Base {
                                                  'insufficient' => 'Insufficient'),
                      'incorrect_materials' => array('yes' => 'Yes'),
                      'excessive_layers'    => array('yes' => 'Yes'),
-                     'sub_par_deck'        => array('incorrect sheathing size' => 'Incorrect Sheathing Size'),
                      'other'               => array('yes' => 'Yes'));
     }
 
@@ -402,12 +403,10 @@ class Model_Inspections extends Model_Base {
                      'significant granular loss' => 'Significant Granular Loss',
                      'cupping' => 'Cupping',
                      'splitting wood' => 'Splitting Wood',
-                     'blistering' => 'Blistering',
                      'shrinkage' => 'Shrinkage',
                      'delamination' => 'Delamination',
                      'flashing missing' => 'Flashing missing',
                      'cracking' => 'Cracking',
-                     'lichen/moss' => 'Lichen/Moss',
                      'shading' => 'Shading');
     }
 
@@ -482,7 +481,25 @@ class Model_Inspections extends Model_Base {
 
 
 
-    public function validate_inpsection_report($post) {
+    public function get_siding_damaged() {
+        return array('siding was damaged' => 'Yes',
+                     'siding was not damaged' => 'No');
+    }
+
+
+
+    public function get_house_faces() {
+        return array('direction' => array('n_s_e_w' => 'N, S, E, W',
+                                          'ne_sw_se_nw' => 'NE, SW, SE, NW'),
+                     'directional' => array('front' => 'Front',
+                                            'rear'  => 'Rear',
+                                            'left' => 'Left',
+                                            'right' => 'Right'));
+    }
+
+
+
+    public function validate_inpsection_report($post, $id) {
         $valid = Validation::factory($post);
 
         $valid->rule('csrf', 'not_empty')
@@ -490,13 +507,14 @@ class Model_Inspections extends Model_Base {
               ->rule('type_of_roofing', 'not_empty')
               ->rule('siding_type', 'not_empty')
               ->rule('previous_repairs_made', 'not_empty')
-              ->rule('miscellanous_damages', 'not_empty')
+              ->rule('roof_conditions', 'not_empty')
               ->rule('estimated_age_of_roof', array($this->custom_validation_model, 'validate_dropdown_value'), 
                   array($post['estimated_age_of_roof'], 'n_a'))
               ->rule('roof_height', array($this->custom_validation_model, 'validate_dropdown_value'), 
                   array($post['roof_height'], 'n_a'))
               ->rule('pitch_1', array($this->custom_validation_model, 'validate_dropdown_value'), 
-                  array($post['pitch_1'], 'n_a'));
+                  array($post['pitch_1'], 'n_a'))
+              ->rule('house_face', array($this->custom_validation_model, 'validate_dropdown_value'), array($post['house_face'], 'n_a'));
 
         if (isset($post['wind_shingles_damaged_slope'])) {
             $valid->rule('wind_shingles_damaged_slope', array($this->custom_validation_model, 'validate_slope_values'),
@@ -504,7 +522,7 @@ class Model_Inspections extends Model_Base {
         }
 
         if ($valid->check()) {
-            echo 'passed';
+            return $this->_insert_inspection_report_data($post, $id);
         } else {
             $this::$errors = $valid->errors('default');
             return false;
@@ -513,8 +531,29 @@ class Model_Inspections extends Model_Base {
 
 
 
-    public function get_inspection_data($id) {
-        
+    public function get_inspection_data($id, $post = array()) {
+        $data = array();
+
+        $results = DB::query(Database::SELECT, "SELECT `key`, `value` FROM inspection_meta WHERE workorder_id = :id")
+                      ->parameters(array(':id' => $id))
+                      ->as_object()
+                      ->execute($this->db);
+
+        foreach ($results as $result) {
+            $data[$result->key] = $result->value;
+        }
+
+        if (!empty($post)) {
+            foreach ($data as $key => $value) {
+                if (in_array($key, array_keys($post))) {
+                    $data[$key] = $post[$key];
+                }
+            }
+
+            $data += $post;
+        }
+
+        return $data;
     }
 
 
@@ -542,6 +581,44 @@ class Model_Inspections extends Model_Base {
 
 
 
+    /**
+     * Check to see if a work order is a basic inspection and insured/admin wanted to let the inspector
+     * know that it can be auto-upgraded to an expert inspection.
+     *
+     * @param  int $id
+     * @return boolean
+     */
+    public function check_for_auto_upgrade($id, $inspection_upgrade) {
+
+        if ($inspection_upgrade !== null) {
+            $type = $inspection_upgrade == 1 ? 1 : 0;
+        try {
+            $result = DB::update('work_orders')
+                          ->set(array('type' => ':type'))
+                          ->where('id', '=', ':id')
+                          ->parameters(array(':id' => $id,
+                                             ':type' => $type))
+                          ->execute($this->db);
+        } catch (Database_Exception $e) {
+            $this::$errors = $e->getMessage();
+            return true;
+        }
+        }
+
+        $this::$messages = "You have successfully upgraded this inspection from basic to expert.";
+        return false;
+
+        $results = DB::query(Database::SELECT, "SELECT is_expert, type FROM work_orders WHERE id = :id")
+                       ->parameters(array(':id' => $id))
+                       ->as_object()
+                       ->execute($this->db)
+                       ->current();
+
+        return $results->is_expert == 1 && $results->type == 0 ? true : false;
+    }
+
+
+
     private function _update_estimate($post, $id) {
         $parameters = array();
 
@@ -562,6 +639,32 @@ class Model_Inspections extends Model_Base {
             return true;
         } catch (Database_Exception $e) {
             Model_Inspections::$errors = $e->get_message();
+            return false;
+        }
+    }
+
+
+
+    private function _insert_inspection_report_data($post, $id) {
+        $parameters = array(':id' => null,
+                            ':workorder_id' => $id);
+
+        print_r($post);
+        die();
+
+        try {
+            DB::delete('inspection_meta')->where('workorder_id', '=', ':id')->parameters(array(':id' => $id))->execute($this->db);
+
+            foreach ($post as $key => $value) {
+                $parameters[':key'] = $key;
+                $parameters[':value'] = is_array($value) ? serialize($value) : $value;
+
+                DB::insert('inspection_meta')->values(array_keys($parameters))->parameters($parameters)->execute($this->db);
+            }
+
+            return true;
+        } catch (Database_Exception $e) {
+            Model_Inspections::$errors = $e->getMessage();
             return false;
         }
     }

@@ -2849,4 +2849,28 @@ img { border: 0; }
 	background: #e3f7fc !important;
 	border: 1px solid #8ed9f6 !important;
 }
+
+.font-green { color: #e9ffd9; }
+
+.message {
+	padding: 0 5px 5px 5px;
+}
+
+.message > p {
+	margin: 0 0 0 30px;
+}
+
+.margin-left {
+	margin-left: 15px;
+}
+
+.fallen-tree-p {
+	position: relative;
+	top: 10px;
+}
+
+.italic {
+	font-style: italic;
+}
+
 /* This button was generated using CSSButtonGenerator.com */

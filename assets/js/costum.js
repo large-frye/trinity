@@ -346,7 +346,7 @@ $(document).ready(function() {
 			
 				if (! $(this).hasClass('wo-links'))
 				{
-					$(".valid").validate().element(this);
+					// $(".valid").validate().element(this);
 				}				
 			},
 			
@@ -695,17 +695,48 @@ $(document).ready(function() {
         piro_scroll : true
     });
 
-    var slope_statements = { "front" : "During our inspection of the {{house_face}} (Front) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
-                             "rear"  : "During our inspection of the {{house_face}} (Rear) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
-                             "left"  : "During our inspection of the {{house_face}} (Left) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
-                             "right" : "During our inspection of the {{house_face}} (Right) facing slopes we found {{damaged}} {{type}}-damaged shingles." };
+    var subs = { "n_s_e_w" : { str : "North", values: ["North", "South", "East", "West"] },
+                 "ne_sw_se_nw" : { str : "Northeast", values: ["Northeast", "Southwest", "Southeast", "Northwest"] } };
+    var slope_statements = { "front" : { "front" : "During our inspection of the {{house_face}} (Front) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                                         "rear"  : "During our inspection of the {{house_face}} (Rear) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                                         "left"  : "During our inspection of the {{house_face}} (Left) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                                         "right" : "During our inspection of the {{house_face}} (Right) facing slopes we found {{damaged}} {{type}}-damaged shingles." },
+                             "rear" : { "front" : "During our inspection of the {{house_face}} (Rear) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                                         "rear"  : "During our inspection of the {{house_face}} (Front) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                                         "left"  : "During our inspection of the {{house_face}} (Right) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                                         "right" : "During our inspection of the {{house_face}} (Left) facing slopes we found {{damaged}} {{type}}-damaged shingles." },
+                             "left" : { "front" : "During our inspection of the {{house_face}} (Left) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                                         "rear"  : "During our inspection of the {{house_face}} (Right) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                                         "left"  : "During our inspection of the {{house_face}} (Rear) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                                         "right" : "During our inspection of the {{house_face}} (Front) facing slopes we found {{damaged}} {{type}}-damaged shingles." },
+                             "right" : { "front" : "During our inspection of the {{house_face}} (Right) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                                         "rear"  : "During our inspection of the {{house_face}} (Left) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                                         "left"  : "During our inspection of the {{house_face}} (Front) facing slopes we found {{damaged}} {{type}}-damaged shingles.",
+                                         "right" : "During our inspection of the {{house_face}} (Rear) facing slopes we found {{damaged}} {{type}}-damaged shingles." } };
+
+    var brittle_stmt = { str: "Brittleness test: The roof {{stmt}} found to be brittle."};
+    var face_stmt = "Which directional face is {{face}}?";
+
+    if ($('#inspection-form .house-face').val() != "blank") {
+        $('.house-direction').show();
+        $('.house-direction').find('label').text(face_stmt.replace("{{face}}", subs[$('.house-face').val()].str));
+    }
 
     /* Adds shingle amounts to slope type in slope */
     $('.slope').children().children().children(".content").on('click', 'input[type=checkbox]', function() {
         var shingle_class = $($(this)[0].nextSibling).children();
         var el = $(this);
         var type = el.parent().parent().parent().parent().parent().parent().parent().find('.slope-title-helper');
-        var stmt = slope_statements[$(this).val()];
+
+        if ($('.house-face').val() == 'blank') {
+            alert('You need to select the direction the house faces first!');
+            el.next().removeClass('checked');
+            el[0].checked = false;
+            return false;
+        }
+
+        var values = get_slope_statements($(this).val(), $('.house-direction-select').val(), subs[$('.house-face').val()].values, slope_statements);
+        var stmt = slope_statements[$('.house-direction-select').val()][$(this).val()];
         
         if (shingle_class.hasClass('change-shingle-amount')) {
             shingle_class.remove();
@@ -715,7 +746,6 @@ $(document).ready(function() {
             var answer = prompt("How many shingles were affected?");
             if (answer !== null && answer !== "") {
                 $(this).next().append("<span class=\"change-shingle-amount\">&nbsp;(<a href='#'>" + answer + "</a>)</span>");
-                stmt = stmt.replace("{{house_face}}", $('.house-face').val());
                 stmt = stmt.replace("{{damaged}}", answer);
                 stmt = stmt.replace("{{type}}", type.text().toLowerCase().trim());
                 el.val(stmt);
@@ -723,6 +753,21 @@ $(document).ready(function() {
                 el.next().removeClass('checked');
                 el[0].checked = false;
             }
+        }
+    });
+
+    $('.house-face').change(function() {
+       el = $(this);
+
+        if ($(this).val() != 'blank') {
+            if (!$('.house-direction').hasClass('house-direction-active')) {
+                $('.house-direction').toggle(800).addClass('house-direction-active');
+            }
+
+            $('.house-direction').find('label')
+                             .text(face_stmt.replace('{{face}}', subs[el.val()].str));
+        } else {
+            $('.house-direction').toggle(800).removeClass('house-direction-active');
         }
     });
 
@@ -743,11 +788,119 @@ $(document).ready(function() {
         return false;
     });
 
+    $('.fallen-tree').click(function() {
+        var el = $(this);
+
+        if ($(this)[0].checked) {
+            var answer = prompt("Comment:");
+            if (answer !== null && answer !== "") {
+                $(this).next().append("<span class=\"fallen-tree-comment\">&nbsp;(<a href='#'><span class=\"italic\">c</span></a>)</span>");
+                el.val(answer);
+            } else {
+                el.next().removeClass('checked');
+                el[0].checked = false;
+            }
+        }
+    });
+
+    $(document).on('click', '.fallen-tree-comment a', function() {
+        var checkbox = $(this).parent().parent().parent().find('input[type=checkbox]');
+
+        var answer = prompt("Comment:", checkbox.val());
+        if (answer !== null && answer !== "") {
+            $(this).text("c");
+            checkbox.val(answer);
+        }
+
+        return false;
+    });
+
     $('.roofer-present').click(function(e) {
         $('.roofer').toggle(800);
     });
 
+    $('.brittle').click(function(e) {
+        if ($(this)[0].checked == 1) {
+            $(this).val(brittle_stmt.str.replace("{{stmt}}", "was"));
+        } else {
+            $(this).val(brittle_stmt.str.replace("{{stmt}}", "was not"));
+        }
+    });
 
-	
-	
+
+    $('.auto-upgrade').click(function(e) {
+        var path = window.location.pathname;
+        var inspection_id = path.split('/')[3];
+
+        if ($(this).val() == 1) {
+            window.location.href = "/inspections/form/" + inspection_id  + "/1";
+        } else {
+            window.location.href = "/inspections/form/" + inspection_id + "/2";
+        }
+    });
+
+    $(document).on('click', '.siding-type', function() {
+        var clicked = 0;
+
+        $('.siding-type').each(function() {
+            if ($(this)[0].checked == 1) {
+                clicked++;
+            }
+        });
+   
+        if (clicked <= 1 && !$('.siding-damaged').hasClass('siding-active')) {
+             $('.siding-damaged').toggle(800)
+                                 .addClass('siding-active');
+        } else if (clicked === 0) {
+             $('.siding-damaged').toggle(800)
+                                 .removeClass('siding-active');
+        }
+
+        show_siding_damage_amount_inputs($('.siding-damage'), $('.siding-type'), false);
+    });
+
+    $('.siding-damage').click(function() {
+        show_siding_damage_amount_inputs($(this), $('.siding-type'), true);
+    });
 });
+
+
+
+function show_siding_damage_amount_inputs(el, types, toggle) {
+    content = "";
+
+    if (el[0].checked == 1) {
+        types.each(function() {
+            if ($(this)[0].checked === true) {
+                content += "<div class=\"row\"><label for=\"" + $(this).next().text().toLowerCase() + "_damage\">" + $(this).next().text() + " Damage: </label>" +
+                                "<div class=\"right\">" +
+                                "<input type=\"text\" value=\"\" /></div></div>";
+            }
+        });
+
+        if (toggle) {
+            $('.siding-build').toggle(800).html(content);
+        } else {
+            $('.siding-build').html(content);
+        }
+        
+    }
+}
+
+
+
+function get_slope_statements(el, house_directional, subs, stmts) {
+    var statements = stmts[house_directional];
+    var count = 0;
+    
+    for(var statement in statements) {
+        statements[statement] = statements[statement].replace("{{house_face}}", subs[count]);
+
+        count++;
+    }
+
+    console.log(statements);
+}
+
+
+

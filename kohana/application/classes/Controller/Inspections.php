@@ -2,7 +2,9 @@
 
 class Controller_Inspections extends Controller_Account {
 
-    protected $_workorder_id;
+    protected $_workorder_id = null;
+
+    protected $_auto_upgrade = null;
 
     public function __construct($request, $response) {
         parent::__construct($request, $response);
@@ -10,29 +12,22 @@ class Controller_Inspections extends Controller_Account {
         $this->inspections_model = Model::factory('inspections');
         $this->settings_model = Model::factory('settings');
 
-
-
         if($this->request->action() === 'uploadphotos'){
-        
-        //unset($this->masterModel->js = 
-        $this->masterModel->js = array('http://code.jquery.com/jquery-latest.min.js',
-                "http://code.jquery.com/ui/1.10.3/jquery-ui.js",
-                "/trinity/assets/js/inspection/dropzone.js",
-                "/trinity/assets/js/inspection/gridster.js",  
-                "/trinity/assets/js/inspection/imgUploader.js",
-
-            );
-        ksort($this->masterModel->js);
-      }
+            $this->masterModel->js = array('http://code.jquery.com/jquery-latest.min.js',
+                                           "http://code.jquery.com/ui/1.10.3/jquery-ui.js",
+                                           "/trinity/assets/js/inspection/dropzone.js",
+                                           "/trinity/assets/js/inspection/gridster.js",  
+                                           "/trinity/assets/js/inspection/imgUploader.js",);
+            ksort($this->masterModel->js);
+        }
 
 
         // Include PDF dompdf creation from HTML -> PDF
-    //include($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php");
+        //include($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php");
     
-    if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php")) { 
-        include ($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php"); }
-
-
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php")) { 
+            include ($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php"); 
+        }
     }
 
 
@@ -43,6 +38,7 @@ class Controller_Inspections extends Controller_Account {
         $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
         $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
         $this->_workorder_id = $this->request->param('id');
+        $this->_auto_upgrade = $this->request->param('id2');
 
 
 
@@ -85,7 +81,6 @@ class Controller_Inspections extends Controller_Account {
         $view = View::factory('inspections/uploadphotos');
       
         $view->categories = $this->settings_model->get_categories();
-      //  $this->masterModel->js
 
         $this->template->side_bar = View::factory('inspections/photo-sidebar');
         $this->template->content = $view;
@@ -123,49 +118,24 @@ class Controller_Inspections extends Controller_Account {
     public function action_form() {
         $view = View::factory('inspections/form');
 
-        // Will be empty if there is no inspection form save for this report. 
-        $pre_fill_inspection_data = $this->inspections_model->get_inspection_data($this->request->param('id'));
+        // Check for auto_upgrade
+        $view->auto_upgrade = $this->inspections_model->check_for_auto_upgrade($this->_workorder_id, $this->_auto_upgrade);
+        $view->errors = Model_Inspections::$errors;
 
+        // Will be empty if there is no inspection form save for this report. 
+        $view->data = $this->inspections_model->get_inspection_data($this->_workorder_id);
         $view->workorder_details = $this->workorders_model->get_workorder_details($this->request->param('id'));
-        $view->inspection_type = $view->workorder_details->is_expert == 1 ? "Expert Inspection" : "Basic Inspection";
-        $view->roof_ages = $this->inspections_model->get_roof_ages();
-        $view->roof_heights = $this->inspections_model->get_roof_heights();
-        $view->framing_types = $this->inspections_model->get_type_of_framing();
-        $view->pitches = $this->inspections_model->get_pitches();
-        $view->layers = $this->inspections_model->get_layers();
-        $view->roofing_types = $this->inspections_model->get_type_of_roofing();
-        $view->if_rolled = $this->inspections_model->get_if_rolled();
-        $view->conditions = $this->inspections_model->get_condition();
-        $view->remove_reset_tarp = $this->inspections_model->get_remove_reset_trap();
-        $view->lift_up_minor_reset_tarp = $this->inspections_model->get_lift_up_minor_reset_trap();
-        $view->previous_repairs = $this->inspections_model->get_previous_repairs_made();
-        $view->collateral_damamges = $this->inspections_model->get_collateral_damages();
-        $view->slopes = $this->inspections_model->get_slopes();
-        $view->wind_roof_peeled_back = $this->inspections_model->get_wind_roof_peeled_back();
-        $view->lighting_amount_damaged = $this->inspections_model->get_lighting_amount_damaged();
-        $view->lighting_damages = $this->inspections_model->get_lighting_damages();
-        $view->get_vermin_choices = $this->inspections_model->get_vermin_choices();
-        $view->vandalism_choices = $this->inspections_model->get_vandalism_choices();
-        $view->siding_types = $this->inspections_model->get_siding_types();
-        $view->miscellanous_damages = $this->inspections_model->get_miscellanous_damages();
-        $view->appliances = $this->inspections_model->get_appliances_information();
-        $view->tree_information = $this->inspections_model->get_fall_tree_information();
-        $view->debris = $this->inspections_model->get_excess_debris();
-        $view->water_damages = $this->inspections_model->get_water_damages();
-        $view->product_defects = $this->inspections_model->get_product_defects();
-        $view->workmanship = $this->inspections_model->get_workmanship();
-        $view->aged_worn = $this->inspections_model->get_aged_worn();
-        $view->fire_damages = $this->inspections_model->get_fire_damages();
-        $view->fraud_wind_input = $this->inspections_model->get_fraud_wind_input();
-        $view->fraud_hail_input = $this->inspections_model->get_fraud_hail_input();
+        $view->data['type'] = $view->workorder_details->type;
+        $view = $view->workorder_details->type == 1 ? $this->_load_form($view, true) : $this->_load_form($view, false);
 
         if ($this->request->method() === "POST") {
-            if (gettype($this->inspections_model->validate_inpsection_report($this->_post)) !== "boolean") {
-                echo "<pre>";
-                print_r($this->_post);
-                die();
+            $view->form->post = $this->_post;
+
+            if ($this->inspections_model->validate_inpsection_report($this->_post, $this->_workorder_id)) {
+                $view->success = "Your inspection report was submitted successfully.";
             } else {
                 $view->errors = Model_Inspections::$errors;
+                $view->form->errors = Model_Inspections::$errors;
             }
         }
 
@@ -193,5 +163,51 @@ class Controller_Inspections extends Controller_Account {
 
     public function after() {
         parent::after();
+    }
+
+
+
+    private function _load_form($view, $expert) {
+        $view->form = $expert ? View::factory('inspections/expert') : View::factory('inspections/basic');
+        $view->form->data = $this->inspections_model->get_inspection_data($this->_workorder_id, $this->_post);
+
+        $view->form->inspection_type = $view->workorder_details->type == 1 ? "Expert Inspection" : "Basic Inspection";
+        $view->form->roof_ages = $this->inspections_model->get_roof_ages();
+        $view->form->roof_heights = $this->inspections_model->get_roof_heights();
+        $view->form->framing_types = $this->inspections_model->get_type_of_framing();
+        $view->form->pitches = $this->inspections_model->get_pitches();
+        $view->form->layers = $this->inspections_model->get_layers();
+        $view->form->roofing_types = $this->inspections_model->get_type_of_roofing();
+        $view->form->if_rolled = $this->inspections_model->get_if_rolled();
+        $view->form->conditions = $this->inspections_model->get_condition();
+        $view->form->remove_reset_tarp = $this->inspections_model->get_remove_reset_trap();
+        $view->form->lift_up_minor_reset_tarp = $this->inspections_model->get_lift_up_minor_reset_trap();
+        $view->form->siding_types = $this->inspections_model->get_siding_types();
+        $view->form->previous_repairs = $this->inspections_model->get_previous_repairs_made();
+        $view->form->roof_conditions = $this->inspections_model->get_roof_conditions();
+        $view->form->collateral_damamges = $this->inspections_model->get_collateral_damages();
+        $view->form->slopes = $this->inspections_model->get_slopes();
+        $view->form->wind_roof_peeled_back = $this->inspections_model->get_wind_roof_peeled_back();
+        $view->form->fraud_wind_input = $this->inspections_model->get_fraud_wind_input();
+        $view->form->fraud_hail_input = $this->inspections_model->get_fraud_hail_input();
+        $view->form->siding_damages = $this->inspections_model->get_siding_damaged();
+        $view->form->house_faces = $this->inspections_model->get_house_faces();
+
+        if ($expert) {
+        $view->form->lighting_amount_damaged = $this->inspections_model->get_lighting_amount_damaged();
+        $view->form->lighting_damages = $this->inspections_model->get_lighting_damages();
+        $view->form->get_vermin_choices = $this->inspections_model->get_vermin_choices();
+        $view->form->vandalism_choices = $this->inspections_model->get_vandalism_choices();
+        $view->form->appliances = $this->inspections_model->get_appliances_information();
+        $view->form->tree_information = $this->inspections_model->get_fall_tree_information();
+        $view->form->debris = $this->inspections_model->get_excess_debris();
+        $view->form->water_damages = $this->inspections_model->get_water_damages();
+        $view->form->product_defects = $this->inspections_model->get_product_defects();
+        $view->form->workmanship = $this->inspections_model->get_workmanship();
+        $view->form->aged_worn = $this->inspections_model->get_aged_worn();
+        $view->form->fire_damages = $this->inspections_model->get_fire_damages();
+        }
+
+        return $view;
     }
 }

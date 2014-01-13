@@ -35,13 +35,17 @@ class Model_Master extends Model {
         $css_files = scandir($_SERVER['DOCUMENT_ROOT'] . "/trinity/assets/css/" );
 
     	foreach($css_files as $css_file) {
-    		$this->css[] = '/trinity/assets/css/' . $css_file;
+            if (!is_dir($css_file)) {
+    		    $this->css[] = '/trinity/assets/css/' . $css_file;
+            }
     	}
 
         $_insepction_files = scandir($_SERVER['DOCUMENT_ROOT'] . "/trinity/assets/css/inspection/");
 
         foreach ($_insepction_files as $inspection_file) {
-            $this->css[] = '/trinity/assets/css/inspection/' . $inspection_file;
+            if (!is_dir($inspection_file)) {
+                $this->css[] = '/trinity/assets/css/inspection/' . $inspection_file;
+            }
         }
     }
 
