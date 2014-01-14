@@ -7,15 +7,13 @@
 					
 
             <div id="photoContainer">
-              
-                <div id="dropzone">
-                <form id="demo-upload" >
-           
-                <ul id="sort1"  class="dropzone dz-clickable" action="http://www.torrentplease.com/dropzone.php">
-                </ul>
-             
-                </form>
-                </div>
+
+        <form action="/inspections/uploadphotos" method="post" 
+        enctype="multipart/form-data" class="dropzone dz-clickable dropzone-previews" id="dropzone-form">
+
+        </form>
+           <button type="submit" id="dz" name="dz" value="Submit " /> Submit Photos</button>
+            </div>
             </div>
             <div>
          
