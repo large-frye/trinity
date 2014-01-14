@@ -466,7 +466,7 @@ var re = /(?:\.([^.]+))?$/;
         }
         if (!messageElement) {
           messageElement = Dropzone.createElement("<div class=\"dz-message\"><span></span></div>");
-		
+    
           this.element.appendChild(messageElement);
         }
         span = messageElement.getElementsByTagName("span")[0];
@@ -536,24 +536,24 @@ var re = /(?:\.([^.]+))?$/;
       },
       addedfile: function(file) {
         var _this = this;
-		//var gridster = $(".gridster ul").gridster().data('gridster');
+    //var gridster = $(".gridster ul").gridster().data('gridster');
         file.previewElement = Dropzone.createElement(this.options.previewTemplate);
         file.previewTemplate = file.previewElement;
-		
-		//console.log($(file.previewElement).outerHTML());
-	
-		//gridster.add_widget('<li id=\'dar\' class="new"><div class="dz-preview dz-processing dz-image-preview //dz-success">'+$(file.previewElement).html()+'</div></li>', 1, 1);
-		this.previewsContainer.appendChild(file.previewElement);
-		 file.previewElement.querySelector("[data-dz-name]").textContent = file.name;
-		var parent = $(file.previewElement.querySelector("[data-dz-name]")).closest("div.dz-preview");
-		$(parent).find("div.customName").prepend(file.name);
-		var childObj = $(parent).find("div.customName").find("div.customPos");
-		
-		//$(childObj).prepend(photoCount);
-		//console.log("find" + childObj.text());
-        //file.previewElement.querySelector("[data-dz-name]").textContent = photoCount + 	'.' + re.exec(file.name)[1];	
-		//photoCount++;
-		//file.name;
+    
+    //console.log($(file.previewElement).outerHTML());
+  
+    //gridster.add_widget('<li id=\'dar\' class="new"><div class="dz-preview dz-processing dz-image-preview //dz-success">'+$(file.previewElement).html()+'</div></li>', 1, 1);
+    this.previewsContainer.appendChild(file.previewElement);
+     file.previewElement.querySelector("[data-dz-name]").textContent = file.name;
+    var parent = $(file.previewElement.querySelector("[data-dz-name]")).closest("div.dz-preview");
+    $(parent).find("div.customName").prepend(file.name);
+    var childObj = $(parent).find("div.customName").find("div.customPos");
+    
+    //$(childObj).prepend(photoCount);
+    //console.log("find" + childObj.text());
+        //file.previewElement.querySelector("[data-dz-name]").textContent = photoCount +  '.' + re.exec(file.name)[1];  
+    //photoCount++;
+    //file.name;
         file.previewElement.querySelector("[data-dz-size]").innerHTML = this.filesize(file.size);
         if (this.options.addRemoveLinks) {
           file._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\">" + this.options.dictRemoveFile + "</a>");
@@ -661,7 +661,7 @@ var re = /(?:\.([^.]+))?$/;
       }
       Dropzone.instances.push(this);
       element.dropzone = this;
-	
+  
       elementOptions = (_ref = Dropzone.optionsForElement(this.element)) != null ? _ref : {};
       this.options = extend({}, this.defaultOptions, elementOptions, options != null ? options : {});
       if (this.options.forceFallback || !Dropzone.isBrowserSupported()) {
@@ -1061,7 +1061,7 @@ var re = /(?:\.([^.]+))?$/;
         } else {
           this.addFile(item.getAsFile());
         }
-      }	
+      } 
     };
 
     Dropzone.prototype.accept = function(file, done) {
@@ -1211,6 +1211,7 @@ var re = /(?:\.([^.]+))?$/;
       var i, parallelUploads, processingLength, queuedFiles;
       parallelUploads = this.options.parallelUploads;
       processingLength = this.getUploadingFiles().length;
+      console.log(this.getUploadingFiles().length);
       i = processingLength;
       if (processingLength >= parallelUploads) {
         return;
@@ -1302,10 +1303,13 @@ var re = /(?:\.([^.]+))?$/;
       var file, formData, handleError, headerName, headerValue, headers, input, inputName, inputType, key, progressObj, response, updateProgress, value, xhr, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref, _ref1, _ref2, _ref3,
         _this = this;
       xhr = new XMLHttpRequest();
+
       for (_i = 0, _len = files.length; _i < _len; _i++) {
         file = files[_i];
         file.xhr = xhr;
       }
+       
+
       xhr.open(this.options.method, this.options.url, true);
       xhr.withCredentials = !!this.options.withCredentials;
       response = null;
@@ -1418,7 +1422,7 @@ var re = /(?:\.([^.]+))?$/;
           inputName = input.getAttribute("name");
           inputType = input.getAttribute("type");
           if (!inputType || ((_ref3 = inputType.toLowerCase()) !== "checkbox" && _ref3 !== "radio") || input.checked) {
-	
+  
             formData.append(inputName, input.value);
           }
         }
