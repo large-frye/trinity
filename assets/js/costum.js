@@ -717,7 +717,7 @@ $(document).ready(function() {
     var brittle_stmt = { str: "Brittleness test: The roof {{stmt}} found to be brittle."};
     var face_stmt = "Which directional face is {{face}}?";
 
-    if ($('#inspection-form .house-face').val() != "blank") {
+    if ($('#inspection-form .house-face').val() != "blank" && typeof $('#inspection-form .house-face').val() !== 'undefined' ) {
         $('.house-direction').show();
         $('.house-direction').find('label').text(face_stmt.replace("{{face}}", subs[$('.house-face').val()].str));
     }
