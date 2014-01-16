@@ -1,5 +1,6 @@
 <form enctype="multipart/form-data" action="" method="post" accept-charset="utf-8" id="inspection-form">
 <?php echo Form::hidden('csrf', Security::token()); ?>
+<?php print_r($errors); ?>
 	
 <div class="section">
     <?php if (isset($success)) { 

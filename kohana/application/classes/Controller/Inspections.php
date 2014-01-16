@@ -192,13 +192,16 @@ class Controller_Inspections extends Controller_Account {
         $view->form->fraud_hail_input = $this->inspections_model->get_fraud_hail_input();
         $view->form->siding_damages = $this->inspections_model->get_siding_damaged();
         $view->form->house_faces = $this->inspections_model->get_house_faces();
+        $view->form->slope_values = $this->inspections_model->get_slope_values($view->form->data);
+        $view->form->data_values = $this->inspections_model->sift_data_values($view->form->data);
 
         if ($expert) {
+        $view->form->metal_damages = $this->inspections_model->get_metal_damages();
+        $view->form->hail_sizes = $this->inspections_model->get_hail_sizes();
         $view->form->lighting_amount_damaged = $this->inspections_model->get_lighting_amount_damaged();
         $view->form->lighting_damages = $this->inspections_model->get_lighting_damages();
         $view->form->get_vermin_choices = $this->inspections_model->get_vermin_choices();
         $view->form->vandalism_choices = $this->inspections_model->get_vandalism_choices();
-        $view->form->appliances = $this->inspections_model->get_appliances_information();
         $view->form->tree_information = $this->inspections_model->get_fall_tree_information();
         $view->form->debris = $this->inspections_model->get_excess_debris();
         $view->form->water_damages = $this->inspections_model->get_water_damages();
@@ -207,6 +210,8 @@ class Controller_Inspections extends Controller_Account {
         $view->form->aged_worn = $this->inspections_model->get_aged_worn();
         $view->form->fire_damages = $this->inspections_model->get_fire_damages();
         }
+
+
 
         return $view;
     }

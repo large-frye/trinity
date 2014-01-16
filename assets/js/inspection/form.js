@@ -60,6 +60,19 @@ var inspectionForm = {
 						
 		});
 
+		$('.row .has_slope_radio').each(function(i, v) {
+				
+			var t = $('input[type="radio"]', $(this));
+						
+			if ( t.length > 0 )
+			{
+				var slopeContainer = $('#' + $(this).attr('rel'));
+				
+				that.eventSlopeRadio(t, slopeContainer);
+			}
+						
+		});
+
 	},
 	
 	eventSlopeCheckbox : function( element, slopeContainer )
@@ -88,6 +101,30 @@ var inspectionForm = {
 				{
 					slopeContainer.hide();
 				}
+			}
+		});	
+	},
+
+	eventSlopeRadio : function( element, slopeContainer )
+	{
+		if ( element.prop('checked') == true )
+		{
+			slopeContainer.show();
+		}
+		else
+		{
+			slopeContainer.hide();
+		}
+			
+		element.bind('change', function() {
+		
+			if ( $(this).prop('value') == 1 )
+			{
+				slopeContainer.show();
+			}
+			else
+			{
+		        slopeContainer.hide();
 			}
 		});	
 	},
@@ -163,7 +200,6 @@ var inspectionForm = {
 		$('.title .show').each(function() {
 		
 			var content = $('.content', $(this).parents('.box'));
-			
 
 			if (! $('.check_if_apply', content).is(':checked') )
 			{

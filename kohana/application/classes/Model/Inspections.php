@@ -225,11 +225,10 @@ class Model_Inspections extends Model_Base {
 
     public function get_lighting_damages() {
         return array(
-            0 => 'Roofing',
-            1 => 'Antenna',
-            2 => 'Sheathing/Framing',
-            3 => 'Flashing',
-            4 => 'Chimney'
+            0 => 'Antenna',
+            1 => 'Sheathing/Framing',
+            2 => 'Flashing',
+            3 => 'Chimney'
         );
     }
 
@@ -305,9 +304,6 @@ class Model_Inspections extends Model_Base {
                                           'flashing cracked' => 'Flashing Cracked',
                                           'flashing clogged' => 'Flashing Clogged'),
                      'antenna'   => array('supports' => 'Supports'),
-                     'ac_units'  => array('supports' => 'Supports',
-                                          'flashing' => 'Flashing',
-                                          'plumbing/wiring' => 'Plumbing/Wiring')
         );
     }
 
@@ -375,9 +371,9 @@ class Model_Inspections extends Model_Base {
 
     public function get_workmanship() {
         return array('blank' => 'Please Select One',
-                     'improper_nailing' => array('over nailer' => 'Over Nailed',
-                                                 'under nailed' => 'Under Nailed',
-                                                 'top nailed' => 'Top Nailed',
+                     'improper_nailing' => array('overdriven' => 'Over Driven',
+                                                 'underdriven' => 'Under Driven',
+                                                 'over nailed' => 'Over Nailed',
                                                  'high nailing' => 'High Nailing'),
                      'improper_overlap' => array('yes' => 'Yes'),
                      'flashing'         => array('flashing missing' => 'Flashing Missing',
@@ -425,7 +421,7 @@ class Model_Inspections extends Model_Base {
 
 
 
-    public function get_fraud_wind_input() {
+   /* public function get_fraud_wind_input() {
         return array('During the course of inspection, damages to the shingles were found to be inconsistent with natural wind damage. 
                       These damages include the following.' => 'Intentional Mechanical Damage',
                      'Seasonal debris was found beneath the mechanically damaged shingles. It is physically impossible for natural 
@@ -456,11 +452,39 @@ class Model_Inspections extends Model_Base {
                      'The damaged shingles were evenly distributed throughout all directional slopes which is not a characteristic of a naturally 
                       occurring wind event. During naturallly occurring wind events, approximately 80% of damages will typically be found on the 
                       windward slopes. The remaining approximately 20% of wind damages will typically be found on the leeward slopes.' => '80/20 Violation');
+    }*/
+
+    public function get_fraud_wind_input() {
+        return array('intentional_mechanical_damage' => 'Intentional Mechanical Damage',
+                     'seasonal_debris' => 'Seasonal Debris',
+                     'center_fractures' => 'Center Fractures',
+                     'low_heavy_creases' => 'Low Heavy Creases',
+                     'damage_walkable_areas_only' => 'Damage Walkable Areas Only',
+                     'no_damage_eve' => 'No damage in 3ft of Eave',
+                     'torn_asphalt' => 'Torn Asphalt',
+                     'tool_marks' => 'Tool Marks',
+                     'corner_granule_loss' => 'Corner Granule Loss',
+                     'failed_attempts' => 'Failed Attempts',
+                     'granules_on_face' => 'Granules on Face',
+                     'violation' => '80/20 Violation');
     }
 
 
 
     public function get_fraud_hail_input() {
+        return array('intentional mechanical damage' => 'Intentional Mechanical Damage',
+                     'ball pein hammer' => 'Ball Pein Hammer',
+                     'agitated asphalt' => 'Agitated Asphalt',
+                     'no mat fracture' => 'No Mat Fracture',
+                     'crushed embedded granules' => 'Crushed/Embedded Granules',
+                     'inconsistent across slope' => 'Inconsistent Across Slope',
+                     'no damage near eve' => 'No damage near eve',
+                     'incosistent secondary' => 'Inconsistent Secondary Indicators');
+    }
+
+
+
+    /*public function get_fraud_hail_input() {
         return array('During the course of inspection, damages to the shingles were found to be inconsistent with natural hail damage. 
                       These damages include the following.' => 'Intentional Mechanical Damage',
                      'Damages present appeared to be due to a ball-pein type hammer, the impacts were all approximately the same size 
@@ -477,7 +501,7 @@ class Model_Inspections extends Model_Base {
                       across the entire directional facing slope.' => 'No Damage Near Eave',
                      'After forensically measuring the secondary hail indicators, which are soft metal denting and spatter 
                      (where present), we found the hail size to be too small to damage the shingles.' => 'Inconsistent Secondary Indicators');
-    }
+    }*/
 
 
 
@@ -495,6 +519,32 @@ class Model_Inspections extends Model_Base {
                                             'rear'  => 'Rear',
                                             'left' => 'Left',
                                             'right' => 'Right'));
+    }
+
+
+
+    public function get_metal_damages() {
+        return array('aluminum ridge vent' => 'Aluminum Ridge Vent',
+                     'heat vent' => 'Heat Vent',
+                     'square vent' => 'Square Vent',
+                     'power vent' => 'Power Vent',
+                     'turbines' => 'Turbines',
+                     'skylights' => 'Skylights',
+                     'satellites' => 'Satellites',
+                     'cap shingles' => 'Cap Shingles',
+                     'ac units' => 'A/C Units');
+    }
+
+
+
+    public function get_hail_sizes() {
+        return array('1_4-1_2' => '1/4" - 1/2"',
+                     '1_2-3_4' => '1/2" - 3/4"',
+                     '3_4-1' => '3/4" - 1"',
+                     '1-1_4' => '1" - 1/4"',
+                     '1_1/4-1_1/2' => '1 1/4" - 1 1/2"',
+                     '1_1/2-1_3/4' => '1 1/2" - 1 3/4"',
+                     '1_3/4-2' => '1 3/4" - 2');
     }
 
 
@@ -619,6 +669,91 @@ class Model_Inspections extends Model_Base {
 
 
 
+    public function get_slope_values($data) {
+        $slopes = array('wind_shingles_damaged_slope', 'slope_hail_amount_damaged', 'slope_wind_roof_peeled_back', 'slope_lightning_amount_damaged',
+                        'slope_vermin_roofing_damage', 'slope_vermin_fascia_damage', 'slope_vermin_vent_damage',
+                        'slope_ice_damming', 'slope_fallen_ice', 'slope_excess_debris_location', 'slope_standing_water', 'slope_product_defects_asphalt',
+                        'slope_product_defects_blistering', 'slope_product_defects_flaking', 'slope_workmanship_improper_nailing', 'slope_workmanship_improper_overlap',
+                        'slope_workmanship_flashing', 'slope_workmanship_flashing_missing', 'slope_workmanship_venting', 'slope_workmanship_incorrect_materials',
+                        'slope_workmanship_excessive_layers', 'slope_aged_worn');
+        $keys = array_keys($this->get_slopes());
+        
+
+        foreach ($slopes as $slope) {
+            if (in_array($slope, array('slope_vermin_fascia_damage', 'slope_vermin_vent_damage', 'slope_excess_debris_location', 'slope_standing_water',
+                                       'slope_product_defects_asphalt', 'slope_product_defects_blistering', 'slope_product_defects_flaking',
+                                       'slope_workmanship_improper_nailing', 'slope_workmanship_improper_overlap', 'slope_workmanship_flashing', 
+                                       'slope_workmanship_flashing_missing', 'slope_workmanship_venting', 'slope_workmanship_incorrect_materials',
+                                       'slope_workmanship_excessive_layers', 'slope_aged_worn'))) {
+                $keys += array('entire roof' => 'Entire Roof');
+            }
+            foreach ($keys as $key) {
+                if (isset($data[$slope]) && is_array($data[$slope])) {
+                    if(isset($data[$slope][$key])) {
+                        $values[$slope][$key] = $data[$slope][$key];
+                    } else {
+                        $values[$slope][$key] = $key;
+                    }
+                } else if (isset($data[$slope])) {
+                    $_val = unserialize($data[$slope]);
+                    if (isset($_val[$key])) {
+                        $values[$slope][$key] = $_val[$key];
+                    } else {
+                        $values[$slope][$key] = $key;
+                    }
+                } else {
+                    $values[$slope][$key] = "";
+                }
+            }
+        }
+
+        return $values;
+    }
+
+
+
+    public function sift_data_values($data) {
+        $_values = array('fallen_tree_damages' => array_keys($this->get_fall_tree_information()['damages']),
+                         'fraud_wind_input' => array_keys($this->get_fraud_wind_input()),
+                         'fraud_hail_input' => array_keys($this->get_fraud_hail_input()),
+                         'metal_damages' => array_keys($this->get_metal_damages()),
+                         'excess_debris_location' => array_keys($this->get_excess_debris()),
+                         'standing_water_select' => array_keys($this->get_water_damages()),
+                         'workmanship_flashing' => array_keys($this->get_workmanship()['flashing']),
+                         'workmanship_flashing_missing' => array_keys($this->get_workmanship()['flashing_missing']),
+                         'workmanship_venting' => array_keys($this->get_workmanship()['venting']),
+                         'workmanship_improper_nailing' => array_keys($this->get_workmanship()['improper_nailing']),
+                         'aged_worn_check_that_apply' => array_keys($this->get_aged_worn()));
+        $values = array();
+        
+        foreach ($_values as $key => $value) {
+            $keys = $value;
+
+            foreach ($keys as $_key) {
+                if (isset($data[$key]) && is_array($data[$key])) {
+                    if(isset($data[$key][$_key])) {
+                        $values[$key][$_key] = $data[$key][$_key];
+                    } else {
+                        $values[$key][$_key] = $_key;
+                    }
+                } else if (isset($data[$key])) {
+                    $_val = unserialize($data[$key]);
+                    if (isset($_val[$_key])) {
+                        $values[$key][$_key] = $_val[$_key];
+                    } else {
+                        $values[$key][$_key] = $_key;
+                    }
+                } else {
+                    $values[$key][$_key] = $_key;
+                }
+            }
+        }
+
+        return $values;
+    }
+
+
+
     private function _update_estimate($post, $id) {
         $parameters = array();
 
@@ -648,9 +783,6 @@ class Model_Inspections extends Model_Base {
     private function _insert_inspection_report_data($post, $id) {
         $parameters = array(':id' => null,
                             ':workorder_id' => $id);
-
-        print_r($post);
-        die();
 
         try {
             DB::delete('inspection_meta')->where('workorder_id', '=', ':id')->parameters(array(':id' => $id))->execute($this->db);

@@ -361,13 +361,11 @@
             </div>
             
             <div class="content">
-                <!-- <div class="row">
+                <div class="row">
                     
-                    <div>
-                        <?php echo Form::checkbox('wind_damage', 1, false, array('id' => 'wind')) .
-                                   Form::label('wind', 'Check if apply'); ?>
-                    </div>
-                </div>    -->
+                    <?php echo Form::checkbox('wind', "1", isset($data['wind']) ? true : null, array('class' => 'check_if_apply', 'id' => 'wind')); ?>
+                    <label for="wind"><strong>Check if apply</strong></label>
+                </div>
 
                 <div class="row slope" id="slope_shingles" style="display: block !important;">
                     <div class="section">
@@ -377,8 +375,12 @@
                                 <?php
                                     $count = 0;
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('wind_shingles_damaged_slope[]', $key, false, 
-                                                 array('id' => 'wind_shingles_damaged_slope' . $count)) . "\n" .
+                                        echo Form::checkbox('wind_shingles_damaged_slope[' . $key . ']', $slope_values['wind_shingles_damaged_slope'][$key], 
+                                                   isset($data['wind_shingles_damaged_slope']) && 
+                                                   in_array($key, !is_array($data['wind_shingles_damaged_slope']) 
+                                                   ? array_keys(unserialize($data['wind_shingles_damaged_slope'])) : array_keys($data['wind_shingles_damaged_slope']))
+                                                   ? true : false, 
+                                                   array('id' => 'wind_shingles_damaged_slope' . $count, 'class' => $key)) . "\n" .
                                         Form::label('wind_shingles_damaged_slope' . $count, $slope) . "\n";
 
                                         $count++;
@@ -407,7 +409,12 @@
                         <?php
                             $count = 0;
                             foreach($fraud_wind_input as $key => $value) {
-                                echo Form::checkbox('fraud_wind_input[]', $key, false, array('id' => 'fraud_wind_input' . $count)) . "\n" .
+                                echo Form::checkbox('fraud_wind_input[' . $key . ']', $data_values['fraud_wind_input'][$key], 
+                                    isset($data['fraud_wind_input']) && 
+                                     in_array($key, !is_array($data['fraud_wind_input']) 
+                                                   ? array_keys(unserialize($data['fraud_wind_input'])) : array_keys($data['fraud_wind_input']))
+                                                   ? true : false,
+                                     array('id' => 'fraud_wind_input' . $count)) . "\n" .
                                      Form::label('fraud_wind_input' . $count, $value) . "\n";
 
                                     $count++;
@@ -433,8 +440,12 @@
                                 <?php
                                     $count = 0;
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_wind_roof_peeled_back[]', $key, false, 
-                                                 array('id' => 'slope_wind_roof_peeled_back' . $count)) . "\n" .
+                                        echo Form::checkbox('slope_wind_roof_peeled_back[' . $key . ']', $slope_values['slope_wind_roof_peeled_back'][$key], 
+                                                   isset($data['slope_wind_roof_peeled_back']) && 
+                                                   in_array($key, !is_array($data['slope_wind_roof_peeled_back']) 
+                                                   ? array_keys(unserialize($data['slope_wind_roof_peeled_back'])) : array_keys($data['slope_wind_roof_peeled_back']))
+                                                   ? true : false, 
+                                                   array('id' => 'slope_wind_roof_peeled_back' . $count, 'class' => $key)) . "\n" .
                                         Form::label('slope_wind_roof_peeled_back' . $count, $slope) . "\n";
 
                                         $count++;
@@ -458,11 +469,11 @@
             </div>
             <div class="content">
                 
-                <!--<div class="row">
-                    <input type="checkbox" name="hail" id="hail" value="1" class="check_if_apply" />
+                <div class="row">
+                    <?php echo Form::checkbox('hail', "1", isset($data['hail']) ? true : null, array('class' => 'check_if_apply', 'id' => 'hail')); ?>
                     <label for="hail"><strong>Check if apply</strong></label>
 
-                </div>        -->
+                </div>
 
                 <div class="row slope" id="slope_hail_amount_damaged" style="display: block !important">
                     <div class="section">
@@ -472,12 +483,17 @@
                                 <?php
                                     $count = 0;
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_hail_amount_damaged[]', $key, false, 
-                                                 array('id' => 'slope_hail_amount_damaged' . $count)) . "\n" .
+                                        echo Form::checkbox('slope_hail_amount_damaged[' . $key . ']', $slope_values['slope_hail_amount_damaged'][$key], 
+                                                   isset($data['slope_hail_amount_damaged']) && 
+                                                   in_array($key, !is_array($data['slope_hail_amount_damaged']) 
+                                                   ? array_keys(unserialize($data['slope_hail_amount_damaged'])) : array_keys($data['slope_hail_amount_damaged']))
+                                                   ? true : false, 
+                                                   array('id' => 'slope_hail_amount_damaged' . $count, 'class' => $key)) . "\n" .
                                         Form::label('slope_hail_amount_damaged' . $count, $slope) . "\n";
 
                                         $count++;
                                     } ?>
+
                                 
                                 <div class="cl"></div>
                             </div>
@@ -491,7 +507,11 @@
                         <?php
                             $count = 0;
                             foreach($fraud_hail_input as $key => $value) {
-                                echo Form::checkbox('fraud_hail_input[]', $key, false, array('id' => 'fraud_hail_input' . $count)) . "\n" .
+                                echo Form::checkbox('fraud_hail_input[' . $key . ']', $data_values['fraud_hail_input'][$key], 
+                                    isset($data['fraud_hail_input']) &&
+                                    in_array($key, !is_array($data['fraud_hail_input']) 
+                                                   ? array_keys(unserialize($data['fraud_hail_input'])) : array_keys($data['fraud_hail_input']))
+                                                   ? true : false, array('id' => 'fraud_hail_input' . $count)) . "\n" .
                                      Form::label('fraud_hail_input' . $count, $value) . "\n";
 
                                     $count++;
@@ -514,30 +534,82 @@
 
 </div>
 
+<div class="section">
+    <div class="box">
+            <div class="title slope-title-helper">
+                Metal Damage
+                <span class="show"></span>
+            </div>
+            <div class="content">
+
+                <div class="row">
+                    <?php echo Form::checkbox('metal', "1", isset($data['metal']) ? true : null, array('class' => 'check_if_apply', 'id' => 'metal')); ?>
+                    <label for="metal"><strong>Check if apply</strong></label>
+                </div> 
+
+                <div class="row slope">
+                    <label for="metal_damages">Damages: </label>
+                    <div class="right chk_type_of_roofing fraud_wind_input">
+                        <?php
+                            $count = 0;
+                            foreach($metal_damages as $key => $value) {
+                                echo Form::checkbox('metal_damages[' . $key . ']', $data_values['metal_damages'][$key], 
+                                    isset($data['metal_damages']) &&
+                                     in_array($key, !is_array($data['metal_damages']) 
+                                                   ? array_keys(unserialize($data['metal_damages'])) : array_keys($data['metal_damages']))
+                                                   ? true : false,
+                                     array('id' => 'metal_damages' . $count, 'class' => 'metal-damage')) . "\n" .
+                                     Form::label('metal_damages' . $count, $value) . "\n";
+
+                                    $count++;
+                            } 
+                        ?>
+                        <div class="cl"></div>
+                    </div>
+                </div>   
+
+                <div class="row">
+                    <label for="metal_damage_hail_size">Hail Size</label>
+                    <div class="right">
+                        <?php echo Form::select('metal_damage_hail_size', array('blank' => 'Please Select') + $hail_sizes); ?>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label for="metal_damage_comments">Comments</label>
+
+                    <div class="right">
+                        <?php echo Form::input('metal_damage_comments'); ?>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+</div>
+
 
 <div class="section">
     <div class="box">
-            <div class="title">
+            <div class="title slope-title-helper">
                 Lightning
                 <span class="show"></span>
             </div>
             <div class="content">
-                
-                <!-- <div class="row">
-                    <input type="checkbox" name="lightning" id="lightning" value="1" class="check_if_apply" />
-
-                    <label for="lightning" id="lightning"><strong>Check if apply</strong></label>
-                </div> -->
-
                 <div class="row">
-                    <label for="lightning_amount_damaged">Amount Damaged</label>
+                    <?php echo Form::checkbox('lightning', "1", isset($data['lightning']) ? true : null, array('class' => 'check_if_apply', 'id' => 'lightning')); ?>
+                    <label for="lightning"><strong>Check if apply</strong></label>
+                </div> 
+                <div class="row">
+                    <label for="lightning_amount_damaged">Was there damage to the roofing?</label>
 
-                    <div class="right has_slope_select" rel="slope_lightning_amount_damaged">
-                        <?php echo Form::select('lightning_amount_damaged', $lighting_amount_damaged); ?>
+                    <div class="right has_slope_radio" rel="slope_lightning_amount_damaged">
+                        <?php echo Form::radio('lightning_amount_damaged', 1, isset($data['lightning_amount_damaged']) && $data['lightning_amount_damaged'] == 1 ? true : false, array('id' => 'lightning_amount_damaged0')) .
+                                   Form::label('lightning_amount_damaged0', 'Yes') .
+                                   Form::radio('lightning_amount_damaged', 0, isset($data['lightning_amount_damaged']) && $data['lightning_amount_damaged'] == 1 ? false : true, array('id' => 'lightning_amount_damaged1')) .
+                                   Form::label('lightning_amount_damaged1', 'No'); ?>
                     </div>
                 </div>        
-
-
                 <div class="row slope" id="slope_lightning_amount_damaged">
                     <div class="section">
                         <div class="box">
@@ -546,7 +618,11 @@
                                 <?php
                                     $count = 0;
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_lightning_amount_damaged[]', $key, false, 
+                                        echo Form::checkbox('slope_lightning_amount_damaged[' . $key . ']', $slope_values['slope_lightning_amount_damaged'][$key], 
+                                            isset($data['slope_lightning_amount_damaged']) &&  
+                                            in_array($key, !is_array($data['slope_lightning_amount_damaged']) 
+                                                   ? array_keys(unserialize($data['slope_lightning_amount_damaged'])) : array_keys($data['slope_lightning_amount_damaged']))
+                                                   ? true : false,
                                                  array('id' => 'slope_lightning_amount_damaged' . $count)) . "\n" .
                                         Form::label('slope_lightning_amount_damaged' . $count, $slope) . "\n";
 
@@ -588,21 +664,23 @@
             </div>
             <div class="content">
             
-                <!-- <div class="row">
-                    <input type="checkbox" name="vermin" id="vermin" value="1" class="check_if_apply" />
-
+                <div class="row">
+                    <?php echo Form::checkbox('vermin', "1", isset($data['vermin']) ? true : null, array('class' => 'check_if_apply', 'id' => 'vermin')); ?>
                     <label for="vermin"><strong>Check if apply</strong></label>
-                </div>        -->
+                </div> 
 
                 <div class="row">
-                    <label for="vermin_roofing_damage">Roofing Damaged</label>
+                    <label for="vermin_roofing_damage">Was the roof damaged?</label>
 
-                    <div class="right has_slope_select" rel="slope_vermin_roofing_damage">
-                        <?php echo Form::select('vermin_roofing_damage', array('blank' => 'Please Select One') + $get_vermin_choices['roofing']); ?>
+                    <div class="right has_slope_radio" rel="slope_vermin_roofing_damaged">
+                        <?php echo Form::radio('slope_vermin_roofing_damaged', 1, isset($data['slope_vermin_roofing_damaged']) && $data['slope_vermin_roofing_damaged'] == 1 ? true : false, array('id' => 'slope_vermin_roofing_damaged0')) .
+                                   Form::label('slope_vermin_roofing_damaged0', 'Yes') .
+                                   Form::radio('slope_vermin_roofing_damaged', 0, isset($data['slope_vermin_roofing_damaged']) && $data['slope_vermin_roofing_damaged'] == 1 ? false : true, array('id' => 'slope_vermin_roofing_damaged1')) .
+                                   Form::label('slope_vermin_roofing_damaged1', 'No'); ?>
                     </div>
                 </div>        
 
-                <div class="row slope" id="slope_vermin_roofing_damage">
+                <div class="row slope" id="slope_vermin_roofing_damaged">
                     <div class="section">
                         <div class="box">
                             <div class="title">Select Slope (Roofing Damaged)</div>
@@ -610,7 +688,11 @@
                                 <?php
                                     $count = 0;
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_vermin_roofing_damage[]', $key, false, 
+                                        echo Form::checkbox('slope_vermin_roofing_damage[' . $key . ']', $slope_values['slope_vermin_roofing_damage'][$key], 
+                                            isset($data['slope_vermin_roofing_damage']) && 
+                                            in_array($key, !is_array($data['slope_vermin_roofing_damage']) 
+                                                   ? array_keys(unserialize($data['slope_vermin_roofing_damage'])) : array_keys($data['slope_vermin_roofing_damage']))
+                                                   ? true : false,
                                                  array('id' => 'slope_vermin_roofing_damage' . $count)) . "\n" .
                                         Form::label('slope_vermin_roofing_damage' . $count, $slope) . "\n";
 
@@ -623,13 +705,16 @@
                     </div>                
                 </div>
 
-                <div class="row">
-                    <label for="vermin_fascia_damage">Fascia Damaged</label>
+               <div class="row">
+                    <label for="vermin_fascia_damage">Was there fascia damage?</label>
 
-                    <div class="right has_slope_select" rel="slope_vermin_fascia_damage">
-                        <?php echo Form::select('vermin_fascia_damage', array('blank' => 'Please Select One') + $get_vermin_choices['fascia']); ?>
+                    <div class="right has_slope_radio" rel="slope_vermin_fascia_damage">
+                        <?php echo Form::radio('slope_vermin_fascia_damaged', 1, isset($data['slope_vermin_fascia_damaged']) && $data['slope_vermin_fascia_damaged'] == 1 ? true : false, array('id' => 'slope_vermin_fascia_damaged0')) .
+                                   Form::label('slope_vermin_fascia_damaged0', 'Yes') .
+                                   Form::radio('slope_vermin_fascia_damaged', 0, isset($data['slope_vermin_fascia_damaged']) && $data['slope_vermin_fascia_damaged'] == 1 ? false : true, array('id' => 'slope_vermin_fascia_damaged1')) .
+                                   Form::label('slope_vermin_fascia_damaged1', 'No'); ?>
                     </div>
-                </div>        
+                </div>         
 
                 <div class="row slope" id="slope_vermin_fascia_damage">
                     <div class="section">
@@ -638,9 +723,14 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_vermin_fascia_damage[]', $key, false, 
-                                                 array('id' => 'slope_vermin_fascia_damage' . $count)) . "\n" .
+                                        echo Form::checkbox('slope_vermin_fascia_damage[' . $key . ']', $slope_values['slope_vermin_fascia_damage'][$key], 
+                                            isset($data['slope_vermin_fascia_damage']) &&  
+                                            in_array($key, !is_array($data['slope_vermin_fascia_damage']) 
+                                                   ? array_keys(unserialize($data['slope_vermin_fascia_damage'])) : array_keys($data['slope_vermin_fascia_damage']))
+                                                   ? true : false,
+                                                 array('id' => 'slope_vermin_fascia_damage' . $count, 'class' => 'comment-box')) . "\n" .
                                         Form::label('slope_vermin_fascia_damage' . $count, $slope) . "\n";
 
                                         $count++;
@@ -652,25 +742,33 @@
                     </div>                
                 </div>
 
-
+                
                 <div class="row">
-                    <label for="vermin_vent_damage">Vent Damaged</label>
+                    <label for="vermin_vent_damage">Was there vent damage?</label>
 
-                    <div class="right has_slope_select" rel="slope_vermin_vent_damage">
-                        <?php echo Form::select('vermin_vent_damage', array('blank' => 'Please Select One') + $get_vermin_choices['vent']); ?>
+                    <div class="right has_slope_radio" rel="slope_vermin_vent_damage">
+                        <?php echo Form::radio('vermin_vent_damage', 1, isset($data['vermin_vent_damage']) && $data['vermin_vent_damage'] == 1 ? true : false, array('id' => 'vermin_vent_damage0')) .
+                                   Form::label('vermin_vent_damage0', 'Yes') .
+                                   Form::radio('vermin_vent_damage', 0, isset($data['vermin_vent_damage']) && $data['vermin_vent_damage'] == 1 ? false : true, array('id' => 'vermin_vent_damage1')) .
+                                   Form::label('vermin_vent_damage1', 'No'); ?>
                     </div>
-                </div>        
+                </div>       
 
-                <div class="row slope" id="slope_vermin_vent_damage">
+               <div class="row slope" id="slope_vermin_vent_damage">
                     <div class="section">
                         <div class="box">
                             <div class="title">Select Slope (Vent Damaged)</div>
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_vermin_vent_damage[]', $key, false, 
-                                                 array('id' => 'slope_vermin_vent_damage' . $count)) . "\n" .
+                                        echo Form::checkbox('slope_vermin_vent_damage[' . $key . ']', $slope_values['slope_vermin_vent_damage'][$key], 
+                                            isset($data['slope_vermin_vent_damage']) && 
+                                            in_array($key, !is_array($data['slope_vermin_vent_damage']) 
+                                                   ? array_keys(unserialize($data['slope_vermin_vent_damage'])) : array_keys($data['slope_vermin_vent_damage']))
+                                                   ? true : false,
+                                                 array('id' => 'slope_vermin_vent_damage' . $count, 'class' => 'comment-box')) . "\n" .
                                         Form::label('slope_vermin_vent_damage' . $count, $slope) . "\n";
 
                                         $count++;
@@ -685,80 +783,6 @@
     </div>
 </div>
 
-<!-- <div class="section">
-    <div class="box">
-            <div class="title">
-                Intentional Mechanical Damage
-                <span class="show"></span>
-            </div>
-            <div class="content">
-            
-                <!-- <div class="row">
-                    <input type="checkbox" name="vandalism" id="vandalism" value="1"  class="check_if_apply" />
-                    <label for="vandalism"><strong>Check if apply</strong></label>            
-                </div>    
-
-                <div class="row">
-                    <label for="vandalism_skylights">Skylights</label>
-
-                    <div class="right has_slope_select" rel="slope_vandalism_skylights">
-                        <?php echo Form::select('vandalism_skylights', array('blank' => 'Please Select One') + $vandalism_choices['skylights']); ?>
-                    </div>
-                </div>        
-
-                <div class="row slope" id="slope_vandalism_skylights">
-                    <div class="section">
-                        <div class="box">
-                            <div class="title">Select Slope (Skylights)</div>
-                            <div class="content">
-                                <?php
-                                    $count = 0;
-                                    foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_vandalism_skylights[]', $key, false, 
-                                                 array('id' => 'slope_vandalism_skylights' . $count)) . "\n" .
-                                        Form::label('slope_vandalism_skylights' . $count, $slope) . "\n";
-
-                                        $count++;
-                                    } ?>
-                                
-                                <div class="cl"></div>
-                            </div>
-                        </div>
-                    </div>                
-                </div>
-                
-                <div class="row">
-                    <label for="vandalism_roof_decking_cut">Roof / decking cut</label>
-
-                    <div class="right has_slope_select" rel="slope_vandalis_roof_decking">
-                        <?php echo Form::select('vandalism_roof_decking_cut', array('blank' => 'Please Select One') + $vandalism_choices['roof_decking_cut']); ?>
-                    </div>
-                </div>        
-
-                <div class="row slope" id="slope_vandalis_roof_decking">
-                    <div class="section">
-                        <div class="box">
-                            <div class="title">Select Slope (Roof / Decking Cut)</div>
-                            <div class="content">
-                                <?php
-                                    $count = 0;
-                                    foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_vandalis_roof_decking[]', $key, false, 
-                                                 array('id' => 'slope_vandalis_roof_decking' . $count)) . "\n" .
-                                        Form::label('slope_vandalis_roof_decking' . $count, $slope) . "\n";
-
-                                        $count++;
-                                    } ?>
-                                
-                                <div class="cl"></div>
-                            </div>
-                        </div>
-                    </div>                
-                </div>                
-            </div>
-        </div>
-</div> -->
-
 <div class="section">
     <div class="box">
             <div class="title">
@@ -766,11 +790,10 @@
                 <span class="show"></span>
             </div>
             <div class="content">
-            
-                <!-- <div class="row">
-                    <input type="checkbox" name="ice" id="ice" value="1" class="check_if_apply" />
+                <div class="row">
+                    <?php echo Form::checkbox('ice', "1", isset($data['ice']) ? true : null, array('class' => 'check_if_apply', 'id' => 'ice')); ?>
                     <label for="ice"><strong>Check if apply</strong></label>
-                </div>    -->    
+                </div> 
                 
                 <div class="row">
                     
@@ -779,7 +802,7 @@
                     <div class="right has_slope_checkbox" rel="slope_ice_damming">
                         <input type="hidden" name="ice_damming" value="blank">
 
-                        <input type="checkbox" name="ice_damming" id="ice_damming" value="1" />
+                        <input type="checkbox" name="ice_damming" id="ice_damming" value=<?php echo isset($data['ice_damming']) ? $data['ice_damming'] : null; ?> />
                         <label for="ice_damming">Yes</label>
                     </div>
                 </div>        
@@ -792,7 +815,11 @@
                                 <?php
                                     $count = 0;
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_ice_damming[]', $key, false, 
+                                        echo Form::checkbox('slope_ice_damming[' . $key . ']', $slope_values['slope_ice_damming'][$key],
+                                            isset($data['slope_ice_damming']) && 
+                                                 in_array($key, !is_array($data['slope_ice_damming']) 
+                                                   ? array_keys(unserialize($data['slope_ice_damming'])) : array_keys($data['slope_ice_damming']))
+                                                   ? true : false,  
                                                  array('id' => 'slope_ice_damming' . $count)) . "\n" .
                                         Form::label('slope_ice_damming' . $count, $slope) . "\n";
 
@@ -826,7 +853,11 @@
                                 <?php
                                     $count = 0;
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_fallen_ice[]', $key, false, 
+                                        echo Form::checkbox('slope_fallen_ice[' . $key . ']', $slope_values['slope_fallen_ice'][$key], 
+                                            isset($data['slope_fallen_ice']) && 
+                                                 in_array($key, !is_array($data['slope_fallen_ice']) 
+                                                   ? array_keys(unserialize($data['slope_fallen_ice'])) : array_keys($data['slope_fallen_ice']))
+                                                   ? true : false,
                                                  array('id' => 'slope_fallen_ice' . $count)) . "\n" .
                                         Form::label('slope_fallen_ice' . $count, $slope) . "\n";
 
@@ -847,171 +878,15 @@
 <div class="section">
     <div class="box">
             <div class="title">
-                Appliances
-                <span class="show"></span>
-            </div>
-            <div class="content">
-            
-                <!-- <div class="row">
-                    <input type="checkbox"  name="appliances" id="appliances" value="1" class="check_if_apply" />
-                        
-                    <label for="appliances"><strong>Check if apply</strong></label>
-                </div>    -->
-    
-                <div class="row">
-                    <label for="appliances_skylights">Skylights</label>
-
-                    <div class="right has_slope_checkbox" rel="slope_appliances_skylights">
-                        <?php
-                        $count = 0;
-                        foreach($appliances['skylights'] as $key => $option) {
-                            echo Form::checkbox('appliance_skylights[]', $key, null, array('id' => 'appliance_skylights' . $count)) . 
-                                 Form::label('appliance_skylights' . $count, $option);
-                            $count++;
-                        } ?>
-                    </div>
-                </div>    
-
-                <div class="row slope" id="slope_appliances_skylights">
-                    <div class="section">
-                        <div class="box">
-                            <div class="title">Select Slope (Skylights)</div>
-                            <div class="content">
-                                <?php
-                                    $count = 0;
-                                    foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_appliances_skylights[]', $key, false, 
-                                                 array('id' => 'slope_appliances_skylights' . $count)) . "\n" .
-                                        Form::label('slope_appliances_skylights' . $count, $slope) . "\n";
-
-                                        $count++;
-                                    } ?>
-                                
-                                <div class="cl"></div>
-                            </div>
-                        </div>
-                    </div>                
-                </div>                
-
-
-                <div class="row">
-                    <label for="appliances_antenna_sattelite_dish">Antenna/satellite dish</label>
-
-                    <div class="right has_slope_checkbox" rel="slope_appliances_antenna">
-                        <?php
-                        $count = 0;
-                        foreach($appliances['antenna'] as $key => $option) {
-                            echo Form::checkbox('appliances_antenna_sattelite_dish[]', $key, null, array('id' => 'appliances_antenna_sattelite_dish' . $count)) . 
-                                 Form::label('appliances_antenna_sattelite_dish' . $count, $option);
-                            $count++;
-                        } ?>
-                    </div>
-                </div>    
-
-                <div class="row slope" id="slope_appliances_antenna">
-                    <div class="section">
-                        <div class="box">
-                            <div class="title">Select Slope (Antenna / Satellite Dish)</div>
-                            <div class="content">
-                                <?php
-                                    $count = 0;
-                                    foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_appliances_antenna[]', $key, false, 
-                                                 array('id' => 'slope_appliances_antenna' . $count)) . "\n" .
-                                        Form::label('slope_appliances_antenna' . $count, $slope) . "\n";
-
-                                        $count++;
-                                    } ?>
-                                
-                                <div class="cl"></div>
-                            </div>
-                        </div>
-                    </div>                
-                </div>                
-
-                <div class="row">
-                    <label for="appliances_ac_units">A/C Units</label>
-
-                    <div class="right has_slope_checkbox" rel="slope_appliances_ac_units">
-                        <?php
-                        $count = 0;
-                        foreach($appliances['ac_units'] as $key => $option) {
-                            echo Form::checkbox('appliances_ac_units[]', $key, null, array('id' => 'appliances_ac_units' . $count)) . 
-                                 Form::label('appliances_ac_units' . $count, $option);
-                            $count++;
-                        } ?>
-                    </div>
-                </div>    
-
-                <div class="row slope" id="slope_appliances_ac_units">
-                    <div class="section">
-                        <div class="box">
-                            <div class="title">Select Slope (A/C Units)</div>
-                            <div class="content">
-                                <?php
-                                    $count = 0;
-                                    foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_appliances_ac_units[]', $key, false, 
-                                                 array('id' => 'slope_appliances_ac_units' . $count)) . "\n" .
-                                        Form::label('slope_appliances_ac_units' . $count, $slope) . "\n";
-
-                                        $count++;
-                                    } ?>
-                                
-                                <div class="cl"></div>
-                            </div>
-                        </div>
-                    </div>                
-                </div>                
-            </div>
-        </div>
-</div>
-
-<div class="section">
-    <div class="box">
-            <div class="title">
                 Fallen Tree
                 <span class="show"></span>
             </div>
             <div class="content">
-            
-                <!-- <div class="row">
-                    <input type="checkbox" name="fallen_tree" id="fallen_tree" value="1" class="check_if_apply" />
-                        
-                    <label for="fallen_tree"><strong>Check if apply</strong></label>                        
-                </div> -->
 
-                <!-- <div class="row">
-                    <label for="fallen_tree_amount_of_damage">Amount of Damage</label>
-                    <div class="right has_slope_select" rel="slope_fallen_tree_amount_damage">
-                        <?php                            
-                            echo Form::select('fallen_tree_amount_of_damage', $tree_information['amount_of_damage'], null) . 
-                                 Form::label('fallen_tree_amount_of_damage', "Amount of Damage");
-                        ?>
-                    </div>
-                </div> -->
-
-               <!-- <div class="row slope" id="slope_fallen_tree_amount_damage">
-                    <div class="section">
-                        <div class="box">
-                            <div class="title">Select Slope (Amount of Damage)</div>
-                            <div class="content">
-                                <div class="chk_type_of_roofing">
-                                <?php
-                                    $count = 0;
-                                    foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_fallen_tree_amount_damage[]', $key, false, 
-                                                 array('id' => 'slope_fallen_tree_amount_damage' . $count)) . "\n" .
-                                        Form::label('slope_fallen_tree_amount_damage' . $count, $slope) . "\n";
-
-                                        $count++;
-                                    } ?>
-                                </div>
-                                <div class="cl"></div>
-                            </div>
-                        </div>
-                    </div>                
-                </div>                -->
+                <div class="row">
+                    <?php echo Form::checkbox('fallen-tree', "1", isset($data['fallen-tree']) ? true : null, array('class' => 'check_if_apply', 'id' => 'fallen-tree')); ?>
+                    <label for="fallen-tree"><strong>Check if apply</strong></label>
+                </div> 
 
                 <div class="row">
                     <label for="fallen_tree_damages">Damages</label>
@@ -1020,7 +895,12 @@
                         <?php
                         $count = 0;
                         foreach($tree_information['damages'] as $key => $option) {
-                            echo Form::checkbox('fallen_tree_damages[' . $key . ']', $key, null, array('id' => 'fallen_tree_damages' . $count, 'class' => 'fallen-tree')) . 
+                            echo Form::checkbox('fallen_tree_damages[' . $key . ']', $data_values['fallen_tree_damages'][$key],
+                                 isset($data['fallen_tree_damages']) && 
+                                                   in_array($key, !is_array($data['fallen_tree_damages']) 
+                                                   ? array_keys(unserialize($data['fallen_tree_damages'])) : array_keys($data['fallen_tree_damages']))
+                                                   ? true : false,
+                                 array('id' => 'fallen_tree_damages' . $count, 'class' => 'fallen-tree')) . 
                                  Form::label('fallen_tree_damages' . $count, $option);
                             $count++;
                         } ?>
@@ -1042,11 +922,10 @@
             </div>
             <div class="content">
             
-                <!-- <div class="row">                        
-                    <input type="checkbox" {{#checked_excess_debris}}checked="checked"{{/checked_excess_debris}} name="excess_debris" id="excess_debris" value="1" class="check_if_apply" />
-                        
+                <div class="row">
+                    <?php echo Form::checkbox('excess_debris', "1", isset($data['excess_debris']) ? true : null, array('class' => 'check_if_apply', 'id' => 'excess_debris')); ?>
                     <label for="excess_debris"><strong>Check if apply</strong></label>
-                </div> -->
+                </div>
 
                 <div class="row">
                     <label for="excess_debris_location">Location</label>
@@ -1055,7 +934,12 @@
                         <?php
                         $count = 0;
                         foreach($debris as $key => $option) {
-                            echo Form::checkbox('excess_debris_location[]', $key, null, array('id' => 'excess_debris_location' . $count)) . 
+                            echo Form::checkbox('excess_debris_location[' . $key .']', $data_values['excess_debris_location'][$key], 
+                                 isset($data['excess_debris_location']) && 
+                                 in_array($key, !is_array($data['excess_debris_location']) ? array_keys(unserialize($data['excess_debris_location'])) 
+                                                                                           : array_keys($data['excess_debris_location']))
+                                 ? true : false, 
+                                 array('id' => 'excess_debris_location' . $count)) . 
                                  Form::label('excess_debris_location' . $count, $option);
                             $count++;
                         } ?>
@@ -1071,13 +955,16 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
-                                    foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_excess_debris_location[]', $key, false, 
-                                                 array('id' => 'slope_excess_debris_location' . $count)) . "\n" .
-                                        Form::label('slope_excess_debris_location' . $count, $slope) . "\n";
-
-                                        $count++;
-                                    } ?>
+                                    foreach($slopes as $key => $option) {
+                                         echo Form::checkbox('slope_excess_debris_location[' . $key . ']', $slope_values['slope_excess_debris_location'][$key],
+                                              isset($data['slope_excess_debris_location']) && 
+                                                   in_array($key, !is_array($data['slope_excess_debris_location']) 
+                                                   ? array_keys(unserialize($data['slope_excess_debris_location'])) : array_keys($data['slope_excess_debris_location']))
+                                                   ? true : false,
+                                 array('id' => 'slope_excess_debris_location' . $count, 'class' => 'comment-box')) . 
+                                 Form::label('slope_excess_debris_location' . $count, $option);
+                            $count++;
+                        } ?>
                                 
                                 <div class="cl"></div>
                             </div>
@@ -1095,19 +982,10 @@
             </div>
             <div class="content">
             
-                <!-- <div class="row">
-                    <input type="checkbox" name="standing_water" id="standing_water" value="1" class="check_if_apply" />
-                    
-                     <label for="standing_water"><strong>Check if apply</strong></label>
-                </div>    -->
-                
-                <!-- {{#errors.standing_water}}
-                    <div class="row">
-                        <div class="right">
-                            <label class="error">{{errors.standing_water}}</label>
-                        </div>
-                    </div>
-                {{/errors.standing_water}} -->
+                <div class="row">
+                <?php echo Form::checkbox('standing_water', "1", isset($data['standing_water']) ? true : null, array('class' => 'check_if_apply', 'id' => 'standing_water')); ?>
+                    <label for="standing_water"><strong>Check if apply</strong></label>
+                </div>
 
                 <div class="row">
                     <label for="standing_water_select">Select</label>
@@ -1116,7 +994,11 @@
                         <?php
                         $count = 0;
                         foreach($water_damages as $key => $option) {
-                            echo Form::checkbox('standing_water_select[]', $key, null, array('id' => 'standing_water_select' . $count)) . 
+                            echo Form::checkbox('standing_water_select[' . $key . ']', $data_values['standing_water_select'][$key], 
+                                 isset($data['standing_water_select']) && 
+                                                   in_array($key, !is_array($data['standing_water_select']) 
+                                                   ? array_keys(unserialize($data['standing_water_select'])) : array_keys($data['standing_water_select']))
+                                                   ? true : false, array('id' => 'standing_water_select' . $count)) . 
                                  Form::label('standing_water_select' . $count, $option);
                             $count++;
                         } ?>
@@ -1132,9 +1014,14 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_standing_water[]', $key, false, 
-                                                 array('id' => 'slope_standing_water' . $count)) . "\n" .
+                                         echo Form::checkbox('slope_standing_water[' . $key . ']', $slope_values['slope_standing_water'][$key],
+                                              isset($data['slope_standing_water']) && 
+                                                   in_array($key, !is_array($data['slope_standing_water']) 
+                                                   ? array_keys(unserialize($data['slope_standing_water'])) : array_keys($data['slope_standing_water']))
+                                                   ? true : false,
+                                 array('id' => 'slope_standing_water' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_standing_water' . $count, $slope) . "\n";
 
                                         $count++;
@@ -1158,11 +1045,10 @@
             </div>
             <div class="content">
             
-                <!-- <div class="row">
-                    <input type="checkbox" {{#checked_product_defects}}checked="checked"{{/checked_product_defects}} name="product_defects" id="product_defects" value="1" class="check_if_apply" />
-
-                        <label for="product_defects"><strong>Check if apply</strong></label>
-                </div>    -->
+                <div class="row">
+                <?php echo Form::checkbox('product_defects', "1", isset($data['product_defects']) ? true : null, array('class' => 'check_if_apply', 'id' => 'product_defects')); ?>
+                    <label for="product_defects"><strong>Check if apply</strong></label>
+                </div>
                 
                 <!-- {{#errors.product_defects}}
                     <div class="row">
@@ -1176,7 +1062,9 @@
                     <label for="product_defects_asphalt_coating_defect">Asphalt Coating Defect</label>
 
                     <div class="right has_slope_select" rel="slope_product_defects_asphalt">
-                        <?php echo Form::select('product_defects_asphalt_coating_defect', $product_defects) .
+                        <?php echo Form::select('product_defects_asphalt_coating_defect', $product_defects, isset($data['product_defects_asphalt_coating_defect']) ?
+                                                                                                            $data['product_defects_asphalt_coating_defect'] : 
+                                                                                                            'blank') .
                                    Form::label('product_defects_asphalt_coating_defect', 'Asphalt Coating Defect');
                         ?>
                     </div>
@@ -1189,9 +1077,14 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_product_defects_asphalt[]', $key, false, 
-                                                 array('id' => 'slope_product_defects_asphalt' . $count)) . "\n" .
+                                         echo Form::checkbox('slope_product_defects_asphalt[' . $key . ']', $slope_values['slope_product_defects_asphalt'][$key],
+                                              isset($data['slope_product_defects_asphalt']) && 
+                                                   in_array($key, !is_array($data['slope_product_defects_asphalt']) 
+                                                   ? array_keys(unserialize($data['slope_product_defects_asphalt'])) : array_keys($data['slope_product_defects_asphalt']))
+                                                   ? true : false,
+                                 array('id' => 'slope_product_defects_asphalt' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_product_defects_asphalt' . $count, $slope) . "\n";
 
                                         $count++;
@@ -1208,7 +1101,9 @@
                     <label for="product_defects_blistering">Blistering</label>
 
                     <div class="right has_slope_select" rel="slope_product_defects_blistering">
-                        <?php echo Form::select('product_defects_blistering', $product_defects) .
+                        <?php echo Form::select('product_defects_blistering', $product_defects, isset($data['product_defects_blistering']) ?
+                                                                                                            $data['product_defects_blistering'] : 
+                                                                                                            'blank') .
                                    Form::label('product_defects_blistering', 'Blistering');
                         ?>
                     </div>
@@ -1221,9 +1116,14 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_product_defects_blistering[]', $key, false, 
-                                                 array('id' => 'slope_product_defects_blistering' . $count)) . "\n" .
+                                         echo Form::checkbox('slope_product_defects_blistering[' . $key . ']', $slope_values['slope_product_defects_blistering'][$key],
+                                              isset($data['slope_product_defects_blistering']) && 
+                                                   in_array($key, !is_array($data['slope_product_defects_blistering']) 
+                                                   ? array_keys(unserialize($data['slope_product_defects_blistering'])) : array_keys($data['slope_product_defects_blistering']))
+                                                   ? true : false,
+                                 array('id' => 'slope_product_defects_blistering' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_product_defects_blistering' . $count, $slope) . "\n";
 
                                         $count++;
@@ -1239,7 +1139,9 @@
                     <label for="product_defects_flaking">Flaking</label>
 
                     <div class="right has_slope_select" rel="slope_product_defects_flaking">
-                        <?php echo Form::select('product_defects_flaking', $product_defects) .
+                        <?php echo Form::select('product_defects_flaking', $product_defects, isset($data['product_defects_flaking']) ?
+                                                                                                            $data['product_defects_flaking'] : 
+                                                                                                            'blank') .
                                    Form::label('product_defects_flaking', 'Flaking');
                         ?>
                     </div>
@@ -1252,9 +1154,14 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_product_defects_flaking[]', $key, false, 
-                                                 array('id' => 'slope_product_defects_flaking' . $count)) . "\n" .
+                                         echo Form::checkbox('slope_product_defects_flaking[' . $key . ']', $slope_values['slope_product_defects_flaking'][$key],
+                                              isset($data['slope_product_defects_flaking']) && 
+                                                   in_array($key, !is_array($data['slope_product_defects_flaking']) 
+                                                   ? array_keys(unserialize($data['slope_product_defects_flaking'])) : array_keys($data['slope_product_defects_flaking']))
+                                                   ? true : false,
+                                 array('id' => 'slope_product_defects_flaking' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_product_defects_flaking' . $count, $slope) . "\n";
 
                                         $count++;
@@ -1276,13 +1183,11 @@
                 <span class="show"></span>
             </div>
             <div class="content">
-            
-                <!-- <div class="row">                        
-                    <input type="checkbox" name="workmanship" id="workmanship" value="1" class="check_if_apply" />
-                        
+             
+                <div class="row">
+                <?php echo Form::checkbox('workmanship', "1", isset($data['workmanship']) ? true : null, array('class' => 'check_if_apply', 'id' => 'workmanship')); ?>
                     <label for="workmanship"><strong>Check if apply</strong></label>
-    
-                </div> -->        
+                </div>
                 
                 <!-- {{#errors.workmanship}}
                     <div class="row">
@@ -1299,7 +1204,11 @@
                         <?php
                         $count = 0;
                         foreach($workmanship['improper_nailing'] as $key => $option) {
-                            echo Form::checkbox('workmanship_improper_nailing[]', $key, null, array('id' => 'workmanship_improper_nailing' . $count)) . 
+                            echo Form::checkbox('workmanship_improper_nailing[' . $key . ']', $data_values['workmanship_improper_nailing'][$key], 
+                                 isset($data['workmanship_improper_nailing']) && 
+                                                   in_array($key, !is_array($data['workmanship_improper_nailing']) 
+                                                   ? array_keys(unserialize($data['workmanship_improper_nailing'])) : array_keys($data['workmanship_improper_nailing']))
+                                                   ? true : false, array('id' => 'workmanship_improper_nailing' . $count)) . 
                                  Form::label('workmanship_improper_nailing' . $count, $option);
                             $count++;
                         } ?>
@@ -1313,9 +1222,14 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_workmanship_improper_nailing[]', $key, false, 
-                                                 array('id' => 'slope_workmanship_improper_nailing' . $count)) . "\n" .
+                                         echo Form::checkbox('slope_workmanship_improper_nailing[' . $key . ']', $slope_values['slope_workmanship_improper_nailing'][$key],
+                                              isset($data['slope_workmanship_improper_nailing']) && 
+                                                   in_array($key, !is_array($data['slope_workmanship_improper_nailing']) 
+                                                   ? array_keys(unserialize($data['slope_workmanship_improper_nailing'])) : array_keys($data['slope_workmanship_improper_nailing']))
+                                                   ? true : false,
+                                 array('id' => 'slope_workmanship_improper_nailing' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_workmanship_improper_nailing' . $count, $slope) . "\n";
 
                                         $count++;
@@ -1336,7 +1250,8 @@
                     
                         <input type="hidden" name="workmanship_improper_overlap" value="blank" />
                         
-                        <input type="checkbox" name="workmanship_improper_overlap" id="workmanship_improper_overlap" value='yes' />
+                        <input type="checkbox" name="workmanship_improper_overlap" id="workmanship_improper_overlap" 
+                                value='yes' <?php echo isset($data["workmanship_improper_nailing"]) ? "checked" : null; ?> />
                         
                         <label for="workmanship_improper_overlap">Yes</label>
 
@@ -1350,9 +1265,14 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_workmanship_improper_overlap[]', $key, false, 
-                                                 array('id' => 'slope_workmanship_improper_overlap' . $count)) . "\n" .
+                                         echo Form::checkbox('slope_workmanship_improper_overlap[' . $key . ']', $slope_values['slope_workmanship_improper_overlap'][$key],
+                                              isset($data['slope_workmanship_improper_overlap']) && 
+                                                   in_array($key, !is_array($data['slope_workmanship_improper_overlap']) 
+                                                   ? array_keys(unserialize($data['slope_workmanship_improper_overlap'])) : array_keys($data['slope_workmanship_improper_overlap']))
+                                                   ? true : false,
+                                 array('id' => 'slope_workmanship_improper_overlap' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_workmanship_improper_overlap' . $count, $slope) . "\n";
 
                                         $count++;
@@ -1372,7 +1292,11 @@
                         <?php
                                     $count = 0;
                                     foreach($workmanship['flashing'] as $key => $option) {
-                                        echo Form::checkbox('workmanship_flashing[]', $key, null, array('id' => 'workmanship_flashing' . $count)) . 
+                                        echo Form::checkbox('workmanship_flashing[' . $key . ']', $data_values['workmanship_flashing'][$key], 
+                                             isset($data['workmanship_flashing']) && 
+                                                   in_array($key, !is_array($data['workmanship_flashing']) 
+                                                   ? array_keys(unserialize($data['workmanship_flashing'])) : array_keys($data['workmanship_flashing']))
+                                                   ? true : false, array('id' => 'workmanship_flashing' . $count)) . 
                                         Form::label('workmanship_flashing' . $count, $option);
                                         $count++;
                                 } ?>
@@ -1388,9 +1312,14 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_workmanship_flashing[]', $key, false, 
-                                                 array('id' => 'slope_workmanship_flashing' . $count)) . "\n" .
+                                         echo Form::checkbox('slope_workmanship_flashing[' . $key . ']', $slope_values['slope_workmanship_flashing'][$key],
+                                              isset($data['slope_workmanship_flashing']) && 
+                                                   in_array($key, !is_array($data['slope_workmanship_flashing']) 
+                                                   ? array_keys(unserialize($data['slope_workmanship_flashing'])) : array_keys($data['slope_workmanship_flashing']))
+                                                   ? true : false,
+                                 array('id' => 'slope_workmanship_flashing' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_workmanship_flashing' . $count, $slope) . "\n";
 
                                         $count++;
@@ -1409,7 +1338,11 @@
                         <?php
                                     $count = 0;
                                     foreach($workmanship['flashing_missing'] as $key => $option) {
-                                        echo Form::checkbox('workmanship_flashing_missing[]', $key, null, array('id' => 'workmanship_flashing_missing' . $count)) . 
+                                        echo Form::checkbox('workmanship_flashing_missing[]', $data_values['workmanship_flashing_missing'][$key], 
+                                             isset($data['workmanship_flashing_missing']) && 
+                                                   in_array($key, !is_array($data['workmanship_flashing_missing']) 
+                                                   ? array_keys(unserialize($data['workmanship_flashing_missing'])) : array_keys($data['workmanship_flashing_missing']))
+                                                   ? true : false, array('id' => 'workmanship_flashing_missing' . $count)) . 
                                         Form::label('workmanship_flashing_missing' . $count, $option);
                                         $count++;
                                 } ?>
@@ -1423,9 +1356,14 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_workmanship_flashing_missing[]', $key, false, 
-                                                 array('id' => 'slope_workmanship_flashing_missing' . $count)) . "\n" .
+                                         echo Form::checkbox('slope_workmanship_flashing_missing[' . $key . ']', $slope_values['slope_workmanship_flashing_missing'][$key],
+                                              isset($data['slope_workmanship_flashing_missing']) && 
+                                                   in_array($key, !is_array($data['slope_workmanship_flashing_missing']) 
+                                                   ? array_keys(unserialize($data['slope_workmanship_flashing_missing'])) : array_keys($data['slope_workmanship_flashing_missing']))
+                                                   ? true : false,
+                                 array('id' => 'slope_workmanship_flashing_missing' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_workmanship_flashing_missing' . $count, $slope) . "\n";
 
                                         $count++;
@@ -1445,7 +1383,11 @@
                         <?php
                                     $count = 0;
                                     foreach($workmanship['venting'] as $key => $option) {
-                                        echo Form::checkbox('workmanship_venting[]', $key, null, array('id' => 'workmanship_venting' . $count)) . 
+                                        echo Form::checkbox('workmanship_venting[]', $data_values['workmanship_venting'][$key], 
+                                            isset($data['workmanship_venting']) && 
+                                                   in_array($key, !is_array($data['workmanship_venting']) 
+                                                   ? array_keys(unserialize($data['workmanship_venting'])) : array_keys($data['workmanship_venting']))
+                                                   ? true : false, array('id' => 'workmanship_venting' . $count)) . 
                                         Form::label('workmanship_venting' . $count, $option);
                                         $count++;
                                 } ?>
@@ -1459,13 +1401,19 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_workmanship_venting[]', $key, false, 
-                                                 array('id' => 'slope_workmanship_venting' . $count)) . "\n" .
+                                         echo Form::checkbox('slope_workmanship_venting[' . $key . ']', $slope_values['slope_workmanship_venting'][$key],
+                                              isset($data['slope_workmanship_venting']) && 
+                                                   in_array($key, !is_array($data['slope_workmanship_venting']) 
+                                                   ? array_keys(unserialize($data['slope_workmanship_venting'])) : array_keys($data['slope_workmanship_venting']))
+                                                   ? true : false,
+                                 array('id' => 'slope_workmanship_venting' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_workmanship_venting' . $count, $slope) . "\n";
 
                                         $count++;
                                     } ?>
+
                                 
                                 <div class="cl"></div>
                             </div>
@@ -1482,7 +1430,8 @@
                     
                         <input type="hidden" name="workmanship_incorrect_materials" value="blank" />                    
 
-                        <input type="checkbox" name="workmanship_incorrect_materials" id="workmanship_incorrect_materials" value="yes" />
+                        <input type="checkbox" name="workmanship_incorrect_materials" id="workmanship_incorrect_materials" value="yes"
+                               <?php echo isset($data["workmanship_incorrect_materials"]) ? "checked" : null; ?>  />
                         
                         <label for="workmanship_incorrect_materials">Yes</label>
                         
@@ -1496,9 +1445,14 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_workmanship_incorrect_materials[]', $key, false, 
-                                                 array('id' => 'slope_workmanship_incorrect_materials' . $count)) . "\n" .
+                                         echo Form::checkbox('slope_workmanship_incorrect_materials[' . $key . ']', $slope_values['slope_workmanship_incorrect_materials'][$key],
+                                              isset($data['slope_workmanship_incorrect_materials']) && 
+                                                   in_array($key, !is_array($data['slope_workmanship_incorrect_materials']) 
+                                                   ? array_keys(unserialize($data['slope_workmanship_incorrect_materials'])) : array_keys($data['slope_workmanship_incorrect_materials']))
+                                                   ? true : false,
+                                 array('id' => 'slope_workmanship_incorrect_materials' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_workmanship_incorrect_materials' . $count, $slope) . "\n";
 
                                         $count++;
@@ -1519,7 +1473,8 @@
                     
                         <input type="hidden" name="workmanship_excessive_layers" value="blank" />                    
                         
-                        <input type="checkbox" name="workmanship_excessive_layers" id="workmanship_excessive_layers" value="yes" />
+                        <input type="checkbox" name="workmanship_excessive_layers" id="workmanship_excessive_layers" value="yes"
+                               <?php echo isset($data["workmanship_improper_nailing"]) ? "checked" : null; ?>  />
                         
                         <label for="workmanship_excessive_layers">Yes</label>
                         
@@ -1533,9 +1488,14 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_workmanship_excessive_layers[]', $key, false, 
-                                                 array('id' => 'slope_workmanship_excessive_layers' . $count)) . "\n" .
+                                         echo Form::checkbox('slope_workmanship_excessive_layers[' . $key . ']', $slope_values['slope_workmanship_excessive_layers'][$key],
+                                              isset($data['slope_workmanship_excessive_layers']) && 
+                                                   in_array($key, !is_array($data['slope_workmanship_excessive_layers']) 
+                                                   ? array_keys(unserialize($data['slope_workmanship_excessive_layers'])) : array_keys($data['slope_workmanship_excessive_layers']))
+                                                   ? true : false,
+                                 array('id' => 'slope_workmanship_excessive_layers' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_workmanship_excessive_layers' . $count, $slope) . "\n";
 
                                         $count++;
@@ -1552,7 +1512,8 @@
 
                         <div class="right">
 
-                            <input type="checkbox" name="workmanship_other" value="yes" id="workmanship_other" />
+                            <input type="checkbox" name="workmanship_other" value="<?php echo isset($data['workmanship_other']) ? $data['workmanship_other'] : ''?>" 
+                                   id="workmanship_other" />
                             
                             <label for="workmanship_other">Yes</label>
                             
@@ -1578,12 +1539,10 @@
             </div>
             <div class="content">
             
-                <!-- <div class="row">
-                    <input type="checkbox" name="aged_worn" id="aged_worn" value="1"  class="check_if_apply" />
-                        
-                    <label for="aged_worn"><strong>Check if apply</strong></label>
-                        
-                </div> -->        
+                <div class="row">
+                <?php echo Form::checkbox('aged_worn', "1", isset($data['aged_worn']) ? true : false, array('class' => 'check_if_apply', 'id' => 'aged_worn')); ?>
+                    <label for="aged_worn"><strong>Check if apply</strong></label>     
+                </div>
                 
                 <!-- {{#errors.aged_worn}}
                     <div class="row">
@@ -1600,7 +1559,11 @@
                         <?php
                                     $count = 0;
                                     foreach($aged_worn as $key => $option) {
-                                        echo Form::checkbox('aged_worn_check_that_apply[]', $key, null, array('id' => 'aged_worn_check_that_apply' . $count)) . 
+                                        echo Form::checkbox('aged_worn_check_that_apply[' . $key . ']', $data_values['aged_worn_check_that_apply'][$key], 
+                                             isset($data['aged_worn_check_that_apply']) && 
+                                                   in_array($key, !is_array($data['aged_worn_check_that_apply']) 
+                                                   ? array_keys(unserialize($data['aged_worn_check_that_apply'])) : array_keys($data['aged_worn_check_that_apply']))
+                                                   ? true : false, array('id' => 'aged_worn_check_that_apply' . $count)) . 
                                         Form::label('aged_worn_check_that_apply' . $count, $option);
                                         $count++;
                                 } ?>
@@ -1616,9 +1579,14 @@
                             <div class="content">
                                 <?php
                                     $count = 0;
+                                    $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_aged_worn[]', $key, false, 
-                                                 array('id' => 'slope_aged_worn' . $count)) . "\n" .
+                                         echo Form::checkbox('slope_aged_worn[' . $key . ']', $slope_values['slope_aged_worn'][$key],
+                                              isset($data['slope_aged_worn']) && 
+                                                   in_array($key, !is_array($data['slope_aged_worn']) 
+                                                   ? array_keys(unserialize($data['slope_aged_worn'])) : array_keys($data['slope_aged_worn']))
+                                                   ? true : false,
+                                 array('id' => 'slope_aged_worn' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_aged_worn' . $count, $slope) . "\n";
 
                                         $count++;
@@ -1641,12 +1609,10 @@
             </div>
             <div class="content">
             
-                <!-- <div class="row">
-                    <input type="checkbox" name="fire_damages" id="fire_damages" value="1" class="check_if_apply" />
-                        
-                    <label for="fire_damages"><strong>Check if apply</strong></label>
-                    
-                </div> -->        
+                <div class="row">
+                <?php echo Form::checkbox('fire_damages', "1", isset($data['fire_damages']) ? true : null, array('class' => 'check_if_apply', 'id' => 'fire_damages')); ?>
+                    <label for="fire_damages"><strong>Check if apply</strong></label>     
+                </div>
                 
                 <!-- {{#errors.fire_damages}}
                     <div class="row">
@@ -1657,41 +1623,12 @@
                 {{/errors.fire_damages}}    -->    
 
                 <div class="row">
-                    <label for="fire_damages_check_that_apply">Check All that Apply</label>
+                    <label for="fire_damages_comment">Damages</label>
 
-                    <div class="right has_slope_checkbox chk_fire_damages" rel="slope_fire_damages">
-                        <?php
-                                    $count = 0;
-                                    foreach($fire_damages as $key => $option) {
-                                        echo Form::checkbox('fire_damages_check_that_apply[]', $key, null, array('id' => 'fire_damages_check_that_apply' . $count)) . 
-                                        Form::label('fire_damages_check_that_apply' . $count, $option);
-                                        $count++;
-                                } ?>
-                        
-                        <div class="cl"></div>
+                    <div class="right">
+                        <?php echo Form::input('fire_damages_comment', isset($data['fire_damages_comment']) ? $data['fire_damages_comment'] : null); ?>
                     </div>
-                </div>    
-
-                <div class="row slope" id="slope_fire_damages">
-                    <div class="section">
-                        <div class="box">
-                            <div class="title">Select Slope</div>
-                            <div class="content">
-                                <?php
-                                    $count = 0;
-                                    foreach($slopes as $key => $slope) {
-                                        echo Form::checkbox('slope_fire_damages[]', $key, false, 
-                                                 array('id' => 'slope_fire_damages' . $count)) . "\n" .
-                                        Form::label('slope_fire_damages' . $count, $slope) . "\n";
-
-                                        $count++;
-                                    } ?>
-                                
-                                <div class="cl"></div>
-                            </div>
-                        </div>
-                    </div>                
-                </div>
+                </div> 
             </div>
         </div>
 </div>
