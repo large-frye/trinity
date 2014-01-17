@@ -800,5 +800,94 @@ class Model_Inspections extends Model_Base {
             return false;
         }
     }
+
+
+    public function get_photos_by_id($id){
+             $result = DB::query(Database::SELECT, 'SELECT * 
+                                               FROM inspection_photos
+                                               WHERE workorder_id = :id
+                                               ORDER BY categoryParent_id')
+                      ->parameters(array(':id' => $id))
+                      ->as_object()
+                      ->execute($this->db);
+
+        return $result;
+
+    }
+
+
+    public function update_photo_categories($post){
+
+
+            for ($i = 0; $i < count($post); $i++) {
+            $tmpArry = explode(':', $post[$i]);
+            $photoID = $tmpArry[0];
+            $catParentId = $tmpArry[1];
+            $catId = $tmpArry[2];
+    
+            $result = DB::update('inspection_photos')
+                          ->set(array(
+                            'categoryParent_id' => ':catParentId',
+                            'category_id' => ':catId'))
+                          ->where('id', '=', ':id')
+                          ->parameters(array(':id' => $photoID,
+                                             ':catParentId' => $catParentId,
+                                             ':category_id' => $catId,
+                                             ':catId' => $catId ))
+                          ->execute($this->db);
+        }
+
+        return true;
+
+    }
+    public function save_photos($post,  $files, $id) {
+      
+
+         for ($i = 0; $i < count($files['filesToUpload']['name']); $i++) {
+          
+
+        // File location with name
+        $tmpName = $files['filesToUpload']['tmp_name'][$i];
+        $mimeType =  $files['filesToUpload']['type'][$i];  
+        $fileName = $files['filesToUpload']['name'][$i]; 
+        
+         if(isset($tmpName) && isset($mimeType) && isset($fileName)){
+        // Read the file
+        $fp = fopen($tmpName, 'r');
+        $data = fread($fp, filesize($tmpName));
+       // $data = addslashes($data);
+        fclose($fp);
+
+        
+
+        if($data){
+
+            echo $fileName;
+            echo $id;   
+         $parameters = array(':id' => null,
+                            ':workorder_id' => $id,
+                            ':filename' => $fileName,
+                            ':mime' => $mimeType,
+                            ':categoryParent_id' =>null,
+                            ':category_id' => null,
+                            ':FileOrder' => null,
+                            ':photoBlob' => $data,
+                     );
+       try{
+         DB::insert('inspection_photos')
+                ->values(array_keys($parameters))
+                ->parameters($parameters)
+                ->execute($this->db);
+
+            }
+            catch (Database_Exception $e) {
+             print_r($e-getMessage()); 
+         }
+            }
+        }
+         }
+        return true;
+          
+    }
 }
 

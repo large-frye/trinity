@@ -12,11 +12,17 @@ class Controller_Inspections extends Controller_Account {
         $this->inspections_model = Model::factory('inspections');
         $this->settings_model = Model::factory('settings');
 
-        if($this->request->action() === 'uploadphotos'){
-            $this->masterModel->js = array('http://code.jquery.com/jquery-latest.min.js',
-                                           "http://code.jquery.com/ui/1.10.3/jquery-ui.js",
-                                           "/trinity/assets/js/inspection/dropzone.js",
-                                           "/trinity/assets/js/inspection/gridster.js",  
+        if($this->request->action() === 'uploadphotos' || 
+            $this->request->action() === 'catigorizephotos'|| 
+            $this->request->action() === 'editphotos' ||
+            $this->request->action() === 'viewphotos'){
+           ini_set('upload_max_filesize', '10M');
+            ini_set('post_max_size', '10M');
+            $this->masterModel->js = array('http://code.jquery.com/jquery-1.9.1.js',
+                                           
+                                           "http://code.jquery.com/jquery-migrate-1.1.1.js",
+                                           "/trinity/assets/js/inspection/gridster.js", 
+                                           "http://code.jquery.com/ui/1.10.3/jquery-ui.js", 
                                            "/trinity/assets/js/inspection/imgUploader.js",);
             ksort($this->masterModel->js);
         }
@@ -67,21 +73,44 @@ class Controller_Inspections extends Controller_Account {
   
     public function action_viewphotos() {
         $view = View::factory('inspections/viewphotos');
+        $view->categories = $this->settings_model->get_categories();
+        $view->photos =  $this->inspections_model-> get_photos_by_id($this->_workorder_id);
         $this->template->side_bar = View::factory('inspections/photo-sidebar');
-                   $this->template->content = $view;
+        $this->template->content = $view;
+    }
+
+     public function action_catigorizephotos() {
+              $view = View::factory('inspections/catigorizephotos');
+
+               if ($this->request->method() === 'POST') {
+                $view->photos =  $this->inspections_model-> update_photo_categories($this->_post);
+            }
+         $view->photos =  $this->inspections_model-> get_photos_by_id($this->_workorder_id);
+        $view->categories = $this->settings_model->get_categories();
+        $this->template->side_bar = View::factory('inspections/photo-sidebar');
+        $this->template->content = $view;
     }
 
     public function action_editphotos() {
         $view = View::factory('inspections/editphotos');
+
+               if ($this->request->method() === 'POST') {
+                
+            }
+
+        $view->parentCategories = $this->settings_model->get_parent_categories();
+        $view->photos =  $this->inspections_model-> get_photos_by_id($this->_workorder_id);
         $this->template->side_bar = View::factory('inspections/photo-sidebar');
         $this->template->content = $view;
     }
 
     public function action_uploadphotos() {
         $view = View::factory('inspections/uploadphotos');
-      
-        $view->categories = $this->settings_model->get_categories();
-
+       if ($this->request->method() === 'POST') {
+             if (!empty($_FILES)) {
+                 $this->inspections_model->save_photos($this->_post, $_FILES, $this->_workorder_id);
+                }
+        }
         $this->template->side_bar = View::factory('inspections/photo-sidebar');
         $this->template->content = $view;
     }

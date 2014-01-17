@@ -83,6 +83,12 @@ class Model_Settings extends Model_Base {
              return $result;
     }
 
+public function get_parent_categories(){
+            $result =  DB::query(Database::SELECT, "SELECT * FROM `categories` WHERE parent_id='0'")
+                   ->as_object()
+                   ->execute($this->db);  
+             return $result;
+    }
     public function validate_email_update($post){
         $valid_post = Validation::factory($post);
         foreach($post as $key =>$email) {

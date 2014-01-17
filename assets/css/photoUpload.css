@@ -1,14 +1,38 @@
 
-
-#photoContainer {
-		background-color:grey;
-		width: 700px; 
-		height: 500px;
-		overflow-y: scroll;
-		overflow-x: hidden;
-
+.photoCatContainer{
+		width: 650px; 
 }
 
+.photoImgView{
+	width: 80px; 
+	height: 80px;
+}
+.photoImg{
+	width: 80px; 
+	height: 80px;
+}
+.photoThum{
+	height:100px;
+	width: 120px;
+}
+.orderPhotosParents{
+	color: #000000;
+	display: block;
+	background: url(../gfx/box-title.gif) repeat-x left top;
+	font: 13px/1.0em 'MuseoSans500', Arial;
+	text-transform: uppercase;
+	height: 21px;
+}
+#photoT p{
+	position:relative;
+	bottom:90px;
+	left:0px;
+	visibility:hidden;
+}
+
+.photoTxt {
+	font-size:1.4em;
+}
 
 .catSelections {
 	height: 400px;
@@ -30,3 +54,134 @@ font-family: verdana;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	}
+
+
+
+
+	/*! gridster.js - v0.1.0 - 2012-10-20
+* http://gridster.net/
+* Copyright (c) 2012 ducksboard; Licensed MIT */
+
+.gridster{position:relative}
+
+.gridster>*{margin:0 auto;-webkit-transition:height .4s;-moz-transition:height .4s;-o-transition:height .4s;-ms-transition:height .4s;transition:height .4s}
+
+.gridster .gs_w{z-index:2;position:absolute}
+
+.ready .gs_w:not(.preview-holder){-webkit-transition:opacity .3s,left .3s,top .3s;-moz-transition:opacity .3s,left .3s,top .3s;-o-transition:opacity .3s,left .3s,top .3s;transition:opacity .3s,left .3s,top .3s}
+
+.ready .gs_w:not(.preview-holder){-webkit-transition:opacity .3s,left .3s,top .3s,width .3s,height .3s;-moz-transition:opacity .3s,left .3s,top .3s,width .3s,height .3s;-o-transition:opacity .3s,left .3s,top .3s,width .3s,height .3s;transition:opacity .3s,left .3s,top .3s,width .3s,height .3s}
+
+.gridster .preview-holder{z-index:1;position:absolute;background-color:#fff;border-color:#fff;opacity:.3}
+
+.gridster .player-revert{z-index:10!important;-webkit-transition:left .3s,top .3s!important;-moz-transition:left .3s,top .3s!important;-o-transition:left .3s,top .3s!important;transition:left .3s,top .3s!important}
+
+.gridster .dragging{z-index:10!important;-webkit-transition:all 0s!important;-moz-transition:all 0s!important;-o-transition:all 0s!important;transition:all 0s!important}
+
+
+
+.wrapper {
+    margin: 0 auto;
+    width: 960px;
+}
+
+/* Gridster styles */
+.demo {
+    margin: 3em 0;
+    padding: 7.5em 0 5.5em;
+    background: #004756;
+}
+
+.demo:hover .gridster {
+    opacity: 1;
+}
+
+.gridster {
+    margin: 0 auto;
+
+    opacity: .8;
+
+    -webkit-transition: opacity .6s;
+    -moz-transition: opacity .6s;
+    -o-transition: opacity .6s;
+    -ms-transition: opacity .6s;
+    transition: opacity .6s;
+}
+
+.gridster .gs_w {
+    background: #FFF;
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.gridster .player {
+    -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+}
+
+
+.gridster .gs_w.try {
+    background-image: url(../img/sprite.png);
+    background-repeat: no-repeat;
+    background-position: 37px -169px;
+
+}
+
+.gridster .preview-holder {
+    border: none!important;
+    border-radius: 0!important;
+    background: rgba(255,255,255,.2)!important;
+}
+
+
+
+
+article,
+.m_doc_method {
+    background: #FFF;
+}
+
+article:not(:last-child),
+.m_doc_method:not(:last-child) {
+    margin-bottom: 50px;
+}
+
+
+.m_doc_method > h3 {
+    background-color: #E5E5E5;
+    padding: 1.4em 2em;
+    color: #333333;
+    font-size: 1.8em;
+}
+
+
+.m_doc_method .heading-m {
+    color: #333333;
+}
+
+
+
+
+#intro  {
+    overflow: hidden;
+}
+
+#intro  .i_download {
+    margin-top: 100px;
+}
+
+#intro > div{
+    width: 65%;
+    float: left;
+}
+
+#intro {
+    padding-right: 0;
+}
+
+#intro > div:last-child{
+    width: 32%;
+    float: right;
+}
+
