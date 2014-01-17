@@ -34,7 +34,7 @@ table.position-right{
 }
 
 tr.header {
-    background-color: red;
+    background-color: rgb(117, 41, 43);
     color: white;
 }
 
@@ -47,13 +47,19 @@ thead {
    height:109px;
 }
 
-td.center {
+td.center, p.center {
     text-align: center;
+}
+
+p {
+    font-style: italic;
+    position: relative;
+    top: 20px;
 }
 
 .page-break { page-break-after: always; }
 .clear { clear: both; }
-.header { color: red; }
+.header { color: rgb(117, 41, 43); }
 
 </style>
 <!-- <script type="text/javascript" src="trinity/images/wz_jsgraphics.js"></script> -->
