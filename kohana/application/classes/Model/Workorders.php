@@ -253,11 +253,15 @@ class Model_Workorders extends Model_Base {
      */
     public function get_workorder_details($workorder_id) {
     	return DB::query(Database::SELECT, "SELECT wo.*, wos.name as work_order_status, _is.name as _inspection_status,
-    	                                           u.username 
+    	                                           u.username, CONCAT(wo.first_name, ' ', wo.last_name) as insured,
+                                                   CONCAT(wo.city, ', ', wo.state, ' ', wo.zip) as second_address,
+                                                   CONCAT(p.first_name, ' ', p.last_name) as adjuster
     		                                FROM work_orders wo
     		                                LEFT JOIN work_order_statuses wos ON wos.id = wo.status
     		                                LEFT JOIN inspection_statuses _is ON _is.id = wo.inspection_status
     		                                LEFT JOIN users u ON u.id = inspector_id
+                                            LEFT JOIN users u2 ON u2.id = wo.user_id
+                                            LEFT JOIN profiles p ON p.user_id = u2.id
     		                                WHERE wo.id = :workorder_id")
     	           ->parameters(array(':workorder_id' => $workorder_id))
     	           ->as_object()

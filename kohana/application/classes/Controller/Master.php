@@ -11,6 +11,10 @@ class Controller_Master extends Controller_Template {
 
     public $admin    = false;
 
+    protected $_exception_controllers = null;
+
+    protected $_exception_actions = null;
+
 	// I previously thought that you could insitaite $template outside of
 	// our __construct, I was wrong. Let's go ahead and do that now.
 	public function __construct(Kohana_Request $request, Kohana_Response $response) {
@@ -22,7 +26,11 @@ class Controller_Master extends Controller_Template {
         // Users Model
         $this->users_model = Model::factory('users');
 
+        // Create a property to use instead of Kohana's static function;
         $this->request = Request::current();
+
+        $this->_exception_controllers = array('Account', 'Users', 'Settings', 'Workorders', 'Inspections', 'Invoice');
+        $this->_exception_actions = array('login','signup', 'forgotpassword');
 
         // Set current template
         $this->_set_template();
@@ -78,10 +86,9 @@ class Controller_Master extends Controller_Template {
 
     private function _set_template() {
         $this->template = 'template';
-        $exception_controllers = array('Account', 'Users', 'Settings', 'Workorders', 'Inspections');
-
-        if (in_array($this->request->current()->controller(), $exception_controllers) && 
-            !in_array($this->request->action(), array('login','signup', 'forgotpassword'))){
+        
+        if (in_array($this->request->current()->controller(), $this->_exception_controllers) && 
+            !in_array($this->request->action(), $this->_exception_actions)){
             $this->template = 'admin/template';
         }
     }
