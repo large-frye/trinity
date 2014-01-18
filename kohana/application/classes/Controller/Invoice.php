@@ -31,7 +31,18 @@ class Controller_Invoice extends Controller_Account {
 
 
     public function action_index() {
-        $this->template->content = "Andrew";
+        $view = View::factory('invoice/index');
+
+        if ($this->request->method() === "POST") {
+            if ($this->invoice_model->validate_invoice_meta_form($this->_post, $this->_workorder_id)) {
+                $view->success = "Your extra invoice data were added successfully.";
+            } else {
+                $view->errors = Model_Invoice::$errors;
+            }
+        }
+
+        $view->invoice_meta = $this->invoice_model->invoice_meta($this->_workorder_id);
+        $this->template->content = $view;
     }
 
 
@@ -39,9 +50,24 @@ class Controller_Invoice extends Controller_Account {
     public function action_generate() {
         $view = View::factory('invoice/generate');
         $view->workorder_details = $this->workorders_model->get_workorder_details($this->_workorder_id);
-        $view->price = $this->invoice_model->get_prices($view->workorder_details->type);
+        $view->invoice_meta = $this->invoice_model->invoice_meta($this->_workorder_id);
+        $view->invoice_exists = $this->invoice_model->check_if_invoice_pdf_exists($this->_workorder_id);
         if ($this->request->method() === 'POST') {
-            $this->invoice_model->create_invoice($this->_workorder_id);
+            if (isset($this->_post['generate_pdf'])) {
+                if ($this->invoice_model->create_invoice($this->_workorder_id, $view->workorder_details)) {
+                    // Don't need to do anything.
+                } else {
+                    $view->errors = Model_Invoice::$errors;
+                }
+            } else if (isset($this->_post['view_pdf'])) {
+                 $this->invoice_model->view_invoice($this->_workorder_id);
+            } else {
+                if ($this->invoice_model->send_invoice($this->_workorder_id, $view->workorder_details, $this->mailer_model)) {
+                    $view->success = "Your email was sent successfully.";
+                } else {
+                    $view->errors = Model_Invoice::$errors;
+                }
+            }
         }
         $this->template->content = $view;
     }

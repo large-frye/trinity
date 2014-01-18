@@ -1,5 +1,5 @@
-
-<?php 
+	<div class="section">
+		<?php 
     if (isset($errors)) {
     	echo '<div class="message error">';
 
@@ -9,10 +9,10 @@
 
     	echo '</div>';
     }
+
+    if (isset($success)) { echo '<div class="message error"><p>' . $success . '</p></div>'; }
     echo Form::open('', array('id' => 'workorder-submit-form')); 
 ?>
-<!-- <div class="message error"><span>AndreW</span></div> error -->
-	<div class="section">
 		<div class="box">
 			<div class="title">User</div>
 			
@@ -23,9 +23,15 @@
 
 					<div class="right">
 						<select name="role_id">
-						<?php foreach($user_types as $user_type) { 
-							      echo "<option value=\"" . $user_type->id ."\">" . ucfirst($user_type->name) . "</option>";
-						      } ?>
+						<?php 
+						foreach($user_types as $user_type) { 
+							$selected = "";
+
+							if ($user_type->id == $user->role_id) {
+								$selected = "selected=\"selected\"";
+							}
+							echo "<option value=\"" . $user_type->id ."\" " . $selected . ">" . ucfirst($user_type->name) . "</option>";
+						 } ?>
 						</select>
 					</div>
 				</div>				

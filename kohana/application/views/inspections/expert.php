@@ -1632,3 +1632,27 @@
             </div>
         </div>
 </div>
+
+
+<div class="section">
+    <div class="box">
+        <div class="title">General</div>
+        
+        <div class="content">
+            
+            <div class="row">
+
+                <label for="general_comments">Comments</label>
+
+                <div class="right">
+                    <textarea name="general_comments" value="<?php isset($data['general_comments']) ? $data['general_comments'] : null; ?>"></textarea>
+                </div>
+            </div>
+            
+            <div class="row">
+                <button class="blue" type="submit"><span>Save</span></button>
+            </div>
+            
+        </div>
+    </div>
+</div>

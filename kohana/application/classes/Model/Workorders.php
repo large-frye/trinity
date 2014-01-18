@@ -2,8 +2,12 @@
 
 class Model_Workorders extends Model_Base {
     
+    protected $_users_model = null;
+
     public function __construct() {
     	parent::__construct();
+
+        $this->_users_model = Model::factory('users');
     }
 
 
@@ -49,6 +53,7 @@ class Model_Workorders extends Model_Base {
      * @param array $post
      */
     public function add_workorder($post) {
+        print_r($post);
         $parameters = array(':id'                         => null,
                             ':type'                       => $post['type'],
                             ':user_id'                    => $post['user_id'],
@@ -74,7 +79,7 @@ class Model_Workorders extends Model_Base {
                             ':inspection_type'            => null,
                             ':date_of_inspection'         => null,
                             ':time_of_inspection'         => null,
-                            ':price'                      => $post['price'],
+                            ':price'                      => !isset($post['price']) ? $this->_get_price($post['type']) : $post['price'],
                             ':is_generated_pdf'           => null,
                             ':last_generated'             => null, 
                             ':generate_report_status'     => null,
@@ -96,6 +101,11 @@ class Model_Workorders extends Model_Base {
     }
 
 
+    private function _get_price($type) {
+        return DB::query(Database::SELECT, "SELECT value FROM settings WHERE name LIKE '%price_" . $type . "%'")->as_object()->execute($this->db)->current()->value;
+    }
+
+
 
     private function _generate_lat_long($post) {
         $url = "http://maps.googleapis.com/maps/api/geocode/json?address=" . str_replace(' ', '+', $post['street_address']) . "+" . $post['city'] . "+" . $post['state'] . "+" . $post['zip'] . "&sensor=true";
@@ -103,6 +113,11 @@ class Model_Workorders extends Model_Base {
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $response = json_decode(curl_exec($ch), true);
+
+        if ($response['status'] === 'ZERO_RESULTS') {
+            return array('lat' => 0, 'lng' => 0);
+        }
+
         return $response['results'][0]['geometry']['location'];
     }
 
@@ -128,10 +143,13 @@ class Model_Workorders extends Model_Base {
                             ':estimate_scope_requirement' => $post['estimate_scope_requirement'],
                             ':special_instructions'       => $post['special_instructions'],
                             ':price'                      => $post['price']);
+
         $values = array();
         foreach($parameters as $parameter => $value) {
             $values[str_replace(':', '', $parameter)] = $parameter; 
         }
+
+        unset($values['id']);
 
         try {
             DB::update('work_orders')->set($values)->where('id', '=', ':id')
@@ -255,7 +273,8 @@ class Model_Workorders extends Model_Base {
     	return DB::query(Database::SELECT, "SELECT wo.*, wos.name as work_order_status, _is.name as _inspection_status,
     	                                           u.username, CONCAT(wo.first_name, ' ', wo.last_name) as insured,
                                                    CONCAT(wo.city, ', ', wo.state, ' ', wo.zip) as second_address,
-                                                   CONCAT(p.first_name, ' ', p.last_name) as adjuster
+                                                   CONCAT(p.first_name, ' ', p.last_name) as adjuster, 
+                                                   u2.email as adjuster_email
     		                                FROM work_orders wo
     		                                LEFT JOIN work_order_statuses wos ON wos.id = wo.status
     		                                LEFT JOIN inspection_statuses _is ON _is.id = wo.inspection_status
@@ -349,7 +368,8 @@ class Model_Workorders extends Model_Base {
     	$inspectors = array('' => '--Select Inspector');
     	$results = DB::query(Database::SELECT, "SELECT u.username, u.id
     		                                    FROM users u 
-    		                                    WHERE u.id IN (SELECT inspector_id FROM work_orders)")
+                                                LEFT JOIN roles_users ru ON ru.user_id = u.id
+    		                                    WHERE ru.role_id = " . Model_Account::INSPECTOR)
     	               ->as_object()
     	               ->execute($this->db);
 
@@ -359,4 +379,87 @@ class Model_Workorders extends Model_Base {
 
     	return $inspectors;
     }
+
+
+
+    public function send_submission_emails($user_id, $user_type, $mailer) {
+        $user = $this->_users_model->get_user($user_id);
+
+        switch ($user_type) {
+            case Model_Account::CLIENT : 
+                $this->_send_submit_client_email($user, $mailer);
+                $this->_send_submit_admins_email($user, $mailer);
+                break;
+            case Model_Account::ADMIN : 
+                $this->_send_submitted_by_admin_email($user, $mailer);
+                break;
+        }
+    }
+
+
+
+    public function send_notice_to_inspector($post, $mailer) {
+        $user = $this->_users_model->get_user($post['inspector_id']);
+        try {
+            $mailer->send_mail($user->email, 'a.frye4@gmail.com', 'You have been assigned to an inspection',
+                               19, array('::name::' => $user->first_name), null, null, null);
+        } catch (Exception $e) {
+            throw new Exception ("Error sending email. Please contact website administrator.");
+        }
+    }
+
+
+
+    private function _send_submit_client_email($user, $mailer) {
+        try {
+            $mailer->send_mail($user->email, 'a.frye4@gmail.com', 'Recent Work Order Submission.',
+                               2, array('::name::' => $user->first_name), null, null, null);
+        } catch (Exception $e) {
+            throw new Exception ("Error sending email. Please contact website administrator.");
+        }
+    }
+
+
+
+    private function _send_submit_admins_email($user, $mailer) {
+        $admins = $this->_get_admins();
+
+        foreach ($admins as $admin) {
+            try {
+                $mailer->send_mail($admin->email, 'a.frye4@gmail.com', 'Recent Work Order Submission.',
+                                   3, array('::username::' => $admin->username,
+                                            '::first_name::' => $user->first_name,
+                                            '::last_name::'  => $user->last_name), null, null, null);
+            } catch (Exception $e) {
+                throw new Exception ("Error sending email. Please contact website administrator.");
+            }
+        }
+    }
+
+
+
+    private function _send_submitted_by_admin_email($user, $mailer) {
+        try {
+            $mailer->send_mail($user->email, 'a.frye4@gmail.com', 'Recent Work Order Submission.',
+                               4, array('::username::' => $user->first_name), null, null, null);
+        } catch (Exception $e) {
+            throw new Exception ("Error sending email. Please contact website administrator.");
+        }
+    }
+
+
+
+    private function _get_admins() {
+        return DB::query(Database::SELECT, "SELECT username, email 
+                                            FROM users u 
+                                            LEFT JOIN roles_users ru ON u.id = ru.role_id 
+                                            WHERE ru.role_id = :role_id 
+                                            ORDER BY id 
+                                            LIMIT 1")
+                                   ->parameters(array(':role_id' => Model_Account::ADMIN))
+                                   ->as_object()
+                                   ->execute($this->db);
+    }
 }
+
+

@@ -20,7 +20,7 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 							<?php echo Form::select('user_id', $clients); ?>
 						</div>
 				</div>
-				<?php } ?>
+				<?php } else { echo Form::hidden('user_id', $user_id); } ?>
 				<div class="row">	
 					<label for="type">Inspection Type</label>
 						<div class="right">

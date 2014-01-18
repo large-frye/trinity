@@ -18,7 +18,7 @@
 						<a href="/settings/prices">Work Order Prices</a>
 					</li>
 					<li>
-						<a href="/categories">Categories</a>
+						<a href="/settings/categories">Categories</a>
 					</li>
 				</ul> 
 		</li> 

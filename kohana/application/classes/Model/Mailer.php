@@ -19,7 +19,7 @@ class Model_Mailer extends Model_Base {
 
 
 
-    public function send_mail($to, $from, $subject, $body, $cc = array(), $bcc = array()) {
+    public function send_mail($to, $from, $subject, $template, $variables, $cc = array(), $bcc = array(), $attachments = array()) {
         $mail = new PHPMailer();
 
         $mail->IsSMTP();
@@ -30,16 +30,49 @@ class Model_Mailer extends Model_Base {
         $mail->Port = $this->_port;
         $mail->Username = $this->_username;
         $mail->Password = $this->_password;
-        $mail->IsHTML = true;
+        $mail->IsHTML(true);
         $mail->SetFrom('admin@trinity.is', "Trinity Roof Inspections");
         $mail->Subject = $subject;
         $mail->addAddress($to);
-        $mail->Body = $body;
+
+        $body = $this->_get_body($template, $variables);
+        $mail->Body = "<html>" . $body . "</html>";
+
+        if (!empty($attachments)) {
+            foreach ($attachments as $attachment) {
+                $mail->AddAttachment($attachment);
+            }
+        }
 
         if (!$mail->send()) {
         	echo "Mailer Error: " . $mail->ErrorInfo;
         } else {
-            echo "Message Sent";
+            // echo "Message Sent";
         }
+    }
+
+
+
+    private function _get_body($template, $variables) {
+        $template_data = $this->_get_template($template);
+        $body = $template_data->value;
+
+        $_variables = explode('|', $template_data->variables);
+
+        foreach ($_variables as $var) {
+            $body = str_replace($var, $variables[$var], $body);
+        }
+
+        return $body;
+    }
+
+
+
+    private function _get_template($id) {
+        return DB::query(Database::SELECT, "SELECT value, variables FROM settings WHERE id = :id")
+                   ->parameters(array(':id' => $id))
+                   ->as_object()
+                   ->execute($this->db)
+                   ->current();
     }
 }

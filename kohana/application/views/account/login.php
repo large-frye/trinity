@@ -1,14 +1,16 @@
-<?php if(isset($login_failed) && $login_failed) { ?>
-   <div class="plain">
-   	    <div class="section">
+
+<div class="section">
+	<?php if(isset($login_failed) && $login_failed) { ?>
    	        <div class="message error">
                 <p>Login failed. Please try again.</p>
             </div>
-        </div>
-    </div>
-<?php } ?>
+<?php } else if (isset($user_doesnt_exist) && $user_doesnt_exist) { ?>
+  
+   	        <div class="message error">
+                <p>This user has been deleted. Please contact adminstrator to activate account.</p>
+            </div>
 
-<div class="section">
+<?php } ?>
 	<div class="box">
 		<div class="title">Sign In</div>
 		

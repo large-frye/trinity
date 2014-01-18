@@ -66,12 +66,13 @@ class Model_Account extends Model_Base {
 
 
 
-    public function get_user_list($type) {
+    public function get_user_list($status) {
         $result = DB::query(Database::SELECT, 'SELECT u.* 
                                                FROM users u 
                                                LEFT JOIN profiles p ON u.id = p.user_id
+                                               WHERE u.status = :status
                                                GROUP BY u.id')
-                      ->parameters(array(':type' => $type))
+                      ->parameters(array(':status' => $status))
                       ->as_object()
                       ->execute($this->db);
 

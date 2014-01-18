@@ -44,10 +44,10 @@
 						<div class="content">
 							<ul>
 								<li class="current" >
-									<a href="http://admin.trinity.is/users/index">Users</a>
+									<a href="/users/index">Users</a>
 									<ul>
 											<li >
-												<a href="http://admin.trinity.is/users/create">Add new User</a>
+												<a href="/users/new">Add new User</a>
 											</li>
 									</ul>
 								</li>

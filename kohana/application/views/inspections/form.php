@@ -1,6 +1,5 @@
 <form enctype="multipart/form-data" action="" method="post" accept-charset="utf-8" id="inspection-form">
 <?php echo Form::hidden('csrf', Security::token()); ?>
-<?php print_r($errors); ?>
 	
 <div class="section">
     <?php if (isset($success)) { 
@@ -125,29 +124,6 @@
 	</div>
 
 	<?php echo $form; ?>
-
-<div class="section">
-	<div class="box">
-		<div class="title">General</div>
-		
-		<div class="content">
-			
-			<div class="row">
-
-				<label for="general_comments">Comments</label>
-
-				<div class="right">
-					<textarea name="general_comments"></textarea>
-				</div>
-			</div>
-			
-			<div class="row">
-				<button class="blue" type="submit"><span>Save</span></button>
-			</div>
-			
-		</div>
-	</div>
-</div>
 
 
 </form>

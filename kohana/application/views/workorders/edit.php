@@ -46,7 +46,7 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 					<div class="row">
 						<label for="price">Price</label>
 						<div class="right">
-							<?php echo Form::input('price', $price->value, array('class' => 'spin-dec')); ?>
+							<?php echo Form::input('price', $details->price, array('class' => 'spin-dec')); ?>
 							
 						</div>
 					</div>

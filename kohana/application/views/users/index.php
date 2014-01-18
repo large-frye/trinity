@@ -1,4 +1,12 @@
 <div class="section">
+	    <?php
+if (isset($errors)) {
+    echo '<div class="message error"><p>' . $errors . '</p></div>';
+}
+
+if (isset($success)) {
+    echo '<div class="message info"><p>' . $success . '</p></div>';
+} ?>
 	<div class="box">
 		<div class="title">
 			Users
@@ -23,9 +31,11 @@
 						<td><?php echo $user->email ?></td>
 						<td><?php echo $user->created_on_utc ?></td>
 						<td>
-								<a href="/users/edit/<?php echo $user->id; ?>">Edit</a>&nbsp;|&nbsp;
-								<a onclick="return confirm('Are you sure you want to soft delete {{username}}?');" href="{{softdelete_url}}/{{id}}">Soft Delete</a>&nbsp;|&nbsp;
-								<a onclick="return confirm('Are you sure you want to delete {{username}}?');" href="{{delete_url}}/{{id}}">Delete</a>
+						    <?php
+						        echo HTML::anchor('/users/edit/' . $user->id, 'Edit') . "&nbsp|&nbsp" .
+						             HTML::anchor('/users/delete/' . $user->id, 'Delete', 
+						                   array('onclick' => "return confirm('Are you sure you want to delete " . $user->username . "?');"));
+						    ?>
 						</td>
 					</tr>
 					<?php } ?>
@@ -38,7 +48,7 @@
 <div class="section">
 	<div class="box">
 		<div class="title">
-			Soft Deleted Users
+			Deleted Users
 			<span class="hide"></span>
 		</div>
 		<div class="content">
@@ -60,9 +70,11 @@
 						<td><?php echo $user->email ?></td>
 						<td><?php echo $user->created_on_utc ?></td>
 						<td>
-								<a href="{{edit_url}}/{{id}}">Edit</a>&nbsp;|&nbsp;
-								<a onclick="return confirm('Are you sure you want to re-activate {{username}}?');" href="{{softdelete_url}}/{{id}}">Activate</a>&nbsp;|&nbsp;
-								<a onclick="return confirm('Are you sure you want to delete {{username}}?');" href="{{delete_url}}/{{id}}">Delete</a>								
+								<?php
+						        echo HTML::anchor('/users/edit/' . $user->id, 'Edit') . "&nbsp|&nbsp" .
+						             HTML::anchor('/users/activate/' . $user->id, 'Activate', 
+						                   array('onclick' => "return confirm('Are you sure you want to activate " . $user->username . "?');"));
+						    ?>								
 						</td>
 					</tr>
 					<?php } ?>

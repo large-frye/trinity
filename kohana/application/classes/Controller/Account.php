@@ -126,7 +126,10 @@ class Controller_Account extends Controller_Master {
 
             // Sanitize user_name and password with Validation class
             if($this->account_model->validate_login_post($this->_post)['status']) {
-                if(!$this->_auth->login($this->_post['username'], $this->_post['password'])) {
+                // Need to check if user has a status of 2. 
+                if ($this->_users_model->check_if_user_is_deleted($this->_post['username'])) {
+                    $view->user_doesnt_exist = true;
+                } else if(!$this->_auth->login($this->_post['username'], $this->_post['password'])) {
                     $view->login_failed = true;
                 } else {
                     if (isset($redirect)) {
@@ -217,6 +220,29 @@ class Controller_Account extends Controller_Master {
 
 
 
+    public function action_profile() {
+        $view = View::factory('account/profile');
+        $view->user_types = $this->account_model->get_roles();
+        $view->user_type = $this->user_type;
+        $this->template->homepage = true;
+
+        if ($this->request->method() === 'POST') {
+            $validation_result = $this->_users_model->validate_create_user_form($this->_post);
+            if (!$validation_result['error']) {
+                if($this->_users_model->edit_profile($this->_post, $this->_user->id)) {
+                    $view->success = "Your account information has been updated successfully.";
+                }
+            } else {
+                $view->errors = $validation_result['errors'];
+            }
+        }
+
+        $view->user = $this->_users_model->get_user(Auth::instance()->get_user()->id, $this->_post);
+        $this->template->content = $view;
+    }
+
+
+
     /**
      * After method, inherit from parent. 
      *
@@ -261,6 +287,9 @@ class Controller_Account extends Controller_Master {
                                                   '/inspections/form/' . $_order->id        => 'Inspection Form',
                                                   '/inspections/estimates/' . $_order->id   => 'Estimates',
                                                   '/inspections/viewphotos/' . $_order->id  => 'Photos');
+                    break;
+                case Model_Account::CLIENT :
+                    $options[$_order->id] = array('/workorders/view/' . $_order->id => 'View');
                     break;
             }
         }

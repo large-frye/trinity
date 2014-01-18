@@ -11,6 +11,7 @@ class Controller_Workorders extends Controller_Account {
     public function __construct(Kohana_Request $request, Kohana_Response $response) {
     	parent::__construct($request, $response);
         $this->workorders_model = Model::factory('workorders');
+        $this->_user_model = Model::factory('users');
     }
 
 
@@ -48,6 +49,7 @@ class Controller_Workorders extends Controller_Account {
         $view->inspection_types = array('Basic Inspections', 'Expert Inspections', 'Engineer Reports');
         $view->price = $this->workorders_model->get_price();
         $view->client = $this->_client;
+        $view->user_id = $this->_client ? $this->_user->id : null;
         $type_selected = $this->request->param('id');
         $view->type_selected = isset($type_selected) ? $type_selected : null;
 
@@ -59,6 +61,10 @@ class Controller_Workorders extends Controller_Account {
                 $new_work_order_result = $this->workorders_model->add_workorder($this->_post);
                 
                 if ($new_work_order_result['status']) {
+                    // Send email to user who submitted. If an admin created the work order send to adjuster/client selected.
+                    $this->workorders_model->send_submission_emails($this->_user->id, $this->user_type, $this->mailer_model);
+
+                    // Send a notice to user and redirect.
                     Session::instance()->set('add_new_work_order', "Your work order has been added successfully.");
                     $this->request->redirect('/account');
                 } else {
@@ -93,6 +99,7 @@ class Controller_Workorders extends Controller_Account {
             if (isset($this->_post['set_status'])) {
                 if($this->workorders_model->set_workorder_status($this->_post, $this->request->param('id'))) {
                     $view->success = "Work order has been updated.";
+                    $this->workorders_model->send_notice_to_inspector($this->_post, $this->mailer_model);
                 } else {
                     $view->error = "There was an error updating this order's status. Please try again.";
                 }

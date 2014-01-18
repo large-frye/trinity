@@ -428,7 +428,7 @@
                     <label for="wind_comments">Comments</label>
 
                     <div class="right has_slope_select" rel="slope_wind_roof_peeled_back">
-                        <?php echo Form::input('wind_comments'); ?>
+                        <?php echo Form::input('wind_comments', isset($data['wind_comments']) ? $data['wind_comments'] : null); ?>
                     </div>
                 </div>        
 
@@ -459,3 +459,103 @@
             </div>
         </div>
 </div>
+
+
+
+<div class="section">
+    <div class="box">
+            <div class="title slope-title-helper">
+                Hail
+                <span class="show"></span>
+            </div>
+            <div class="content">
+                
+                <div class="row">
+                    <?php echo Form::checkbox('hail', "1", isset($data['hail']) ? true : null, array('class' => 'check_if_apply', 'id' => 'hail')); ?>
+                    <label for="hail"><strong>Check if apply</strong></label>
+
+                </div>
+
+                <div class="row slope" id="slope_hail_amount_damaged" style="display: block !important">
+                    <div class="section">
+                        <div class="box">
+                            <div class="title">Select Slope (Amount Damaged)</div>
+                            <div class="content" style="display: block !important">
+                                <?php
+                                    $count = 0;
+                                    foreach($slopes as $key => $slope) {
+                                        echo Form::checkbox('slope_hail_amount_damaged[' . $key . ']', $slope_values['slope_hail_amount_damaged'][$key], 
+                                                   isset($data['slope_hail_amount_damaged']) && 
+                                                   in_array($key, !is_array($data['slope_hail_amount_damaged']) 
+                                                   ? array_keys(unserialize($data['slope_hail_amount_damaged'])) : array_keys($data['slope_hail_amount_damaged']))
+                                                   ? true : false, 
+                                                   array('id' => 'slope_hail_amount_damaged' . $count, 'class' => $key)) . "\n" .
+                                        Form::label('slope_hail_amount_damaged' . $count, $slope) . "\n";
+
+                                        $count++;
+                                    } ?>
+
+                                
+                                <div class="cl"></div>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+
+                <div class="row">
+                    <label for="fraud_hail_input">Fraud Hail Input: </label>
+                    <div class="right chk_type_of_roofing fraud_wind_input">
+                        <?php
+                            $count = 0;
+                            foreach($fraud_hail_input as $key => $value) {
+                                echo Form::checkbox('fraud_hail_input[' . $key . ']', $data_values['fraud_hail_input'][$key], 
+                                    isset($data['fraud_hail_input']) &&
+                                    in_array($key, !is_array($data['fraud_hail_input']) 
+                                                   ? array_keys(unserialize($data['fraud_hail_input'])) : array_keys($data['fraud_hail_input']))
+                                                   ? true : false, array('id' => 'fraud_hail_input' . $count)) . "\n" .
+                                     Form::label('fraud_hail_input' . $count, $value) . "\n";
+
+                                    $count++;
+                            } 
+                        ?>
+                        <div class="cl"></div>
+                    </div>
+                </div>    
+
+                <div class="row">
+                    <label for="hail_comments">Comments</label>
+
+                    <div class="right">
+                        <?php echo Form::input('hail_comments', isset($data['hail_comments']) ? $data['hail_comments'] : null); ?>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+</div>
+
+
+<div class="section">
+    <div class="box">
+        <div class="title">General</div>
+        
+        <div class="content">
+            
+            <div class="row">
+
+                <label for="general_comments">Comments</label>
+
+                <div class="right">
+                    <textarea name="general_comments"><?php echo isset($data['general_comments']) ? $data['general_comments'] : null; ?></textarea>
+                </div>
+            </div>
+            
+            <div class="row">
+                <button class="blue" type="submit"><span>Save</span></button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+

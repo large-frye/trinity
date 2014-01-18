@@ -25,11 +25,13 @@ table{
 
 table.top {
     width: 49.5%;
+    position: relative;
+    top: 30px;
 }
 
 table.position-right{
     position: relative;
-    top: -100px;
+    top: -70px;
     left: 360px;
 }
 
@@ -93,8 +95,13 @@ p {
 <table border="1">
     <tr class="header"><th style="width:500px">QUANTITY</th><th>PRICE</th></tr>
     <tr><td class="border">&nbsp;</td><td class="border">&nbsp;</td></tr>
-    <tr><td class="border">Base price of the workorder</td><td class="border">400</td></tr>
-    <tr class="header"><th style="width:500px">Federal EIN: 45-1810535</th><td>400</td></tr>
+    <tr><td class="border">Base price of the workorder</td><td class="border">$<?php echo $inspection_data['price']; ?></td></tr>
+    <?php if ($invoice_meta->count() > 0) {
+        foreach($invoice_meta as $meta) { ?>
+            <tr><td class="border"><?php echo $meta->description; ?></td><td class="border">$<?php echo $meta->amount; ?></td></tr>
+    <?php }
+    } ?>
+    <tr class="header"><th style="width:500px">Federal EIN: 45-1810535</th><td>$<?php echo $total; ?></td></tr>
 </table>
 <p class="center">Make all checks payable to Trinity Inspections LLC<br />
     THANK YOU FOR YOUR BUSINESS!</p>
