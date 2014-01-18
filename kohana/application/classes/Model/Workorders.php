@@ -4,10 +4,13 @@ class Model_Workorders extends Model_Base {
     
     protected $_users_model = null;
 
+    protected $_inspection_model = null;
+
     public function __construct() {
     	parent::__construct();
 
         $this->_users_model = Model::factory('users');
+        $this->_inspection_model = Model::factory('inspections');
     }
 
 
@@ -406,6 +409,122 @@ class Model_Workorders extends Model_Base {
         } catch (Exception $e) {
             throw new Exception ("Error sending email. Please contact website administrator.");
         }
+    }
+
+
+
+    public function get_policy_holder($workorder_id) {
+        return DB::query(Database::SELECT, "SELECT policy_number, 
+                                                   CONCAT(first_name, ' ', last_name) as insured,
+                                                   street_address, 
+                                                   CONCAT(city, ', ', state, ', ', zip) as full_address,
+                                                   phone
+                                            FROM work_orders
+                                            WHERE id = :id")
+                   ->parameters(array(':id' => $workorder_id))
+                   ->as_object()
+                   ->execute($this->db)
+                   ->current();
+    }
+
+
+
+    public function get_adjuster_for_workorder($workorder_id) {
+        return DB::query(Database::SELECT, "SELECT CONCAT(p.first_name, ' ', p.last_name) as adjuster,
+                                                   p.phone, p.insurance_company
+                                            FROM work_orders wo
+                                            LEFT JOIN users u ON u.id = wo.user_id
+                                            LEFT JOIN profiles p ON p.user_id = u.id
+                                            WHERE wo.id = :id")
+                   ->parameters(array(':id' => $workorder_id))
+                   ->as_object()
+                   ->execute($this->db)
+                   ->current();
+    }
+
+
+
+    public function get_inspection_report($workorder_id) {
+        $report_serialized = DB::query(Database::SELECT, "SELECT `key`, `value` FROM inspection_meta WHERE workorder_id = :id")
+                                                 ->parameters(array(':id' => $workorder_id))
+                                                 ->as_object()
+                                                 ->execute($this->db);
+
+        $report = array();
+        $pre_built_data = $this->_inspection_model->build_values_for_report();
+        $bool_fields = array('was_insured_present', 'was_roofer_present', 'was_roof_climbed', 'agreed_wind', 'agreed_hail', 'refused_test_squares');
+
+        foreach ($report_serialized as $row) {
+            if ($row->key != "csrf") {
+                if (preg_match('/a:/', $row->value)) {
+                    $array = unserialize($row->value);
+                    $report[$row->key] = "";
+
+                    foreach ($array as $key => $value) {
+                        if (isset($pre_built_data[$row->key])) {
+                            $report[$row->key] .= $pre_built_data[$row->key][$value] . "<br>";
+                        } else {
+                            $report[$row->key] .= $value . "<br>";
+                        }
+                    }
+                } else {
+                    if (in_array($row->key, $bool_fields)) {
+                        $report[$row->key] = $row->value == 1 ? "Yes" : "No";
+                    } else if (isset($pre_built_data[$row->key])) {
+                        if ($pre_built_data[$row->key][$row->value] !== "Please Select One") {
+                            $report[$row->key] = $pre_built_data[$row->key][$row->value] . "<br>";
+                        }
+                    } else {
+                        $report[$row->key] = $row->value;
+                    }
+                }
+            }
+        }
+
+        switch ($report['type']) {
+            case 0: 
+                $report['type'] = "Basic Inspection";
+                break;
+            case 1: 
+                $report['type'] = "Expert Inspection";
+                break;
+        }
+
+        // We need to do another seperation for summary of findings vs. roofing information
+        $roofing_info = true;
+        foreach ($report as $key => $value) {
+            if ($roofing_info) {
+                $report['roofing_info'][$key] = $value;
+            } else {
+                $report['damages'][$key] = $value;
+            }
+
+            if ($key === "collateral_damage_detail_description") {
+                $roofing_info = false;
+            }
+        }
+
+        $header_original = "";
+        $header = "";
+
+        // Need to handle the damages and any headers
+        foreach ($report['damages'] as $key => $value) {
+            if (preg_match('/header/', $key)) {
+                $header = str_replace('_header', '', $key);
+                $header_original = $key;
+            }
+                
+            if ($header !== "") {
+                if(preg_match('/' . $header . '/', $key)) {
+                    if ($key != $header_original) {
+                        $report['damages'][$header_original][$key] = $value;
+                    }
+                    unset($report['damages'][$key]);
+                };
+            }
+        }
+
+        return $report;
     }
 
 

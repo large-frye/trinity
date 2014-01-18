@@ -306,7 +306,8 @@
                 <label for="collateral_damages_to_property">Collateral Damages to property: </label>
 
                 <div class="right">
-                    <?php echo Form::select('collateral_damages_to_property', $collateral_damamges); ?>
+                    <?php echo Form::select('collateral_damages_to_property', $collateral_damamges, isset($data['collateral_damages_to_property']) ?
+                                                                                                    $data['collateral_damages_to_property'] : null); ?>
                 </div>
             </div>    
 
@@ -315,7 +316,9 @@
 
                 <div class="right">
                                             
-                    <textarea name="collateral_damage_detail_description" class="grow" style="height:100px;"></textarea>
+                    <textarea name="collateral_damage_detail_description" class="grow" style="height:100px;">
+                        <?php echo isset($data['collateral_damage_detail_description']) ? $data['collateral_damage_detail_description'] : null; ?>
+                    </textarea>
                 </div>
             </div>
         </div>
@@ -363,8 +366,8 @@
             <div class="content">
                 <div class="row">
                     
-                    <?php echo Form::checkbox('wind', "1", isset($data['wind']) ? true : null, array('class' => 'check_if_apply', 'id' => 'wind')); ?>
-                    <label for="wind"><strong>Check if apply</strong></label>
+                    <?php echo Form::checkbox('wind_header', "1", isset($data['wind_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'wind_header')); ?>
+                    <label for="wind_header"><strong>Check if apply</strong></label>
                 </div>
 
                 <div class="row slope" id="slope_shingles" style="display: block !important;">
@@ -428,7 +431,7 @@
                     <label for="wind_comments">Comments</label>
 
                     <div class="right has_slope_select" rel="slope_wind_roof_peeled_back">
-                        <?php echo Form::input('wind_comments'); ?>
+                        <?php echo Form::input('wind_comments', isset($data['wind_comments']) ? $data['wind_comments'] : null); ?>
                     </div>
                 </div>        
 
@@ -470,8 +473,8 @@
             <div class="content">
                 
                 <div class="row">
-                    <?php echo Form::checkbox('hail', "1", isset($data['hail']) ? true : null, array('class' => 'check_if_apply', 'id' => 'hail')); ?>
-                    <label for="hail"><strong>Check if apply</strong></label>
+                    <?php echo Form::checkbox('hail_header', "1", isset($data['hail_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'hail_header')); ?>
+                    <label for="hail_header"><strong>Check if apply</strong></label>
 
                 </div>
 
@@ -525,7 +528,7 @@
                     <label for="hail_comments">Comments</label>
 
                     <div class="right">
-                        <?php echo Form::input('hail_comments'); ?>
+                        <?php echo Form::input('hail_comments', isset($data['hail_comments']) ? $data['hail_comments'] : null); ?>
                     </div>
                 </div>
                 
@@ -543,8 +546,8 @@
             <div class="content">
 
                 <div class="row">
-                    <?php echo Form::checkbox('metal', "1", isset($data['metal']) ? true : null, array('class' => 'check_if_apply', 'id' => 'metal')); ?>
-                    <label for="metal"><strong>Check if apply</strong></label>
+                    <?php echo Form::checkbox('metal_header', "1", isset($data['metal_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'metal_header')); ?>
+                    <label for="metal_header"><strong>Check if apply</strong></label>
                 </div> 
 
                 <div class="row slope">
@@ -597,8 +600,8 @@
             </div>
             <div class="content">
                 <div class="row">
-                    <?php echo Form::checkbox('lightning', "1", isset($data['lightning']) ? true : null, array('class' => 'check_if_apply', 'id' => 'lightning')); ?>
-                    <label for="lightning"><strong>Check if apply</strong></label>
+                    <?php echo Form::checkbox('lightning_header', "1", isset($data['lightning_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'lightning_header')); ?>
+                    <label for="lightning_header"><strong>Check if apply</strong></label>
                 </div> 
                 <div class="row">
                     <label for="lightning_amount_damaged">Was there damage to the roofing?</label>
@@ -665,8 +668,8 @@
             <div class="content">
             
                 <div class="row">
-                    <?php echo Form::checkbox('vermin', "1", isset($data['vermin']) ? true : null, array('class' => 'check_if_apply', 'id' => 'vermin')); ?>
-                    <label for="vermin"><strong>Check if apply</strong></label>
+                    <?php echo Form::checkbox('vermin_header', "1", isset($data['vermin_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'vermin_header')); ?>
+                    <label for="vermin_header"><strong>Check if apply</strong></label>
                 </div> 
 
                 <div class="row">
@@ -791,8 +794,8 @@
             </div>
             <div class="content">
                 <div class="row">
-                    <?php echo Form::checkbox('ice', "1", isset($data['ice']) ? true : null, array('class' => 'check_if_apply', 'id' => 'ice')); ?>
-                    <label for="ice"><strong>Check if apply</strong></label>
+                    <?php echo Form::checkbox('ice_header', "1", isset($data['ice_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'ice_header')); ?>
+                    <label for="ice_header"><strong>Check if apply</strong></label>
                 </div> 
                 
                 <div class="row">
@@ -884,8 +887,8 @@
             <div class="content">
 
                 <div class="row">
-                    <?php echo Form::checkbox('fallen-tree', "1", isset($data['fallen-tree']) ? true : null, array('class' => 'check_if_apply', 'id' => 'fallen-tree')); ?>
-                    <label for="fallen-tree"><strong>Check if apply</strong></label>
+                    <?php echo Form::checkbox('fallen_tree_header', "1", isset($data['fallen_tree_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'fallen_tree_header')); ?>
+                    <label for="fallen_tree_header"><strong>Check if apply</strong></label>
                 </div> 
 
                 <div class="row">
@@ -923,8 +926,8 @@
             <div class="content">
             
                 <div class="row">
-                    <?php echo Form::checkbox('excess_debris', "1", isset($data['excess_debris']) ? true : null, array('class' => 'check_if_apply', 'id' => 'excess_debris')); ?>
-                    <label for="excess_debris"><strong>Check if apply</strong></label>
+                    <?php echo Form::checkbox('excess_debris_header', "1", isset($data['excess_debris_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'excess_debris_header')); ?>
+                    <label for="excess_debris_header"><strong>Check if apply</strong></label>
                 </div>
 
                 <div class="row">
@@ -983,8 +986,8 @@
             <div class="content">
             
                 <div class="row">
-                <?php echo Form::checkbox('standing_water', "1", isset($data['standing_water']) ? true : null, array('class' => 'check_if_apply', 'id' => 'standing_water')); ?>
-                    <label for="standing_water"><strong>Check if apply</strong></label>
+                <?php echo Form::checkbox('standing_water_header', "1", isset($data['standing_water_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'standing_water_header')); ?>
+                    <label for="standing_water_header"><strong>Check if apply</strong></label>
                 </div>
 
                 <div class="row">
@@ -1046,8 +1049,8 @@
             <div class="content">
             
                 <div class="row">
-                <?php echo Form::checkbox('product_defects', "1", isset($data['product_defects']) ? true : null, array('class' => 'check_if_apply', 'id' => 'product_defects')); ?>
-                    <label for="product_defects"><strong>Check if apply</strong></label>
+                <?php echo Form::checkbox('product_defects_header', "1", isset($data['product_defects_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'product_defects_header')); ?>
+                    <label for="product_defects_header"><strong>Check if apply</strong></label>
                 </div>
                 
                 <!-- {{#errors.product_defects}}
@@ -1185,8 +1188,8 @@
             <div class="content">
              
                 <div class="row">
-                <?php echo Form::checkbox('workmanship', "1", isset($data['workmanship']) ? true : null, array('class' => 'check_if_apply', 'id' => 'workmanship')); ?>
-                    <label for="workmanship"><strong>Check if apply</strong></label>
+                <?php echo Form::checkbox('workmanship_header', "1", isset($data['workmanship_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'workmanship_header')); ?>
+                    <label for="workmanship_header"><strong>Check if apply</strong></label>
                 </div>
                 
                 <!-- {{#errors.workmanship}}
@@ -1540,8 +1543,8 @@
             <div class="content">
             
                 <div class="row">
-                <?php echo Form::checkbox('aged_worn', "1", isset($data['aged_worn']) ? true : false, array('class' => 'check_if_apply', 'id' => 'aged_worn')); ?>
-                    <label for="aged_worn"><strong>Check if apply</strong></label>     
+                <?php echo Form::checkbox('aged_worn_header', "1", isset($data['aged_worn_header']) ? true : false, array('class' => 'check_if_apply', 'id' => 'aged_worn_header')); ?>
+                    <label for="aged_worn_header"><strong>Check if apply</strong></label>     
                 </div>
                 
                 <!-- {{#errors.aged_worn}}
@@ -1610,8 +1613,8 @@
             <div class="content">
             
                 <div class="row">
-                <?php echo Form::checkbox('fire_damages', "1", isset($data['fire_damages']) ? true : null, array('class' => 'check_if_apply', 'id' => 'fire_damages')); ?>
-                    <label for="fire_damages"><strong>Check if apply</strong></label>     
+                <?php echo Form::checkbox('fire_damages_header', "1", isset($data['fire_damages_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'fire_damages_header')); ?>
+                    <label for="fire_damages_header"><strong>Check if apply</strong></label>     
                 </div>
                 
                 <!-- {{#errors.fire_damages}}

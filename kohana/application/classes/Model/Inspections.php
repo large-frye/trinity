@@ -754,6 +754,35 @@ class Model_Inspections extends Model_Base {
 
 
 
+    public function build_values_for_report() {
+        $data = array();
+        $data['estimated_age_of_roof'] = $this->get_roof_ages();
+        $data['roof_height'] = $this->get_roof_heights();
+        $data['framing_types'] = $this->get_type_of_framing();
+        $data['pitch_1'] = $this->get_pitches();
+        $data['pitch_2'] = $this->get_pitches();
+        $data['pitch_3'] = $this->get_pitches();
+        $data['layers'] = $this->get_layers();
+        $data['type_of_roofing'] = $this->get_type_of_roofing();
+        $data['if_rolled'] = $this->get_if_rolled();
+        $data['condition'] = $this->get_condition();
+        $data['remove_reset_tarp'] = $this->get_remove_reset_trap();
+        $data['lift_up_minor_reset_tarp'] = $this->get_lift_up_minor_reset_trap();
+        $data['siding_type'] = $this->get_siding_types();
+        $data['previous_repairs_made'] = $this->get_previous_repairs_made();
+        $data['roof_conditions'] = $this->get_roof_conditions();
+        $data['collateral_damages_to_property'] = $this->get_collateral_damages();
+        $data['slopes'] = $this->get_slopes();
+        $data['wind_roof_peeled_back'] = $this->get_wind_roof_peeled_back();
+        $data['fraud_wind_input'] = $this->get_fraud_wind_input();
+        $data['fraud_hail_input'] = $this->get_fraud_hail_input();
+        $data['siding_damages'] = $this->get_siding_damaged();
+        $data['house_faces'] = $this->get_house_faces();
+        return $data;
+    }
+
+
+
     private function _update_estimate($post, $id) {
         $parameters = array();
 

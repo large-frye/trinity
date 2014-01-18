@@ -363,8 +363,8 @@
             <div class="content">
                 <div class="row">
                     
-                    <?php echo Form::checkbox('wind', "1", isset($data['wind']) ? true : null, array('class' => 'check_if_apply', 'id' => 'wind')); ?>
-                    <label for="wind"><strong>Check if apply</strong></label>
+                    <?php echo Form::checkbox('wind_header', "1", isset($data['wind_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'wind_header')); ?>
+                    <label for="wind_header"><strong>Check if apply</strong></label>
                 </div>
 
                 <div class="row slope" id="slope_shingles" style="display: block !important;">
@@ -461,7 +461,6 @@
 </div>
 
 
-
 <div class="section">
     <div class="box">
             <div class="title slope-title-helper">
@@ -471,8 +470,8 @@
             <div class="content">
                 
                 <div class="row">
-                    <?php echo Form::checkbox('hail', "1", isset($data['hail']) ? true : null, array('class' => 'check_if_apply', 'id' => 'hail')); ?>
-                    <label for="hail"><strong>Check if apply</strong></label>
+                    <?php echo Form::checkbox('hail_header', "1", isset($data['hail_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'hail_header')); ?>
+                    <label for="hail_header"><strong>Check if apply</strong></label>
 
                 </div>
 

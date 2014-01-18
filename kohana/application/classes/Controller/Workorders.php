@@ -8,10 +8,13 @@ class Controller_Workorders extends Controller_Account {
 
     protected $_inpsector = null;
 
+    protected $_workorder_id = null;
+
     public function __construct(Kohana_Request $request, Kohana_Response $response) {
     	parent::__construct($request, $response);
         $this->workorders_model = Model::factory('workorders');
         $this->_user_model = Model::factory('users');
+        $this->_workorder_id = $this->request->param('id');
     }
 
 
@@ -155,6 +158,21 @@ class Controller_Workorders extends Controller_Account {
         }
         
 
+        $this->template->content = $view;
+    }
+
+
+
+    public function action_report() {
+        if (!isset($this->_workorder_id)) {
+            throw new Exception('Error finding report. Seems to be you are missing something.');
+        }
+
+        $view = View::factory('workorders/report');
+        $view->inspection_details = $this->workorders_model->get_workorder_details($this->_workorder_id);
+        $view->policy_holder_info = $this->workorders_model->get_policy_holder($this->_workorder_id);
+        $view->adjuster = $this->workorders_model->get_adjuster_for_workorder($this->_workorder_id);
+        $view->inspection_report = $this->workorders_model->get_inspection_report($this->_workorder_id);
         $this->template->content = $view;
     }
 
