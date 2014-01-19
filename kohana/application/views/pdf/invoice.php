@@ -105,23 +105,8 @@ p {
 </table>
 <p class="center">Make all checks payable to Trinity Inspections LLC<br />
     THANK YOU FOR YOUR BUSINESS!</p>
-
-
 </div>
-<!--<div style="position:absolute;left:52.92px;top:285.01px" class="cls_002"><span class="cls_002"><?php echo $inspection_data['second_address']; ?></span></div>
-    <div style="position:absolute;left:504.96px;top:253.81px" class="cls_002"><span class="cls_002"><?php echo $inspection_data['date_of_inspection'];?></span></div>
-
-<div style="position:absolute;left:72.36px;top:300.61px" class="cls_006"><span class="cls_006">Claim #:</span></div>
-<div style="position:absolute;left:123.36px;top:302.65px" class="cls_002"><span class="cls_002"><?php echo $inspection_data['policy_number']; ?></span></div>
-
-
-<div style="position:absolute;left:261.84px;top:88.70px" class="cls_003"><span class="cls_003">TRINITY</span></div>
-<div style="position:absolute;left:207.72px;top:141.48px" class="cls_004"><span class="cls_004">Trinity Inspections, LLC</span></div>
-<div style="position:absolute;left:273.00px;top:172.56px" class="cls_005"><span class="cls_005">P.O. Box 938</span></div>
-<div style="position:absolute;left:261.72px;top:197.04px" class="cls_005"><span class="cls_005">Locust, NC 28097</span></div>
-<div style="position:absolute;left:53.16px;top:235.33px" class="cls_006"><span class="cls_006">Policyholder Information:</span></div>
-<div style="position:absolute;left:52.92px;top:253.81px" class="cls_002"><span class="cls_002"></span></div>-->
 
 
 </body>
-</html>
+</html>  

@@ -51,6 +51,7 @@ class Controller_Users extends Controller_Account {
     public function action_new() {
         $view = View::factory('users/new');
         $view->user_types = $this->account_model->get_roles();
+        $view->new_user = true;
 
         if ($this->request->method() === 'POST') {
         	$validation_result = $this->_user_model->validate_create_user_form($this->_post);

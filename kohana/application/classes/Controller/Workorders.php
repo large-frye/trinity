@@ -178,6 +178,17 @@ class Controller_Workorders extends Controller_Account {
 
 
 
+    public function action_generate() {
+        if (!isset($this->_workorder_id)) {
+            throw new Exception('Error finding report. Seems to be you are missing something.');
+        }
+
+        $status = $this->workorders_model->generate_report($this->_workorder_id);
+
+    }
+
+
+
     public function action_index() {
         Request::redirect('/account');
     }

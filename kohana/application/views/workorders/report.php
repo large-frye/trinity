@@ -126,14 +126,7 @@ echo "<div class=\"section\">
         </div>
         <div class="content nopadding">
         
-            <div class="gallery">
-                <?php foreach ($photos as $photo) { ?>
-                    <div class="thumb">
-                    <div class="hover"><a href="#"></a></div>
-                        <a href="{{orig_url}}" class="pirobox" rel="single" title=""><img src="{{thumb_url}}" alt="Photo" /></a>
-                    </div>
-                <?php } ?>
-            </div>
+           
         </div>
     </div>
 </div>    

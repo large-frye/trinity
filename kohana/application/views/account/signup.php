@@ -5,6 +5,14 @@
 								
 								echo '<div class="message error"><span>Something went wrong. Please check the fields again.</span></div>';
 							}
+						?>	
+
+						<?php 
+
+							if(isset($success)){
+								
+								echo '<div class="message info"><p>' . $success . '</p></div>';
+							}
 						?>		
 				<div class="plain">		
 					<div class="section">	

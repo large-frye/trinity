@@ -529,6 +529,87 @@ class Model_Workorders extends Model_Base {
 
 
 
+    public function generate_report($workorder_id) {
+        // We need to determine the view we are going to be use.
+        $view = $this->_get_pdf_view($workorder_id);
+
+        // Need to get all of the data possible for this report
+        $view->report_data = $this->get_inspection_report($workorder_id);
+
+        // Get all of inspection data and report. 
+        $view->inspection_data = (array) $this->get_workorder_details($workorder_id);
+
+        // Setup `dompdf`
+        $this->_dompdf_setup(true, '512M');
+
+        // Create `dompdf` object
+        try {
+            $dompdf = new DOMPDF();
+            $dompdf->load_html($view);
+            $dompdf->render();
+            // $file = $this->_file_path . $workorder_id . ".pdf";
+            // file_put_contents($file, $dompdf->output());
+            $dompdf->stream('sample.pdf');
+            return true;
+        } catch (Exception $e) {
+            $this::$errors = "Error processing this PDF." . $e;
+            return false;
+        }
+
+        print_r($view);
+    }
+
+
+
+    private function _dompdf_setup($errors, $buffer_size) {
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php")) { 
+            include ($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php"); 
+        } else {
+            die('file can\'t be found');
+        }
+
+        // Set memory limit with $buffer_size
+        ini_set("memory_limit", $buffer_size);
+
+        if ($errors) {
+            ini_set('display_errors', 1);
+            error_reporting(E_ALL);
+        }
+    }
+
+
+
+    private function _get_pdf_view($workorder_id) {
+        try { 
+            $result = DB::query(Database::SELECT, "SELECT type FROM work_orders WHERE id = :id")
+                          ->parameters(array(':id' => $workorder_id))
+                          ->as_object()
+                          ->execute($this->db);
+
+            if ($result->count() > 0) {
+                switch($result->current()->type) {
+                    case 0 : 
+                        $view = View::factory('pdf/basic-report');
+                        break;
+                    case 1 : 
+                    case 2 : 
+                        $view = View::factory('pdf/expert-report');
+                        break;
+                }
+            } else {
+                $this::$errors = "Couldn't find a record for this work order.";
+                return false;
+            }
+        } catch (Database_Exception $e) {
+            $this::$errors = $e->getMessage();
+            return false;
+        }
+
+        return $view;
+    }
+
+
+
     private function _send_submit_client_email($user, $mailer) {
         try {
             $mailer->send_mail($user->email, 'a.frye4@gmail.com', 'Recent Work Order Submission.',

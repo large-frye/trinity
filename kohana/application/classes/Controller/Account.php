@@ -75,7 +75,8 @@ class Controller_Account extends Controller_Master {
         // Need to check Session::instance to see if a recent order was added. 
         $session_variables = array('add_new_work_order'  => Session::instance()->get('add_new_work_order'),
                                    'edit_new_work_order' => Session::instance()->get('edit_new_work_order'),
-                                   'invoice_does_not_exist' => array('type' => 'error', 'msg' => Session::instance()->get('invoice_does_not_exist')));
+                                   'invoice_does_not_exist' => array('type' => 'error', 'msg' => Session::instance()->get('invoice_does_not_exist')),
+                                   'create_user_success' => Session::instance()->get('create_user_success'));
 
         foreach($session_variables as $key => $var) {
             if (isset($var)) {
@@ -190,10 +191,11 @@ class Controller_Account extends Controller_Master {
             $validate_result= $this->account_model->validate_new_user($this->_post);
             if (!$validate_result['error']) {
                 $this->_post['role_id']=4;
-                $this->_users_model->create_user($this->_post);
-              //  $body = $this->get_template(DB::query(Database::SELECT, "SELECT value FROM settings WHERE name = 'email_template_recovery_password'");
+                $this->_users_model->create_user($this->_post, $this->mailer_model);
+                $view->success = 'Your account has been created successfully. Please click <a href="/account">here</a> to sign in.';
+              //  $body = $this->get_template(DB::query(Database::SELECT, "SELECT value FROM settings WHERE name = 'email_template_rcovery_password'");
                 // $this->mailer_model->send_mail('dholmblad@gmail.com', 'a.frye4@gmail.com', 'test', 'rest');
-                $this->request->redirect('/account');
+                // $this->request->redirect('/account/login');
             } else {
                 $view->errors=$validate_result['errors'];
                 $view->post = $this->_post;   

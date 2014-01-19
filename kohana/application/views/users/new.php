@@ -10,7 +10,7 @@
     	echo '</div>';
     }
 
-    if (isset($success)) { echo '<div class="message error"><p>' . $success . '</p></div>'; }
+    if (isset($success)) { echo '<div class="message info"><p>' . $success . '</p></div>'; }
     echo Form::open('', array('id' => 'workorder-submit-form')); 
 ?>
 		<div class="box">
@@ -27,7 +27,7 @@
 						foreach($user_types as $user_type) { 
 							$selected = "";
 
-							if ($user_type->id == $user->role_id) {
+							if (!isset($new_user) && $user_type->id == $user->role_id) {
 								$selected = "selected=\"selected\"";
 							}
 							echo "<option value=\"" . $user_type->id ."\" " . $selected . ">" . ucfirst($user_type->name) . "</option>";

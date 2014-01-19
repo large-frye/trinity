@@ -50,11 +50,12 @@ class Model_Users extends Model_Base {
       
           $insert->execute($this->db);
 
-          $mailer_model->send_mail($user->email, 'a.frye4@gmail.com', 'An account for you at Trinity has been created',
+          $mailer_model->send_mail($post['email'], 'a.frye4@gmail.com', 'An account for you at Trinity has been created',
                                    16, array('::username::' => $post['username'],
                                              '::password::' => $post['password']), null, null, null);
+          return true;
       } catch (ORM_Validation_Exception $e) {
-        var_dump($e->errors());
+          var_dump($e->errors());
           return false;
       }
 
