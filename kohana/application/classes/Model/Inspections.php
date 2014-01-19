@@ -870,26 +870,33 @@ class Model_Inspections extends Model_Base {
 
     }
     public function save_photos($post,  $files, $id) {
-      
+        $path = "/assets/photos/";
 
+        $uploaddir = '..'.$path.$id.'/';
+        if (!is_dir($uploaddir) && !mkdir($uploaddir)){
+          die("Error creating folder");
+        }
+
+
+
+        
          for ($i = 0; $i < count($files['filesToUpload']['name']); $i++) {
           
+
+
 
         // File location with name
         $tmpName = $files['filesToUpload']['tmp_name'][$i];
         $mimeType =  $files['filesToUpload']['type'][$i];  
         $fileName = $files['filesToUpload']['name'][$i]; 
-        
+        $fileName = preg_replace("/[^A-Z0-9._-]/i", "_", $fileName);
          if(isset($tmpName) && isset($mimeType) && isset($fileName)){
-        // Read the file
-        $fp = fopen($tmpName, 'r');
-        $data = fread($fp, filesize($tmpName));
-       // $data = addslashes($data);
-        fclose($fp);
 
-        
 
-        if($data){
+        $pathAndName = $uploaddir.$fileName;
+        $moveResult = move_uploaded_file($tmpName, $pathAndName);
+
+        if($moveResult){
          $parameters = array(':id' => null,
                             ':workorder_id' => $id,
                             ':filename' => $fileName,
@@ -897,7 +904,7 @@ class Model_Inspections extends Model_Base {
                             ':categoryParent_id' =>null,
                             ':category_id' => null,
                             ':FileOrder' => null,
-                            ':photoBlob' => $data,
+                            ':fileLocation' => $pathAndName,
                      );
        try{
          DB::insert('inspection_photos')

@@ -19,9 +19,8 @@ class Controller_Inspections extends Controller_Account {
            ini_set('upload_max_filesize', '10M');
             ini_set('post_max_size', '10M');
             $this->masterModel->js = array('http://code.jquery.com/jquery-1.9.1.js',
-                                           
                                            "http://code.jquery.com/jquery-migrate-1.1.1.js",
-                                           "/trinity/assets/js/inspection/gridster.js", 
+                                           "/trinity/assets/js/inspection/sort.js", 
                                            "http://code.jquery.com/ui/1.10.3/jquery-ui.js", 
                                            "/trinity/assets/js/inspection/imgUploader.js",);
             ksort($this->masterModel->js);
@@ -62,7 +61,9 @@ class Controller_Inspections extends Controller_Account {
 
 
 
-    public function action_test() { $this->template->content = View::factory('pdf/generated'); }
+    public function action_test() { 
+        $this->template->content = View::factory('pdf/generated'); 
+    }
 
 
 
@@ -93,7 +94,6 @@ class Controller_Inspections extends Controller_Account {
 
     public function action_editphotos() {
         $view = View::factory('inspections/editphotos');
-
                if ($this->request->method() === 'POST') {
                 
             }

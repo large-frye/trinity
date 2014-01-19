@@ -27,7 +27,11 @@
 	height: 21px;
 }
 
-
+.liBloc{
+.display: inline-block;
+ float: left;
+    margin: 10px;
+}
 .photoTxt {
 	font-size:1.4em;
 	position:relative;

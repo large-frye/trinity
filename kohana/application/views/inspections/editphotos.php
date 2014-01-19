@@ -20,19 +20,19 @@
 						$parentCount = count($parentCategories);
 					
 						 for ($i = 0; $i < $parentCount; $i++) {
-							echo '<h3>'.$parentCategories[$i]->name.'</h3><div class="gridster"  ><ul>';
+							echo '<h3>'.$parentCategories[$i]->name.'</h3><div class="gridster"  ><ul  class="sortable grid">';
 						 	$rwCnt=0;
 						 	$rowPointer=1;
 						 		
 						 		for ($j = 0; $j < $count; $j++) {
 						 			if($photos[$j]->categoryParent_id == $parentCategories[$i]->id){
 						 				if($rwCnt<6){
-                                			echo "<li data-row='".$rowPointer."' data-col='".$rwCnt."' data-sizex='1' data-sizey='1'><div class=photoThumView'><img class='photoImgView' src='data:".$photos[$j]->mime.";base64,"  
-                                	. base64_encode($photos[$j]->photoBlob). "' style='width: 80px; height: 80px;' /></p></div></li>";
+                                			echo "<li class='liBloc' ><div class=photoThumView'><img class='photoImgView' src='/trinity".$photos[$j]->fileLocation."' style='width: 80px; height: 80px;' /></p></div></li>";
+                                		
                                 	$rwCnt++;
                                 	}else {
-                                		echo "<li data-row='".$rowPointer."' data-col='".$rwCnt."' data-sizex='1' data-sizey='1'><div  class=photoThumView'><img class='photoImgView' src='data:".$photos[$j]->mime.";base64,"  
-                                	. base64_encode($photos[$j]->photoBlob). "' style='width: 80px; height: 80px;' /></p></div></li>";
+                                		echo "<li class='liBloc' ><div  class=photoThumView'><img class='photoImgView' src='/trinity".$photos[$j]->fileLocation."' style='width: 80px; height: 80px;' /></p></div></li>";
+                                	
                                 	$rwCnt=0;
                                 	$rowPointer++;
                                 	}

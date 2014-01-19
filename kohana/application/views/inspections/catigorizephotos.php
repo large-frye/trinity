@@ -1,4 +1,10 @@
             <div class="section">
+              <?php if (isset($post)) {
+                  echo "<div class=\"message info\">
+                          <span>Categories have been successfully saved</span>
+                      </div>";
+                }
+                ?>
 					<div class="box">
 						<div class="title">
 							Catigorize Photos
@@ -36,12 +42,10 @@
                                 	}
                                 	if($rwCnt<6){
                                 	
-                                		echo "<td class='catTD'><div id='photoT' class=photoThum'><img id='".$photos[$i]->id."' class='photoImg' src='data:".$photos[$i]->mime.";base64,"  
-                                	. base64_encode($photos[$i]->photoBlob). "'  /><p class='photoTxt'>".$categoryTmpText."</p></div></td>";
+                                		echo "<td class='catTD'><div id='photoT' class=photoThum'><img id='".$photos[$i]->id."' class='photoImg' src='/trinity".$photos[$i]->fileLocation."'  /><p class='photoTxt'>".$categoryTmpText."</p></div></td>";
                                 	$rwCnt++;
                                 	}else {
-                                		echo "<td class='catTD'><div  id='photoT class=photoThum'><img id='".$photos[$i]->id."' class='photoImg' src='data:".$photos[$i]->mime.";base64,"  
-                                	. base64_encode($photos[$i]->photoBlob). "' /><p class='photoTxt'>".$categoryTmpText."</p></div></tr>";
+                                		echo "<td class='catTD'><div  id='photoT class=photoThum'><img id='".$photos[$i]->id."' class='photoImg' src='/trinity".$photos[$i]->fileLocation."' /><p class='photoTxt'>".$categoryTmpText."</p></div></tr>";
                                 	$rwCnt=0;
                                 	}
                                 	
