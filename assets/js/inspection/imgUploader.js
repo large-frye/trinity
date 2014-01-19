@@ -1,8 +1,4 @@
 
-$(document).on('dblclick', '.photoImg', function() {
-    addCategoryInfo(this);
-});
-
 
 $(".photoTable").selectable({
   filter: ".tdItem"
@@ -15,36 +11,42 @@ $(".photoTable").selectable({
       }).disableSelection();
   });
   
-function addCategoryInfo(div){
 
-	$(".catSelections").dialog({
-		title: 'Categories',
-		width: 500,
+
+
+function addCategoryInfoToMultiple(){
+
+  $(".catSelections").dialog({
+        title: 'Categories',
+        width: 500,
         height: 400,
         modal: true,
         show: 'fade',
         hide: 'fade',
+        position: { my: "left top", at: "left bottom", of: $('.hide') } ,
         open: function() { 
-       		$(this).focus();
-   			 },
-          	 close: function() {
+          $(this).focus();
+         },
+             close: function() {
             $( this ).dialog( "close" );
             //this is where we will set the customName value
-           
-            $(div).parent().find('.hiddenCatInfo').remove();
-            var customName  = $(div).siblings("p");
+            var allSelected = $('#categoryTbl').find('.ui-selected');
+            $(allSelected).each(function( i ) {
+            var div = $(allSelected[i]).find('div');
+            $(allSelected[i]).find('.hiddenCatInfo').remove();
+            var customName  = $(div).find("p");
             var textVal = $( ".selectable .ui-selected" ).text();
             var catID = $( ".selectable .ui-selected" ).attr('id');
             var parentID = $( ".selectable .ui-selected" ).attr('parentid');
-            var photoID = $(div).attr("id");
-           
-           $(div).parent().append('<div class="hiddenCatInfo" style="display:none;">'+  photoID+':'+parentID+':'+catID+'</div>');
+            var photoID = $(div).find("img").attr("id");
+            $(allSelected[i]).append('<div class="hiddenCatInfo" style="display:none;">'+  photoID+':'+parentID+':'+catID+'</div>');
             $(customName).text(catID+' :'+textVal);
-            $('.selectable .ui-selected').removeClass('ui-selected');
-         			 },
-   				}
-   			);
-		$(".catSelections").focus();
+            $(allSelected[i]).removeClass('ui-selected');
+            });
+         },
+          }
+        );
+    $(".catSelections").focus();
 }
 
 
@@ -93,6 +95,8 @@ $( this ).css("background-color","transparent");
     }                   
 });
 
+
+
  var gridster;
 
   $(function(){
@@ -101,21 +105,39 @@ $( this ).css("background-color","transparent");
         widget_margins: [10, 10],
         widget_base_dimensions: [80, 80],
     }).data('gridster');
-
   });
 
 $(function() {
 $( "#accordion" ).accordion({ heightStyle: "fill" });
 });
 
-$('.photoImg').mouseover(function() {
-  $(this).css("opacity","0.2");
-   $(this).siblings("p").css("visibility","visible");
+
+$( document ).ready(function() {
+  $('#categoryTbl').selectable({
+  filter: ".catTD",
 });
 
-$('.photoImg').mouseout(function() {
-   $(this).css("opacity","");
-  $(this).siblings("p").css("visibility","hidden");
+
+
+$( "#categoryTbl" ).on( "selectablestop", function( event, ui ) {
+ addCategoryInfoToMultiple();
+} );
+
+  var tmp = $('.catTD');
+  tmp.each(function( i ) {
+  $(tmp[i]).find('.photoTxt').css("visibility","hidden");
+});
+});
+
+
+$('.catTD').mouseover(function() {
+   $(this).find('.photoImg').css("opacity","0.2");
+   $(this).find('.photoTxt').css("visibility","visible");
+});
+
+$('.catTD').mouseout(function() {
+   $(this).find('.photoImg').css("opacity","");
+  $(this).find('.photoTxt').css("visibility","hidden");
 });
 
 

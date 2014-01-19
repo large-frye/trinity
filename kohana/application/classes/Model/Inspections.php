@@ -890,9 +890,6 @@ class Model_Inspections extends Model_Base {
         
 
         if($data){
-
-            echo $fileName;
-            echo $id;   
          $parameters = array(':id' => null,
                             ':workorder_id' => $id,
                             ':filename' => $fileName,

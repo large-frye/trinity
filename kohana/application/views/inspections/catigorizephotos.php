@@ -14,7 +14,7 @@
 <div class="photoCatContainer">
 <?php
 
-				echo '<table>';
+				echo '<table id="categoryTbl">';
 						$count = count($photos);
 							$rwCnt=0;
 							  $innerCategories = $categories;
@@ -36,11 +36,11 @@
                                 	}
                                 	if($rwCnt<6){
                                 	
-                                		echo "<td><div id='photoT' class=photoThum'><img id='".$photos[$i]->id."' class='photoImg' src='data:".$photos[$i]->mime.";base64,"  
+                                		echo "<td class='catTD'><div id='photoT' class=photoThum'><img id='".$photos[$i]->id."' class='photoImg' src='data:".$photos[$i]->mime.";base64,"  
                                 	. base64_encode($photos[$i]->photoBlob). "'  /><p class='photoTxt'>".$categoryTmpText."</p></div></td>";
                                 	$rwCnt++;
                                 	}else {
-                                		echo "<td><div  id='photoT class=photoThum'><img id='".$photos[$i]->id."' class='photoImg' src='data:".$photos[$i]->mime.";base64,"  
+                                		echo "<td class='catTD'><div  id='photoT class=photoThum'><img id='".$photos[$i]->id."' class='photoImg' src='data:".$photos[$i]->mime.";base64,"  
                                 	. base64_encode($photos[$i]->photoBlob). "' /><p class='photoTxt'>".$categoryTmpText."</p></div></tr>";
                                 	$rwCnt=0;
                                 	}
@@ -52,7 +52,7 @@
 </div>
 
  <?php 
-                        echo '<div class="catSelections accordion" style="display:none"><ol class="selectable">';
+                        echo '<div class="catSelections" style="display:none"><ol class="selectable">';
                                 $innerCategories = $categories;
                                 $count = count($categories);
                                 for ($i = 0; $i < $count; $i++) {
