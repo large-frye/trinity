@@ -95,7 +95,7 @@ class Controller_Inspections extends Controller_Account {
     public function action_editphotos() {
         $view = View::factory('inspections/editphotos');
                if ($this->request->method() === 'POST') {
-                
+                 $this->inspections_model->update_photo_order($this->_post);    
             }
 
         $view->parentCategories = $this->settings_model->get_parent_categories();

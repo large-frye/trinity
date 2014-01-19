@@ -835,7 +835,7 @@ class Model_Inspections extends Model_Base {
              $result = DB::query(Database::SELECT, 'SELECT * 
                                                FROM inspection_photos
                                                WHERE workorder_id = :id
-                                               ORDER BY categoryParent_id')
+                                               ORDER BY categoryParent_id, FileOrder')
                       ->parameters(array(':id' => $id))
                       ->as_object()
                       ->execute($this->db);
@@ -869,6 +869,29 @@ class Model_Inspections extends Model_Base {
         return true;
 
     }
+
+    public function update_photo_order($post){
+     foreach ($post as $key => $value) {
+            $tmpArry = explode(':', $post[$key]);
+            $photoID = $tmpArry[0];
+            $order = $tmpArry[1];
+          
+     
+            $result = DB::update('inspection_photos')
+                          ->set(array(
+                            'FileOrder' => ':FileOrder'
+                                    ))
+                          ->where('id', '=', ':id')
+                          ->parameters(array(':id' => $photoID,
+                                             ':FileOrder' => $order ))
+                          ->execute($this->db);
+        }
+
+        return true;
+
+    }
+
+    
     public function save_photos($post,  $files, $id) {
         $path = "/assets/photos/";
 

@@ -53,15 +53,6 @@ function addCategoryInfoToMultiple(){
 }
 
 
-$( "#editButton" ).click(function() {
-  var hiddenInfo = $('.hiddenCatInfo');
-  $(hiddenInfo).each(function( i ) {
-      var hiddenInfoText= $(hiddenInfo[i]).text();
-     $( "#catigorizephotos" ).append('<input name="'+i+'" style="display:none;" type="text" id="'+i+'" value="'+hiddenInfoText+'"/>');
-});
-     $( "#catigorizephotos" ).submit();
-});
-
 
 
   $( "#catButton" ).click(function() {
@@ -156,3 +147,22 @@ $('.catTD').mouseout(function() {
 
 
 $('.sortable').sortable();
+
+$('.sortable').sortable().bind('sortupdate', function(e, ui) {
+   $(this).attr("changed", "yes");
+});
+
+
+$( "#editButton" ).click(function() {
+  var sections = $('.sortable');
+  $(sections).each(function( i ) {
+    if($(sections[i]).attr("changed")==='yes'){
+     var tmpImgArry = $(sections[i]).find('.photoImgView');
+       $(tmpImgArry).each(function( j ) {
+          var tmpID = $(tmpImgArry[j]).attr("id");
+            $( "#orderPhotos" ).append('<input name="'+tmpID+'" style="display:none;" type="text" id="'+tmpID+'" value="'+tmpID+':'+j+'"/>');
+        });
+  }
+});
+     $( "#orderPhotos" ).submit();
+});
