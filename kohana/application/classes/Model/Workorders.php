@@ -56,7 +56,6 @@ class Model_Workorders extends Model_Base {
      * @param array $post
      */
     public function add_workorder($post) {
-        print_r($post);
         $parameters = array(':id'                         => null,
                             ':type'                       => $post['type'],
                             ':user_id'                    => $post['user_id'],
@@ -461,7 +460,7 @@ class Model_Workorders extends Model_Base {
                     $report[$row->key] = "";
 
                     foreach ($array as $key => $value) {
-                        if (isset($pre_built_data[$row->key])) {
+                        if (isset($pre_built_data[$row->key][$value])) {
                             $report[$row->key] .= $pre_built_data[$row->key][$value] . "<br>";
                         } else {
                             $report[$row->key] .= $value . "<br>";
@@ -470,7 +469,7 @@ class Model_Workorders extends Model_Base {
                 } else {
                     if (in_array($row->key, $bool_fields)) {
                         $report[$row->key] = $row->value == 1 ? "Yes" : "No";
-                    } else if (isset($pre_built_data[$row->key])) {
+                    } else if (isset($pre_built_data[$row->key][$row->value])) {
                         if ($pre_built_data[$row->key][$row->value] !== "Please Select One") {
                             $report[$row->key] = $pre_built_data[$row->key][$row->value] . "<br>";
                         }
@@ -555,8 +554,6 @@ class Model_Workorders extends Model_Base {
             $this::$errors = "Error processing this PDF." . $e;
             return false;
         }
-
-        print_r($view);
     }
 
 

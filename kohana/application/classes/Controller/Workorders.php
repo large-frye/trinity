@@ -190,7 +190,7 @@ class Controller_Workorders extends Controller_Account {
 
 
     public function action_index() {
-        Request::redirect('/account');
+        Request::current()->redirect('/account');
     }
 
 
