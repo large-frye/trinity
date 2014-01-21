@@ -97,9 +97,11 @@
 				<div id="menu">
 					<ul> 
 						<?php foreach ($nav as $url => $name) {
+						if(!preg_match('/TESTIMONIALS/i', $name['name'])){
 							echo "<li class=\"current\">" .
 							         "<a href=\"" . $name['url'] . "\">" . $name['name'] . "</a>" .
 							     "</li>";
+							}
 						}
 						?>
 					</ul>

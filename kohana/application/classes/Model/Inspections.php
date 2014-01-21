@@ -937,7 +937,7 @@ class Model_Inspections extends Model_Base {
 
             }
             catch (Database_Exception $e) {
-             print_r($e-getMessage()); 
+             print_r($e->getMessage()); 
          }
             }
         }

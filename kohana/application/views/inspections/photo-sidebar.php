@@ -11,7 +11,7 @@
                          <li class="<?php echo Request::current()->action() == 'view' ? 'current' : null; ?>">
                             <a href="/inspections/viewphotos/<?php echo Request::current()->param('id'); ?>">
                                View Photos</a>
-                        </li>   
+                        </li> 
                         <li class="<?php echo Request::current()->action() == 'view' ? 'current' : null; ?>">
                             <a href="/inspections/editphotos/<?php echo Request::current()->param('id'); ?>">
                                 Order Current Photos</a>
