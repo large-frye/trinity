@@ -8,7 +8,7 @@
   margin:0; padding:0;
 }
 body{
-  font:14px Georgia, serif;
+  font:14px Georgia, serif; 
 }
 
 #page-wrap{
@@ -57,6 +57,24 @@ p {
     line-height: 20px;
 }
 
+ul
+{
+    list-style-type: none;
+}
+.sectionDescrip{
+    font:12px;
+}
+.damageLi{
+  
+  font:12px;
+}
+.damageUL{
+  position:relative;
+  left:2em;
+}
+.redTxt{
+  color: red ;
+}
 .page-break { page-break-after: always; }
 .clear { clear: both; }
 .header { color: rgb(117, 41, 43); font-weight: 600; }
@@ -99,15 +117,49 @@ p {
 <h4 class="row-header">ROOF INSPECTION</h4>
 <?php foreach ($report_data['damages'] as $damage => $damages) { 
           if (preg_match('/header/', $damage)) { ?>
-              <h5 class="red"><?php echo ucfirst(str_replace('_header', '', $damage)); ?></h5>
+              <h5 class="red"><?php echo strtoupper(str_replace('_header', '', $damage.' damage:')); 
+              
+               if(strcmp($damage,'wind')){
+                echo '<p class="sectionDescrip">Our wind damage inspection consists of inspecting every roof slope to verify any and all wind damaged components to all types of
+roofing systems.</p>';
+              } elseif(strcmp($damage,'hail')){
+              echo '<pclass="sectionDescrip">Our hail damage inspection consists of looking on all directional slopes for granular displacement on the shingles that are about the
+                  size in diameter of a dime supported by mat fracture. These areas of granular displacement must be across the entire directional
+                  slope that we are assessing (which is a characteristic of hail damage). We use a 10’ X 10’ test square on all 4 directional slopes to test
+                  the statistical average of hail.</p>';
+                     }
+
+              ?></h5>
+              <br>
+              <div class="damageUL">
               <ul>
-              <?php foreach ($damages as $type) { ?>
-                  <li><?php echo $type; ?></li>
-              <?php } ?>
+              <?php 
+               $directions =array("North", "South", "East", "West", "(Front)", "(Rear)", "(Left)", "(Right)");
+                foreach ($damages as $tmp) {
+                 $finalStr='';
+                 foreach(explode(' ',$tmp) as $st) {
+                       if(is_numeric($st)){
+                      $finalStr=$finalStr.' <span class="redTxt">'.$st.'</span>';
+                     }else{
+                       //$finalStr + $char;
+                      $finalStr=$finalStr.' '.$st;
+                     }
+                   }
+                  $tmp=$finalStr;
+                  foreach ($directions as $value) {
+                   $tmp = str_replace($value, '<span class="redTxt">'.$value.'</span>', $tmp);
+                 }
+                 ?>
+                  <li class="damageLi"><?php echo $tmp; ?></li>
+              <?php 
+            } ?>
             </ul>
+          </div>
+            <br>
     <?php }} ?>
 </div>
-
+<?php 
+?>
 
 </body>
 </html>  
