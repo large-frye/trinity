@@ -174,7 +174,7 @@ SC Adjusters License # 625784</p>
               </ul>
     <?php }} ?>
 <h3 class="red">SUMMARY OF FINDINGS</h3>
-
+<?php
 
 $parentCount = count($parentCategories);
 $count = count($photos);
