@@ -145,7 +145,7 @@ SC Adjusters License # 625784</p>
 <div class="page-break"></div>
 <div class="padding-top"></div>
 <br><br><br>
-<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . 'trinity/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . './trinity/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
 <br>
 <?php foreach ($report_data['damages'] as $damage => $damages) { 
           if (preg_match('/header/', $damage)) { ?>
