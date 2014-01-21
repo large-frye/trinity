@@ -478,7 +478,7 @@ class Model_Workorders extends Model_Base {
                     }
                 }
             }
-        }
+        } 
 
         switch ($report['type']) {
             case 0: 
@@ -535,10 +535,13 @@ class Model_Workorders extends Model_Base {
         $view->photos = $photos;
       
         // Need to get all of the data possible for this report
-        $view->report_data = $this->get_inspection_report($workorder_id);
+        $view->report_data = $this->first_page_data_output($this->get_inspection_report($workorder_id));
 
         // Get all of inspection data and report. 
         $view->inspection_data = (array) $this->get_workorder_details($workorder_id);
+
+        // Get static text for reports.
+        $view->static_damage_text = $this->_get_static_damages_text();
 
         // Setup `dompdf`
         $this->_dompdf_setup(true, '512M');
@@ -556,6 +559,114 @@ class Model_Workorders extends Model_Base {
             $this::$errors = "Error processing this PDF." . $e;
             return false;
         }
+    }
+
+
+
+    public function first_page_data_output($data) {
+        $checks = array('Yes' => 'policyholder was present and we were able ',
+                        'No'  => 'policyholder was not present and we were unable ');
+
+        if ($data['was_insured_present'] === "Yes") {
+            $data['was_insured_present_str'] = $checks['Yes'];
+        } else {
+            $data['was_insured_present_str'] = $checks['No'];
+        }
+
+        // Handle roofer string. 
+        $data = $this->_build_roofer_string($data);
+
+        return $data;
+    }
+
+
+
+    private function _handle_damages($data) {
+        $data = $this->_set_damage_str($data, array('metal_damge_str'));
+
+        /*foreach ($data as $key => $value) {
+            if (preg_match('/metal/', $key)) {
+
+                $data['metal_damge_str'] .= $this->_handle_metal_damage_str($key, $value);
+            }
+        }
+
+        echo $data['metal_damage_str'];
+        die(); */
+
+        return $data;
+    }
+
+
+
+    private function _handle_metal_damage_str($key, $value) {
+
+        return $key;
+    }
+
+
+    private function _set_damage_str($data, $array) {
+        foreach ($array as $value) {
+            
+        }
+    }
+
+
+
+    private function _get_static_damages_text() {
+        return array('wind_header' => 'Our wind damage inspection consists of inspecting every roof slope to verify any and 
+                                      all wind damaged components to all types of roofing systems.',
+                     'hail_header' => 'Our hail damage inspection consists of looking on all directional slopes for granular 
+                                       displacement on the shingles that are about the size in diameter of a dime, and supported 
+                                       by mat fracture. These areas of granular displacement must be found consistently across 
+                                       the entire directional slope that we are assessing (which is a characteristic of hail damage). 
+                                       We use a 10’ X 10’ test square on all 4 directional slopes to test the statistical average of hail.');
+    }
+
+
+
+    private function _build_roofer_string($data) {
+        $str = "";
+        $no_inspector = "There was not a roofer present for this inspection.";
+        
+        if ($data['was_roofer_present'] === "Yes") {
+            $data['was_roofer_present_str'] = $data['roofer'] . " with " . $data['roofer_company_name'] . " attended the inspection and ";
+        } else {
+            $data['was_roofer_present_str'] = $no_inspector;
+        }
+
+        if ($data['was_roof_climbed'] === "Yes" && $data['was_roofer_present_str'] != $no_inspector) {
+            $data['was_roof_climbed'] = " and climbed the roof.";
+        } else if ($data['was_roofer_present_str'] != $no_inspector) {
+            $data['was_roof_climbed'] = " and did not climb the roof.";
+        } else {
+            $data['was_roof_climbed'] = "";
+        }
+
+        if ($data['agreed_wind'] === "Yes" && $data['was_roofer_present_str'] != $no_inspector) {
+            $data['agreed_wind'] = " agreed ";
+        } else if ($data['was_roofer_present_str'] != $no_inspector) {
+            $data['agreed_wind'] = " did not agree ";
+        }
+
+        if ($data['agreed_hail'] === "Yes" && $data['was_roofer_present_str'] != $no_inspector) {
+            if ($data['agreed_wind'] === "No") {
+                $data['agreed_hail'] = " but agreed ";
+            } else {
+                $data['agreed_hail'] = " and agreed ";
+            }
+        } else if ($data['was_roofer_present_str'] != $no_inspector) {
+            $data['agreed_hail'] = " did not agree ";
+        }
+
+        if ($data['was_roofer_present_str'] != $no_inspector) {
+            $data['roofing_agree_str'] = "The roofing contract " . $data['agreed_wind'] . " with our assessment of wind damage " . $data['agreed_hail'] . 
+                                         " with our assessment of hail damage";
+        } else {
+            $data['roofing_agree_str'] = "";
+        }
+
+        return $data;
     }
 
 

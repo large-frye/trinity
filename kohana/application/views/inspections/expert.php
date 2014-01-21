@@ -208,7 +208,7 @@
             </div>    
 
             <div class="row">
-                <label for="agreed_hailed">Did the roofer agree with hail assessment? </label>
+                <label for="agreed_hail ">Did the roofer agree with hail assessment? </label>
 
                 <div class="right">
                     <?php echo Form::radio('agreed_hail', 1, isset($data['agreed_hail']) && $data['agreed_hail'] == 1 ? true : false, array('id' => 'agreed_hail0')) .
@@ -574,7 +574,8 @@
                 <div class="row">
                     <label for="metal_damage_hail_size">Hail Size</label>
                     <div class="right">
-                        <?php echo Form::select('metal_damage_hail_size', array('blank' => 'Please Select') + $hail_sizes); ?>
+                        <?php echo Form::select('metal_damage_hail_size', array('blank' => 'Please Select') + $hail_sizes, 
+                                                 isset($data['metal_damage_hail_size']) ? $data['metal_damage_hail_size'] : null); ?>
                     </div>
                 </div>
 
@@ -582,7 +583,7 @@
                     <label for="metal_damage_comments">Comments</label>
 
                     <div class="right">
-                        <?php echo Form::input('metal_damage_comments'); ?>
+                        <?php echo Form::input('metal_damage_comments', isset($data['metal_damage_comments']) ? $data['metal_damage_comments'] : ''); ?>
                     </div>
                 </div>
                 
@@ -661,7 +662,7 @@
 
 <div class="section">
     <div class="box">
-            <div class="title">
+            <div class="title slope-title-helper">
                 Vermin
                 <span class="show"></span>
             </div>
@@ -788,7 +789,7 @@
 
 <div class="section">
     <div class="box">
-            <div class="title">
+            <div class="title slope-title-helper">
                 Ice
                 <span class="show"></span>
             </div>
@@ -880,7 +881,7 @@
 
 <div class="section">
     <div class="box">
-            <div class="title">
+            <div class="title slope-title-helper">
                 Fallen Tree
                 <span class="show"></span>
             </div>
@@ -919,7 +920,7 @@
 
 <div class="section">
     <div class="box">
-            <div class="title">
+            <div class="title slope-title-helper">
                 Excess Debris
                 <span class="show"></span>
             </div>
@@ -979,7 +980,7 @@
 </div>
 <div class="section">
     <div class="box">
-            <div class="title">
+            <div class="title slope-title-helper">
                 Standing Water
                 <span class="show"></span>
             </div>
@@ -1042,7 +1043,7 @@
 
 <div class="section">
     <div class="box">
-            <div class="title">
+            <div class="title slope-title-helper">
                 Product Defects
                 <span class="show"></span>
             </div>
@@ -1181,7 +1182,7 @@
 
 <div class="section">
     <div class="box">
-            <div class="title">
+            <div class="title slope-title-helper">
                 Workmanship / Improper Installation
                 <span class="show"></span>
             </div>
@@ -1536,7 +1537,7 @@
 
 <div class="section">
     <div class="box">
-            <div class="title">
+            <div class="title slope-title-helper">
                 Aged / Worn
                 <span class="show"></span>
             </div>
@@ -1606,7 +1607,7 @@
 
 <div class="section">
         <div class="box">
-            <div class="title">
+            <div class="title slope-title-helper">
                 Fire Damages
                 <span class="show"></span>
             </div>
