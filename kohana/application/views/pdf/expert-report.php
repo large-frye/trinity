@@ -56,6 +56,21 @@ td.center, p.center, h4.center, h3.center {
 p, li {
     line-height: 20px;
 }
+.redTxt{
+  color: red ;
+}
+.imgDiv{
+  width:450px;
+margin-left:auto;
+margin-right:auto;
+
+}
+.parentCatHead{
+   margin-bottom:20px;
+}
+.imgCl{
+   margin-bottom:20px;
+}
 
 p.lower { position: relative; top: 60px; }
 
@@ -82,7 +97,7 @@ li { padding: 10px; position: relative; left: 2em;}
 <!-- </div> -->
 
 <div id="page-wrap">
-<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . 'trinity/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . './trinity/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
 <table>
     <tr><th class="header">Trinity Inspections, LLC</th></tr>
     <tr><td class="center">P.O. Box 938</td></tr>
@@ -159,6 +174,29 @@ SC Adjusters License # 625784</p>
               </ul>
     <?php }} ?>
 <h3 class="red">SUMMARY OF FINDINGS</h3>
+
+
+$parentCount = count($parentCategories);
+$count = count($photos);
+ for ($i = 0; $i < $parentCount; $i++) {
+            if($parentCategories[$i]->name!=='Sketches'){
+              $tmp = '<div class="imgDiv"><h4 class="parentCatHead">'.$parentCategories[$i]->name.'</h4>';
+             for ($j = 0; $j < $count; $j++) {
+                  if($photos[$j]->categoryParent_id == $parentCategories[$i]->id){  
+                      $tmp = $tmp."<div class='imgCl'><img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 450px; height: 450px;' /></div>";
+                      $tmp = $tmp.'<br/>';
+               }  
+               }  
+               if(preg_match('/<img/i', $tmp)){
+                echo '<div class="page-break"></div>';
+                echo $tmp;
+                echo '<div>';      
+               } 
+          }
+        }
+?>
+
+
 </div>
 </body>
 </html>  
