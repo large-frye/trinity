@@ -17,6 +17,7 @@ class Controller_Workorders extends Controller_Account {
         $this->inspections_model = Model::factory('inspections');
         $this->settings_model = Model::factory('settings');
         $this->_workorder_id = $this->request->param('id');
+        
     }
 
 

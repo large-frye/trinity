@@ -57,7 +57,7 @@ p, li {
     line-height: 20px;
 }
 .redTxt{
-  color: red ;
+  color: red;
 }
 .imgDiv{
   width:450px;
@@ -186,12 +186,12 @@ $count = count($photos);
                       $tmp = $tmp."<div class='imgCl'><img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 450px; height: 450px;' /></div>";
                       $tmp = $tmp.'<br/>';
                }  
-               }  
+              }  
                if(preg_match('/<img/i', $tmp)){
                 echo '<div class="page-break"></div>';
                 echo $tmp;
                 echo '<div>';      
-               } 
+            } 
           }
         }
 ?>
