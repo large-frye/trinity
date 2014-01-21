@@ -528,10 +528,12 @@ class Model_Workorders extends Model_Base {
 
 
 
-    public function generate_report($workorder_id) {
+    public function generate_report($workorder_id, $parentCategories, $photos) {
         // We need to determine the view we are going to be use.
         $view = $this->_get_pdf_view($workorder_id);
-
+        $view->parentCategories = $parentCategories;
+        $view->photos = $photos;
+      
         // Need to get all of the data possible for this report
         $view->report_data = $this->get_inspection_report($workorder_id);
 

@@ -14,6 +14,8 @@ class Controller_Workorders extends Controller_Account {
     	parent::__construct($request, $response);
         $this->workorders_model = Model::factory('workorders');
         $this->_user_model = Model::factory('users');
+        $this->inspections_model = Model::factory('inspections');
+        $this->settings_model = Model::factory('settings');
         $this->_workorder_id = $this->request->param('id');
     }
 
@@ -183,7 +185,9 @@ class Controller_Workorders extends Controller_Account {
             throw new Exception('Error finding report. Seems to be you are missing something.');
         }
 
-        $status = $this->workorders_model->generate_report($this->_workorder_id);
+        $parentCategories = $this->settings_model->get_parent_categories();
+        $photos =  $this->inspections_model-> get_photos_by_id($this->_workorder_id);
+        $status = $this->workorders_model->generate_report($this->_workorder_id, $parentCategories,$photos);
 
     }
 
