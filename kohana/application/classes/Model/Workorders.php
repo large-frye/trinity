@@ -125,7 +125,27 @@ class Model_Workorders extends Model_Base {
 
 
 
-    public function edit_workorder($post, $workorder_id) {
+    public function edit_workorder($files, $post, $workorder_id) {
+        //functions to move PDF into directory 
+
+        $path = "/assets/xact/";
+
+        $uploaddir = '..'.$path.$workorder_id.'/';
+        if (!is_dir($uploaddir) && !mkdir($uploaddir)){
+          die("Error creating folder");
+        }
+
+
+        // File location with name
+        $tmpName = $files['xact']['tmp_name'];
+        $mimeType =  $files['xact']['type'];  
+        $fileName = $files['xact']['name']; 
+        $fileName = preg_replace("/[^A-Z0-9._-]/i", "_", $fileName);
+     
+
+        $pathAndName = $uploaddir.$fileName;
+        $moveResult = move_uploaded_file($tmpName, $pathAndName);
+       
         $parameters = array(':id'                         => $workorder_id,
                             ':type'                       => $post['type'],
                             ':user_id'                    => $post['user_id'],
@@ -144,7 +164,8 @@ class Model_Workorders extends Model_Base {
                             ':tarped'                     => $post['tarped'],
                             ':estimate_scope_requirement' => $post['estimate_scope_requirement'],
                             ':special_instructions'       => $post['special_instructions'],
-                            ':price'                      => $post['price']);
+                            ':price'                      => $post['price'],
+                            ':pdfLoc'                    =>  $pathAndName);
 
         $values = array();
         foreach($parameters as $parameter => $value) {
