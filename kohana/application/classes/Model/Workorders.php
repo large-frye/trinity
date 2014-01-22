@@ -484,8 +484,6 @@ class Model_Workorders extends Model_Base {
             }
         } 
 
-        print_r($report);
-
         switch ($report['type']) {
             case 0: 
                 $report['type'] = "Basic Inspection";
