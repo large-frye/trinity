@@ -10,7 +10,7 @@
 			//$user_type === Model_Account::ADMIN;
 		?>
 		<li><a href="/">Home</a></li>
-		<li><a href="/login">Login</a></li>
+		<!--<li><a href="/login">Login</a></li>-->
 	</ul>
 </div>
 		
@@ -22,6 +22,6 @@
 	
 	<p><br><br></p>
 	<p>
-		<img src="/trinity/assets/gfx/client-logos.jpg" width="680" height="72" alt="Client Logos">
+		<!--<img src="/trinity/assets/gfx/client-logos.jpg" width="680" height="72" alt="Client Logos">-->
 	</p>
 </div>

@@ -111,8 +111,8 @@ public static function unique_username($username)
         ->execute()
         ->get('total');
 }
-  
 public static function user_exists($email){
+  
   $result = DB::select(array(DB::expr('COUNT(email)'), 'total'))
         ->from('users')
         ->where('email', '=', $email)
@@ -125,9 +125,37 @@ public static function user_exists($email){
       }
 }
 
- public function send_forgotpassword($post){
 
 
+
+public function get_user_name($post){
+return DB::query(Database::SELECT, 'SELECT id, username, email FROM users where email = :email')
+                ->parameters(array(':email' => $post['email']))
+                ->as_object()
+                ->execute($this->db);
+}
+
+
+public function generateRandomString() {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randomString = '';
+    for ($i = 0; $i < 10; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $randomString;
+}
+
+
+ public function send_forgotpassword($pass, $id, $mailer_model, $email, $uid){ 
+    $user = ORM::factory('User', $id);
+    $user->password = $pass; 
+    $user->save();
+     
+     $mailer_model->send_mail($email, 'a.frye4@gmail.com', 'Trinity Password Reset', 5, 
+      array('::username::' => $uid,
+             '::password::' => $pass), null, null, null);
+
+     return true;
  }
  public function validate_lost_password($post){
      $valid_post = Validation::factory($post);

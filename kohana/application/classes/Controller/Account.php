@@ -168,7 +168,10 @@ class Controller_Account extends Controller_Master {
          if ($this->request->method() === 'POST') {  
             $validate_result= $this->account_model->validate_lost_password($this->_post);
             if (!$validate_result['error']) {
-                $this->_users_model->send_forgotpassword($this->_post);
+
+                $this->email= $this->account_model->get_user_name($this->_post);
+                $this->pass= $this->account_model->generateRandomString();
+                $this->account_model->send_forgotpassword($this->pass, $this->email->current()->id, $this->mailer_model, $this->email->current()->email, $this->email->current()->username);
                 $this->request->redirect('/account');
             } else { 
                 $view->errors=$validate_result['errors'];
