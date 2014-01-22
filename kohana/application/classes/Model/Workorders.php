@@ -93,15 +93,12 @@ class Model_Workorders extends Model_Base {
         $parameters[':latitude'] = $lat_long['lat'];
         $parameters[':longtitude'] = $lat_long['lng'];
 
-        print_r($parameters);
-
         try {
             DB::insert('work_orders')->values(array_keys($parameters))
                 ->parameters($parameters)
                 ->execute($this->db);
             return array('status' => true);
         } catch (Database_Exception $e) {
-            echo $e->getMessage();
             return array('status' => false, 'error' => $e->getMessage());
         }
     }
