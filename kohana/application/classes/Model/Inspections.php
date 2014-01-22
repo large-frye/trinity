@@ -225,10 +225,10 @@ class Model_Inspections extends Model_Base {
 
     public function get_lighting_damages() {
         return array(
-            0 => 'Antenna',
-            1 => 'Sheathing/Framing',
-            2 => 'Flashing',
-            3 => 'Chimney'
+            'antenna' => 'Antenna',
+            'sheathing/framing' => 'Sheathing/Framing',
+            'flashing' => 'Flashing',
+            'chimney' => 'Chimney'
         );
     }
 
@@ -717,6 +717,7 @@ class Model_Inspections extends Model_Base {
                          'fraud_wind_input' => array_keys($this->get_fraud_wind_input()),
                          'fraud_hail_input' => array_keys($this->get_fraud_hail_input()),
                          'metal_damages' => array_keys($this->get_metal_damages()),
+                         'lightning_damages' => array_keys($this->get_lighting_damages()),
                          'excess_debris_location' => array_keys($this->get_excess_debris()),
                          'standing_water_select' => array_keys($this->get_water_damages()),
                          'workmanship_flashing' => array_keys($this->get_workmanship()['flashing']),
@@ -896,6 +897,7 @@ class Model_Inspections extends Model_Base {
         $path = "/assets/photos/";
 
         $uploaddir = '..'.$path.$id.'/';
+        echo $uploaddir;
         if (!is_dir($uploaddir) && !mkdir($uploaddir)){
           die("Error creating folder");
         }

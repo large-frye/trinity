@@ -443,7 +443,7 @@ class Model_Workorders extends Model_Base {
 
 
 
-    public function get_inspection_report($workorder_id) {
+    public function get_inspection_report($workorder_id, $string_nice = false) {
         $report_serialized = DB::query(Database::SELECT, "SELECT `key`, `value` FROM inspection_meta WHERE workorder_id = :id")
                                                  ->parameters(array(':id' => $workorder_id))
                                                  ->as_object()
@@ -452,6 +452,7 @@ class Model_Workorders extends Model_Base {
         $report = array();
         $pre_built_data = $this->_inspection_model->build_values_for_report();
         $bool_fields = array('was_insured_present', 'was_roofer_present', 'was_roof_climbed', 'agreed_wind', 'agreed_hail', 'refused_test_squares');
+        $fields_that_need_arrays = array('metal_damages');
 
         foreach ($report_serialized as $row) {
             if ($row->key != "csrf") {
@@ -460,7 +461,10 @@ class Model_Workorders extends Model_Base {
                     $report[$row->key] = "";
 
                     foreach ($array as $key => $value) {
-                        if (isset($pre_built_data[$row->key][$value])) {
+                        if (in_array($row->key, $fields_that_need_arrays)) {
+                            $report[$row->key][$key] = $value;
+                        }
+                        else if (isset($pre_built_data[$row->key][$value])) {
                             $report[$row->key] .= $pre_built_data[$row->key][$value] . "<br>";
                         } else {
                             $report[$row->key] .= $value . "<br>";
@@ -523,6 +527,10 @@ class Model_Workorders extends Model_Base {
             }
         }
 
+        if ($string_nice)  {
+            $report = $this->_handle_damages($report);
+        }
+
         return $report;
     }
 
@@ -531,11 +539,16 @@ class Model_Workorders extends Model_Base {
     public function generate_report($workorder_id, $parentCategories, $photos) {
         // We need to determine the view we are going to be use.
         $view = $this->_get_pdf_view($workorder_id);
+
+        // Photos
         $view->parentCategories = $parentCategories;
         $view->photos = $photos;
-      
+
         // Need to get all of the data possible for this report
         $view->report_data = $this->first_page_data_output($this->get_inspection_report($workorder_id));
+
+        // Specifying the output for the expert report
+        $view->report_data = $this->_handle_damages($view->report_data);
 
         // Get all of inspection data and report. 
         $view->inspection_data = (array) $this->get_workorder_details($workorder_id);
@@ -582,17 +595,23 @@ class Model_Workorders extends Model_Base {
 
 
     private function _handle_damages($data) {
-        $data = $this->_set_damage_str($data, array('metal_damge_str'));
+        $data = $this->_set_damage_str($data, array('metal_header' => 'metal_damage_str'));
 
-        /*foreach ($data as $key => $value) {
-            if (preg_match('/metal/', $key)) {
-
-                $data['metal_damge_str'] .= $this->_handle_metal_damage_str($key, $value);
+        foreach ($data as $key => $value) {
+            if (preg_match('/metal_damages/', $key)) {
+                $data['damages']['metal_header']['metal_damage_str'] = $this->_handle_metal_damage_str($key, $value);
+            } else if (preg_match('/hail_size/', $key)) {
+                $data['damages']['metal_header']['metal_damage_hail_size'] = 
+                    "Based on the dents of the soft metals and/or spatter on the roof and secondary indicators, the estimated hail diameter was measured at: " . 
+                    str_replace('_', '/', $data['damages']['metal_header']['metal_damage_hail_size']) . "\"";
+            } else if (preg_match('/slope_vermin_(roofing|fascia|vent)_damage$/', $key)) {
+                $data = $this->_set_vermin_damage($data, $key, $value);
+            } else if (preg_match('/lightning_damages/', $key)) {
+                $data = $this->_set_lightning_damage($data, $key, $value);
+            } else if (preg_match('/(slope_ice_damming|slope_fallen_ice)/', $key)) {
+                $data = $this->_set_ice_damage($data, $key, $value);
             }
         }
-
-        echo $data['metal_damage_str'];
-        die(); */
 
         return $data;
     }
@@ -600,17 +619,47 @@ class Model_Workorders extends Model_Base {
 
 
     private function _handle_metal_damage_str($key, $value) {
+        $str = "We also found cosmetic denting to the thin gauge aluminum vents on the roof: ";
+        foreach ($value as $_k => $_v) {
+            $str .= $_v . " of " . $_k . ", ";
+        }
 
-        return $key;
+        return $str;
     }
 
 
     private function _set_damage_str($data, $array) {
-        foreach ($array as $value) {
-            
+        foreach ($array as $key => $value) {
+            $data['damages'][$key][$value] = "";
         }
+
+        return $data;
     }
 
+
+    private function _set_vermin_damage($data, $key, $value) {
+        unset($data['damages']['vermin_header'][$key]);
+        $_key = str_replace('slope_vermin_', '', $key);
+        $_key = str_replace('_damage', '', $_key);
+        $data['damages']['vermin_header'][ucfirst($_key) . " Damage"] = "<b>" . ucfirst($_key) . " Damage:</b> "  . str_replace('(+c):', '- comment: ', $value);
+
+        return $data;
+    }
+
+
+    private function _set_lightning_damage($data, $key, $value) {
+        $data['damages']['lightning_header'][$key] = "<b>Lightning Damages:</b> " . str_replace('<br>', '; ', $value);
+
+        return $data;
+    }
+
+
+    private function _set_ice_damage($data, $key, $value) {
+        $header = str_replace('slope', '', $key);
+        $header = str_replace('_', ' ', $header);
+        $data['damages']['ice_header'][$key] = "<b>" . ucfirst($header) . ":</b> " . $value;
+        return $data;
+    }
 
 
     private function _get_static_damages_text() {
