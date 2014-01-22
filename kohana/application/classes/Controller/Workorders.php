@@ -16,6 +16,7 @@ class Controller_Workorders extends Controller_Account {
         $this->_user_model = Model::factory('Users');
         $this->inspections_model = Model::factory('Inspections');
         $this->settings_model = Model::factory('Settings');
+        $this->invoice_model = Model::factory('Invoice');
         $this->_workorder_id = $this->request->param('id');
         
     }
@@ -167,6 +168,11 @@ class Controller_Workorders extends Controller_Account {
 
 
     public function action_report() {
+        if ($this->invoice_model->check_if_inspection_report_exists($this->_workorder_id) <= 0) {
+            Session::instance()->set('invoice_does_not_exist', 'There is no inspection for this workorder yet.');
+            $this->request->redirect('/account');
+        }
+
         if (!isset($this->_workorder_id)) {
             throw new Exception('Error finding report. Seems to be you are missing something.');
         }

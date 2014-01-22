@@ -18,7 +18,7 @@ class Controller_Invoice extends Controller_Account {
         parent::before();
 
         if ($this->invoice_model->check_if_inspection_report_exists($this->_workorder_id) <= 0) {
-            Session::instance()->set('invoice_does_not_exist', 'There is no invoice for this workorder yet.');
+            Session::instance()->set('invoice_does_not_exist', 'There is no inspection for this workorder yet.');
             $this->request->redirect('/account');
         }
 
