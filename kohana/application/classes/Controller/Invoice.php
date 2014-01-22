@@ -7,8 +7,8 @@ class Controller_Invoice extends Controller_Account {
     public function __construct($request, $response) {
         parent::__construct($request, $response);
 
-        $this->invoice_model = Model::factory('invoice');
-        $this->workorders_model = Model::factory('workorders');
+        $this->invoice_model = Model::factory('Invoice');
+        $this->workorders_model = Model::factory('Workorders');
         $this->_workorder_id = $this->request->param('id');
     }
 

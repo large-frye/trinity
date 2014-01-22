@@ -9,8 +9,8 @@ class Model_Workorders extends Model_Base {
     public function __construct() {
     	parent::__construct();
 
-        $this->_users_model = Model::factory('users');
-        $this->_inspection_model = Model::factory('inspections');
+        $this->_users_model = Model::factory('Users');
+        $this->_inspection_model = Model::factory('Inspections');
     }
 
 

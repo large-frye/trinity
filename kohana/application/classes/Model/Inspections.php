@@ -8,7 +8,7 @@ class Model_Inspections extends Model_Base {
 
     public function __construct() {
         parent::__construct();
-        $this->custom_validation_model = Model::factory('custom');
+        $this->custom_validation_model = Model::factory('Custom');
     }
 
 

@@ -12,10 +12,10 @@ class Controller_Workorders extends Controller_Account {
 
     public function __construct(Kohana_Request $request, Kohana_Response $response) {
     	parent::__construct($request, $response);
-        $this->workorders_model = Model::factory('workorders');
-        $this->_user_model = Model::factory('users');
-        $this->inspections_model = Model::factory('inspections');
-        $this->settings_model = Model::factory('settings');
+        $this->workorders_model = Model::factory('Workorders');
+        $this->_user_model = Model::factory('Users');
+        $this->inspections_model = Model::factory('Inspections');
+        $this->settings_model = Model::factory('Settings');
         $this->_workorder_id = $this->request->param('id');
         
     }

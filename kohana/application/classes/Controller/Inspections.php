@@ -8,9 +8,9 @@ class Controller_Inspections extends Controller_Account {
 
     public function __construct( $request, $response ) {
         parent::__construct( $request, $response );
-        $this->workorders_model = Model::factory( 'workorders' );
-        $this->inspections_model = Model::factory( 'inspections' );
-        $this->settings_model = Model::factory( 'settings' );
+        $this->workorders_model = Model::factory( 'Workorders' );
+        $this->inspections_model = Model::factory( 'Inspections' );
+        $this->settings_model = Model::factory( 'Settings' );
 
         if ( $this->request->action() === 'uploadphotos' ||
             $this->request->action() === 'catigorizephotos'||
