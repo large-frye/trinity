@@ -86,11 +86,14 @@ class Model_Workorders extends Model_Base {
                             ':last_generated'             => null, 
                             ':generate_report_status'     => null,
                             ':comments'                   => null,
-                            ':commenter_id'               => null);
+                            ':commenter_id'               => null,
+                            ':pdfLoc'                     => null);
 
         $lat_long = $this->_generate_lat_long($post);
         $parameters[':latitude'] = $lat_long['lat'];
         $parameters[':longtitude'] = $lat_long['lng'];
+
+        print_r($parameters);
 
         try {
             DB::insert('work_orders')->values(array_keys($parameters))
@@ -98,6 +101,7 @@ class Model_Workorders extends Model_Base {
                 ->execute($this->db);
             return array('status' => true);
         } catch (Database_Exception $e) {
+            echo $e->getMessage();
             return array('status' => false, 'error' => $e->getMessage());
         }
     }
