@@ -13,7 +13,7 @@ class Model_Invoice extends Model_Base {
 
         $this->workorders_model = Model::factory('Workorders');
        //  $this->mailer_model = Model::factory('mailer');
-        $this->_file_path = $_SERVER['DOCUMENT_ROOT'] . "trinity/assets/pdf/output/" . "invoice_";
+        $this->_file_path = $_SERVER['DOCUMENT_ROOT'] . "/trinity/assets/pdf/output/" . "invoice_";
         $this->_web_file_path = str_replace($_SERVER['DOCUMENT_ROOT'], '', $this->_file_path);
     }
 
