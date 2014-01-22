@@ -98,7 +98,7 @@ class Model_Workorders extends Model_Base {
                 ->execute($this->db);
             return array('status' => true);
         } catch (Database_Exception $e) {
-            return array('status' => false, 'error' => $e->message);
+            return array('status' => false, 'error' => $e->getMessage());
         }
     }
 

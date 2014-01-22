@@ -810,7 +810,8 @@
                     <div class="right has_slope_checkbox" rel="slope_ice_damming">
                         <input type="hidden" name="ice_damming" value="blank">
 
-                        <input type="checkbox" name="ice_damming" id="ice_damming" value=<?php echo isset($data['ice_damming']) ? $data['ice_damming'] : null; ?> />
+                        <input type="checkbox" name="ice_damming" id="ice_damming" value="1"
+                            <?php echo isset($data['ice_damming']) && $data['ice_damming'] ? "checked=checked" : null; ?> />
                         <label for="ice_damming">Yes</label>
                     </div>
                 </div>        
@@ -848,7 +849,8 @@
                     <div class="right has_slope_checkbox" rel="slope_fallen_ice">                        
                         <input type="hidden" name="ice_fallen_ice" value="blank">
 
-                        <input type="checkbox" name="ice_fallen_ice" id="ice_fallen_ice" value="1" />
+                        <input type="checkbox" name="ice_fallen_ice" id="ice_fallen_ice" value="1" 
+                               <?php echo isset($data['ice_fallen_ice']) && $data['ice_fallen_ice'] == 1 ? "checked=checked" : null; ?> />
                         <label for="ice_fallen_ice">Yes</label>
                     </div>
                 </div>    
