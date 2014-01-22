@@ -713,17 +713,19 @@ class Model_Inspections extends Model_Base {
 
 
     public function sift_data_values($data) {
-        $_values = array('fallen_tree_damages' => array_keys($this->get_fall_tree_information()['damages']),
+        $fallen_tree_damages = $this->get_fall_tree_information();
+        $workmanship = $this->get_workmanship();
+        $_values = array('fallen_tree_damages' => array_keys($fallen_tree_damages['damages']),
                          'fraud_wind_input' => array_keys($this->get_fraud_wind_input()),
                          'fraud_hail_input' => array_keys($this->get_fraud_hail_input()),
                          'metal_damages' => array_keys($this->get_metal_damages()),
                          'lightning_damages' => array_keys($this->get_lighting_damages()),
                          'excess_debris_location' => array_keys($this->get_excess_debris()),
                          'standing_water_select' => array_keys($this->get_water_damages()),
-                         'workmanship_flashing' => array_keys($this->get_workmanship()['flashing']),
-                         'workmanship_flashing_missing' => array_keys($this->get_workmanship()['flashing_missing']),
-                         'workmanship_venting' => array_keys($this->get_workmanship()['venting']),
-                         'workmanship_improper_nailing' => array_keys($this->get_workmanship()['improper_nailing']),
+                         'workmanship_flashing' => array_keys($workmanship['flashing']),
+                         'workmanship_flashing_missing' => array_keys($workmanship['flashing_missing']),
+                         'workmanship_venting' => array_keys($workmanship['venting']),
+                         'workmanship_improper_nailing' => array_keys($workmanship['improper_nailing']),
                          'aged_worn_check_that_apply' => array_keys($this->get_aged_worn()));
         $values = array();
         
