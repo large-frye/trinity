@@ -24,9 +24,9 @@ class Controller_Account extends Controller_Master {
         parent::__construct($request, $response);
 
         // Account Model
-        $this->account_model = Model::factory('account');
-        $this->_users_model = Model::factory('users');
-        $this->mailer_model = Model::factory('mailer');
+        $this->account_model = Model::factory('Account');
+        $this->_users_model = Model::factory('Users');
+        $this->mailer_model = Model::factory('Mailer');
     }
 
 
