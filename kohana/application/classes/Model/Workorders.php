@@ -140,7 +140,7 @@ class Model_Workorders extends Model_Base {
                             ':phone2'                     => $post['phone2'],
                             ':is_expert'                  => isset($post['is_expert']) ? true : false,
                             ':damage_type'                => $post['damage_type'],
-                            ':date_of_loss'               => $post['date_of_loss'],
+                            ':date_of_loss'               => date('M-d-Y', strtotime($post['date_of_loss'])),
                             ':tarped'                     => $post['tarped'],
                             ':estimate_scope_requirement' => $post['estimate_scope_requirement'],
                             ':special_instructions'       => $post['special_instructions'],
