@@ -6,7 +6,7 @@ class Controller_Schedule extends Controller_Master {
 
     public function __construct(Kohana_Request $request, Kohana_Response $response) {
         parent::__construct($request, $response);
-        $this->settings_model=Model::factory('schedule');
+        $this->settings_model=Model::factory('Schedule');
     }
 
     public function before() {
