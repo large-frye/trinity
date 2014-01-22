@@ -57,7 +57,7 @@ p, li {
     line-height: 20px;
 }
 .redTxt{
-  color: red;
+  color: red ;
 }
 .imgDiv{
   width:450px;
@@ -89,6 +89,7 @@ li { padding: 10px; position: relative; left: 2em;}
 .resize-signature { width: 300px; height: 100px; padding-top: 100px; color: black; }
 .relative { position: relative; }
 .padding-top: { padding-top: 25; }
+.damage-block : { position: relative; top: 20px; padding-bottom: 40px;}
 
 </style>
 </head>
@@ -149,13 +150,14 @@ SC Adjusters License # 625784</p>
 <br>
 <?php foreach ($report_data['damages'] as $damage => $damages) { 
           if (preg_match('/header/', $damage)) { ?>
-              <h3 class="red"><?php echo strtoupper(str_replace('_header', '', $damage)); ?></h3>
+              <div class="damage-block"><h3 class="red"><?php echo strtoupper(str_replace('_header', '', $damage)); ?></h3>
               <p><?php echo isset($static_damage_text[$damage]) ? $static_damage_text[$damage] : ""; ?></p>
               <ul>
               <?php 
                   $directions = array("North", "South", "East", "West", "(Front)", "(Rear)", "(Left)", "(Right)", "NorthEast", "NorthWest", "SouthEast", "SouthWest");
-                  foreach ($damages as $type) { ?>
-                      <li>&nbsp;&nbsp;&nbsp;
+                  foreach ($damages as $type) {
+                      if (!is_array($type) && $type != "" && !is_numeric($type) && $type != "blank") { ?>
+                      <li>
                       <?php 
                           $finalStr='';
                           foreach(explode(' ',$type) as $st) {
@@ -172,8 +174,16 @@ SC Adjusters License # 625784</p>
                           } echo $type; ?></li>
               <?php } ?>
               </ul>
-    <?php }} ?>
+    <?php } echo "</div>"; }} ?>
 <h3 class="red">SUMMARY OF FINDINGS</h3>
+<div class="page-break"></div>
+<div class="padding-top"></div>
+<br><br><br>
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . './trinity/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
+<h3 class="center">Symbol Breakdown</h3>
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/trinity/assets/gfx/symbol_breakdown.jpg'; ?>" alt="symbol_breakdown" />
+<div class="page-break"></div>
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/trinity/assets/gfx/sketch.jpg'; ?>" alt="sketch" width="600" height="400" />
 <?php
 
 $parentCount = count($parentCategories);
@@ -186,12 +196,12 @@ $count = count($photos);
                       $tmp = $tmp."<div class='imgCl'><img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 450px; height: 450px;' /></div>";
                       $tmp = $tmp.'<br/>';
                }  
-              }  
+               }  
                if(preg_match('/<img/i', $tmp)){
                 echo '<div class="page-break"></div>';
                 echo $tmp;
                 echo '<div>';      
-            } 
+               } 
           }
         }
 ?>

@@ -24,9 +24,9 @@ class Controller_Account extends Controller_Master {
         parent::__construct($request, $response);
 
         // Account Model
-        $this->account_model = Model::factory('account');
-        $this->_users_model = Model::factory('users');
-        $this->mailer_model = Model::factory('mailer');
+        $this->account_model = Model::factory('Account');
+        $this->_users_model = Model::factory('Users');
+        $this->mailer_model = Model::factory('Mailer');
     }
 
 
@@ -125,8 +125,9 @@ class Controller_Account extends Controller_Master {
         if ($this->request->current()->method() === HTTP_Request::POST) {
             $this->_post = $this->request->post();
 
+            $validate = $this->account_model->validate_login_post($this->_post);
             // Sanitize user_name and password with Validation class
-            if($this->account_model->validate_login_post($this->_post)['status']) {
+            if($validate['status']) {
                 // Need to check if user has a status of 2. 
                 if ($this->_users_model->check_if_user_is_deleted($this->_post['username'])) {
                     $view->user_doesnt_exist = true;

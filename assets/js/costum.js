@@ -889,6 +889,13 @@ $(document).ready(function() {
     $('.siding-damage').click(function() {
         show_siding_damage_amount_inputs($(this), $('.siding-type'), true);
     });
+
+    // Save report
+    $('#save-report').click(function() {
+        var splitted = document.URL.split('/');
+
+        window.location = "/workorders/generate/" + splitted[5];
+    });
 });
 
 

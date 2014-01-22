@@ -12,10 +12,11 @@ class Controller_Workorders extends Controller_Account {
 
     public function __construct(Kohana_Request $request, Kohana_Response $response) {
     	parent::__construct($request, $response);
-        $this->workorders_model = Model::factory('workorders');
-        $this->_user_model = Model::factory('users');
-        $this->inspections_model = Model::factory('inspections');
-        $this->settings_model = Model::factory('settings');
+        $this->workorders_model = Model::factory('Workorders');
+        $this->_user_model = Model::factory('Users');
+        $this->inspections_model = Model::factory('Inspections');
+        $this->settings_model = Model::factory('Settings');
+        $this->invoice_model = Model::factory('Invoice');
         $this->_workorder_id = $this->request->param('id');
         
     }
@@ -167,6 +168,11 @@ class Controller_Workorders extends Controller_Account {
 
 
     public function action_report() {
+        if ($this->invoice_model->check_if_inspection_report_exists($this->_workorder_id) <= 0) {
+            Session::instance()->set('invoice_does_not_exist', 'There is no inspection for this workorder yet.');
+            $this->request->redirect('/account');
+        }
+
         if (!isset($this->_workorder_id)) {
             throw new Exception('Error finding report. Seems to be you are missing something.');
         }
@@ -175,7 +181,9 @@ class Controller_Workorders extends Controller_Account {
         $view->inspection_details = $this->workorders_model->get_workorder_details($this->_workorder_id);
         $view->policy_holder_info = $this->workorders_model->get_policy_holder($this->_workorder_id);
         $view->adjuster = $this->workorders_model->get_adjuster_for_workorder($this->_workorder_id);
-        $view->inspection_report = $this->workorders_model->get_inspection_report($this->_workorder_id);
+        $view->inspection_report = $this->workorders_model->get_inspection_report($this->_workorder_id, true);
+        $view->photos = $this->inspections_model->get_photos_by_id($this->_workorder_id);
+        $view->categories = $this->settings_model->get_parent_categories();
         $this->template->content = $view;
     }
 
