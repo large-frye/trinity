@@ -196,6 +196,6 @@ echo '</table>'; ?>
 
 <div class="section">
 <div class="row">
-    <button type="submit" name="save"><span>Save</span></button>
+    <button type="redirect" name="save_report" id="save-report"><span>Create Report PDF</span></button>
 </div>
 </div>
