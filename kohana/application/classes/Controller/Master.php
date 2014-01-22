@@ -21,10 +21,10 @@ class Controller_Master extends Controller_Template {
 		parent::__construct($request, $response);
 
 		// Master Model
-		$this->masterModel = Model::factory('master');
+		$this->masterModel = Model::factory('Master');
 
         // Users Model
-        $this->users_model = Model::factory('users');
+        $this->users_model = Model::factory('Users');
 
         // Create a property to use instead of Kohana's static function;
         $this->request = Request::current();
