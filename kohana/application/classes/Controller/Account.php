@@ -125,8 +125,9 @@ class Controller_Account extends Controller_Master {
         if ($this->request->current()->method() === HTTP_Request::POST) {
             $this->_post = $this->request->post();
 
+            $validate = $this->account_model->validate_login_post($this->_post);
             // Sanitize user_name and password with Validation class
-            if($this->account_model->validate_login_post($this->_post)['status']) {
+            if($validate['status']) {
                 // Need to check if user has a status of 2. 
                 if ($this->_users_model->check_if_user_is_deleted($this->_post['username'])) {
                     $view->user_doesnt_exist = true;
