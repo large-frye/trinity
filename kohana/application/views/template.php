@@ -132,7 +132,7 @@
     <div id="rightside">
     <div>
 		<a href="/schedule" target="_self">
-            <img src="/trinity/assets/gfx/_banner-02.jpg" onmouseover="this.src=' /trinity/assets/gfx/_banner-02-high.jpg '" onmouseout="this.src=' /trinity/assets/gfx/_banner-02.jpg '" width="300" />
+            <img src="/assets/gfx/_banner-02.jpg" onmouseover="this.src=' /assets/gfx/_banner-02-high.jpg '" onmouseout="this.src=' /assets/gfx/_banner-02.jpg '" width="300" />
 		</a>
     </div>
     <div class="box togglemenu">	
