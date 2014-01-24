@@ -147,7 +147,7 @@ class Controller_Workorders extends Controller_Account {
             $validation_result = $this->workorders_model->validate_workorder($this->_post);
 
             if (!$validation_result['error']) {
-                $edit_work_order_status = $this->workorders_model->edit_workorder($this->_post, $request_param);
+                $edit_work_order_status = $this->workorders_model->edit_workorder($_FILES, $this->_post, $request_param);
                 
                 if ($edit_work_order_status['status']) {
                     Session::instance()->set('edit_new_work_order', "You have successfully updated your order.");

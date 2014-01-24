@@ -87,8 +87,7 @@ class Model_Workorders extends Model_Base {
                             ':last_generated'             => null, 
                             ':generate_report_status'     => null,
                             ':comments'                   => null,
-                            ':commenter_id'               => null,
-                            ':pdfLoc'                     => null);
+                            ':commenter_id'               => null);
 
         $lat_long = $this->_generate_lat_long($post);
         $parameters[':latitude'] = $lat_long['lat'];
@@ -100,7 +99,7 @@ class Model_Workorders extends Model_Base {
                 ->execute($this->db);
             return array('status' => true);
         } catch (Database_Exception $e) {
-            return array('status' => false, 'error' => $e->getMessage());
+            return array('status' => false, 'error' => $e->message);
         }
     }
 
@@ -127,9 +126,27 @@ class Model_Workorders extends Model_Base {
 
 
 
-    public function edit_workorder($post, $workorder_id) {
-        $date_of_loss = explode('-', $post['date_of_loss']);
-        $_date = $date_of_loss[2] . "-" . $date_of_loss[0] . "-". $date_of_loss[1];
+    public function edit_workorder($files, $post, $workorder_id) {
+        //functions to move PDF into directory 
+
+        $path = "/assets/xact/";
+
+        $uploaddir = '..'.$path.$workorder_id.'/';
+        if (!is_dir($uploaddir) && !mkdir($uploaddir)){
+          die("Error creating folder");
+        }
+
+
+        // File location with name
+        $tmpName = $files['xact']['tmp_name'];
+        $mimeType =  $files['xact']['type'];    
+        $fileName = $files['xact']['name']; 
+        $fileName = preg_replace("/[^A-Z0-9._-]/i", "_", $fileName);
+     
+
+        $pathAndName = $uploaddir.$fileName;
+        $moveResult = move_uploaded_file($tmpName, $pathAndName);
+       
         $parameters = array(':id'                         => $workorder_id,
                             ':type'                       => $post['type'],
                             ':user_id'                    => $post['user_id'],
@@ -144,11 +161,12 @@ class Model_Workorders extends Model_Base {
                             ':phone2'                     => $post['phone2'],
                             ':is_expert'                  => isset($post['is_expert']) ? true : false,
                             ':damage_type'                => $post['damage_type'],
-                            ':date_of_loss'               => date('Y-m-d', strtotime($_date)),
+                            ':date_of_loss'               => $post['date_of_loss'],
                             ':tarped'                     => $post['tarped'],
                             ':estimate_scope_requirement' => $post['estimate_scope_requirement'],
                             ':special_instructions'       => $post['special_instructions'],
-                            ':price'                      => $post['price']);
+                            ':price'                      => $post['price'],
+                            ':pdfLoc'                    =>  $pathAndName);
 
         $values = array();
         foreach($parameters as $parameter => $value) {
@@ -447,7 +465,7 @@ class Model_Workorders extends Model_Base {
 
 
 
-    public function get_inspection_report($workorder_id, $string_nice = false) {
+    public function get_inspection_report($workorder_id) {
         $report_serialized = DB::query(Database::SELECT, "SELECT `key`, `value` FROM inspection_meta WHERE workorder_id = :id")
                                                  ->parameters(array(':id' => $workorder_id))
                                                  ->as_object()
@@ -456,7 +474,6 @@ class Model_Workorders extends Model_Base {
         $report = array();
         $pre_built_data = $this->_inspection_model->build_values_for_report();
         $bool_fields = array('was_insured_present', 'was_roofer_present', 'was_roof_climbed', 'agreed_wind', 'agreed_hail', 'refused_test_squares');
-        $fields_that_need_arrays = array('metal_damages');
 
         foreach ($report_serialized as $row) {
             if ($row->key != "csrf") {
@@ -465,10 +482,7 @@ class Model_Workorders extends Model_Base {
                     $report[$row->key] = "";
 
                     foreach ($array as $key => $value) {
-                        if (in_array($row->key, $fields_that_need_arrays)) {
-                            $report[$row->key][$key] = $value;
-                        }
-                        else if (isset($pre_built_data[$row->key][$value])) {
+                        if (isset($pre_built_data[$row->key][$value])) {
                             $report[$row->key] .= $pre_built_data[$row->key][$value] . "<br>";
                         } else {
                             $report[$row->key] .= $value . "<br>";
@@ -531,10 +545,6 @@ class Model_Workorders extends Model_Base {
             }
         }
 
-        if ($string_nice)  {
-            $report = $this->_handle_damages($report);
-        }
-
         return $report;
     }
 
@@ -543,16 +553,11 @@ class Model_Workorders extends Model_Base {
     public function generate_report($workorder_id, $parentCategories, $photos) {
         // We need to determine the view we are going to be use.
         $view = $this->_get_pdf_view($workorder_id);
-
-        // Photos
         $view->parentCategories = $parentCategories;
         $view->photos = $photos;
-
+      
         // Need to get all of the data possible for this report
         $view->report_data = $this->first_page_data_output($this->get_inspection_report($workorder_id));
-
-        // Specifying the output for the expert report
-        $view->report_data = $this->_handle_damages($view->report_data);
 
         // Get all of inspection data and report. 
         $view->inspection_data = (array) $this->get_workorder_details($workorder_id);
@@ -620,28 +625,24 @@ class Model_Workorders extends Model_Base {
             }
         }
 
+
         return $data;
     }
 
 
 
     private function _handle_metal_damage_str($key, $value) {
-        $str = "We also found cosmetic denting to the thin gauge aluminum vents on the roof: ";
-        foreach ($value as $_k => $_v) {
-            $str .= $_v . " of " . $_k . ", ";
-        }
 
-        return $str;
+        return $key;
     }
 
 
     private function _set_damage_str($data, $array) {
-        foreach ($array as $key => $value) {
-            $data['damages'][$key][$value] = "";
+        foreach ($array as $value) {
+            
         }
-
-        return $data;
     }
+
 
 
     private function _set_vermin_damage($data, $key, $value) {
@@ -668,6 +669,7 @@ class Model_Workorders extends Model_Base {
         $data['damages']['ice_header'][$key] = "<b>" . ucfirst($header) . ":</b> " . $value;
         return $data;
     }
+
 
 
 

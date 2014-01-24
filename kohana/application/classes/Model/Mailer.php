@@ -57,9 +57,7 @@ class Model_Mailer extends Model_Base {
     private function _get_body($template, $variables) {
         $template_data = $this->_get_template($template);
         $body = $template_data->value;
-            print_r($variables);
         $_variables = explode('|', $template_data->variables);
-        print_r($_variables);
         foreach ($_variables as $var) {
 
             $body = str_replace($var, $variables[$var], $body);

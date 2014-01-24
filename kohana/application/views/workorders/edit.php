@@ -6,7 +6,7 @@ if (isset($errors)) {
           </div>';
 }
 
-echo Form::open('', array('class' => 'workorders-submit-form')); ?>
+echo Form::open('', array('enctype' => 'multipart/form-data', 'class' => 'workorders-submit-form')); ?>
 
 <div class="section">
 	<div class="box">
@@ -242,6 +242,16 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 		</div>
 	</div>
 
+	<div class="section">
+		<div class="box">
+			<div class="title">Xactimate Report Upload</div>
+			<div class="content">
+				<div class="row">
+			<input name="xact" type="file" />Click to upload a File<br />
+		</div>
+      <div>
+    <div>
+<div>
 	<div class="section">
 		<div class="box">
 			
