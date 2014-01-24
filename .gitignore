@@ -1,0 +1,7 @@
+# Hide these file extensions
+*.pdf
+*.xlsx
+*.xls
+*.DS_Store
+_trinity*
+*logs*

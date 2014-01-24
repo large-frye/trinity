@@ -638,6 +638,8 @@ class Model_Workorders extends Model_Base {
                 $data = $this->_set_lightning_damage($data, $key, $value);
             } else if (preg_match('/(slope_ice_damming|slope_fallen_ice)/', $key)) {
                 $data = $this->_set_ice_damage($data, $key, $value);
+            } else if (preg_match('/excess_debris/', $key)) {
+                $data = $this->_set_excess_debris($data, $key, $value);
             }
         }
 
@@ -682,12 +684,29 @@ class Model_Workorders extends Model_Base {
     }
 
 
+
     private function _set_ice_damage($data, $key, $value) {
         $header = str_replace('slope', '', $key);
         $header = str_replace('_', ' ', $header);
         $data['damages']['ice_header'][$key] = "<b>" . ucfirst($header) . ":</b> " . $value;
         return $data;
     }
+
+
+
+    private function _set_excess_debris($data, $key, $value) {
+        switch ($key) {
+            case "excess_debris_location" : 
+                $data['damages']['excess_debris_header'][$key] = "We found the following excess debris damages: <b>" . str_replace('<br>', ', ', $data[$key]) . "</b>.";
+                break;
+            case "slope_excess_debris_location" :
+                $data['damages']['excess_debris_header'][$key] = "We found the following damage to the slope due to excess debris: " . str_replace('(+c):', '- comment: ', $value);
+                break;
+        }
+
+        return $data;
+    }
+
 
 
     private function _get_static_damages_text() {

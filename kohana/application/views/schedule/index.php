@@ -3,14 +3,14 @@
 			</div>
 				<div id="hero">
 					<a href="#" target="_self">
-						<img src="/trinity/assets/gfx/claim-photo.jpg" width"980">
+						<img src="/assets/gfx/claim-photo.jpg" width"980">
 					</a>
 				</div>
 
 				<div class="triples">
 					<div>
 						<a href="/workorders/submit/0" target="_self">
-							<img src="/trinity/assets/gfx/inspect-01-basic-off.png " onmouseover="this.src='/trinity/assets/gfx/inspect-01-basic-on.png '" onmouseout="this.src='/trinity/assets/gfx/inspect-01-basic-off.png '" width="316">
+							<img src="/assets/gfx/inspect-01-basic-off.png " onmouseover="this.src='/assets/gfx/inspect-01-basic-on.png '" onmouseout="this.src='/assets/gfx/inspect-01-basic-off.png '" width="316">
 						</a>
 					</div>
 					
@@ -27,7 +27,8 @@
 
 				<div class="triples">
 					<div>
-						<a href="/workorders/submit/1" target="_self"><img src="/trinity/assets/gfx/inspect-02-expert-on.png " onmouseover="this.src='/trinity/assets/gfx/inspect-02-expert-on.png '" onmouseout="this.src='/trinity/assets/gfx/inspect-02-expert-off.png '" width="316">
+						<a href="/workorders/submit/1" target="_self"><img src="/assets/gfx/inspect-02-expert-on.png " 
+							onmouseover="this.src='/assets/gfx/inspect-02-expert-on.png '" onmouseout="this.src='/assets/gfx/inspect-02-expert-off.png '" width="316">
 						</a>
 					</div>
 					
@@ -50,7 +51,8 @@
 					
 				<div class="triples">
 					<div>
-						<a href="/workorders/submit/2" target="_self"><img src="/trinity/assets/gfx/inspect-03-engineer-off.png " onmouseover="this.src='/trinity/assets/gfx/inspect-03-engineer-on.png '" onmouseout="this.src='/trinity/assets/gfx/inspect-03-engineer-off.png '" width="316">
+						<a href="/workorders/submit/2" target="_self"><img src="/assets/gfx/inspect-03-engineer-off.png " 
+							onmouseover="this.src='/assets/gfx/inspect-03-engineer-on.png '" onmouseout="this.src='/assets/gfx/inspect-03-engineer-off.png '" width="316">
 						</a>
 					</div>
 					

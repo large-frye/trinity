@@ -7,7 +7,7 @@ class Model_Mailer extends Model_Base {
     public function __construct() {
     	parent::__construct();
 
-    	require $_SERVER['DOCUMENT_ROOT'] . '/trinity/PHPMailer/PHPMailerAutoload.php';
+    	require $_SERVER['DOCUMENT_ROOT'] . '/PHPMailer/PHPMailerAutoload.php';
 
 // Updated upstream
     	$this->_host = 'smtp.gmail.com';

@@ -215,7 +215,7 @@ $count = count($photos);
               $tmp = '<div class="imgDiv"><h4 class="parentCatHead">'.$parentCategories[$i]->name.'</h4>';
              for ($j = 0; $j < $count; $j++) {
                   if($photos[$j]->categoryParent_id == $parentCategories[$i]->id){  
-                      $tmp = $tmp."<div class='imgCl'><img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 450px; height: 450px;' /></div>";
+                      $tmp = $tmp."<div class='imgCl'><img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 600px; height: 400px; position: relative; left: -100px;' /></div>";
                       $tmp = $tmp.'<br/>';
                }  
                }  
