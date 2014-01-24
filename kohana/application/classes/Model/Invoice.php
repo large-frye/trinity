@@ -13,7 +13,7 @@ class Model_Invoice extends Model_Base {
 
         $this->workorders_model = Model::factory('Workorders');
        //  $this->mailer_model = Model::factory('mailer');
-        $this->_file_path = $_SERVER['DOCUMENT_ROOT'] . "/trinity/assets/pdf/output/" . "invoice_";
+        $this->_file_path = $_SERVER['DOCUMENT_ROOT'] . "/assets/pdf/output/" . "invoice_";
         $this->_web_file_path = str_replace($_SERVER['DOCUMENT_ROOT'], '', $this->_file_path);
     }
 
@@ -63,8 +63,8 @@ class Model_Invoice extends Model_Base {
 
 
     public function create_invoice($workorder_id, $data) {
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php")) { 
-            include ($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php"); 
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/dompdf/dompdf_config.inc.php")) { 
+            include ($_SERVER['DOCUMENT_ROOT'] . "/dompdf/dompdf_config.inc.php"); 
         } else {
             die('file can\'t be found');
         }

@@ -250,4 +250,20 @@ public function generateRandomString() {
             }
         }
     }
+
+
+
+    /**
+     * Check to see if a report exists for a work order id
+     *
+     * @param int $workorder_id
+     */
+    public function check_if_inspection_report_exists ($workorder_id) {
+        // $result = DB::query(Database::SELECT, "SELECT ")
+    }
+
+
+
+
+
 }

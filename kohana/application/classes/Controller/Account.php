@@ -284,6 +284,8 @@ class Controller_Account extends Controller_Master {
                 case Model_Account::ADMIN : 
                     $options[$_order->id] = array('/workorders/view/' . $_order->id => 'View',
                                                   '/workorders/edit/' . $_order->id => 'Edit',
+                                                  '/inspections/form/' . $_order->id => 'Inspection Form',
+                                                  '/inspections/viewphotos/' . $_order->id => 'Photos',
                                                   '/invoice/index/' . $_order->id   => 'Edit Invoice',
                                                   '/invoice/generate/' . $_order->id => 'Generate Invoice',
                                                   '/workorders/report/' . $_order->id => 'Report');
@@ -296,6 +298,13 @@ class Controller_Account extends Controller_Master {
                     break;
                 case Model_Account::CLIENT :
                     $options[$_order->id] = array('/workorders/view/' . $_order->id => 'View');
+
+                    // need to check if report has been created for this workorder;
+                    $pdf_generated = $this->account_model->check_if_inspection_report_exists($_order->id);
+
+                    if ($pdf_generated) {
+
+                    }
                     break;
             }
         }

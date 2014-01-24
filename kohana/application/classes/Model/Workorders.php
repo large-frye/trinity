@@ -11,6 +11,7 @@ class Model_Workorders extends Model_Base {
 
         $this->_users_model = Model::factory('Users');
         $this->_inspection_model = Model::factory('Inspections');
+        $this->_report_file_path = "/assets/pdf/reports/";
     }
 
 
@@ -560,18 +561,19 @@ class Model_Workorders extends Model_Base {
         $view->static_damage_text = $this->_get_static_damages_text();
 
         // Setup `dompdf`
-        $this->_dompdf_setup(true, '512M');
+        $this->_dompdf_setup(true, '4096M');
 
         // Create `dompdf` object
         try {
             $dompdf = new DOMPDF();
             $dompdf->load_html($view);
-            $dompdf->render();
-            // $file = $this->_file_path . $workorder_id . ".pdf";
-            // file_put_contents($file, $dompdf->output());
-            $dompdf->stream('sample.pdf');
+            $value = $dompdf->render();
+           // $file = $this->_report_file_path . $workorder_id . ".pdf";
+           // file_put_contents($file, $dompdf->output());
+            $dompdf->stream('report.pdf');
             return true;
         } catch (Exception $e) {
+            print_r($e);
             $this::$errors = "Error processing this PDF." . $e;
             return false;
         }
@@ -743,14 +745,16 @@ class Model_Workorders extends Model_Base {
 
 
     private function _dompdf_setup($errors, $buffer_size) {
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php")) { 
-            include ($_SERVER['DOCUMENT_ROOT'] . "/trinity/dompdf/dompdf_config.inc.php"); 
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/dompdf/dompdf_config.inc.php")) { 
+            include ($_SERVER['DOCUMENT_ROOT'] . "/dompdf/dompdf_config.inc.php"); 
         } else {
             die('file can\'t be found');
         }
 
         // Set memory limit with $buffer_size
         ini_set("memory_limit", $buffer_size);
+
+        set_time_limit(0);
 
         if ($errors) {
             ini_set('display_errors', 1);

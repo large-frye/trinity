@@ -101,7 +101,7 @@ margin-right:auto;
 <!-- </div> -->
 
 <div id="page-wrap">
-<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . './trinity/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . 'assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
 <table>
     <tr><th class="header">Trinity Inspections, LLC</th></tr>
     <tr><td class="center">P.O. Box 938</td></tr>
