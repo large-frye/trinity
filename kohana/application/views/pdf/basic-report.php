@@ -207,6 +207,10 @@ if($report_data['was_insured_present']=='Yes'){
 }
 echo '</p>';
 
+//Lets put xact here
+
+echo '<object type="application/pdf" data="'.$inspection_data["pdfLoc"].'"  >/object >';
+
 
 $parentCount = count($parentCategories);
 $count = count($photos);
