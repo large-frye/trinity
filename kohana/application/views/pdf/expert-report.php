@@ -98,7 +98,7 @@ li { padding: 10px; position: relative; left: 2em;}
 <!-- </div> -->
 
 <div id="page-wrap">
-<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . './trinity/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
 <table>
     <tr><th class="header">Trinity Inspections, LLC</th></tr>
     <tr><td class="center">P.O. Box 938</td></tr>
@@ -136,7 +136,7 @@ li { padding: 10px; position: relative; left: 2em;}
    It is understood by all parties involved that this inspection and report is provided on a “Limited Liability” basis, and the maximum liability 
    by the inspector and/or Trinity Inspections LLC for errors and omissions, negligence, or from damage of surrounding roofing products that 
    may cause any problems, shall be limited to the amount of the fee paid for this inspection.</p>
-   <img class="resize-signature" src="<?php echo $_SERVER['DOCUMENT_ROOT'];?>/trinity/assets/gfx/anthony_signature.png" alt="signature" />
+   <img class="resize-signature" src="<?php echo $_SERVER['DOCUMENT_ROOT'];?>/assets/gfx/anthony_signature.png" alt="signature" />
    <p class="relative">Anthony Giordano<br>
 Owner, Senior Certified Inspector<br>
 HAAG Certification # 201006130<br> 
@@ -146,7 +146,7 @@ SC Adjusters License # 625784</p>
 <div class="page-break"></div>
 <div class="padding-top"></div>
 <br><br><br>
-<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . './trinity/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
 <br>
 <?php foreach ($report_data['damages'] as $damage => $damages) { 
           if (preg_match('/header/', $damage)) { ?>
@@ -179,11 +179,11 @@ SC Adjusters License # 625784</p>
 <div class="page-break"></div>
 <div class="padding-top"></div>
 <br><br><br>
-<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . './trinity/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
 <h3 class="center">Symbol Breakdown</h3>
-<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/trinity/assets/gfx/symbol_breakdown.jpg'; ?>" alt="symbol_breakdown" />
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/symbol_breakdown.jpg'; ?>" alt="symbol_breakdown" />
 <div class="page-break"></div>
-<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/trinity/assets/gfx/sketch.jpg'; ?>" alt="sketch" width="600" height="400" />
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/sketch.jpg'; ?>" alt="sketch" width="600" height="400" />
 <?php
 
 $parentCount = count($parentCategories);
