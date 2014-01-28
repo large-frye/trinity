@@ -607,6 +607,7 @@ class Model_Workorders extends Model_Base {
 
 
     private function _handle_damages($data) {
+
         $data = $this->_set_damage_str($data, array('metal_header' => 'metal_damage_str'));
 
         foreach ($data as $key => $value) {
@@ -624,6 +625,15 @@ class Model_Workorders extends Model_Base {
                 $data = $this->_set_ice_damage($data, $key, $value);
             } else if (preg_match('/excess_debris/', $key)) {
                 $data = $this->_set_excess_debris($data, $key, $value);
+
+        $data = $this->_set_damage_str($data, array('metal_damge_str'));
+
+        foreach ($data as $key => $value) {
+            if (preg_match('/metal/', $key)) {
+
+                $data['metal_damge_str'] .= $this->_handle_metal_damage_str($key, $value);
+
+
             }
         }
 
