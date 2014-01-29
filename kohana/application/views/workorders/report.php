@@ -88,7 +88,7 @@ foreach ( $inspection_report['damages'] as $damage_header => $damage_header_type
     if ( preg_match( '/header/', $damage_header ) ) {
         echo "<div class=\"section\">
                   <div class=\"box\">
-                      <div class=\"title\">" . $damage_header . "</div>
+                      <div class=\"title\">" . str_replace('_', ' ', str_replace('_header', '', $damage_header)) . "</div>
                       <div class=\"content\">";
         foreach ( $damage_header_type as $header_type => $damage_stmt ) {
             echo "<div class=\"row\">
@@ -169,15 +169,12 @@ echo '</table>'; ?>
     </div>
 </div>
 
+
 <div class="section">
     <div class="box">
-    <div class="title">Xactimate Report Upload</div>
+    <div class="title">Xactimate Report</div>
     <div class="content">
-         <?php echo Form::open('', array('enctype' => 'multipart/form-data')) .
-                    Form::file('xactimate_report') .
-                    Form::button('upload_xactimate_report', 'Upload') .
-                    Form::close(); 
-          ?>
+         <?php echo $xactimate ? "File found and will be included in PDF creation." : "Please go <a href=\"/workorders/edit/" . $workorder_id . "\">here</a> to upload file"; ?>
     </div>
     </div>
 </div>
