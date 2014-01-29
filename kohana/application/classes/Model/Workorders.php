@@ -484,7 +484,10 @@ class Model_Workorders extends Model_Base {
                     $report[$row->key] = "";
 
                     foreach ($array as $key => $value) {
-                        if (isset($pre_built_data[$row->key][$value])) {
+                        if (is_string($key) && !preg_match('/slope/', $key)) {
+                            $report[$row->key][$key] = $value;
+                        }
+                        else if (isset($pre_built_data[$row->key][$value])) {
                             $report[$row->key] .= $pre_built_data[$row->key][$value] . "<br>";
                         } else {
                             $report[$row->key] .= $value . "<br>";
@@ -561,6 +564,8 @@ class Model_Workorders extends Model_Base {
         // Need to get all of the data possible for this report
         $view->report_data = $this->first_page_data_output($this->get_inspection_report($workorder_id));
 
+        $view->report_data = $this->_handle_damages($view->report_data);
+
         // Get all of inspection data and report. 
         $view->inspection_data = (array) $this->get_workorder_details($workorder_id);
 
@@ -607,12 +612,11 @@ class Model_Workorders extends Model_Base {
 
 
     private function _handle_damages($data) {
-
-        $data = $this->_set_damage_str($data, array('metal_header' => 'metal_damage_str'));
+        // $data = $this->_set_damage_str($data, array('metal_header' => 'metal_damage_str'));
 
         foreach ($data as $key => $value) {
             if (preg_match('/metal_damages/', $key)) {
-                $data['damages']['metal_header']['metal_damage_str'] = $this->_handle_metal_damage_str($key, $value);
+                $data = $this->_handle_metal_damage_str($data, $key, $value);
             } else if (preg_match('/hail_size/', $key)) {
                 $data['damages']['metal_header']['metal_damage_hail_size'] = 
                     "Based on the dents of the soft metals and/or spatter on the roof and secondary indicators, the estimated hail diameter was measured at: " . 
@@ -625,27 +629,106 @@ class Model_Workorders extends Model_Base {
                 $data = $this->_set_ice_damage($data, $key, $value);
             } else if (preg_match('/excess_debris/', $key)) {
                 $data = $this->_set_excess_debris($data, $key, $value);
-
-        $data = $this->_set_damage_str($data, array('metal_damge_str'));
-
-        foreach ($data as $key => $value) {
-            if (preg_match('/metal/', $key)) {
-
-                $data['metal_damge_str'] .= $this->_handle_metal_damage_str($key, $value);
-
-
+            } else if ( preg_match('/standing_water/', $key) ) {
+                $data = $this->_set_standing_water($data, $key, $value);
+            } else if ( preg_match('/product_defects/', $key) ) {
+                if (!preg_match('/header/', $key)) {
+                    $data = $this->_set_product_defects($data, $key, $value);
+                }
+            } else if ( preg_match('/workmanship|improper/', $key)) {
+                $data = $this->_set_workmanship($data, $key, $value);
+            } else if ( preg_match('/worn/', $key)) {
+                $data = $this->_set_aged_worn($data, $key, $value);
             }
         }
-
 
         return $data;
     }
 
 
 
-    private function _handle_metal_damage_str($key, $value) {
+    private function _set_aged_worn($data, $key, $value) {
+        $str = "";
 
-        return $key;
+        if ( is_array($value) ) {
+
+        foreach ( $value as $k => $v ) {
+            $str .= $v . ", ";
+        }
+
+        $data['damages']['aged_worn_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . str_replace('(+c):', '- comment: ', $str);
+        }else {
+        $data['damages']['aged_worn_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . "<b>" . $value . "</b>"; 
+    }
+
+        return $data;
+    }
+
+
+    private function _set_workmanship($data, $key, $value) {
+        $str = "";
+
+        if ( is_array($value) ) {
+
+        foreach ( $value as $k => $v ) {
+            $str .= $v . ", ";
+        }
+
+        $data['damages']['workmanship_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . str_replace('(+c):', '- comment: ', $str);
+        }else {
+        $data['damages']['workmanship_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . "<b>" . $value . "</b>"; 
+    }
+
+        return $data;
+    }
+
+
+
+    private function _set_product_defects($data, $key, $value) {
+        $str = "";
+
+        if ( is_array($value) ) {
+
+        foreach ( $value as $k => $v ) {
+            $str .= $v . ", ";
+        }
+
+        $data['damages']['product_defects_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . str_replace('(+c):', '- comment: ', $str);
+    } else {
+        $data['damages']['product_defects_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . "<b>" . $value . "</b>"; 
+    }
+
+        return $data;
+    }
+
+
+
+    private function _set_standing_water($data, $key, $value) {
+        $str = "";
+
+        if ( is_array($value) ) {
+
+        foreach ( $value as $k => $v ) {
+            $str .= $v . ", ";
+        }
+
+        $data['damages']['standing_water_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . str_replace('(+c):', '- comment: ', $str);
+        }
+
+        return $data;
+    }
+
+
+
+    private function _handle_metal_damage_str($data, $key, $value) {
+        $b_str = "";
+
+        foreach ($value as $k => $v) {
+            $b_str .= $v . " " . $k . ", ";
+        }
+
+        $data['damages']['metal_header']['metal_damages'] = "We also found cosmetic denting to the thin gauge aluminum vents on the roof: " . $b_str;
+        return $data;
     }
 
 
@@ -661,14 +744,31 @@ class Model_Workorders extends Model_Base {
         unset($data['damages']['vermin_header'][$key]);
         $_key = str_replace('slope_vermin_', '', $key);
         $_key = str_replace('_damage', '', $_key);
-        $data['damages']['vermin_header'][ucfirst($_key) . " Damage"] = "<b>" . ucfirst($_key) . " Damage:</b> "  . str_replace('(+c):', '- comment: ', $value);
+
+        $b_str = "";
+
+        foreach ($value as $k => $v) {
+            $b_str .= $v . "<br />";
+        }
+
+        $data['damages']['vermin_header'][ucfirst($_key) . " Damage"] = "<b>" . ucfirst($_key) . " Damage:</b> "  . str_replace('(+c):', '- comment: ', $b_str);
+
+        
+
+       // $data['damages']['lightning_header']['lightning_damages'] = "<b>We found lightning damages to the following:</b> " . $b_str . "of the dwelling.";
 
         return $data;
     }
 
 
     private function _set_lightning_damage($data, $key, $value) {
-        $data['damages']['lightning_header'][$key] = "<b>Lightning Damages:</b> " . str_replace('<br>', '; ', $value);
+        $b_str = "";
+
+        foreach ($value as $k => $v) {
+            $b_str .= $v . ", ";
+        }
+
+        $data['damages']['lightning_header']['lightning_damages'] = "<b>We found lightning damages to the following:</b> " . $b_str . "of the dwelling.";
 
         return $data;
     }
@@ -678,7 +778,14 @@ class Model_Workorders extends Model_Base {
     private function _set_ice_damage($data, $key, $value) {
         $header = str_replace('slope', '', $key);
         $header = str_replace('_', ' ', $header);
-        $data['damages']['ice_header'][$key] = "<b>" . ucfirst($header) . ":</b> " . $value;
+
+        $b_str = "";
+
+        foreach ($value as $k => $v) {
+            $b_str .= $v . "<br />";
+        }
+
+        $data['damages']['ice_header'][$key] = "<b>" . ucfirst($header) . ":</b> " . $b_str;
         return $data;
     }
 
@@ -688,10 +795,19 @@ class Model_Workorders extends Model_Base {
     private function _set_excess_debris($data, $key, $value) {
         switch ($key) {
             case "excess_debris_location" : 
-                $data['damages']['excess_debris_header'][$key] = "We found the following excess debris damages: <b>" . str_replace('<br>', ', ', $data[$key]) . "</b>.";
+                $str = "";
+                foreach ($value as $k => $v) {
+                    $str .= $v . ", ";
+                }
+                $data['damages']['excess_debris_header'][$key] = "We found the following excess debris damages: <b>" . $str . "</b>.";
                 break;
             case "slope_excess_debris_location" :
-                $data['damages']['excess_debris_header'][$key] = "We found the following damage to the slope due to excess debris: " . str_replace('(+c):', '- comment: ', $value);
+                $str = "";
+                foreach ($value as $k => $v) {
+                    $str .= $v . ", ";
+                }
+                $data['damages']['excess_debris_header'][$key] = "We found the following damage to the slope due to excess debris: " 
+                                                                  . str_replace('(+c):', '- comment: ', $str);
                 break;
         }
 
