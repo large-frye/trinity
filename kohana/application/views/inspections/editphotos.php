@@ -25,10 +25,12 @@
 						 		for ($j = 0; $j < $count; $j++) {
 						 			if($photos[$j]->categoryParent_id == $parentCategories[$i]->id){
 						 				if($rwCnt<6){
-                                			echo "<li class='liBloc' ><div class=photoThumView'><img id='".$photos[$j]->id."' class='photoImgView' src='/trinity".$photos[$j]->fileLocation."' style='width: 80px; height: 80px;' /></p></div></li>";
+                                			echo "<li class='liBloc' ><div class=photoThumView'><img id='".$photos[$j]->id."' class='photoImgView' src='".
+                                                  str_replace( '..', "", $photos[$i]->fileLocation )."' style='width: 80px; height: 80px;' /></p></div></li>";
                                 	$rwCnt++;
                                 	}else {
-                                		echo "<li class='liBloc' ><div  class=photoThumView'><img id='".$photos[$j]->id."' class='photoImgView' src='/trinity".$photos[$j]->fileLocation."' style='width: 80px; height: 80px;' /></p></div></li>";
+                                		echo "<li class='liBloc' ><div  class=photoThumView'><img id='".$photos[$j]->id."' class='photoImgView' src='/trinity".
+                                                  str_replace( '..', "", $photos[$i]->fileLocation )."' style='width: 80px; height: 80px;' /></p></div></li>";
                                 	
                                 	$rwCnt=0;
                                 	$rowPointer++;
