@@ -5,9 +5,15 @@
                                 <li class="current" >
                                     <a href="/account">Inspection Orders</a>
                                     <ul>
-                                            <li class="current">
-                                                <a href="/workorders/submit">Submit New Inspction</a>
-                                            </li>
+                                        <li class="current">
+                                                <a href="/workorders/view/<?php echo $workorder_id; ?>">View Work Order</a>
+                                        </li>
+                                        <li class="current">
+                                                <a href="/workorders/edit/<?php echo $workorder_id; ?>">Edit Work Order</a>
+                                        </li>
+                                        <li class="current">
+                                            <a href="/workorders/submit">Submit New Inspction</a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>

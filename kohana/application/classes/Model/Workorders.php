@@ -6,12 +6,14 @@ class Model_Workorders extends Model_Base {
 
     protected $_inspection_model = null;
 
+    public static $errors = null;
+
     public function __construct() {
     	parent::__construct();
 
         $this->_users_model = Model::factory('Users');
         $this->_inspection_model = Model::factory('Inspections');
-        $this->_report_file_path = "/assets/pdf/reports/";
+        $this->_report_file_path = $_SERVER['DOCUMENT_ROOT'] . "/assets/pdf/reports/";
     }
 
 
@@ -487,10 +489,12 @@ class Model_Workorders extends Model_Base {
                         if (is_string($key) && !preg_match('/slope/', $key)) {
                             $report[$row->key][$key] = $value;
                         }
-                        else if (isset($pre_built_data[$row->key][$value])) {
+                        else if (isset($pre_built_data[$row->key][$value]) && is_numeric($value)) {
                             $report[$row->key] .= $pre_built_data[$row->key][$value] . "<br>";
                         } else {
-                            $report[$row->key] .= $value . "<br>";
+                            if (!is_array($report[$row->key])) {
+                                $report[$row->key] .= $value . "<br>";
+                            } 
                         }
                     }
                 } else {
@@ -572,6 +576,9 @@ class Model_Workorders extends Model_Base {
         // Get static text for reports.
         $view->static_damage_text = $this->_get_static_damages_text();
 
+        // Check to see if xactimate report exists
+        // $view->xactimate = $this->check_if_xactimate_exists($workorder_id);
+
         // Setup `dompdf`
         $this->_dompdf_setup(true, '4096M');
 
@@ -579,13 +586,14 @@ class Model_Workorders extends Model_Base {
         try {
             $dompdf = new DOMPDF();
             $dompdf->load_html($view);
-            $value = $dompdf->render();
-           // $file = $this->_report_file_path . $workorder_id . ".pdf";
-           // file_put_contents($file, $dompdf->output());
-            $dompdf->stream('report.pdf');
+            $dompdf->render();
+            $file = $this->_report_file_path . $workorder_id . ".pdf";
+            $fp = fopen($file, 'w+');
+            fwrite($fp, $dompdf->output());
+            fclose($fp);
+            $dompdf->stream($workorder_id . ".pdf");
             return true;
-        } catch (Exception $e) {
-            print_r($e);
+        } catch (Exception $e) {       
             $this::$errors = "Error processing this PDF." . $e;
             return false;
         }
@@ -607,6 +615,16 @@ class Model_Workorders extends Model_Base {
         $data = $this->_build_roofer_string($data);
 
         return $data;
+    }
+
+
+
+    public function check_if_xactimate_exists($workorder_id) {
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/assets/xact/' . $workorder_id)) {
+            return true;
+        }
+
+        return false;
     }
 
 

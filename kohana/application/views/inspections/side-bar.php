@@ -6,7 +6,7 @@
                 <a href="/account">Inspection Orders</a>
                     <ul>
                         <li class="<?php echo Request::current()->action() == 'view' ? 'current' : null; ?>">
-                            <a href="/inspections/view/<?php echo Request::current()->param('id'); ?>">
+                            <a href="/workorders/view/<?php echo Request::current()->param('id'); ?>">
                                 View Work Order</a>
                         </li> 
                         <li class="<?php echo Request::current()->action() == 'form' ? 'current' : null; ?>">

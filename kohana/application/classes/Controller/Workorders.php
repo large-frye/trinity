@@ -28,6 +28,7 @@ class Controller_Workorders extends Controller_Account {
     	$this->template->homepage = false;
         $this->_post = $this->request->post();
         $this->template->side_bar = View::factory('workorders/side-bar');
+        $this->template->side_bar->workorder_id = $this->_workorder_id;
         $this->_admin = $this->user_type === Model_Account::ADMIN ? true : false;
         $this->_inspector = $this->user_type === Model_Account::INSPECTOR ? true : false;
         $this->_client = $this->user_type === Model_Account::CLIENT ? true : false;
@@ -178,12 +179,14 @@ class Controller_Workorders extends Controller_Account {
         }
 
         $view = View::factory('workorders/report');
+        $view->workorder_id = $this->_workorder_id;
         $view->inspection_details = $this->workorders_model->get_workorder_details($this->_workorder_id);
         $view->policy_holder_info = $this->workorders_model->get_policy_holder($this->_workorder_id);
         $view->adjuster = $this->workorders_model->get_adjuster_for_workorder($this->_workorder_id);
         $view->inspection_report = $this->workorders_model->get_inspection_report($this->_workorder_id, true);
         $view->photos = $this->inspections_model->get_photos_by_id($this->_workorder_id);
         $view->categories = $this->settings_model->get_parent_categories();
+        $view->xactimate = $this->workorders_model->check_if_xactimate_exists($this->_workorder_id);
         $this->template->content = $view;
     }
 
@@ -197,7 +200,7 @@ class Controller_Workorders extends Controller_Account {
         $parentCategories = $this->settings_model->get_parent_categories();
         $photos =  $this->inspections_model-> get_photos_by_id($this->_workorder_id);
         $status = $this->workorders_model->generate_report($this->_workorder_id, $parentCategories,$photos);
-
+        print_r(Model_Workorders::$errors);
     }
 
 
