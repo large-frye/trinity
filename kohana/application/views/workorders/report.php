@@ -169,6 +169,19 @@ echo '</table>'; ?>
     </div>
 </div>
 
+<div class="section">
+    <div class="box">
+    <div class="title">Xactimate Report Upload</div>
+    <div class="content">
+         <?php echo Form::open('', array('enctype' => 'multipart/form-data')) .
+                    Form::file('xactimate_report') .
+                    Form::submit('upload_xactimate_report', 'Upload', array('class' => 'button')) .
+                    Form::close(); 
+          ?>
+    </div>
+    </div>
+</div>
+
 
 
 

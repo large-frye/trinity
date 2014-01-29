@@ -90,6 +90,8 @@ li { padding: 10px; position: relative; left: 2em;}
 .relative { position: relative; }
 .padding-top: { padding-top: 25; }
 .damage-block : { position: relative; top: 20px; padding-bottom: 40px;}
+.sketch-helper { position: relative !important; left: -300px !important; }
+
 
 </style>
 </head>
@@ -172,7 +174,11 @@ SC Adjusters License # 625784</p>
                           foreach ($directions as $value) {
                               $type = str_replace($value, '<span class="red">'.$value.'</span>', $type);
                           } echo $type; ?></li>
-              <?php } ?>
+              <?php } else if (is_array($type)) {
+                  foreach ($type as $t => $val) {
+                      echo "<li>" . $val . "</li>";
+                  }
+              } ?>
               </ul>
     <?php } echo "</div>"; }} ?>
 <h3 class="red">SUMMARY OF FINDINGS</h3>
@@ -183,7 +189,7 @@ SC Adjusters License # 625784</p>
 <h3 class="center">Symbol Breakdown</h3>
 <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/symbol_breakdown.jpg'; ?>" alt="symbol_breakdown" />
 <div class="page-break"></div>
-<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/sketch.jpg'; ?>" alt="sketch" width="600" height="400" />
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/sketch.jpg'; ?>" alt="sketch" width="850" class="sketch-helper" style="margin-left: -75px;" />
 <?php
 
 $parentCount = count($parentCategories);
