@@ -154,11 +154,11 @@ for ( $i = 0; $i < $count; $i++ ) {
     if ( $rwCnt<6 ) {
 
         echo "<td class='catTD'><div id='photoT' class=photoThum'><img id='".$photos[$i]->id."' class='photoImg' src='".
-            str_replace( '..', "/trinity", $photos[$i]->fileLocation )."'  /><p class='photoTxt'>".$categoryTmpText."</p></div></td>";
+            str_replace( '..', "", $photos[$i]->fileLocation )."'  /><p class='photoTxt'>".$categoryTmpText."</p></div></td>";
         $rwCnt++;
     }else {
         echo "<td class='catTD'><div  id='photoT class=photoThum'><img id='".$photos[$i]->id."' class='photoImg' src='".
-            str_replace( '..', "/trinity", $photos[$i]->fileLocation )."' /><p class='photoTxt'>".$categoryTmpText."</p></div></tr>";
+            str_replace( '..', "", $photos[$i]->fileLocation )."' /><p class='photoTxt'>".$categoryTmpText."</p></div></tr>";
         $rwCnt=0;
     }
 

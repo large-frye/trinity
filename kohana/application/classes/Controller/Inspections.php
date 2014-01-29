@@ -20,9 +20,9 @@ class Controller_Inspections extends Controller_Account {
             ini_set( 'post_max_size', '10M' );
             $this->masterModel->js = array( 'http://code.jquery.com/jquery-1.9.1.js',
                 "http://code.jquery.com/jquery-migrate-1.1.1.js",
-                "/trinity/assets/js/inspection/sort.js",
+                "/assets/js/inspection/sort.js",
                 "http://code.jquery.com/ui/1.10.3/jquery-ui.js",
-                "/trinity/assets/js/inspection/imgUploader.js", );
+                "/assets/js/inspection/imgUploader.js", );
             ksort( $this->masterModel->js );
         }
 

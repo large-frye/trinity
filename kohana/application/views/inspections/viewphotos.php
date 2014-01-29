@@ -19,10 +19,10 @@
                                 	}
 
                                 	if($rwCnt<6){
-                                			echo "<td><div class=photoThumView'><img class='photoImgView' src='/trinity".$photos[$i]->fileLocation."' style='width: 80px; height: 80px;' /></p></div></td>";
+                                			echo "<td><div class=photoThumView'><img class='photoImgView' src=\"" . str_replace('..', '', $photos[$i]->fileLocation) . "\" style='width: 80px; height: 80px;' /></p></div></td>";
                                 	$rwCnt++;
                                 	}else {
-                                		echo "<td><div  class=photoThumView'><img class='photoImgView' src='/trinity".$photos[$i]->fileLocation."' style='width: 80px; height: 80px;' /></p></div></td></tr>";
+                                		echo "<td><div  class=photoThumView'><img class='photoImgView' src='".str_replace('..', '', $photos[$i]->fileLocation)."' style='width: 80px; height: 80px;' /></p></div></td></tr>";
                                 	$rwCnt=0;
                                 	}
                                 	
