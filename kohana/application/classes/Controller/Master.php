@@ -70,7 +70,7 @@ class Controller_Master extends Controller_Template {
         $_js = "";
 
         foreach($this->masterModel->js as $js) {
-        	$_js .= HTML::script($js) . "\n";
+            $_js .= HTML::script($js) . "\n";
         }
 
         return $_js;

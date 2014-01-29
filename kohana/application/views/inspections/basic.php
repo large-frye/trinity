@@ -306,7 +306,8 @@
                 <label for="collateral_damages_to_property">Collateral Damages to property: </label>
 
                 <div class="right">
-                    <?php echo Form::select('collateral_damages_to_property', $collateral_damamges); ?>
+                    <?php echo Form::select('collateral_damages_to_property', $collateral_damamges, isset($data['collateral_damages_to_property']) ?
+                                                                                                    $data['collateral_damages_to_property'] : null); ?>
                 </div>
             </div>    
 
@@ -315,12 +316,27 @@
 
                 <div class="right">
                                             
-                    <textarea name="collateral_damage_detail_description" class="grow" style="height:100px;"></textarea>
+                    <textarea name="collateral_damage_detail_description" class="grow" style="height:100px;">
+                        <?php echo isset($data['collateral_damage_detail_description']) ? $data['collateral_damage_detail_description'] : null; ?>
+                    </textarea>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="plain">
+    <?php echo isset($errors) ? "<div class=\"message error\">
+                                     <p>Until the errors are fixed above, all the data below will be removed during a report submission that has errors.</p>
+                                 </div>" : null; ?>
+    <h1>Cause of Loss</h1>
+
+    <p>
+        At least one "Cause of Loss" must be selected. In addition, whenever a corresponding "Slope" is available next to a selection you have made, at least one Slope also becomes required.
+    </p>
+
+</div>
+
 
 <div class="plain">
     <?php echo isset($errors) ? "<div class=\"message error\">

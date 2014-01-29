@@ -175,7 +175,7 @@ echo '</table>'; ?>
     <div class="content">
          <?php echo Form::open('', array('enctype' => 'multipart/form-data')) .
                     Form::file('xactimate_report') .
-                    Form::submit('upload_xactimate_report', 'Upload', array('class' => 'button')) .
+                    Form::button('upload_xactimate_report', 'Upload') .
                     Form::close(); 
           ?>
     </div>
