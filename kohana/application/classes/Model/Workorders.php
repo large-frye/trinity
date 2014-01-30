@@ -149,7 +149,8 @@ class Model_Workorders extends Model_Base {
      
 
         $pathAndName = $uploaddir.$fileName;
-        $moveResult = move_uploaded_file($tmpName, $pathAndName);
+        echo $pathAndName;
+        $moveResult = move_uploaded_file($_FILES['xact']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $path . $workorder_id . ".pdf");
        
         $parameters = array(':id'                         => $workorder_id,
                             ':type'                       => $post['type'],
