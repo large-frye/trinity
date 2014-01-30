@@ -202,7 +202,11 @@ class Controller_Workorders extends Controller_Account {
         $status = $this->workorders_model->generate_report($this->_workorder_id, $parentCategories,$photos);
         
         if ($status) {
-            $this->request->redirect('/assets/pdf/reports/final_' . $this->_workorder_id . ".pdf");
+            if (Model_Workorders::$type === Model_Workorders::EXPERT_INSPECTION) {
+                $this->request->redirect('/assets/pdf/reports/final_' . $this->_workorder_id . ".pdf");
+            } else {
+                $this->request->redirect('/assets/pdf/reports/step1_' . $this->_workorder_id . ".pdf");
+            }
         } else {
             print_r(Model_Workorders::$errors);
         }

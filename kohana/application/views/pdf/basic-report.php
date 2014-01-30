@@ -151,27 +151,47 @@ roofing systems.</p>';
               <?php 
               
              
-               $directions =array("North", "South", "East", "West", "(Front)", "(Rear)", "(Left)", "(Right)", "NorthEast", "SouthEast", "SouthWest", "NorthWest");
+                $directions =array("North", "South", "East", "West", "(Front)", "(Rear)", "(Left)", "(Right)", "NorthEast", "SouthEast", "SouthWest", "NorthWest");
                 foreach ($damages as $tmp) {
-                 $finalStr='';
-                 foreach(explode(' ',$tmp) as $st) {
-                       if(is_numeric($st)){
-                            
-                            if(preg_match('/wind/', $damage)){
-                               $windTotal=$windTotal+$st;
+                    $finalStr='';
+                    if (is_array($tmp)) {
+                        foreach ($tmp as $key => $value) {
+                            foreach (explode(' ', $value) as $opt) {
+                                if (preg_match('/[0-9]+/', $opt)) {
+                                    if (preg_match('/wind/', $damage)) {
+                                        $windTotal = $windTotal + $opt;
+                                    } else if (preg_match('/hail/', $damage)) {
+                                        $hailTotal = $hailTotal + $opt;
+                                    }
+
+                                    $finalStr .= " <span style=\"color:red\">" . $opt . "</span>";
+                                } else {
+                                    $finalStr .= " " . $opt;
+                                }
+                           }
+                           $finalStr .= "<br />";
+                        }
+                    } else {
+                    foreach(explode(' ',$tmp) as $st) {
+                        if(is_numeric($st)){
+                            if (preg_match('/wind/', $damage)) {
+                               $windTotal = $windTotal + $st;
                             }
-                            elseif(preg_match('/hail/', $damage)){
-                              $hailTotal = $hailTotal +$st;
+                            else if (preg_match('/hail/', $damage)) {
+                              $hailTotal = $hailTotal + $st;
                             }
-                      $finalStr=$finalStr.' <span class="redTxt">'.$st.'</span>';
-                     }else{
-                      $finalStr=$finalStr.' '.$st;
-                     }
-                   }
-                  $tmp=$finalStr;
-                  foreach ($directions as $value) {
-                   $tmp = str_replace($value, '<span class="redTxt">'.$value.'</span>', $tmp);
-                 }
+
+                            $finalStr = $finalStr . ' <span class="redTxt">' . $st . '</span>';
+                        } else {
+                            $finalStr=$finalStr.' '.$st;
+                        }
+                    }
+                    }
+
+                    $tmp=$finalStr;
+                    foreach ($directions as $value) {
+                        $tmp = str_replace($value, '<span class="redTxt">'.$value.'</span>', $tmp);
+                    }
                  ?>
                   <li class="damageLi"><?php echo $tmp; ?></li>
               <?php 
@@ -207,29 +227,16 @@ if($report_data['was_insured_present']=='Yes'){
 }
 echo '</p>';
 
-//Lets put xact here
-
-echo '<object type="application/pdf" data="'.$inspection_data["pdfLoc"].'"  >/object >';
-
-
-//$parentCount = count($parentCategories);
 $count = count($photos);
- //for ($i = 0; $i < $parentCount; $i++) {
-            if($parentCategories[$i]->name!=='Sketches'){
-            //  $tmp = '<div class="imgDiv"><h4 class="parentCatHead">'.$parentCategories[$i]->name.'</h4>';
-             for ($j = 0; $j < $count; $j++) {
-                 //if($photos[$j]->categoryParent_id == $parentCategories[$i]->id){  
-                      $tmp = $tmp."<div class='imgCl'><img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 600px; height: 400px; position: relative; left: -100px;' /></div>";
-                      $tmp = $tmp.'<br/>';
-              // }  
-             }  
-             //   if(preg_match('/<img/i', $tmp)){
-             //   echo '<div class="page-break"></div>';
-                echo $tmp;
-               // echo '<div>';      
-               } 
-          }
-     //   }
+        $tmp = "";
+        for ($j = 0; $j < $count; $j++) {
+            if ($photos[$j]->categoryParent_id != 79) {
+                $tmp = $tmp."<div class='imgCl'><img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 600px; height: 400px; position: relative; left: -100px;' /></div>";
+                $tmp = $tmp.'<br/>';
+            }
+        }
+            
+        echo $tmp;
 ?>
 
 
