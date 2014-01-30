@@ -112,7 +112,8 @@ $( this ).css("background-color","transparent");
   });*/
 
 $(function() {
-$( "#accordion" ).accordion({ heightStyle: "fill" });
+$( "#accordion" ).accordion({ collapsible: true,
+   heightStyle: "content" });
 });
 
 
