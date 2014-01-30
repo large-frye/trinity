@@ -228,7 +228,7 @@ $count = count($photos);
                 echo $tmp;
                // echo '<div>';      
                } 
-          }
+          
      //   }
 ?>
 
