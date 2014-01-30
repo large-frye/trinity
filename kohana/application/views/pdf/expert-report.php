@@ -152,7 +152,7 @@ SC Adjusters License # 625784</p>
 <br>
 <?php foreach ($report_data['damages'] as $damage => $damages) { 
           if (preg_match('/header/', $damage)) { ?>
-              <div class="damage-block"><h3 class="red"><?php echo strtoupper(str_replace('_header', '', $damage)); ?></h3>
+              <div class="damage-block"><h3 class="red"><?php echo strtoupper(str_replace('_', ' ' , str_replace('_header', '', $damage))); ?></h3>
               <p><?php echo isset($static_damage_text[$damage]) ? $static_damage_text[$damage] : ""; ?></p>
               <ul>
               <?php 
@@ -181,7 +181,31 @@ SC Adjusters License # 625784</p>
               } ?>
               </ul>
     <?php } echo "</div>"; }} ?>
+<div class="page-break"></div>
+<div class="padding-top"></div>
+<br><br><br>
 <h3 class="red">SUMMARY OF FINDINGS</h3>
+<?php 
+if (isset($report_data['condition'])) {
+    echo "<p>The roof was in the following condition when inspected: " . $report_data['condition'] . "</p>";
+}
+
+// Previous Repairs Made 
+if (isset($report_data['previous_repairs_made'])) {
+    echo "<p>The roof had the following previous repairs made when inspected: <b>" . str_replace("<br>", "", $report_data['previous_repairs_made']) . "</b></p>";
+}
+
+// Roof Conditions
+if (isset($report_data['roof_conditions'])) {
+    echo "<p>The roof had the following roof issues made when inspected: <b>" . str_replace("<br>", ", ", $report_data['roof_conditions']) . "</b></p>";
+}
+
+if (isset($report_data['collateral_damages_to_property'])) {
+    echo "<p>There was collateral damages found on the property at the: <b>" . str_replace("<br>", "", $report_data['collateral_damages_to_property']) 
+         . "</b>(<em>" . $report_data['collateral_damage_detail_description'] . "</em>)</p>";
+}
+
+?>
 <div class="page-break"></div>
 <div class="padding-top"></div>
 <br><br><br>

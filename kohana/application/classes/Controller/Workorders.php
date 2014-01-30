@@ -200,7 +200,12 @@ class Controller_Workorders extends Controller_Account {
         $parentCategories = $this->settings_model->get_parent_categories();
         $photos =  $this->inspections_model-> get_photos_by_id($this->_workorder_id);
         $status = $this->workorders_model->generate_report($this->_workorder_id, $parentCategories,$photos);
-        print_r(Model_Workorders::$errors);
+        
+        if ($status) {
+            $this->request->redirect('/assets/pdf/reports/final_' . $this->_workorder_id . ".pdf");
+        } else {
+            print_r(Model_Workorders::$errors);
+        }
     }
 
 
