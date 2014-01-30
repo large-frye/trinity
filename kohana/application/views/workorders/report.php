@@ -169,7 +169,7 @@ echo '</table>'; ?>
     </div>
 </div>
 
-
+<!--
 <div class="section">
     <div class="box">
     <div class="title">Xactimate Report</div>
@@ -178,7 +178,7 @@ echo '</table>'; ?>
     </div>
     </div>
 </div>
-
+-->
 
 
 
