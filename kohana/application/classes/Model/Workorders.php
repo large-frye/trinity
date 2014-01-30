@@ -142,7 +142,7 @@ class Model_Workorders extends Model_Base {
 
 
         // File location with name
-        $tmpName = $files['xact']['tmp_name'];
+        $tmpName = $workorder_id;
         $mimeType =  $files['xact']['type'];    
         $fileName = $files['xact']['name']; 
         $fileName = preg_replace("/[^A-Z0-9._-]/i", "_", $fileName);
