@@ -89,6 +89,9 @@ margin-right:auto;
 }
 .imgCl{
    margin-bottom:20px;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
 }
 .page-break { page-break-after: always; }
 .clear { clear: both; }
