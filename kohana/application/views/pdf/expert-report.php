@@ -69,7 +69,11 @@ margin-right:auto;
    margin-bottom:20px;
 }
 .imgCl{
+
    margin-bottom:20px;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
 }
 
 p.lower { position: relative; top: 60px; }
