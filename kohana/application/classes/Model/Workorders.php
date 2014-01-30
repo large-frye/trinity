@@ -8,6 +8,12 @@ class Model_Workorders extends Model_Base {
 
     public static $errors = null;
 
+    public static $type = null;
+
+    const BASIC_INSPECTION = 0;
+
+    const EXPERT_INSPECTION = 1;
+
     public function __construct() {
     	parent::__construct();
 
@@ -591,28 +597,31 @@ class Model_Workorders extends Model_Base {
 
             $fp = null;
 
-            // Next we need to create the explanation of damages. 
-            $exp_damages = View::factory('pdf/explanation-of-damages');
-            $exp_damages->damages = $this->_set_exp_damages($view->report_data);
-            $exp_damages->data = $view->report_data;
-            $dompdf2 = new DOMPDF();
-            $dompdf2->load_html($exp_damages);
-            $dompdf2->render();
-            $file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
-            $fp = fopen($file, 'w+');
-            fwrite($fp, $dompdf2->output());
-            fclose($fp);
-            
-            if($this->check_if_xactimate_exists($workorder_id)) {
-                $current_pdf_file = $this->_report_file_path . "step1_" . $workorder_id . ".pdf";
-                $current_pdf_exp_damages_file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
-                $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
-                if (file_exists($this->_report_file_path . "final_" . $workorder_id . ".pdf")) {
-                    unlink($this->_report_file_path . "final_" . $workorder_id . ".pdf");
-                }
+            if ($this::$type === $this::EXPERT_INSPECTION) {
 
-                exec("/usr/bin/pdftk " . $current_pdf_file . " " . $current_pdf_exp_damages_file . " " . 
-                     $xactimate_file . " cat output " . $this->_report_file_path . "final_" . $workorder_id . ".pdf", $retval);
+                // Next we need to create the explanation of damages. 
+                $exp_damages = View::factory('pdf/explanation-of-damages');
+                $exp_damages->damages = $this->_set_exp_damages($view->report_data);
+                $exp_damages->data = $view->report_data;
+                $dompdf2 = new DOMPDF();
+                $dompdf2->load_html($exp_damages);
+                $dompdf2->render();
+                $file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
+                $fp = fopen($file, 'w+');
+                fwrite($fp, $dompdf2->output());
+                fclose($fp);
+            
+                if($this->check_if_xactimate_exists($workorder_id)) {
+                    $current_pdf_file = $this->_report_file_path . "step1_" . $workorder_id . ".pdf";
+                    $current_pdf_exp_damages_file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
+                    $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
+                    if (file_exists($this->_report_file_path . "final_" . $workorder_id . ".pdf")) {
+                        unlink($this->_report_file_path . "final_" . $workorder_id . ".pdf");
+                    }
+
+                    exec("/usr/bin/pdftk " . $current_pdf_file . " " . $current_pdf_exp_damages_file . " " . 
+                    $xactimate_file . " cat output " . $this->_report_file_path . "final_" . $workorder_id . ".pdf", $retval);
+                }
             }
 
             return true;
@@ -1032,10 +1041,12 @@ class Model_Workorders extends Model_Base {
                 switch($result->current()->type) {
                     case 0 : 
                         $view = View::factory('pdf/basic-report');
+                        $this::$type = $this::BASIC_INSPECTION;
                         break;
                     case 1 : 
                     case 2 : 
                         $view = View::factory('pdf/expert-report');
+                        $this::$type = $this::EXPERT_INSPECTION;
                         break;
                 }
             } else {
