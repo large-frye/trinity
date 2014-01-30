@@ -212,24 +212,24 @@ echo '</p>';
 echo '<object type="application/pdf" data="'.$inspection_data["pdfLoc"].'"  >/object >';
 
 
-$parentCount = count($parentCategories);
+//$parentCount = count($parentCategories);
 $count = count($photos);
- for ($i = 0; $i < $parentCount; $i++) {
+ //for ($i = 0; $i < $parentCount; $i++) {
             if($parentCategories[$i]->name!=='Sketches'){
-              $tmp = '<div class="imgDiv"><h4 class="parentCatHead">'.$parentCategories[$i]->name.'</h4>';
+            //  $tmp = '<div class="imgDiv"><h4 class="parentCatHead">'.$parentCategories[$i]->name.'</h4>';
              for ($j = 0; $j < $count; $j++) {
-                  if($photos[$j]->categoryParent_id == $parentCategories[$i]->id){  
+                 //if($photos[$j]->categoryParent_id == $parentCategories[$i]->id){  
                       $tmp = $tmp."<div class='imgCl'><img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 600px; height: 400px; position: relative; left: -100px;' /></div>";
                       $tmp = $tmp.'<br/>';
-               }  
-               }  
-               if(preg_match('/<img/i', $tmp)){
-                echo '<div class="page-break"></div>';
+              // }  
+             }  
+             //   if(preg_match('/<img/i', $tmp)){
+             //   echo '<div class="page-break"></div>';
                 echo $tmp;
-                echo '<div>';      
+               // echo '<div>';      
                } 
           }
-        }
+     //   }
 ?>
 
 

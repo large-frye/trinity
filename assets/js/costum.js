@@ -12,6 +12,9 @@ $(document).ready(function() {
 		}
 	});
 	
+
+	
+
 	// HIDE LEFT PANEL
 	$(".hide-btn").click(function(){
 		if($("#left").css("width") == "0px"){
@@ -809,15 +812,20 @@ $(document).ready(function() {
             comment_class.remove();
         }
 
-        if (el[0].checked) {
+        if (el[0].checked) {	
+
             var answer = prompt("Comment:");
             if (answer !== null && answer !== "") {
                 if (slope) {
+                	$(e1).empty()
                     el.next().append("<span class=\"extra-comment _slope\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
                     el.val(el.next().text() + ": " + answer);
+                    el.next().addClass('checked');
                 } else {
+                	$(e1).empty()
                     el.next().append("<span class=\"extra-comment\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
                     el.val(answer);
+                    el.next().addClass('checked');
                 }
             } else {
                 el.next().removeClass('checked');
@@ -896,6 +904,43 @@ $(document).ready(function() {
 
         window.location = "/workorders/generate/" + splitted[5];
     });
+
+
+
+    //add (#) to all checked values
+	$('.custom-checkbox').find('input[checked="checked"]').each(function() {
+		var r = /\d+/;
+				//if + 
+			var id = $(this).attr('id');
+			
+			console.log(label);
+
+			 
+			if($(this).attr('value').indexOf('slopes')!=-1){
+				var label = $(this).parent().find('label');
+
+				if($(label).hasClass('checked')){
+				 var tmp = $(this).attr('value').match(r)[0];
+				 var result = '<span class="change-shingle-amount">&nbsp;(<a href="#">'+tmp+'</a>)</span>';
+				
+				 $(label).append(result);
+				 }
+				} 
+			//if #
+			else if($(this).attr('value').indexOf('+c')!=-1){
+				var label = $(this).parent().find('label');
+				if($(label).hasClass('checked')){
+				var tmp = $(this).attr('value').split(':')[1].substring(1);
+				console.log(tmp);
+					//check if slope
+				//.append("<span class=\"extra-comment _slope\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
+				var result = '<span class=\"extra-comment\">&nbsp;(<a href="#"><span class=\"italic\">+c</span></a>)</span>';
+				$(label).append(result);
+				
+			}
+			}
+	}); 
+
 });
 
 
