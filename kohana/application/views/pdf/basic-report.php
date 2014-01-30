@@ -64,6 +64,9 @@ ul
 .sectionDescrip{
     font:12px;
 }
+.hailDmg{
+    font:12px;
+}
 .damageLi{
   
   font:12px;
@@ -205,6 +208,7 @@ roofing systems.</p>';
 
 <h4 class="row-header">INSPECTION SUMMARY</h4>
 <?php 
+echo '<div class="hailDmg">';
  echo '<p>';
 
  if($windTotal>0){
@@ -239,7 +243,7 @@ $count = count($photos);
         echo $tmp;
 ?>
 
-
+</div>
 </div>
 </body>
 </html>  
