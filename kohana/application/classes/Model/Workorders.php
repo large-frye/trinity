@@ -576,9 +576,6 @@ class Model_Workorders extends Model_Base {
         // Get static text for reports.
         $view->static_damage_text = $this->_get_static_damages_text();
 
-        // Check to see if xactimate report exists
-        // $view->xactimate = $this->check_if_xactimate_exists($workorder_id);
-
         // Setup `dompdf`
         $this->_dompdf_setup(true, '4096M');
 
@@ -587,11 +584,37 @@ class Model_Workorders extends Model_Base {
             $dompdf = new DOMPDF();
             $dompdf->load_html($view);
             $dompdf->render();
-            $file = $this->_report_file_path . $workorder_id . ".pdf";
+            $file = $this->_report_file_path . "step1_" . $workorder_id . ".pdf";
             $fp = fopen($file, 'w+');
             fwrite($fp, $dompdf->output());
             fclose($fp);
-            $dompdf->stream($workorder_id . ".pdf");
+
+            $fp = null;
+
+            // Next we need to create the explanation of damages. 
+            $exp_damages = View::factory('pdf/explanation-of-damages');
+            $exp_damages->damages = $this->_set_exp_damages($view->report_data);
+            $exp_damages->data = $view->report_data;
+            $dompdf2 = new DOMPDF();
+            $dompdf2->load_html($exp_damages);
+            $dompdf2->render();
+            $file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
+            $fp = fopen($file, 'w+');
+            fwrite($fp, $dompdf2->output());
+            fclose($fp);
+            
+            if($this->check_if_xactimate_exists($workorder_id)) {
+                $current_pdf_file = $this->_report_file_path . "step1_" . $workorder_id . ".pdf";
+                $current_pdf_exp_damages_file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
+                $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
+                if (file_exists($this->_report_file_path . "final_" . $workorder_id . ".pdf")) {
+                    unlink($this->_report_file_path . "final_" . $workorder_id . ".pdf");
+                }
+
+                exec("/usr/local/bin/pdftk " . $current_pdf_file . " " . $current_pdf_exp_damages_file . " " . 
+                     $xactimate_file . " cat output " . $this->_report_file_path . "final_" . $workorder_id . ".pdf", $retval);
+            }
+
             return true;
         } catch (Exception $e) {       
             $this::$errors = "Error processing this PDF." . $e;
@@ -620,11 +643,97 @@ class Model_Workorders extends Model_Base {
 
 
     public function check_if_xactimate_exists($workorder_id) {
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/assets/xact/' . $workorder_id)) {
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/assets/xact/' . $workorder_id . ".pdf")) {
             return true;
         }
 
         return false;
+    }
+
+
+
+    private function _set_exp_damages($data) {
+        $damages = $this->_inspection_model->get_roof_conditions();
+        $exp_damages = $this->_get_exp_damages();
+        $_damages = array();
+        
+        if (isset($data['roof_conditions'])) {
+            $tmp_roof_conditions = explode('<br>', $data['roof_conditions']);
+            foreach ($tmp_roof_conditions as $tmp_roof_condition) {
+                if (isset($exp_damages[$tmp_roof_condition])) {
+                    $_damages[$tmp_roof_condition] = $exp_damages[$tmp_roof_condition];
+                }
+            }
+        }
+
+        return $_damages;
+    }
+
+
+
+    private function _get_exp_damages() {
+        return array('interior damage' => 'Interior damages were present. Interior leaks can be a result of hail and/or wind damage, but can also be a result of installation error 
+                                           or improper maintenance of vent pipe flashing. Refer to the damage assessment for comments regarding any water intrusion concerns.',
+                     'mechanical damage' => 'Mechanical damage is defined as damage which has occurred due to other than weather related conditions. Some good examples of mechanical 
+                                             damage are the holes left in the shingles due to the use of toe boards during the roofing process. Other forms of mechanical damage are 
+                                             foot traffic from installers and inspectors which can leaves areas of marred and/or exposed asphalt, shingle bundle scrapes, tool 
+                                             marks, etc...',
+                     'high nailing' => 'High nailing is a common incorrect installation method that can adversely impact the longevity of your roofing product. When a shingle is 
+                                        nailed too high, the nail will miss the head lap of the shingle installed beneath it, causing the shingle to be nailed in only half the 
+                                        recommended nailing places. In laminated shingles, this can cause delamination of the upper and lower laminate. High nailing often results 
+                                        in slippage - refer to the paragraph entitled “Slippage” (if present) for the explanation of slippage.',
+                     'nail extrusions' => 'Nail extrusions are often mistaken for wind damage. When a nail is pushed out through the forces of expansion and contraction on the 
+                                           shank of a nail it will cause the nail to raise out of the position in which it was installed. This will cause the shingle directly 
+                                           above it to be raised into the air giving the appearance that the wind has lifted it up. When viewed from the ground, the shingles 
+                                           lifted by nail extrusions can appear very prominent and may seem to be a source of a possible leak. This, however, is not typically 
+                                           the case. The nails that have been extruded should be hammered back into place or removed and replaced with a new nail. Routine 
+                                           maintenance of these areas can fix the problem.',
+                     'water intrusion' => 'Water intrusion concerns are defined as areas of possible leaks. These areas should be attended to immediately to prevent any future 
+                                           water damage to the interior of the dwelling. Refer to the damage assessment for information regarding the possible leak entry points 
+                                           noted on the roofing system. In most cases, leaks that are maintenance related from continual seepage, often take an extended 
+                                           period of time to finally show as a stain on your ceiling or walls. Heavy rain and driving wind can accelerate the continual seepage, 
+                                           causing the stain to appear during a single storm. This will often lead the policy holder to believe that there is a major problem 
+                                           with the roofing system, which is often not the case. General routine inspection and maintenance should be performed yearly to insure 
+                                           all aspects of the roofing system are in proper working order.',
+                     'vent pipe failing failure' => 'Most roofing systems have plumbing pipes that protrude through the surface of the shingles. These pipes are used to draw 
+                                                     air into the plumbing system. Some of the pipes use a rubber flashing boot to route rainwater away from the plumbing 
+                                                     pipe and onto the shingles. As time progresses in the life span of the roof, the UV rays of the sun, and other elements 
+                                                     of weather cause the rubber material to dry rot, crack, and split open. Many leaks are caused by this degradation of rubber 
+                                                     material and are often mistaken for leaks caused by hail or wind damage. This water intrusion concern on the roofing system 
+                                                     should be addressed immediately. Rubber vent pipe flashing should be replaced every 7-10 years to insure that they are in 
+                                                     proper working condition.',
+                     'lichen growth' => 'Lichen is an organic growth that often appears in, but is not limited to, the shaded portions of the roof. Lichen is an invasive growth 
+                                         that feeds on the asphalt layer of a shingle often removing the granules directly below the lichen growth. When lichen is removed from 
+                                         the shingle surface it can often look like hail marks because of the circular shape of lichen growth. Lichen growth can be differentiated 
+                                         from hail damage based on the absence of impact marks (i.e. mat fracture). Furthermore, the areas of granule loss left behind from lichen
+                                          growth are usually only on portions of the entire roof slope, so it does not appear in a consistent pattern throughout the entire slope.
+                                           Hail damage will not occur on one section of an entire slope, but it will damage the entire slope consistently throughout. Lichen damage 
+                                           can further be differentiated from hail damage by the lack of damage to the reinforcement mat.',
+                     'algae growth' => 'Algae growth is a non invasive organic growth that appears on the portions of the roof that are more shaded (typically the North and East 
+                                        slopes, but not limited to these slopes). This black or red looking growth does not affect the performance or the longevity of your 
+                                        roofing system. It is only a visual blemish that can be removed by cleaning methods or the installation of certain metal components 
+                                        to create a toxic environment which prevents algae growth. Spatter within the algae growth is used to confirm that hail has impacted 
+                                        the roof recently, also indicating the size of the hail involved.',
+                     'spatter present' => 'Spatter is the result of hail impacting areas of grime or oxidized metals, which removes the grime or oxidation, leaving a 
+                     cleaned off area. This area of growth removal indicates the size and diameter of the hailstone. Usually spatter is found in the algae growth on the
+                      shaded portions of a roof. Hail spatter is also found on objects that oxidize from the weather (e.g.: vinyl siding, satellite dishes, air 
+                          conditioning units).',
+                     'blistering' => 'During the manufacturing process, moisture in the form of water vapor and other gasses can become entrapped in the top layer 
+                     of the bituminous asphalt coating prior to granule application. When the shingle is heated after installation on the roof, these entrapped
+                      gasses can expand and form a bubble within the asphalt coating - this is called a closed blister because the asphalt coating remains intact 
+                      with granule covering. When the top of the blister bursts, the granules on the blister are released and a small crater is formed - this is 
+                      called an open blister. Blisters can be differentiated from hail damage because blistering does not damage the shingle reinforcing mat. Also,
+                       granule loss due to blistering is upward and outward from within the shingle. Some shingles will still blister even with proper ventilation 
+                       but unventilated roofs are more susceptible to blistering.',
+                     'slippage' => 'Slippage of an asphalt roofing system is always the result of high nailing. High nailing is an incorrect installation method. 
+                     Slippage typically occurs when a roof is steep, which can lead to shingles slipping downward out of their proper placement. When a shingle is 
+                     nailed too high, the nail misses the head lap of the shingle installed beneath it. This means the shingle will be nailed in only half the 
+                     recommended nailing places. For laminated shingles this can cause delamination of the upper and lower laminate.',
+                     'flashing breach' => 'Most roofs have a series of flashing elements in key places to route water away from chimneys, skylights, framing walls, 
+                     and other roofing transitions. It is the job of the counter-flashing and step-flashing to keep these areas watertight by routing the 
+                     rainwater back on top of the roofing system. Often, during extended periods of heavy driving rain, these areas can be breached causing 
+                     interior damage to a dwelling. Improper installation of these flashing elements can cause a leak to appear slowly over an extended period 
+                     of time, often not affecting the interior walls or ceilings for years after installation.');
     }
 
 
