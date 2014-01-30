@@ -149,7 +149,6 @@ class Model_Workorders extends Model_Base {
      
 
         $pathAndName = $uploaddir.$fileName;
-        echo $pathAndName;
         $moveResult = move_uploaded_file($_FILES['xact']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $path . $workorder_id . ".pdf");
        
         $parameters = array(':id'                         => $workorder_id,
@@ -612,7 +611,7 @@ class Model_Workorders extends Model_Base {
                     unlink($this->_report_file_path . "final_" . $workorder_id . ".pdf");
                 }
 
-                exec("/usr/local/bin/pdftk " . $current_pdf_file . " " . $current_pdf_exp_damages_file . " " . 
+                exec("/usr/bin/pdftk " . $current_pdf_file . " " . $current_pdf_exp_damages_file . " " . 
                      $xactimate_file . " cat output " . $this->_report_file_path . "final_" . $workorder_id . ".pdf", $retval);
             }
 
