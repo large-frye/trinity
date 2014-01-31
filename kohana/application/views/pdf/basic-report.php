@@ -81,8 +81,9 @@ ul
 
 .imgDiv{  
   width:450px;
-  margin-left:auto;
-  margin-right:auto;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
 }
 .parentCatHead{
    margin-bottom:20px;
@@ -90,9 +91,7 @@ ul
 
 .imgCl{
    margin-bottom:20px;
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
+  
 }
 .page-break { page-break-after: always; }
 .clear { clear: both; }
