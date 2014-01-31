@@ -59,7 +59,8 @@ p, li {
 .redTxt{
   color: red ;
 }
-.imgDiv{
+
+.imgContainer{
 width:450px;
  display: block;
   margin-left: auto;
@@ -220,6 +221,7 @@ if (isset($report_data['collateral_damages_to_property'])) {
 
 $parentCount = count($parentCategories);
 $count = count($photos);
+echo '<div class="imgContainer">';
  for ($i = 0; $i < $parentCount; $i++) {
             if($parentCategories[$i]->name!=='Sketches'){
               $tmp = '<div class="imgDiv"><h4 class="parentCatHead">'.$parentCategories[$i]->name.'</h4>';
@@ -242,7 +244,7 @@ $count = count($photos);
         }
 ?>
 
-
+</div >
 </div>
 </body>
 </html>  

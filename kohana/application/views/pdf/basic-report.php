@@ -79,11 +79,12 @@ ul
   color: red ;
 }
 
-.imgDiv{  
-  width:450px;
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
+.imgContainer{
+width:450px;
+ display: block;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 .parentCatHead{
    margin-bottom:20px;
@@ -234,6 +235,7 @@ if($report_data['was_insured_present']=='Yes'){
 }
 echo '</p>';
 
+echo '<div class="imgContainer">';
 $count = count($photos);
         $tmp = '<div class="imgDiv">';
         for ($j = 0; $j < $count; $j++) { 
@@ -246,6 +248,7 @@ $count = count($photos);
         echo $tmp.'</div>';
 ?>
 
+</div>
 </div>
 </div>
 </body>
