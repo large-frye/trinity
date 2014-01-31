@@ -60,7 +60,7 @@ p, li {
   color: red ;
 }
 .imgDiv{
-  width:450px;
+width:450px;
 margin-left:auto;
 margin-right:auto;
 
@@ -69,7 +69,6 @@ margin-right:auto;
    margin-bottom:20px;
 }
 .imgCl{
-
    margin-bottom:20px;
    display: block;
    margin-left: auto;
@@ -227,8 +226,12 @@ $count = count($photos);
               $tmp = '<div class="imgDiv"><h4 class="parentCatHead">'.$parentCategories[$i]->name.'</h4>';
              for ($j = 0; $j < $count; $j++) {
                   if($photos[$j]->categoryParent_id == $parentCategories[$i]->id){  
-                      $tmp = $tmp."<div class='imgCl'><img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 600px; height: 400px; margin-left: -75px;' /></div>";
-                      $tmp = $tmp.'<br/>';
+                    $cTmp ="";
+                      if($photos[$j]->name !='null'){
+                      $cTmp = $photos[$j]->name;
+                      }
+                   $tmp = $tmp."<div class='imgCl'>". $cTmp."<img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 600px; height: 400px; position: relative; left: -100px;' /></div>";
+                   $tmp = $tmp.'<br/>';
                }  
                }  
                if(preg_match('/<img/i', $tmp)){

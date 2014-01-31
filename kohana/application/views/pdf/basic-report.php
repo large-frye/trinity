@@ -65,11 +65,11 @@ ul
     font:12px;
 }
 .hailDmg{
-    font:12px;
+    font:14px;
 }
 .damageLi{
   
-  font:12px;
+  font:14px;
 }
 .damageUL{
   position:relative;
@@ -78,15 +78,16 @@ ul
 .redTxt{
   color: red ;
 }
+
 .imgDiv{  
   width:450px;
-margin-left:auto;
-margin-right:auto;
-
+  margin-left:auto;
+  margin-right:auto;
 }
 .parentCatHead{
    margin-bottom:20px;
 }
+
 .imgCl{
    margin-bottom:20px;
    display: block;
@@ -235,16 +236,15 @@ if($report_data['was_insured_present']=='Yes'){
 echo '</p>';
 
 $count = count($photos);
-        $tmp = "";
-        for ($j = 0; $j < $count; $j++) {
+        $tmp = '<div class="imgDiv">';
+        for ($j = 0; $j < $count; $j++) { 
             if ($photos[$j]->categoryParent_id != 79) {
-                
                 $tmp = $tmp."<div class='imgCl'><img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 600px; height: 400px; position: relative; left: -100px;' /></div>";
                 $tmp = $tmp.'<br/>';
             }
         }
             
-        echo $tmp;
+        echo $tmp.'</div>';
 ?>
 
 </div>
