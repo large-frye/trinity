@@ -817,12 +817,12 @@ $(document).ready(function() {
             var answer = prompt("Comment:");
             if (answer !== null && answer !== "") {
                 if (slope) {
-                	$(e1).empty()
+                	
                     el.next().append("<span class=\"extra-comment _slope\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
                     el.val(el.next().text() + ": " + answer);
                     el.next().addClass('checked');
                 } else {
-                	$(e1).empty()
+              
                     el.next().append("<span class=\"extra-comment\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
                     el.val(answer);
                     el.next().addClass('checked');
@@ -913,7 +913,7 @@ $(document).ready(function() {
 				//if + 
 			var id = $(this).attr('id');
 			
-			console.log(label);
+			
 
 			 
 			if($(this).attr('value').indexOf('slopes')!=-1){
@@ -931,7 +931,7 @@ $(document).ready(function() {
 				var label = $(this).parent().find('label');
 				if($(label).hasClass('checked')){
 				var tmp = $(this).attr('value').split(':')[1].substring(1);
-				console.log(tmp);
+				
 					//check if slope
 				//.append("<span class=\"extra-comment _slope\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
 				var result = '<span class=\"extra-comment\">&nbsp;(<a href="#"><span class=\"italic\">+c</span></a>)</span>';

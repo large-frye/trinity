@@ -561,7 +561,7 @@
                                      in_array($key, !is_array($data['metal_damages']) 
                                                    ? array_keys(unserialize($data['metal_damages'])) : array_keys($data['metal_damages']))
                                                    ? true : false,
-                                     array('id' => 'metal_damages' . $count, 'class' => 'metal-damage')) . "\n" .
+                                     array('id' => 'metal_damages' . $count, 'class' => 'metal-damage comment-box')) . "\n" .
                                      Form::label('metal_damages' . $count, $value) . "\n";
 
                                     $count++;
