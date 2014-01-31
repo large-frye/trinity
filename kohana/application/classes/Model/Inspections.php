@@ -835,10 +835,11 @@ class Model_Inspections extends Model_Base {
 
 
     public function get_photos_by_id($id){
-             $result = DB::query(Database::SELECT, 'SELECT * 
-                                               FROM inspection_photos
-                                               WHERE workorder_id = :id
-                                               ORDER BY categoryParent_id, FileOrder')
+             $result = DB::query(Database::SELECT, 'SELECT p.*, c.name from inspection_photos p 
+                LEFT JOIN categories c
+                ON p.category_id = c.id 
+                WHERE workorder_id = :id 
+                ORDER BY categoryParent_id, FileOrder')
                       ->parameters(array(':id' => $id))
                       ->as_object()
                       ->execute($this->db);
@@ -899,17 +900,11 @@ class Model_Inspections extends Model_Base {
         $path = "/assets/photos/";
 
         $uploaddir = '..'.$path.$id.'/';
-        echo $uploaddir;
         if (!is_dir($uploaddir) && !mkdir($uploaddir)){
           die("Error creating folder");
         }
-
-
-
         
          for ($i = 0; $i < count($files['filesToUpload']['name']); $i++) {
-          
-
 
 
         // File location with name

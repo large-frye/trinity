@@ -74,8 +74,10 @@ class Controller_Inspections extends Controller_Account {
 
     public function action_viewphotos() {
         $view = View::factory( 'inspections/viewphotos' );
+
         $view->categories = $this->settings_model->get_categories();
         $view->photos =  $this->inspections_model-> get_photos_by_id( $this->_workorder_id );
+     
         $this->template->side_bar = View::factory( 'inspections/photo-sidebar' );
         $this->template->content = $view;
     }
@@ -100,6 +102,7 @@ class Controller_Inspections extends Controller_Account {
 
         $view->parentCategories = $this->settings_model->get_parent_categories();
         $view->photos =  $this->inspections_model-> get_photos_by_id( $this->_workorder_id );
+
         $this->template->side_bar = View::factory( 'inspections/photo-sidebar' );
         $this->template->content = $view;
     }
@@ -109,9 +112,15 @@ class Controller_Inspections extends Controller_Account {
         if ( $this->request->method() === 'POST' ) {
             if ( !empty( $_FILES ) ) {
                 $this->inspections_model->save_photos( $this->_post, $_FILES, $this->_workorder_id );
+
+                //redirectx
+        //      $view->photos =  $this->inspections_model-> get_photos_by_id( $this->_workorder_id );
+        //     $view->categories = $this->settings_model->get_categories();
+        //     $this->request->redirect('inspections/catigorizephotos/'+$this->_workorder_id  );
             }
         }
-        $this->template->side_bar = View::factory( 'inspections/photo-sidebar' );
+ 
+        $this->template->side_bar = View::factory( 'inspections/photo-sidebar');
         $this->template->content = $view;
         
     }

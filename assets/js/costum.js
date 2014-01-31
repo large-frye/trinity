@@ -912,17 +912,11 @@ $(document).ready(function() {
 		var r = /\d+/;
 				//if + 
 			var id = $(this).attr('id');
-			
-			
-
-			 
 			if($(this).attr('value').indexOf('slopes')!=-1){
 				var label = $(this).parent().find('label');
-
 				if($(label).hasClass('checked')){
 				 var tmp = $(this).attr('value').match(r)[0];
 				 var result = '<span class="change-shingle-amount">&nbsp;(<a href="#">'+tmp+'</a>)</span>';
-				
 				 $(label).append(result);
 				 }
 				} 
@@ -933,7 +927,6 @@ $(document).ready(function() {
 				var tmp = $(this).attr('value').split(':')[1].substring(1);
 				
 					//check if slope
-				//.append("<span class=\"extra-comment _slope\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
 				var result = '<span class=\"extra-comment\">&nbsp;(<a href="#"><span class=\"italic\">+c</span></a>)</span>';
 				$(label).append(result);
 				

@@ -78,7 +78,7 @@ ul
 .redTxt{
   color: red ;
 }
-.imgDiv{
+.imgDiv{  
   width:450px;
 margin-left:auto;
 margin-right:auto;
@@ -238,6 +238,7 @@ $count = count($photos);
         $tmp = "";
         for ($j = 0; $j < $count; $j++) {
             if ($photos[$j]->categoryParent_id != 79) {
+                
                 $tmp = $tmp."<div class='imgCl'><img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 600px; height: 400px; position: relative; left: -100px;' /></div>";
                 $tmp = $tmp.'<br/>';
             }
