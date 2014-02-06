@@ -517,9 +517,11 @@ class Model_Workorders extends Model_Base {
             }
         } 
 
+
         switch ($report['type']) {
             case 0: 
                 $report['type'] = "Basic Inspection";
+                $report['roofing_info'] = array();
                 break;
             case 1: 
                 $report['type'] = "Expert Inspection";
@@ -529,7 +531,7 @@ class Model_Workorders extends Model_Base {
         // We need to do another seperation for summary of findings vs. roofing information
         $roofing_info = true;
         foreach ($report as $key => $value) {
-            if ($roofing_info) {
+            if ($roofing_info && $report['type'] !== "Basic Inspection") {
                 $report['roofing_info'][$key] = $value;
             } else {
                 $report['damages'][$key] = $value;
@@ -574,6 +576,7 @@ class Model_Workorders extends Model_Base {
         // Need to get all of the data possible for this report
         $view->report_data = $this->first_page_data_output($this->get_inspection_report($workorder_id));
 
+        // Set fraud input and other damage information here. 
         $view->report_data = $this->_handle_damages($view->report_data);
 
         // Get all of inspection data and report. 
@@ -619,7 +622,13 @@ class Model_Workorders extends Model_Base {
                         unlink($this->_report_file_path . "final_" . $workorder_id . ".pdf");
                     }
 
-                    exec("/usr/bin/pdftk " . $current_pdf_file . " " . $current_pdf_exp_damages_file . " " . 
+                    if (Kohana::$environment === Kohana::DEVELOPMENT) {
+                        $cmd = "/usr/local/bin/pdftk";
+                    } else {
+                        $cmd = "/usr/bin/pdftk";
+                    }
+
+                    exec($cmd . " " . $current_pdf_file . " " . $current_pdf_exp_damages_file . " " . 
                     $xactimate_file . " cat output " . $this->_report_file_path . "final_" . $workorder_id . ".pdf", $retval);
                 }
             }
@@ -634,17 +643,19 @@ class Model_Workorders extends Model_Base {
 
 
     public function first_page_data_output($data) {
-        $checks = array('Yes' => 'policyholder was present and we were able ',
-                        'No'  => 'policyholder was not present and we were unable ');
+        if (!isset($data['report_type'])) {
+            $checks = array('Yes' => 'policyholder was present and we were able ',
+                            'No'  => 'policyholder was not present and we were unable ');
 
-        if ($data['was_insured_present'] === "Yes") {
-            $data['was_insured_present_str'] = $checks['Yes'];
-        } else {
-            $data['was_insured_present_str'] = $checks['No'];
+            if ($data['was_insured_present'] === "Yes") {
+                $data['was_insured_present_str'] = $checks['Yes'];
+            } else {
+                $data['was_insured_present_str'] = $checks['No'];
+            }
+
+            // Handle roofer string. 
+            $data = $this->_build_roofer_string($data);
         }
-
-        // Handle roofer string. 
-        $data = $this->_build_roofer_string($data);
 
         return $data;
     }
@@ -775,6 +786,24 @@ class Model_Workorders extends Model_Base {
                 $data = $this->_set_workmanship($data, $key, $value);
             } else if ( preg_match('/worn/', $key)) {
                 $data = $this->_set_aged_worn($data, $key, $value);
+            } else if ( preg_match('/fraud/', $key)) {
+                $data = $this->_set_fraud_input($data, $key, $value);
+            }
+        }
+
+        return $data;
+    }
+
+
+
+    private function _set_fraud_input($data, $key, $value) {
+        $fraud_inputs = array_merge($this->_inspection_model->get_fraud_hail_input_text(), $this->_inspection_model->get_fraud_wind_input_text());
+        $header = str_replace('fraud_', '', $key);
+        $header = str_replace('_input', '_header', $header);
+
+        foreach ($value as $input) {
+            if (isset($fraud_inputs[$input])) {
+                $data['damages'][$header][$key][$input] = $fraud_inputs[$input];
             }
         }
 

@@ -162,26 +162,26 @@
                 <label for="roofer_present">Was the roofer present? </label>
 
                 <div class="right">
-                    <?php echo Form::radio('was_roofer_present', 1, isset($data['roofer_present']) && $data['roofer_present'] == 1 ? true : false, array('id' => 'was_roofer_present0', 'class' => 'roofer-present')) .
+                    <?php echo Form::radio('was_roofer_present', 1, isset($data['was_roofer_present']) && $data['was_roofer_present'] == 1 ? true : false, array('id' => 'was_roofer_present0', 'class' => 'roofer-present')) .
                                Form::label('was_roofer_present0', 'Yes') .
-                               Form::radio('was_roofer_present', 0, isset($data['roofer_present']) && $data['roofer_present'] == 1 ? false : true, array('id' => 'was_roofer_present1', 'class' => 'roofer-present')) .
+                               Form::radio('was_roofer_present', 0, isset($data['was_roofer_present']) && $data['was_roofer_present'] == 1 ? false : true, array('id' => 'was_roofer_present1', 'class' => 'roofer-present')) .
                                Form::label('was_roofer_present1', 'No'); ?>
                 </div>
             </div>    
 
-            <div class="row roofer">
+            <div class="row roofer <?php echo $data['was_insured_present'] == 1 ? "show" : null; ?>">
                 <label for="roofer">Roofer: </label>
 
                 <div class="right">
-                    <?php echo Form::input('roofer', ''); ?>
+                    <?php echo Form::input('roofer', isset($data['roofer']) ? $data['roofer'] : null); ?>
                 </div>
             </div>    
 
-            <div class="row roofer">
+            <div class="row roofer <?php echo $data['was_insured_present'] == 1 ? "show" : null; ?>">
                 <label for="roofer_company_name">Roofer Company Name: </label>
 
                 <div class="right">
-                    <?php echo Form::input('roofer_company_name', ''); ?>
+                    <?php echo Form::input('roofer_company_name', isset($data['roofer_company_name']) ? $data['roofer_company_name'] : null); ?>
                 </div>
             </div>    
 
@@ -1515,7 +1515,7 @@
                             </div>
                         </div>
                     </div>                
-                </div>
+                </div>`
 
                 <div class="row">
                         <label>Other</label>
@@ -1534,7 +1534,7 @@
                     <label for="workmanship_comments">Comments</label>
 
                     <div class="right">
-                        <textarea name="workmanship_comments"></textarea>
+                        <textarea name="workmanship_comments"><?php echo isset($data['workmanship_comments']) ? $data['workmanship_comments'] : null; ?></textarea>
                     </div>
                 </div>
             </div>
@@ -1655,7 +1655,7 @@
                 <label for="general_comments">Comments</label>
 
                 <div class="right">
-                    <textarea name="general_comments" value="<?php isset($data['general_comments']) ? $data['general_comments'] : null; ?>"></textarea>
+                    <textarea name="general_comments"><?php echo isset($data['general_comments']) ? $data['general_comments'] : null; ?></textarea>
                 </div>
             </div>
             

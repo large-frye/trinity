@@ -1,4 +1,4 @@
-<div class="box">
+<!-- <div class="box">
         <div class="title"><?php echo $inspection_type; ?> Report</div>
 
         <div class="content">
@@ -11,7 +11,7 @@
                 </div>
             </div> -->
 
-            <div class="row">
+          <!--  <div class="row">
                 <label for="estimated_age_of_roof">Estimated age of roof: </label>
 
                 <div class="right">
@@ -44,7 +44,7 @@
                 <div class="right">
                     <?php echo Form::select('type_of_framing', $framing_types); ?>
                 </div>
-            </div>    -->    
+            </div>   
 
             <div class="row">
                 <label for="pitch_1">Pitch 1: </label>
@@ -132,7 +132,7 @@
                         $count++;
                     } ?>
                 </div>
-            </div>        -->
+            </div>       
 
             <div class="row">
                 <label for="siding_type">What was the type of siding? </label>
@@ -252,7 +252,7 @@
                 <div class="right">
                     <?php echo Form::select('lift_up_minor_reset_tarp', $lift_up_minor_reset_tarp); ?>
                 </div>
-            </div>    -->
+            </div>  
 
             <div class="row">
                 <label for="previous_repairs_made">Previous repairs made: </label>
@@ -320,23 +320,12 @@
                         <?php echo isset($data['collateral_damage_detail_description']) ? $data['collateral_damage_detail_description'] : null; ?>
                     </textarea>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
-</div>
+</div>-->
 
-<div class="plain">
-    <?php echo isset($errors) ? "<div class=\"message error\">
-                                     <p>Until the errors are fixed above, all the data below will be removed during a report submission that has errors.</p>
-                                 </div>" : null; ?>
-    <h1>Cause of Loss</h1>
-
-    <p>
-        At least one "Cause of Loss" must be selected. In addition, whenever a corresponding "Slope" is available next to a selection you have made, at least one Slope also becomes required.
-    </p>
-
-</div>
-
+<?php echo Form::hidden('report_type', $inspection_type); ?>
 
 <div class="plain">
     <?php echo isset($errors) ? "<div class=\"message error\">
@@ -352,15 +341,6 @@
 
 
 <div class="section">
-    <div class="row">
-                <label for="house_face">What direction does the house face?</label>
-
-                <div class="right">
-                    <?php echo Form::select('house_face', array('blank' => 'Please select') + $house_faces['direction'], 
-                                            isset($data['house_face']) ? $data['house_face'] : null, 
-                                            array('class' => 'house-face')); ?>
-                </div>
-            </div>
     <div class="row house-direction">
                 <label for="house_direction">Which directional face is {{face}}</label>
 

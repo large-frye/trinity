@@ -227,12 +227,12 @@ if($hailTotal>0){
   echo '<span>We have come to the conclusion that the hail was too small to damage the roofing system.</span>';
 }
 
-if($report_data['was_insured_present']=='Yes'){
+/*if($report_data['was_insured_present']=='Yes'){
      echo '<span>We were able to explain the extent of the damages to the policy holder.</span>';
 
 }else {
     echo '<span>We were not able to explain the extent of the damages to the policyholder because they were not present.</span>';
-}
+}*/
 echo '</p>';
 
 echo '<div class="imgContainer">';

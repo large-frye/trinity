@@ -97,4 +97,8 @@
 	padding: 10px 5px 5px 5px;
 }
 
+.show {
+	display: block !important;
+}
+
 
