@@ -10,7 +10,7 @@
             <?php echo Form::open('', array('enctype' => 'multipart/form-data', 'class' => 'photoUpload')); ?>
      
          <input name="filesToUpload[]" id="filesToUpload" type="file" multiple="" />
-         <button type="submit" id="photo" name="photo" value="Submit " /> Submit Photos</button>
+         <button type="submit" class="photoBut" id="photo" name="photo" value="Submit " /> Submit Photos</button>
          </form>
 
          

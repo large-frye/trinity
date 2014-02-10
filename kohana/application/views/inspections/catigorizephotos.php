@@ -4,7 +4,7 @@
         <div class="title">Catigorize Photos<span class="hide"></span></div>
         <div class='hiddenForm'>
             <?php echo Form::open( '', array( 'enctype' => 'multipart/form-data', 'id' => 'catigorizephotos' ) ); ?></form>
-            <button type="submit" id="catButton" name="catButton" value="Submit " /> Submit</button>
+            <button type="submit"  class="photoBut" id="catButton" name="catButton" value="Submit " /> Submit</button>
         </div>
         <div class="photoCatContainer">
         <?php

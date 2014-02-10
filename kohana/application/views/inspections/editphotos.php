@@ -7,7 +7,7 @@
 							<div class='hiddenForm'>
 								    <?php echo Form::open('', array('enctype' => 'multipart/form-data', 'id' => 'orderPhotos')); ?>  
 								</form>
-								 <button type="submit" id="editButton" name="editButton" value="Submit" /> Submit</button>
+								 <button type="submit" class="photoBut" id="editButton" name="editButton" value="Submit" /> Submit</button>
 							</div>
 							<div class="photoCatContainer">
 								<div id="accordion">
