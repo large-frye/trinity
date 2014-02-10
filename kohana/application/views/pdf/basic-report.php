@@ -80,11 +80,10 @@ ul
 }
 
 .imgContainer{
-width:450px;
- display: block;
-  margin-left: auto;
-  margin-right: auto;
-
+  width:450px;
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 .parentCatHead{
    margin-bottom:20px;
@@ -92,7 +91,6 @@ width:450px;
 
 .imgCl{
    margin-bottom:20px;
-  
 }
 .page-break { page-break-after: always; }
 .clear { clear: both; }
