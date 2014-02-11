@@ -456,7 +456,7 @@
         </div>
 </div>
 
-
+<!-- Hail -->
 <div class="section">
     <div class="box">
             <div class="title slope-title-helper">
@@ -527,8 +527,58 @@
                 
             </div>
         </div>
-
 </div>
+<!-- End Hail -->
+
+<!-- Collateral Damage -->
+<div class="section">
+    <div class="box">
+            <div class="title slope-title-helper">
+                Collateral Damages
+                <span class="show"></span>
+            </div>
+            <div class="content">
+                
+                <div class="row">
+                    <?php echo Form::checkbox('collateral_damage_header', "1", isset($data['collateral_damage_header']) ? true : null, 
+                                              array('class' => 'check_if_apply', 'id' => 'collateral_damage_header')); ?>
+                    <label for="collateral_damage_header"><strong>Check if apply</strong></label>
+
+                </div>
+
+                <div class="row">
+                    <label for="collateral_damages">Damages: </label>
+                    <div class="right chk_type_of_roofing fraud_wind_input">
+                        <?php
+                            $count = 0;
+                            foreach($collateral_damamges as $key => $value) {
+                                echo Form::checkbox('collateral_damages[' . $key . ']', $data_values['collateral_damages'][$key], 
+                                    isset($data['collateral_damages']) &&
+                                    in_array($key, !is_array($data['collateral_damages']) 
+                                                   ? array_keys(unserialize($data['collateral_damages'])) : array_keys($data['collateral_damages']))
+                                                   ? true : false, array('id' => 'collateral_damages' . $count)) . "\n" .
+                                     Form::label('collateral_damages' . $count, $value) . "\n";
+
+                                    $count++;
+                            } 
+                        ?>
+                        <div class="cl"></div>
+                    </div>
+                </div>    
+
+                <div class="row">
+                    <label for="collateral_damamges_comments">Comments</label>
+
+                    <div class="right">
+                        <?php echo Form::input('collateral_damamges_comments', isset($data['collateral_damamges_comments']) ? $data['collateral_damamges_comments'] : null); ?>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+</div>
+<!-- End Collateral Damage -->
+
 
 
 <div class="section">

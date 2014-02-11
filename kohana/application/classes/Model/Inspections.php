@@ -172,13 +172,16 @@ class Model_Inspections extends Model_Base {
 
     public function get_collateral_damages() {
         return array(
-            0 => 'N/A',
-            1 => 'Vehicle',
-            2 => 'Siding',
-            3 => 'Gutters',
-            4 => 'Decking',
-            5 => 'Windows/Doors',
-            6 => 'Landscaping'
+            'vehicle' => 'Vehicle',
+            'vinyl siding' => 'Vinyl Siding',
+            'gutters' => 'Gutters',
+            'wood decking' => 'Wood Decking',
+            'windows/doors' => 'Windows/Doors',
+            'Landscaping' => 'Landscaping',
+            'downspouts' => 'Downspouts',
+            'screens' => 'Screens', 
+            'aluminum fascia' => 'Aluminum Fascia',
+            'fency material' => 'Fency Material',
         );
     }
 
@@ -741,6 +744,7 @@ class Model_Inspections extends Model_Base {
         $_values = array('fallen_tree_damages' => array_keys($fallen_tree_damages['damages']),
                          'fraud_wind_input' => array_keys($this->get_fraud_wind_input()),
                          'fraud_hail_input' => array_keys($this->get_fraud_hail_input()),
+                         'collateral_damages' => array_keys($this->get_collateral_damages()),
                          'metal_damages' => array_keys($this->get_metal_damages()),
                          'lightning_damages' => array_keys($this->get_lighting_damages()),
                          'excess_debris_location' => array_keys($this->get_excess_debris()),
