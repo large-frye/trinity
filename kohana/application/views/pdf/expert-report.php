@@ -61,7 +61,7 @@ p, li {
 }
 
 .descDmg{
-  font:14px;
+  font:16px;
 }
 
 .imgContainer{
