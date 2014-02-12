@@ -85,13 +85,12 @@ ul
   display: block;
   position:relative;
   left:50px;
-  margin-bottom: 500px;
+  margin-bottom: 50px;
 }
 .imgDiv{
-   display: block;
-    padding: 10px;
-    text-align: justify;
-    margin-top: 50px; 
+  display: block;
+  padding: 10px;
+  margin-top: 50px; 
 
 }
 .parentCatHead{
