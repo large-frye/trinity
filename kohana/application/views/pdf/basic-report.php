@@ -91,8 +91,11 @@ ul
 }
 
 .imgCl{
-   padding-top:2cm;
    margin-bottom:20px;
+}
+.imgDiv{
+padding-top:2cm;
+
 }
 .page-break { page-break-after: always; }
 .clear { clear: both; }
