@@ -82,8 +82,6 @@ ul
 .imgContainer{
   width:450px;
   display: block;
-  margin-left: -50px;
-  margin-right: auto !important;
 }
 .parentCatHead{
    margin-bottom:20px;
