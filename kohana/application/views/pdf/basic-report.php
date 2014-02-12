@@ -87,10 +87,11 @@ ul
 }
 .parentCatHead{
    margin-bottom:20px;
-   margin-top:20px;
+
 }
 
 .imgCl{
+   margin-top:20px;
    margin-bottom:20px;
 }
 .page-break { page-break-after: always; }
