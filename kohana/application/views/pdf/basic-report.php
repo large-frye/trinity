@@ -85,6 +85,7 @@ ul
   display: block;
   position:relative;
   left:60px;
+  border: 2px;
 }
 .parentCatHead{
    margin-bottom:20px;
@@ -94,10 +95,7 @@ ul
 .imgCl{
    margin-bottom:20px;
 }
-.imgDiv{
 
-
-}
 .page-break { page-break-after: always; }
 .clear { clear: both; }
 .header { color: rgb(117, 41, 43); font-weight: 600; }
