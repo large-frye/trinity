@@ -646,6 +646,10 @@ class Model_Workorders extends Model_Base {
 
 
 
+    /**
+     * First page data output
+     *
+     */
     public function first_page_data_output($data) {
         if (!isset($data['report_type'])) {
             $checks = array('Yes' => 'policyholder was present and we were able ',
