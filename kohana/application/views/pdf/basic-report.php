@@ -208,7 +208,7 @@ roofing systems.</p>';
                         $tmp = str_replace($value, '<span class="redTxt">'.$value.'</span>', $tmp);
                     }
                  ?>
-                  <li class="damageLi"><?php echo $tmp; ?></li>
+                  <li class="damageLi"><h3><?php echo $tmp; ?><h3></li>
               <?php 
             } ?>
             </ul>

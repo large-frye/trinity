@@ -156,7 +156,7 @@ SC Adjusters License # 625784</p>
 <br>
 <?php foreach ($report_data['damages'] as $damage => $damages) { 
           if (preg_match('/header/', $damage)) { ?>
-              <div class="damage-block"><h3 class="red"><?php echo strtoupper(str_replace('_', ' ' , str_replace('_header', '', $damage))); ?></h3><h3>
+              <div class="damage-block"><h3 class="red"><?php echo strtoupper(str_replace('_', ' ' , str_replace('_header', '', $damage))); ?></h3>
               <p><?php echo isset($static_damage_text[$damage]) ? $static_damage_text[$damage] : ""; ?></p>
               <ul>
               <?php 
@@ -184,7 +184,7 @@ SC Adjusters License # 625784</p>
                   }
               } ?>
               </ul>
-    <?php } echo "<h3></div>"; }} ?>
+    <?php } echo "</div>"; }} ?>
 <div class="page-break"></div>
 <div class="padding-top"></div>
 <br><br><br>
