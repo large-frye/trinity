@@ -81,6 +81,7 @@ ul
 
 .imgContainer{
   width:450px;
+  padding-top:2cm;
   display: block;
   position:relative;
   left:60px;
@@ -94,7 +95,7 @@ ul
    margin-bottom:20px;
 }
 .imgDiv{
-padding-top:2cm;
+
 
 }
 .page-break { page-break-after: always; }
