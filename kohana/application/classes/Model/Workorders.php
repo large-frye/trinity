@@ -567,6 +567,10 @@ class Model_Workorders extends Model_Base {
 
 
 
+    /**
+     * Handles the generation of the final pdf report.
+     *
+     */
     public function generate_report($workorder_id, $parentCategories, $photos) {
         // We need to determine the view we are going to be use.
         $view = $this->_get_pdf_view($workorder_id);
