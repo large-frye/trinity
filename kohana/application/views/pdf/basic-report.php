@@ -83,7 +83,6 @@ ul
   width:450px;
   padding-top:2.1cm;
   display: block;
-  position:relative;
   left:50px;
   margin-bottom: 50px;
 }
