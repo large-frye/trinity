@@ -84,8 +84,15 @@ ul
   padding-top:2cm;
   display: block;
   position:relative;
-  left:60px;
-  border: 2px;
+  left:50px;
+  margin-bottom: 500px;
+}
+.imgDiv{
+   display: block;
+    padding: 10px;
+    text-align: justify;
+    margin-top: 50px; 
+
 }
 .parentCatHead{
    margin-bottom:20px;
