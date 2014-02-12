@@ -60,6 +60,10 @@ p, li {
   color: red ;
 }
 
+.descDmg{
+  font:14px;
+}
+
 .imgContainer{
 width:450px;
  display: block;
@@ -162,7 +166,7 @@ SC Adjusters License # 625784</p>
                   $directions = array("North", "South", "East", "West", "(Front)", "(Rear)", "(Left)", "(Right)", "NorthEast", "NorthWest", "SouthEast", "SouthWest");
                   foreach ($damages as $type) {
                       if (!is_array($type) && $type != "" && !is_numeric($type) && $type != "blank") { ?>
-                      <li>
+                      <li class="descDmg">
                       <?php 
                           $finalStr='';
                           foreach(explode(' ',$type) as $st) {
