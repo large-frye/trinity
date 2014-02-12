@@ -5,3 +5,5 @@
 *.DS_Store
 _trinity*
 *logs*
+build.sh
+
