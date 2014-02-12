@@ -91,7 +91,7 @@ ul
 }
 
 .imgCl{
-   margin-top:20px;
+   padding-top:2cm;
    margin-bottom:20px;
 }
 .page-break { page-break-after: always; }
