@@ -253,7 +253,7 @@ $count = count($photos);
                       $cTmp = $photos[$j]->name;
                       }
                 $tmp = $tmp."<br/><div class='imgCl'>".$cTmp."<img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 600px; height: 400px;' /></div>";
-                $tmp = $tmp.'<br/>';
+                $tmp = $tmp.'<br/><br/>';
             }
         }
             
