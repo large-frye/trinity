@@ -81,11 +81,10 @@ ul
 
 .imgContainer{
   width:450px;
-  padding-top:2cm;
   display: block;
   position:relative;
   left:50px;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 .imgDiv{
   display: block;
