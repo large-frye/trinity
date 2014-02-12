@@ -82,7 +82,7 @@ ul
 .imgContainer{
   width:450px;
   display: block;
-  margin-left: auto !important;
+  margin-left: -50px;
   margin-right: auto !important;
 }
 .parentCatHead{
