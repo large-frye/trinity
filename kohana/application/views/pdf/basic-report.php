@@ -69,7 +69,7 @@ ul
 }
 .damageLi{
   
-  font:14px;
+  font:16px;
 }
 .damageUL{
   position:relative;
@@ -208,7 +208,7 @@ roofing systems.</p>';
                         $tmp = str_replace($value, '<span class="redTxt">'.$value.'</span>', $tmp);
                     }
                  ?>
-                  <li class="damageLi"><h3><?php echo $tmp; ?><h3></li>
+                  <li class="damageLi"><?php echo $tmp; ?></li>
               <?php 
             } ?>
             </ul>
