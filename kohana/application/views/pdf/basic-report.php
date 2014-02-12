@@ -83,7 +83,7 @@ ul
   width:450px;
   display: block;
   position:relative;
-  left:-60px;
+  left:60px;
 }
 .parentCatHead{
    margin-bottom:20px;
