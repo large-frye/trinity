@@ -673,6 +673,7 @@ class Model_Workorders extends Model_Base {
     /**
      * Check is xactimate exists
      *
+     * @oparam int $workorder_id
      */
     public function check_if_xactimate_exists($workorder_id) {
         if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/assets/xact/' . $workorder_id . ".pdf")) {
