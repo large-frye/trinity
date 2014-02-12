@@ -238,7 +238,7 @@ $count = count($photos);
         $tmp = '<div class="imgDiv">';
         for ($j = 0; $j < $count; $j++) { 
             if ($photos[$j]->categoryParent_id != 79) {
-               $cTmp ="";
+               $cTmp ="     ";
                       if($photos[$j]->name !='null'){
                       $cTmp = $photos[$j]->name;
                       }
