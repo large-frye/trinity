@@ -85,7 +85,7 @@ ul
   display: block;
   position:relative;
   left:50px;
-  margin-bottom: 65px;
+  margin-bottom: 60px;
 }
 .imgDiv{
   display: block;
