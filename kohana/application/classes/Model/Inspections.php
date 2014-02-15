@@ -930,12 +930,6 @@ class Model_Inspections extends Model_Base {
         if (!is_dir($uploaddir) && !mkdir($uploaddir)){
           die("Error creating folder");
         }
-
-        echo "<pre>";
-        print_r($_FILES);
-
-        echo count($files['filesToUpload']['name']);
-        die();
         
          for ($i = 0; $i < count($files['filesToUpload']['name']); $i++) {
             echo $i;
