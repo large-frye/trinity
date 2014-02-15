@@ -30,6 +30,9 @@
 					</li>
 			    </ul> 
 		</li> 
+		<li>
+			<a href="/maps">Maps</a>
+		</li> 
 	</ul>
 </div>
 

@@ -29,7 +29,7 @@ class Controller_Master extends Controller_Template {
         // Create a property to use instead of Kohana's static function;
         $this->request = Request::current();
 
-        $this->_exception_controllers = array('Account', 'Users', 'Settings', 'Workorders', 'Inspections', 'Invoice');
+        $this->_exception_controllers = array('Account', 'Users', 'Settings', 'Workorders', 'Inspections', 'Invoice', 'Maps');
         $this->_exception_actions = array('login','signup', 'forgotpassword');
 
         // Set current template
