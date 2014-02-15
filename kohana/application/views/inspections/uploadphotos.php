@@ -9,5 +9,3 @@
         </div>
     </div>
 </div>
-
-<?php echo phpinfo(); ?>
