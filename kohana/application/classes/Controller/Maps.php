@@ -8,10 +8,7 @@ class Controller_Users extends Controller_Account {
             parent::__construct($request, $response);
             $this->settings_model=Model::factory('Maps');
 
-
         }
-
-
 
 
     public function before() {
