@@ -13,6 +13,10 @@ class Controller_Users extends Controller_Account {
 
         }
 
+
+
+        
+
     public function before() {
     	parent::before();
     	$this->_post = $this->request->post();
