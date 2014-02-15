@@ -61,7 +61,7 @@ ul
     list-style-type: none;
 }
 .sectionDescrip{
-    font:12px;
+    font:14px;
 }
 .hailDmg{
     font:14px;
@@ -135,18 +135,26 @@ ul
     <tr><th>Date:</th><td class="border">&nbsp;<?php echo $inspection_data['date_of_inspection'];?></td></tr>
 </table>
 <br /><br />
+<?php 
+
+$collateral_damage_header = $report_data['damages']['collateral_damage_header']; 
+$collateral_damages = $report_data['damages']['collateral_damage_header']['collateral_damages'];
+
+?>
+
 <h4 class="row-header">GROUND INSPECTION</h4>
 <p>During our ground level walk around inspection of loss to the following building materials that may be more susceptible to wind or hail:</p>
-<p>During our ground level walk around inspection of the loss <span class="blue">we did not find collateral damage</span> to the following building 
-   materials that may be more susceptible to wind or hail:</p>
-<p class="blue">Gutters, Downspouts, Screens, Vinyl Siding, Aluminum Fascia, Wood Decking, Fencing Material</p>
+<p>During our ground level walk around inspection of the loss <span class="blue">
+  <?php echo isset($collateral_damage_header) && !empty($collateral_damage_header) ? "we did find collateral damage" : "we did not find collateral damage"; ?></span> 
+   to the following building materials that may be more susceptible to wind or hail:</p>
+<p class="blue"><?php echo isset($collateral_damages) && !empty($collateral_damages) ? implode(', ', $collateral_damages) : null; ?></p>
 <br>
 <h4 class="row-header">ROOF INSPECTION</h4>
 <?php
 $windTotal=0; 
 $hailTotal=0;
  foreach ($report_data['damages'] as $damage => $damages) { 
-          if (preg_match('/header/', $damage)) { ?>
+          if (preg_match('/header/', $damage) && !preg_match('/collateral/', $damage)) { ?>
               <h5 class="red"><?php echo strtoupper(str_replace('_header', '', $damage.' damage:')); 
                if(preg_match('/wind/', $damage)){
                 echo '<p class="sectionDescrip">Our wind damage inspection consists of inspecting every roof slope to verify any and all wind damaged components to all types of
@@ -217,7 +225,7 @@ roofing systems.</p>';
 
   } ?>
 
-<h4 class="row-header">INSPECTION SUMMARY</h4>
+<h4 class="row-header" style="margin-top: 50px; position: relative;">INSPECTION SUMMARY</h4>
 <?php 
 echo '<div class="hailDmg">';
  echo '<p>';
