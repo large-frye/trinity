@@ -69,7 +69,7 @@ ul
 }
 .damageLi{
   
-  font:16px;
+  font:15px;
 }
 .damageUL{
   position:relative;

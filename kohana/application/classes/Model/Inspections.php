@@ -932,7 +932,7 @@ class Model_Inspections extends Model_Base {
         }
         
          for ($i = 0; $i < count($files['filesToUpload']['name']); $i++) {
-
+            echo $i;
 
         // File location with name
         $tmpName = $files['filesToUpload']['tmp_name'][$i];

@@ -60,7 +60,10 @@ p, li {
   color: red ;
 }
 
-
+.damageLi{
+  
+  font:15px;
+}
 .imgContainer{
 width:450px;
  display: block;
@@ -180,7 +183,7 @@ SC Adjusters License # 625784</p>
                           } echo $type; ?></li>
               <?php } else if (is_array($type)) {
                   foreach ($type as $t => $val) {
-                      echo "<li>" . $val . "</li>";
+                      echo "<li class='damageLi'>" . $val . "</li>";
                   }
               } ?>
               </ul>
