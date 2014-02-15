@@ -31,7 +31,7 @@
 			    </ul> 
 		</li> 
 		<li>
-			<a href="/maps/index">Maps</a>
+			<a href="/maps">Maps</a>
 		</li> 
 	</ul>
 </div>

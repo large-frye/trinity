@@ -8,8 +8,6 @@ class Controller_Settings extends Controller_Account {
      	public function __construct(Kohana_Request $request, Kohana_Response $response){
      		parent::__construct($request, $response);
      		$this->settings_model=Model::factory('Settings');
-
-
      	}
 
    	public function before(){
