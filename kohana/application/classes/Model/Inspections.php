@@ -945,6 +945,8 @@ class Model_Inspections extends Model_Base {
         $pathAndName = $uploaddir.$fileName;
         $moveResult = move_uploaded_file($tmpName, $pathAndName);
         print_r($moveResult);
+        echo "<pre>";
+        print_r($_FILES);
         if($moveResult){
          $parameters = array(':id' => null,
                             ':workorder_id' => $id,
