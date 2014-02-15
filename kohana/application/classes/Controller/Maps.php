@@ -1,15 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Users extends Controller_Account {
+class Controller_Maps extends Controller_Master {
 
-    protected $_post = null;
+    public function __construct(Kohana_Request $request, Kohana_Response $response) {
+        parent::__construct($request, $response);
+    }
 
-   public function __construct(Kohana_Request $request, Kohana_Response $response){
-            parent::__construct($request, $response);
-        }
+    
 
-
-        public function before(){
+  public function before(){
         parent::before();
         $this->template->homepage = false;
          $this->_post = $this->request->post();
@@ -23,4 +22,5 @@ class Controller_Users extends Controller_Account {
     public function after() {
     	parent::after();
     }
-}
+
+}		
