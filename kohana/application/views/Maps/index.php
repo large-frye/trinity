@@ -1,1 +1,1 @@
-tits
+<div id="map-canvas"></div>
