@@ -562,6 +562,11 @@ class Model_Workorders extends Model_Base {
             }
         }
 
+        // Hack for collateral damages
+        if (isset($report['damages']['collateral_damamges_comments'])) {
+            $report['damages']['collateral_damage_header']['collateral_damamges_comments'] = $report['damages']['collateral_damamges_comments'];
+        }
+
         return $report;
     }
 
