@@ -60,10 +60,6 @@ p, li {
   color: red ;
 }
 
-.damageLi{
-  
-  font:15px;
-}
 .imgContainer{
 width:450px;
  display: block;
@@ -166,7 +162,7 @@ SC Adjusters License # 625784</p>
                   $directions = array("North", "South", "East", "West", "(Front)", "(Rear)", "(Left)", "(Right)", "NorthEast", "NorthWest", "SouthEast", "SouthWest");
                   foreach ($damages as $type) {
                       if (!is_array($type) && $type != "" && !is_numeric($type) && $type != "blank") { ?>
-                      <li class="descDmg">
+                      <li>
                       <?php 
                           $finalStr='';
                           foreach(explode(' ',$type) as $st) {
@@ -183,7 +179,7 @@ SC Adjusters License # 625784</p>
                           } echo $type; ?></li>
               <?php } else if (is_array($type)) {
                   foreach ($type as $t => $val) {
-                      echo "<li class='damageLi'>" . $val . "</li>";
+                      echo "<li>" . $val . "</li>";
                   }
               } ?>
               </ul>
@@ -220,35 +216,10 @@ if (isset($report_data['collateral_damages_to_property'])) {
 <h3 class="center">Symbol Breakdown</h3>
 <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/symbol_breakdown.jpg'; ?>" alt="symbol_breakdown" />
 <div class="page-break"></div>
-<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/sketch.jpg'; ?>" alt="sketch" width="850" class="sketch-helper" style="margin-left: -75px;" />
-<?php
 
-$parentCount = count($parentCategories);
-$count = count($photos);
-echo '<div class="imgContainer">';
- for ($i = 0; $i < $parentCount; $i++) {
-            if($parentCategories[$i]->name!=='Sketches'){
-              $tmp = '<div class="imgDiv"><h4 class="parentCatHead">'.$parentCategories[$i]->name.'</h4>';
-             for ($j = 0; $j < $count; $j++) {
-                  if($photos[$j]->categoryParent_id == $parentCategories[$i]->id){  
-                    $cTmp ="";
-                      if($photos[$j]->name !='null'){
-                      $cTmp = $photos[$j]->name;
-                      }
-                   $tmp = $tmp."<div class='imgCl'>". $cTmp."<img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 600px; height: 400px; position: relative; left: -100px;' /></div>";
-                   $tmp = $tmp.'<br>';
-               }  
-               }  
-               if(preg_match('/<img/i', $tmp)){
-                echo '<div class="page-break"></div>';
-                echo $tmp;
-                echo '<div>';      
-               } 
-          }
-        }
-?>
+<?php echo isset($sketch) ? "<img src=\"" . $sketch->fileLocation . "\" alt=\"sketch\" width=\"850\" class=\"sketch-helper\" style=\"margin-left: -75px;\" />" : null;  ?>
 
-</div >
+</div>
 </div>
 </body>
 </html>  
