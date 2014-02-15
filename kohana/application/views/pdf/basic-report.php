@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 <head><meta http-equiv=Content-Type content="text/html; charset=UTF-8">
@@ -235,30 +234,11 @@ if($hailTotal>0){
   echo '<span>We have come to the conclusion that the hail was too small to damage the roofing system.</span>';
 }
 
-/*if($report_data['was_insured_present']=='Yes'){
-     echo '<span>We were able to explain the extent of the damages to the policy holder.</span>';
-
-}else {
-    echo '<span>We were not able to explain the extent of the damages to the policyholder because they were not present.</span>';
-}*/
-echo '</p>';
-
-echo '<div class="imgContainer">';
-$count = count($photos);
-        $tmp = '<div class="imgDiv">';
-        for ($j = 0; $j < $count; $j++) { 
-            if ($photos[$j]->categoryParent_id != 79) {
-               $cTmp ="     ";
-                      if($photos[$j]->name !='null'){
-                      $cTmp = $photos[$j]->name;
-                      }
-                $tmp = $tmp."<div class='imgCl'>".$cTmp."<img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation."' style='width: 600px; height: 400px;' /></div>";
-                $tmp = $tmp.'<br/><br/><br/>';
-            }
-        }
-            
-        echo $tmp.'</div>';
 ?>
+
+<div class="page-break"></div>
+
+<?php echo isset($sketch) ? "<img src=\"" . $sketch->fileLocation . "\" alt=\"sketch\" width=\"850\" class=\"sketch-helper\" style=\"margin-left: -75px;\" />" : null;  ?>
 
 </div>
 </div>
