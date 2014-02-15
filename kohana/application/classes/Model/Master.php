@@ -92,8 +92,9 @@ class Model_Master extends Model {
                           // "/trinity/assets/js/jqueryUI.js",
                           "/assets/js/inspection/imgUploader.js",
                           "/assets/js/admin/multi-row.js",
-                          "/assets/js/maps.js",
                           "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false",
+                          "/assets/js/maps.js",
+
                           );
 
     	foreach($js_files as $js_file) {
