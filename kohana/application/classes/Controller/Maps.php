@@ -6,14 +6,13 @@ class Controller_Users extends Controller_Account {
 
    public function __construct(Kohana_Request $request, Kohana_Response $response){
             parent::__construct($request, $response);
-            //$this->maps_model=Model::factory('Maps');
-
         }
 
 
-    public function before() {
-    	parent::before();
-    	$this->_post = $this->request->post();
+        public function before(){
+        parent::before();
+        $this->template->homepage = false;
+         $this->_post = $this->request->post();
     }
    
 
