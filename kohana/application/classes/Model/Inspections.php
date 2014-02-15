@@ -932,8 +932,6 @@ class Model_Inspections extends Model_Base {
         }
         
          for ($i = 0; $i < count($files['filesToUpload']['name']); $i++) {
-            echo $i;
-
         // File location with name
         $tmpName = $files['filesToUpload']['tmp_name'][$i];
         $mimeType =  $files['filesToUpload']['type'][$i];  
@@ -944,7 +942,7 @@ class Model_Inspections extends Model_Base {
 
         $pathAndName = $uploaddir.$fileName;
         $moveResult = move_uploaded_file($tmpName, $pathAndName);
-       
+
         if($moveResult){
          $parameters = array(':id' => null,
                             ':workorder_id' => $id,
