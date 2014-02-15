@@ -2,9 +2,7 @@
 
 class Controller_Users extends Controller_Account {
 
-	private $_user_model = null;
-
-	protected $_post = null;
+    protected $_post = null;
 
    public function __construct(Kohana_Request $request, Kohana_Response $response){
             parent::__construct($request, $response);
@@ -15,7 +13,6 @@ class Controller_Users extends Controller_Account {
 
 
 
-        
 
     public function before() {
     	parent::before();
