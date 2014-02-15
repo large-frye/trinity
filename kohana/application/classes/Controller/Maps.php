@@ -6,7 +6,7 @@ class Controller_Users extends Controller_Account {
 
    public function __construct(Kohana_Request $request, Kohana_Response $response){
             parent::__construct($request, $response);
-            $this->settings_model=Model::factory('Maps');
+            //$this->maps_model=Model::factory('Maps');
 
         }
 
