@@ -1,1 +1,1 @@
-<div id="map-canvas"></div>test
+<div id="map-canvas"></div>
