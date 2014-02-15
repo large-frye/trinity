@@ -931,6 +931,9 @@ class Model_Inspections extends Model_Base {
           die("Error creating folder");
         }
 
+        echo "<pre>";
+        print_r($_FILES);
+
         echo count($files['filesToUpload']['name']);
         die();
         
