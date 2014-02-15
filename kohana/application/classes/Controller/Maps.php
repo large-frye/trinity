@@ -6,7 +6,7 @@ class Controller_Maps extends Controller_Master {
         parent::__construct($request, $response);
     }
 
-    
+
 
   public function before(){
         parent::before();
@@ -16,7 +16,7 @@ class Controller_Maps extends Controller_Master {
    
 
     public function action_index(){
-       $this->template->content=View::factory('maps/index');
+       $this->template->content=View::factory('maps');
     }
 
     public function after() {
