@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Maps extends Controller_Master {
+class Controller_Maps extends Controller_Account {
 
     public function __construct(Kohana_Request $request, Kohana_Response $response) {
         parent::__construct($request, $response);
@@ -11,12 +11,12 @@ class Controller_Maps extends Controller_Master {
   public function before(){
         parent::before();
         $this->template->homepage = false;
-         $this->_post = $this->request->post();
+        $this->_post = $this->request->post();
     }
    
 
     public function action_index(){
-       $this->template->content=View::factory('maps');
+       $this->template->content=View::factory('maps/index');
     }
 
     public function after() {
