@@ -574,8 +574,13 @@ class Model_Workorders extends Model_Base {
     public function generate_report($workorder_id, $parentCategories, $photos) {
         // We need to determine the view we are going to be use.
         $view = $this->_get_pdf_view($workorder_id);
-        $view->parentCategories = $parentCategories;
-        $view->photos = $photos;
+
+        // Get sketch photo
+        foreach ($photos as $photo) {
+            if ($photo->name === "Sketch") {
+                $view->sketch = $photo;
+            }
+        }
       
         // Need to get all of the data possible for this report
         $view->report_data = $this->first_page_data_output($this->get_inspection_report($workorder_id));
@@ -594,6 +599,8 @@ class Model_Workorders extends Model_Base {
 
         // Create `dompdf` object
         try {
+            // Create summary of findings and overview page. 
+            $fp = null;
             $dompdf = new DOMPDF();
             $dompdf->load_html($view);
             $dompdf->render();
@@ -602,25 +609,40 @@ class Model_Workorders extends Model_Base {
             fwrite($fp, $dompdf->output());
             fclose($fp);
 
+            // Reset $fp
+            $fp = null;
+
+            // Create the photos seperate
+            $photos_view = View::factory('pdf/photos');
+            $photos_view->parentCategories = $parentCategories;
+            $photos_view->photos = $photos;
+            $dompdf2 = new DOMPDF();
+            $dompdf2->load_html($photos_view);
+            $dompdf2->render();
+            $file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
+            $fp = fopen($file, 'w+');
+            fwrite($fp, $dompdf2->output());
+            fclose($fp);
+
             $fp = null;
 
             if ($this::$type === $this::EXPERT_INSPECTION) {
-
                 // Next we need to create the explanation of damages. 
                 $exp_damages = View::factory('pdf/explanation-of-damages');
                 $exp_damages->damages = $this->_set_exp_damages($view->report_data);
                 $exp_damages->data = $view->report_data;
-                $dompdf2 = new DOMPDF();
-                $dompdf2->load_html($exp_damages);
-                $dompdf2->render();
-                $file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
+                $dompdf3 = new DOMPDF();
+                $dompdf3->load_html($exp_damages);
+                $dompdf3->render();
+                $file = $this->_report_file_path . "step3_" . $workorder_id . ".pdf";
                 $fp = fopen($file, 'w+');
-                fwrite($fp, $dompdf2->output());
+                fwrite($fp, $dompdf3->output());
                 fclose($fp);
             
                 if($this->check_if_xactimate_exists($workorder_id)) {
                     $current_pdf_file = $this->_report_file_path . "step1_" . $workorder_id . ".pdf";
-                    $current_pdf_exp_damages_file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
+                    $current_pdf_photos_file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
+                    $current_pdf_exp_damages_file = $this->_report_file_path . "step3_" . $workorder_id . ".pdf";
                     $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
                     if (file_exists($this->_report_file_path . "final_" . $workorder_id . ".pdf")) {
                         unlink($this->_report_file_path . "final_" . $workorder_id . ".pdf");
@@ -632,8 +654,8 @@ class Model_Workorders extends Model_Base {
                         $cmd = "/usr/bin/pdftk";
                     }
 
-                    exec($cmd . " " . $current_pdf_file . " " . $current_pdf_exp_damages_file . " " . 
-                    $xactimate_file . " cat output " . $this->_report_file_path . "final_" . $workorder_id . ".pdf", $retval);
+                    exec($cmd . " " . $current_pdf_file . " " . $xactimate_file . " " . $current_pdf_photos_file . " " . $current_pdf_exp_damages_file . " " . 
+                         " cat output " . $this->_report_file_path . "final_" . $workorder_id . ".pdf", $retval);
                 }
             }
 
