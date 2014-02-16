@@ -18,6 +18,15 @@
 	<!--[if lte IE 8]>
 		<script type="text/javascript" src="js/excanvas.min.js"></script>
 	<![endif]-->
+
+	<?php if (isset($map) && $map) {
+		echo "<script type=\"text/javascript\">
+		          var locations = " . json_encode($locations) . ";" .
+		          "console.log(locations);
+		     	</script>"; 
+	}
+
+	?>
 	
 </head>
 
