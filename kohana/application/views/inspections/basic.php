@@ -579,6 +579,61 @@
 </div>
 <!-- End Collateral Damage -->
 
+<div class="section">
+    <div class="box">
+            <div class="title slope-title-helper">
+                Metal Damage
+                <span class="show"></span>
+            </div>
+            <div class="content">
+
+                <div class="row">
+                    <?php echo Form::checkbox('metal_header', "1", isset($data['metal_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'metal_header')); ?>
+                    <label for="metal_header"><strong>Check if apply</strong></label>
+                </div> 
+
+                <div class="row slope">
+                    <label for="metal_damages">Damages: </label>
+                    <div class="right chk_type_of_roofing fraud_wind_input">
+                        <?php
+                            $count = 0;
+                            foreach($metal_damages as $key => $value) {
+                                echo Form::checkbox('metal_damages[' . $key . ']', $data_values['metal_damages'][$key], 
+                                    isset($data['metal_damages']) &&
+                                     in_array($key, !is_array($data['metal_damages']) 
+                                                   ? array_keys(unserialize($data['metal_damages'])) : array_keys($data['metal_damages']))
+                                                   ? true : false,
+                                     array('id' => 'metal_damages' . $count, 'class' => 'metal-damage comment-box')) . "\n" .
+                                     Form::label('metal_damages' . $count, $value) . "\n";
+
+                                    $count++;
+                            } 
+                        ?>
+                        <div class="cl"></div>
+                    </div>
+                </div>   
+
+                <div class="row">
+                    <label for="metal_damage_hail_size">Hail Size</label>
+                    <div class="right">
+                        <?php echo Form::select('metal_damage_hail_size', array('blank' => 'Please Select') + $hail_sizes, 
+                                                 isset($data['metal_damage_hail_size']) ? $data['metal_damage_hail_size'] : null); ?>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label for="metal_damage_comments">Comments</label>
+
+                    <div class="right">
+                        <?php echo Form::input('metal_damage_comments', isset($data['metal_damage_comments']) ? $data['metal_damage_comments'] : ''); ?>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+</div>
+
 
 
 <div class="section">

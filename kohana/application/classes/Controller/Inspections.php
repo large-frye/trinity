@@ -233,11 +233,10 @@ class Controller_Inspections extends Controller_Account {
         $view->form->house_faces = $this->inspections_model->get_house_faces();
         $view->form->slope_values = $this->inspections_model->get_slope_values( $view->form->data );
         $view->form->data_values = $this->inspections_model->sift_data_values( $view->form->data );
-
+        $view->form->metal_damages = $this->inspections_model->get_metal_damages();
+        $view->form->hail_sizes = $this->inspections_model->get_hail_sizes();
 
         if ( $expert ) {
-            $view->form->metal_damages = $this->inspections_model->get_metal_damages();
-            $view->form->hail_sizes = $this->inspections_model->get_hail_sizes();
             $view->form->lighting_amount_damaged = $this->inspections_model->get_lighting_amount_damaged();
             $view->form->lighting_damages = $this->inspections_model->get_lighting_damages();
             $view->form->get_vermin_choices = $this->inspections_model->get_vermin_choices();
