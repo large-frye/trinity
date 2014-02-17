@@ -65,6 +65,11 @@
 		  console.log(location);
 		 // addBalloon(location);
 		}
+		for (var key in locations) {
+         if (data.hasOwnProperty(key)) {
+            alert(data[key].id);
+       }
+  		}  
     }
 
     google.maps.event.addDomListener(window, 'load', initialize)
