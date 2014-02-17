@@ -169,7 +169,7 @@
                 </div>
             </div>    
 
-            <div class="row roofer <?php echo $data['was_insured_present'] == 1 ? "show" : null; ?>">
+            <div class="row roofer <?php echo isset($data['was_insured_present']) && $data['was_insured_present'] == 1 ? "show" : null; ?>">
                 <label for="roofer">Roofer: </label>
 
                 <div class="right">
@@ -177,7 +177,7 @@
                 </div>
             </div>    
 
-            <div class="row roofer <?php echo $data['was_insured_present'] == 1 ? "show" : null; ?>">
+            <div class="row roofer <?php echo isset($data['was_insured_present']) && $data['was_insured_present'] == 1 ? "show" : null; ?>">
                 <label for="roofer_company_name">Roofer Company Name: </label>
 
                 <div class="right">
