@@ -13,34 +13,6 @@
 		var lowPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00';
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-		var locations = [ 
-			  {
-				id: 0,
-				position: new google.maps.LatLng(38.873555, -77.295380),
-				balloon: {
-				  pin: lowPin,
-				  addr: '00601',
-				  txt: '00601: Claims With Part And Labor:139'
-				}
-			  },{
-				id: 1,
-				position: new google.maps.LatLng(36.873555, -77.295380),
-				balloon: {
-				  pin: lowPin,
-				  addr: '00601',
-				  txt: '00601: Claims With Part And Labor:139'
-				}
-			  },{
-				id: 2,
-				position: new google.maps.LatLng(35.873555, -77.295380),
-				balloon: {
-				  pin: lowPin,
-				  addr: '00601',
-				  txt: '00601: Claims With Part And Labor:139'
-				}
-			  },
-
-			];
 
 		function addClickHandler(item, content, position) {
 		  google.maps.event.addListener(item, 'click', function () {
