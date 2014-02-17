@@ -28,7 +28,7 @@
 			map: map,
 			position: locationPosition(location),
 		  });
-		  addClickHandler(balloon, location locationPosition(location));
+		  addClickHandler(balloon, location, locationPosition(location));
 		}
 
 		function locationPosition(location){
