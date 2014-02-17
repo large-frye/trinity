@@ -6,6 +6,5 @@
 _trinity*
 *logs*
 build.sh
-
-
 .DS_Store
+dompdf
