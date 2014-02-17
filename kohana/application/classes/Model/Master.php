@@ -84,8 +84,6 @@ class Model_Master extends Model {
     		              "/assets/js/pirobox.extended.min.js",
     		              "/assets/js/costum.js",
                           "/assets/js/inspection/form.js",
-                          "/assets/js/inspection/dropzone.js",
-                          "/assets/js/inspection/gridster.js",  
                           "/assets/js/jquery.collapsible.min.js",
                           "/assets/js/jquery.collapse_cookie_storage.js",
                           "/assets/js/jquery.collapse_storage.js",
