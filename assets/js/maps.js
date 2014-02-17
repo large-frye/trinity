@@ -66,8 +66,8 @@
 		 // addBalloon(location);
 		}
 		for (var key in locations) {
-         if (data.hasOwnProperty(key)) {
-            alert(data[key].id);
+         if (locations.hasOwnProperty(key)) {
+            alert(locations[key].id);
        }
   		}  
     }
