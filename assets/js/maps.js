@@ -62,7 +62,8 @@
 		// loop through the array
 		for( i = 0, l = locations.length ; i < l ; i++ ) {
 		  location = locations[i];
-		  addBalloon(location);
+		  console.log(location);
+		 // addBalloon(location);
 		}
     }
 

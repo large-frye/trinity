@@ -19,9 +19,9 @@
 		<script type="text/javascript" src="js/excanvas.min.js"></script>
 	<![endif]-->
 
-	<?php if (isset($map) && $map) {
+	<?php if (isset($maps) && $maps) {
 		echo "<script type=\"text/javascript\">
-		          var locations = " . json_encode($locations) . ";" .
+		          var locations = " . json_encode($locations->as_array()). ";" .
 		          "console.log(locations);
 		     	</script>"; 
 	}
