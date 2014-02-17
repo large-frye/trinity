@@ -341,6 +341,15 @@
 
 
 <div class="section">
+    <div class="row">
+                <label for="house_face">What direction does the house face?</label>
+
+                <div class="right">
+                    <?php echo Form::select('house_face', array('blank' => 'Please select') + $house_faces['direction'], 
+                                            isset($data['house_face']) ? $data['house_face'] : null, 
+                                            array('class' => 'house-face')); ?>
+                </div>
+            </div>
     <div class="row house-direction">
                 <label for="house_direction">Which directional face is {{face}}</label>
 
