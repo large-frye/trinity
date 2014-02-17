@@ -13,10 +13,10 @@
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
 
-		function addClickHandler(item, content, position) {
-		  google.maps.event.addListener(item, 'click', function () {
+		function addClickHandler(balloon,location,  position) {
+		  google.maps.event.addListener(balloon, 'click', function () {
 			infoWindow.close();
-			infoWindow.setContent(content);
+			infoWindow.setContent(location.adjuster_name);
 			infoWindow.setPosition(position);
 			infoWindow.open(map);
 		  });
@@ -28,7 +28,7 @@
 			map: map,
 			position: locationPosition(location),
 		  });
-		 // addClickHandler(balloon, location.balloon.txt, location.position);
+		  addClickHandler(balloon, location locationPosition(location));
 		}
 
 		function locationPosition(location){
