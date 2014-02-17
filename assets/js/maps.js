@@ -26,21 +26,19 @@
 		function addBalloon(location) {
 		  var balloon = new google.maps.Marker({
 			map: map,
-			position: location.position,
+			position: locationPosition(location),
 		  });
 		  addClickHandler(balloon, location.balloon.txt, location.position);
 		}
 
-		// loop through the array
-		for( i = 0, l = locations.length ; i < l ; i++ ) {
-		  location = locations[i];
-		  console.log(location);
-		 // addBalloon(location);
+		function locationPosition(location){
+			return 'new google.maps.LatLng('+location.latitude+', '+location.longitude+')'
 		}
+		// loop through the json array
 		for (var key in locations) {
          if (locations.hasOwnProperty(key)) {
-            console.log(locations[key].id);
-       }
+            addBalloon(locations[key]);
+       		}
   		}  
     }
 
