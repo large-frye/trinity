@@ -25,6 +25,7 @@
 
 		function addBalloon(location) {
 			var tmp = locationPosition(location);
+			console.log(tmp);
 		  var balloon = new google.maps.Marker({
 			map: map,
 			position: tmp,
