@@ -24,9 +24,10 @@
 		}
 
 		function addBalloon(location) {
+			var tmp = locationPosition(location);
 		  var balloon = new google.maps.Marker({
 			map: map,
-			position: locationPosition(location),
+			position: tmp,
 		  });
 		  addClickHandler(balloon, location.balloon.txt, location.position);
 		}
