@@ -7,7 +7,7 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-		var i, l, location, style, , balloon,
+		var i, l, location, style, balloon,
 		infoWindow = new google.maps.InfoWindow(); 
 		var calledPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00';
 		var newPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00';
