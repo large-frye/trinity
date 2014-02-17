@@ -30,7 +30,7 @@
 			map: map,
 			position: tmp,
 		  });
-		  addClickHandler(balloon, location.balloon.txt, location.position);
+		 // addClickHandler(balloon, location.balloon.txt, location.position);
 		}
 
 		function locationPosition(location){
