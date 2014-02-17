@@ -67,7 +67,7 @@
 		}
 		for (var key in locations) {
          if (locations.hasOwnProperty(key)) {
-            alert(locations[key].id);
+            console.log(locations[key].id);
        }
   		}  
     }
