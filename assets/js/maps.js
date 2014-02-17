@@ -2,14 +2,16 @@
 
 	 function initialize() {
            var mapOptions = {
-              zoom: 4,
+            zoom: 4,
             center: new google.maps.LatLng(38.873555, -77.295380),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-		var i, l, location, style, label, circle, balloon,
-		infoWindow = new google.maps.InfoWindow(); // you only need 1 window!
-		var lowPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00';
+		var i, l, location, style, , balloon,
+		infoWindow = new google.maps.InfoWindow(); 
+		var calledPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00';
+		var newPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00';
+		var schPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00';
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
 
