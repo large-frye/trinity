@@ -208,6 +208,15 @@ if (isset($report_data['collateral_damages_to_property'])) {
          . "</b>(<em>" . $report_data['collateral_damage_detail_description'] . "</em>)</p>";
 }
 
+if (isset($report_data['damages']['collateral_damamges_comments'])) {
+    echo "<p>Collateral Damage Comments: <b>" . str_replace("<br>", "", $report_data['damages']['collateral_damamges_comments']) 
+         . "</b>(<em>" . $report_data['damages']['collateral_damamges_comments'] . "</em>)</p>";
+}
+
+if (isset($report_data['damages']['general_comments'])) {
+    echo "<p>General Comments: " . $report_data['damages']['general_comments'] . "</p>";
+}
+
 ?>
 <div class="page-break"></div>
 <div class="padding-top"></div>

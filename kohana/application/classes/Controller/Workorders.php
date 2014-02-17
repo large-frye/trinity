@@ -40,17 +40,10 @@ class Controller_Workorders extends Controller_Account {
 
 
 
-    public function action_generate_pdf() {
-        echo phpinfo();
-        // $pdf = new PDFlib();
-
-        //if ($p->PDF_begin_document("", "") == 0) {
-        //   die ("Error: ") . $p->get_errmsg();
-        // }
-    }
-
-
-
+    /** 
+     * Action: Submit a workorder
+     *
+     */
     public function action_submit() {
     	$view = View::factory('workorders/submit');
     	$view->clients = $this->account_model->get_clients();
@@ -205,7 +198,7 @@ class Controller_Workorders extends Controller_Account {
             if (Model_Workorders::$type === Model_Workorders::EXPERT_INSPECTION) {
                 $this->request->redirect('/assets/pdf/reports/final_' . $this->_workorder_id . ".pdf");
             } else {
-                $this->request->redirect('/assets/pdf/reports/step1_' . $this->_workorder_id . ".pdf");
+                $this->request->redirect('/assets/pdf/reports/final_' . $this->_workorder_id . ".pdf");
             }
         } else {
             print_r(Model_Workorders::$errors);

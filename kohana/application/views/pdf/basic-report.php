@@ -115,7 +115,7 @@ ul
 <!-- </div> -->
 
 <div id="page-wrap">
-<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . 'assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
+<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
 <table>
     <tr><th class="header">Trinity Inspections, LLC</th></tr>
     <tr><td class="center">P.O. Box 938</td></tr>
@@ -148,6 +148,10 @@ $collateral_damages = $report_data['damages']['collateral_damage_header']['colla
   <?php echo isset($collateral_damage_header) && !empty($collateral_damage_header) ? "we did find collateral damage" : "we did not find collateral damage"; ?></span> 
    to the following building materials that may be more susceptible to wind or hail:</p>
 <p class="blue"><?php echo isset($collateral_damages) && !empty($collateral_damages) ? implode(', ', $collateral_damages) : null; ?></p>
+<?php if(isset($report_data['damages']['collateral_damamges_comments'])) {
+    echo "<h4>Collateral Damages Comments: </h4><p>" . $report_data['damages']['collateral_damamges_comments'] . "</p>";
+}
+?>
 <br>
 <h4 class="row-header">ROOF INSPECTION</h4>
 <?php
@@ -242,7 +246,14 @@ if($hailTotal>0){
   echo '<span>We have come to the conclusion that the hail was too small to damage the roofing system.</span>';
 }
 
+if (isset($report_data['damages']['general_comments'])) {
+    echo "&nbsp;" . $report_data['damages']['general_comments'];
+}
+
 ?>
+
+</p>
+</div>
 
 <div class="page-break"></div>
 

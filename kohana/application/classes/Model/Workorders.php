@@ -617,9 +617,88 @@ class Model_Workorders extends Model_Base {
             // Reset $fp
             $fp = null;
 
-            // Create the photos seperate
+            if ($this::$type === $this::EXPERT_INSPECTION) {
+                $this->build_expert_pdf($view, $parentCategories, $photos, $workorder_id);
+            } else {
+                $this->build_basic_pdf($view, $parentCategories, $photos, $workorder_id);
+            }
+            
+            return true;
+        } catch (Exception $e) {       
+            $this::$errors = "Error processing this PDF." . $e;
+            return false;
+        }
+    }
+
+
+
+    /**
+     * Using DOMPDF build an expert inspection report
+     *
+     */
+    public function build_expert_pdf($view, $parent_categories, $photos, $workorder_id) {
+        // Photos
+        $this->_build_photos_pdf($view, $parent_categories, $photos, $workorder_id);
+
+        // Explanation of Damages
+        $this->_build_explanation_of_damages_pdf($view, $workorder_id);
+
+        // Combine all the reports together
+        $current_pdf_file = $this->_report_file_path . "step1_" . $workorder_id . ".pdf";
+        $current_pdf_photos_file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
+        $current_pdf_exp_damages_file = $this->_report_file_path . "step3_" . $workorder_id . ".pdf";
+        $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
+                    
+        if (file_exists($this->_report_file_path . "final_" . $workorder_id . ".pdf")) {
+            unlink($this->_report_file_path . "final_" . $workorder_id . ".pdf");
+        }
+
+        if (Kohana::$environment === Kohana::DEVELOPMENT) {
+            $cmd = "/usr/local/bin/pdftk";
+        } else {
+            $cmd = "/usr/bin/pdftk";
+        }
+
+        exec($cmd . " " . $current_pdf_file . " " . $xactimate_file . " " . $current_pdf_photos_file . " " . $current_pdf_exp_damages_file . " " . 
+             " cat output " . $this->_report_file_path . "final_" . $workorder_id . ".pdf", $retval);
+    }
+
+
+
+    /**
+     * Using DOMPDF build a basic inspection report
+     *
+     */
+    public function build_basic_pdf($view, $parent_categories, $photos, $workorder_id) {
+        // Photos
+        $this->_build_photos_pdf($view, $parent_categories, $photos, $workorder_id);
+
+        // Combine all the reports together
+        $current_pdf_file = $this->_report_file_path . "step1_" . $workorder_id . ".pdf";
+        $current_pdf_photos_file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
+        $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
+
+        if (file_exists($this->_report_file_path . "final_" . $workorder_id . ".pdf")) {
+            unlink($this->_report_file_path . "final_" . $workorder_id . ".pdf");
+        }
+
+        if (Kohana::$environment === Kohana::DEVELOPMENT) {
+            $cmd = "/usr/local/bin/pdftk";
+        } else {
+            $cmd = "/usr/bin/pdftk";
+        }
+
+        exec($cmd . " " . $current_pdf_file . " " . $xactimate_file . " " . $current_pdf_photos_file . " " . 
+             " cat output " . $this->_report_file_path . "final_" . $workorder_id . ".pdf", $retval);
+    }
+
+
+
+    private function _build_photos_pdf($view, $parent_categories, $photos, $workorder_id) {
+        // Create the photos seperate
+        try {
             $photos_view = View::factory('pdf/photos');
-            $photos_view->parentCategories = $parentCategories;
+            $photos_view->parentCategories = $parent_categories;
             $photos_view->photos = $photos;
             $dompdf2 = new DOMPDF();
             $dompdf2->load_html($photos_view);
@@ -628,46 +707,28 @@ class Model_Workorders extends Model_Base {
             $fp = fopen($file, 'w+');
             fwrite($fp, $dompdf2->output());
             fclose($fp);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
 
-            $fp = null;
 
-            if ($this::$type === $this::EXPERT_INSPECTION) {
-                // Next we need to create the explanation of damages. 
-                $exp_damages = View::factory('pdf/explanation-of-damages');
-                $exp_damages->damages = $this->_set_exp_damages($view->report_data);
-                $exp_damages->data = $view->report_data;
-                $dompdf3 = new DOMPDF();
-                $dompdf3->load_html($exp_damages);
-                $dompdf3->render();
-                $file = $this->_report_file_path . "step3_" . $workorder_id . ".pdf";
-                $fp = fopen($file, 'w+');
-                fwrite($fp, $dompdf3->output());
-                fclose($fp);
-            
-                if($this->check_if_xactimate_exists($workorder_id)) {
-                    $current_pdf_file = $this->_report_file_path . "step1_" . $workorder_id . ".pdf";
-                    $current_pdf_photos_file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
-                    $current_pdf_exp_damages_file = $this->_report_file_path . "step3_" . $workorder_id . ".pdf";
-                    $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
-                    if (file_exists($this->_report_file_path . "final_" . $workorder_id . ".pdf")) {
-                        unlink($this->_report_file_path . "final_" . $workorder_id . ".pdf");
-                    }
 
-                    if (Kohana::$environment === Kohana::DEVELOPMENT) {
-                        $cmd = "/usr/local/bin/pdftk";
-                    } else {
-                        $cmd = "/usr/bin/pdftk";
-                    }
-
-                    exec($cmd . " " . $current_pdf_file . " " . $xactimate_file . " " . $current_pdf_photos_file . " " . $current_pdf_exp_damages_file . " " . 
-                         " cat output " . $this->_report_file_path . "final_" . $workorder_id . ".pdf", $retval);
-                }
-            }
-
-            return true;
-        } catch (Exception $e) {       
-            $this::$errors = "Error processing this PDF." . $e;
-            return false;
+    private function _build_explanation_of_damages_pdf($view, $workorder_id) {
+        // Next we need to create the explanation of damages. 
+        try {
+            $exp_damages = View::factory('pdf/explanation-of-damages');
+            $exp_damages->damages = $this->_set_exp_damages($view->report_data);
+            $exp_damages->data = $view->report_data;
+            $dompdf3 = new DOMPDF();
+            $dompdf3->load_html($exp_damages);
+            $dompdf3->render();
+            $file = $this->_report_file_path . "step3_" . $workorder_id . ".pdf";
+            $fp = fopen($file, 'w+');
+            fwrite($fp, $dompdf3->output());
+            fclose($fp);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
     }
 
