@@ -76,6 +76,13 @@ if (isset($_SERVER['SERVER_PROTOCOL']))
 	HTTP::$protocol = $_SERVER['SERVER_PROTOCOL'];
 }
 
+
+if ($_SERVER['HTTP_HOST'] == "trinity.local") {
+	$_SERVER['KOHANA_ENV'] = "DEVELOPMENT";
+} else {
+	$_SERVER['KOHANA_ENV'] = "PRODUCTION";
+}
+
 /**
  * Set Kohana::$environment if a 'KOHANA_ENV' environment variable has been supplied.
  *
