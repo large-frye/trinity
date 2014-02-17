@@ -63,7 +63,7 @@
 		}
 
 		function locationPosition(location){
-			return 'new google.maps.LatLng('+location.latitude+', '+location.longtitude+')'
+			return new google.maps.LatLng(location.latitude, location.longtitude);
 		}
 		// loop through the json array
 		for (var key in locations) {
