@@ -96,9 +96,9 @@ class Model_Master extends Model {
 
         // Calendar specific js files
         if (preg_match('/calendar/', Request::current()->uri())) {
-            $js_files = array_merge($js_files, array("/assets/js/calendar/ui-calendar-master/bower_components/angular/angular.js",
-                               "/assets/js/calendar/ui-calendar-master/bower_components/fullcalendar/fullcalendar.js",
-                               "/assets/js/calendar/ui-calendar-master/bower_components/fullcalendar/gcal.js",
+            $js_files = array_merge($js_files, array("/assets/js/calendar/ui-calendar-master/angular/angular.js",
+                               "/assets/js/calendar/ui-calendar-master/fullcalendar/fullcalendar.js",
+                               "/assets/js/calendar/ui-calendar-master/fullcalendar/gcal.js",
                                "/assets/js/calendar/ui-calendar-master/src/calendar.js",
                                "/assets/js/calendar/ui-calendar-master/demo/calendarDemo.js"));
         }
