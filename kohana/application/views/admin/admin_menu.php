@@ -32,7 +32,8 @@
 		</li> 
 		<li>
 			<a href="/maps">Maps</a>
-		</li> 
+		</li>
+		<li><a href="/calendar">Calendar</a></li>
 	</ul>
 </div>
 
