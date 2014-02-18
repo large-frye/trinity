@@ -2786,6 +2786,13 @@ img { border: 0; }
 #wrapper #footer .col li { padding-bottom: 10px; }
 #wrapper #footer .line { background: url(images/copyright.jpg) repeat-x top  ; height: 13px; width: 100%; }
 
+.hide {
+    display: none;
+}
+
+.show {
+	display: block;
+}
 
 
 /* This button was generated using CSSButtonGenerator.com */
