@@ -537,13 +537,16 @@ class Model_Workorders extends Model_Base {
                 $report['damages'][$key] = $value;
             }
 
-            if ($key === "collateral_damage_detail_description") {
+            if ($key === "roof_conditions") {
                 $roofing_info = false;
             }
         }
 
         $header_original = "";
         $header = "";
+
+        echo "<pre>";
+        print_r($report);
 
         // Need to handle the damages and any headers
         foreach ($report['damages'] as $key => $value) {
