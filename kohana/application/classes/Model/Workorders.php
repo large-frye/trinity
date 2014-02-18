@@ -545,9 +545,6 @@ class Model_Workorders extends Model_Base {
         $header_original = "";
         $header = "";
 
-        echo "<pre>";
-        print_r($report);
-
         // Need to handle the damages and any headers
         foreach ($report['damages'] as $key => $value) {
             if (preg_match('/header/', $key)) {
