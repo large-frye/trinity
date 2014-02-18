@@ -7,35 +7,64 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-		var i, l, location, style, balloon,
+		var i, l, style, balloon,
 		infoWindow = new google.maps.InfoWindow(); 
-		var calledPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00';
-		var newPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00';
-		var schPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00';
+		var calledPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF8C00';
+		var newPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|f2c779';
+		var schPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|a6ca8a';
+		var alrtPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|f5aca6 ';
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-
-		function addClickHandler(balloon,location,  position) {
-		  google.maps.event.addListener(balloon, 'click', function () {
-			infoWindow.close();
-			infoWindow.setContent(location.adjuster_name);
-			infoWindow.setPosition(position);
-			infoWindow.open(map);
-		  });
+		function getInfoContent(loc){
+			var _result= "<div class='googft-info-window'>"+
+				"<div id='infoHeader'>"+
+				"<strong>"+loc.inspector_name+"</strong>"+
+				"</div>"+
+				"<div>"+
+				"<strong>Date: "+loc.date_of_inspection+"</strong><br>"+
+				"<strong>Time: "+loc.time_of_inspection+"</strong><br>"+
+				"<strong>Adjuster Name: "+loc.adjuster_name+"</strong><br>"+
+				"<strong>Policy Holder Name: "+loc.first_name +" "+ loc.last_name+"</strong><br>"+
+				"<strong>Phone Number: "+loc.phone+"</strong><br>"+
+				"</div>"+
+			"</div>";
+			return _result;
 		}
 
-		function addBalloon(location) {
+		function addClickHandler(balloon, loc,  position) {
+		 	google.maps.event.addListener(balloon, 'click', function () {
+			infoWindow.close();
+			infoWindow.setContent(getInfoContent(loc));
+			infoWindow.setPosition(position);
+			infoWindow.open(map);
+		  }); 
+		}
+		
+		function locationPosition(loc){
+			return new google.maps.LatLng(loc.latitude, loc.longtitude);
+		}
+		function getPin(loc){
+			if(loc.status==1){
+				return newPin;
+			} else if(loc.status==2){
+				return calledPin;
+			} else if(loc.status==3){
+				return schPin;	
+			} else {
+				return schPin;
+			}
+		}
+		function addBalloon(loc) {
 
 		  var balloon = new google.maps.Marker({
 			map: map,
-			position: locationPosition(location),
+			position: locationPosition(loc),
+			icon: getPin(loc),	
 		  });
-		  addClickHandler(balloon, location, locationPosition(location));
+		  addClickHandler(balloon, loc, locationPosition(loc));
 		}
 
-		function locationPosition(location){
-			return new google.maps.LatLng(location.latitude, location.longtitude);
-		}
+	
 		// loop through the json array
 		for (var key in locations) {
          if (locations.hasOwnProperty(key)) {

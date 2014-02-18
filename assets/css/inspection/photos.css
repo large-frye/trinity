@@ -3,6 +3,10 @@
     width: 900px;
 }
 
+#infoHeader{
+	background-color: #B6AFA9;
+
+}
 .upload-button {
 	margin:0 0 0 100px;
 }
