@@ -7,9 +7,6 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-        
-
-
 		var i, l, style, balloon,
 		infoWindow = new google.maps.InfoWindow(); 
 		var calledPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF8C00';
@@ -52,18 +49,18 @@
         }
 	
 
-
 		function getInfoContent(loc){
 			var _result= "<div class='googft-info-window'>"+
 				"<div id='infoHeader'>"+
 				"<strong>"+loc.inspector_name+"</strong>"+
 				"</div>"+
 				"<div>"+
-				"<strong>Date: "+loc.date_of_inspection+"</strong><br>"+
-				"<strong>Time: "+loc.time_of_inspection+"</strong><br>"+
-				"<strong>Adjuster Name: "+loc.adjuster_name+"</strong><br>"+
-				"<strong>Policy Holder Name: "+loc.first_name +" "+ loc.last_name+"</strong><br>"+
-				"<strong>Phone Number: "+loc.phone+"</strong><br>"+
+				"<strong>Address: </strong>"+loc.street_address+"<br>"+
+				"<strong>Date: </strong>"+loc.date_of_inspection+"<br>"+
+				"<strong>Time: </strong>"+loc.time_of_inspection+"<br>"+
+				"<strong>Adjuster Name: </strong>"+loc.adjuster_name+"<br>"+
+				"<strong>Policy Holder Name: </strong>"+loc.first_name +" "+ loc.last_name+"<br>"+
+				"<strong>Phone Number: </strong>"+loc.phone+"<br>"+
 				"</div>"+
 				"</div>";
 			return _result;
