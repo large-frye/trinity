@@ -79,6 +79,22 @@ form {
 	height : 15px;
 }
 
+.row .left input {
+	display : inline-block;
+	background : url(../gfx/input-back.gif);
+	border : 1px solid #dcdcdc;
+	outline : 0;
+	padding : 5px;
+	margin : 10px;
+	font : 12px/1.2em Arial;
+	width : auto;
+	height : 15px;
+}
+
+.row .left a:hover {
+    cursor: pointer;
+}
+
 .placeholder {color: #aaa;}
 
 /* //////////////////// TEXTAREA \\\\\\\\\\\\\\\\\\\\ */
