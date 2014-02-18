@@ -82,6 +82,7 @@
 			return new google.maps.LatLng(loc.latitude, loc.longtitude);
 		}
 		function getPin(loc){
+
 			if(loc.status==1){
 				return newPin;
 			}
@@ -91,7 +92,7 @@
 			if(loc.status==3){
 				return schPin;	
 			} if(loc.status==4) {
-				return schPin;
+				return alrtPin;
 			}
 		}
 		function addBalloon(loc) {
