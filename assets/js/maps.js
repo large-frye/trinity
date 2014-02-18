@@ -88,9 +88,9 @@
 				return calledPin;
 			} 
 			if(loc.status==3){
-				return schPin;	
+				return alrtPin;	
 			} if(loc.status==4) {
-				return alrtPin;
+				return schPin;
 			}
 		}
 		function addBalloon(loc) {
