@@ -17,7 +17,8 @@
 		var schPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|a6ca8a';
 		var alrtPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|f5aca6 ';
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
+        map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+  			document.getElementById('legend'));
 
         var icons = {
          called: {
@@ -109,12 +110,7 @@
        		}
   		}  
    
-	map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
-  	document.getElementById('legend'));
-
-
-		
-
+	
    }
 
 
