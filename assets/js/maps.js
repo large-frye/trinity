@@ -84,11 +84,13 @@
 		function getPin(loc){
 			if(loc.status==1){
 				return newPin;
-			} else if(loc.status==2){
+			}
+			if(loc.status==2){
 				return calledPin;
-			} else if(loc.status==3){
+			} 
+			if(loc.status==3){
 				return schPin;	
-			} else {
+			} if(loc.status==4) {
 				return schPin;
 			}
 		}
