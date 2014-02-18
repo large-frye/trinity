@@ -7,6 +7,9 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
+        
+
+
 		var i, l, style, balloon,
 		infoWindow = new google.maps.InfoWindow(); 
 		var calledPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF8C00';
@@ -14,6 +17,40 @@
 		var schPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|a6ca8a';
 		var alrtPin = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|f5aca6 ';
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+
+         	var icons = {
+         called: {
+            name: 'Called PH',
+            icon: calledPin
+          },
+          newP: {
+            name: 'New',
+            icon: newPin
+          },
+          sch: {
+            name: 'Scheduled',
+            icon: schPin
+          },
+          alrt: {
+            name: 'Alert',
+            icon: alrtPin
+          }
+        };
+
+
+   
+        var legend = document.getElementById('legend');
+        for (var key in icons) {
+          var type = icons[key];
+          var name = type.name;
+          var icon = type.icon;
+          var div = document.createElement('div');
+          div.innerHTML = '<img src="' + icon + '"> ' + name;
+          legend.appendChild(div);
+        }
+	
+
 
 		function getInfoContent(loc){
 			var _result= "<div class='googft-info-window'>"+
@@ -27,7 +64,7 @@
 				"<strong>Policy Holder Name: "+loc.first_name +" "+ loc.last_name+"</strong><br>"+
 				"<strong>Phone Number: "+loc.phone+"</strong><br>"+
 				"</div>"+
-			"</div>";
+				"</div>";
 			return _result;
 		}
 
@@ -71,6 +108,14 @@
             addBalloon(locations[key]);
        		}
   		}  
-    }
+   
+	map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+  	document.getElementById('legend'));
+
+
+		
+
+   }
+
 
     google.maps.event.addDomListener(window, 'load', initialize)
