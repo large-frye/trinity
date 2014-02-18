@@ -19,7 +19,7 @@
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
 
-         	var icons = {
+        var icons = {
          called: {
             name: 'Called PH',
             icon: calledPin
