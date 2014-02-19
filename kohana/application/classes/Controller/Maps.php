@@ -12,8 +12,6 @@ class Controller_Maps extends Controller_Account {
    	public function before(){
    		  parent::before();
    		  $this->template->homepage = true;
-        $this->_post = $this->request->post();
-        $this->user_type = $this->account_model->get_user_type($this->_user->id);
         $this->template->maps = true;
         $this->template->locations = $this->account_model->get_work_orders($this->_user->id, $this->user_type);
    	}
