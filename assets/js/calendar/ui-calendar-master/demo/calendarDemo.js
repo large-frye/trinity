@@ -161,5 +161,7 @@ function CalendarCtrl($scope) {
     };
     /* event sources array*/
     $scope.eventSources = [$scope.events];
+
+   // element.draggable = false;
 }
 /* EOF */

@@ -3958,7 +3958,7 @@ function AgendaEventRenderer() {
 		var skinCss = getSkinCss(event, opt);
 		var classes = ['fc-event', 'fc-event-vert'];
 		if (isEventDraggable(event)) {
-			classes.push('fc-event-draggable');
+			//classes.push('fc-event-draggable');
 		}
 		if (seg.isStart) {
 			classes.push('fc-event-start');
@@ -4070,7 +4070,7 @@ function AgendaEventRenderer() {
 												snapMinutes
 										)
 									);
-									eventElement.draggable('option', 'grid', [colWidth, 1]);
+									//eventElement.draggable('option', 'grid', [colWidth, 1]);
 									allDay = false;
 								}
 							}else{
@@ -4082,7 +4082,7 @@ function AgendaEventRenderer() {
 						resetElement();
 						revert = true;
 					}
-					eventElement.draggable('option', 'revert', revert);
+					//eventElement.draggable('option', 'revert', revert);
 				}, ev, 'drag');
 			},
 			stop: function(ev, ui) {
@@ -5313,7 +5313,7 @@ function DayEventRenderer() {
 		// generate the list of CSS classNames
 		var classNames = [ 'fc-event', 'fc-event-hori' ];
 		if (isEventDraggable(event)) {
-			classNames.push('fc-event-draggable');
+			//classNames.push('fc-event-draggable');
 		}
 		if (segment.isStart) {
 			classNames.push('fc-event-start');
