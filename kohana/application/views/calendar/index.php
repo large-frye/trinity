@@ -10,8 +10,8 @@
             <h3>Events</h3>
             <p>Show the data binding between two differnet calendars using the same event sources.</p>
             <div class="calTools">
-                <button type="button" ng-click="addEvent()"><span>Add New Event</span></button>
-                <button type="submit" name="submit"><span>Save changes</span></button>
+                <!-- <button type="button" ng-click="addEvent()"><span>Add New Event</span></button>
+                <button type="submit" name="submit"><span>Save changes</span></button> -->
 
                 <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
                     <h4>{{alertMessage}}</h4>
