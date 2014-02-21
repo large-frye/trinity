@@ -32,11 +32,10 @@ function CalendarCtrl($scope) {
 
     $scope.inspectors = [ { name: "Darren Holmblad" },
                           { name: "Andrew Frye" },
-                          { name: "Tom Hamlin" } ];
+                          { name: "Tom Hamlin" },
+                          { name: "Kati Frye"} ];
 
     $scope.filterInspectors = function() {
-        console.log($scope);
-        console.log($(this));
         console.log($scope.inspector);
         /*$('.fc-event').each(function() {
             $(this).show();
