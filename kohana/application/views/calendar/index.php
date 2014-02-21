@@ -37,6 +37,7 @@
                         <button class="btn btn-success" ng-click="changeView('agendaWeek', myCalendar1)"><span>Week View</span></button>
                         <button class="btn btn-success" ng-click="changeView('month', myCalendar1)"><span>Month View</span></button>
                     </div>
+                    <select ng-change="filterInspectors()" ng-model="inspector" ng-options="i.name for i in inspectors"></select>
                     
                     <div class="calendar" ng-model="eventSources" calendar="myCalendar1" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
                 </div>

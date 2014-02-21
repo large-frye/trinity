@@ -30,6 +30,24 @@ function CalendarCtrl($scope) {
         ] */
     };
 
+    $scope.inspectors = [ { name: "Darren Holmblad" },
+                          { name: "Andrew Frye" },
+                          { name: "Tom Hamlin" } ];
+
+    $scope.filterInspectors = function() {
+        console.log($scope);
+        console.log($(this));
+        console.log($scope.inspector);
+        /*$('.fc-event').each(function() {
+            $(this).show();
+
+            var search = new RegExp($scope.inspector.name, "g");
+            if($(this).text().match(search) === null) {
+                $(this).hide();
+            }
+        });*/
+    };
+
     for(var l in locations) {
         $scope.events.events.push({
             title: locations[l].inspection_type + " for " + locations[l].first_name + " " + locations[l].last_name,
@@ -116,7 +134,7 @@ function CalendarCtrl($scope) {
     $scope.uiConfig = {
       calendar:{
         height: 450,
-        editable: true,
+        editable: false,
         header:{
           left: 'title',
           center: '',
