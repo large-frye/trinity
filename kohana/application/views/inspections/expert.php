@@ -120,15 +120,17 @@
             </div>
 
             <div class="row">
-                <label for="interior_inspection">Interior Inspection: Would you like us to perform an interior inspection if water damage is present</label>
+                <label class="interior-inspection" for="interior_inspection">Perform interior inspection if water damage present? </label>
 
                 <div class="right">
-                    <?php echo Form::radio('interior_inspection', 1, isset($data['interior_inspection']) && $data['interior_inspection'] == 1 ? true : false, array('id' => 'interior_inspection')) .
-                               Form::label('interior_inspection', 'Yes') .
-                               Form::radio('interior_inspection', 0, isset($data['interior_inspection']) && $data['interior_inspection'] == 1 ? false : true, array('id' => 'interior_inspection')) .
-                               Form::label('interior_inspection', 'No'); ?>
+                    <?php echo Form::radio('interior_inspection', 1, isset($data['interior_inspection']) && $data['interior_inspection'] == 1 ? true : false, array('id' => 'interior_inspection0')) .
+                               Form::label('interior_inspection0', 'Yes') .
+                               Form::radio('interior_inspection', 0, isset($data['interior_inspection']) && $data['interior_inspection'] == 1 ? false : true, array('id' => 'interior_inspection1')) .
+                               Form::label('interior_inspection1', 'No'); ?>
                 </div>
-            </div>
+            </div>        
+           
+
 
             <!-- <div class="row">
                 <label for="if_rolled">If rolled: </label>
