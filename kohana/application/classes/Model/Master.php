@@ -56,7 +56,7 @@ class Model_Master extends Model {
     		              "/assets/js/jquery.backgroundPosition.js",
     		              "/assets/js/jquery.placeholder.min.js",
     		              "/assets/js/jquery.ui.1.8.17.js",
-    		             // "/assets/js/jquery.ui.select.js",
+    		              "/assets/js/jquery.ui.select.js",
     		              "/assets/js/jquery.ui.spinner.js",
     		              "/assets/js/superfish.js",
     		              "/assets/js/supersubs.js",
@@ -101,6 +101,8 @@ class Model_Master extends Model {
                                "/assets/js/calendar/ui-calendar-master/fullcalendar/gcal.js",
                                "/assets/js/calendar/ui-calendar-master/src/calendar.js",
                                "/assets/js/calendar/ui-calendar-master/demo/calendarDemo.js"));
+
+            unset($js_files[4]);
         }
 
 
