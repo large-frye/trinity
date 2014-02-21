@@ -101,6 +101,8 @@ class Model_Master extends Model {
                                "/assets/js/calendar/ui-calendar-master/fullcalendar/gcal.js",
                                "/assets/js/calendar/ui-calendar-master/src/calendar.js",
                                "/assets/js/calendar/ui-calendar-master/demo/calendarDemo.js"));
+
+            unset($js_files[4]);
         }
 
 
