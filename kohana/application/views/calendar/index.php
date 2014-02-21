@@ -43,10 +43,30 @@
                 </div>
             </div>
             <div id="dialog" title="{{dialog_event.title}}" class="hide">
-                <p>{{dialog_event.title}}</p>
-                <b>Start Time</b><span>{{dialog_event.start | date:'medium'}}</span>
-                <b>End Time</b><span>{{dialog_event.end | date:'medium'}}</span>
-                <b>All Day Event</b><input type="checkbox" value="" />
+                <div class="clear"></div>
+                <table class="margin-top">
+                    <thead>
+                    <tr>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>All Day Event</th>
+                        <th>Inspector</th>
+                        <th>Adjuster</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{dialog_event.start | date:'medium'}}</td>
+                        <td>{{dialog_event.end | date:'medium'}}</td>
+                        <td>{{dialog_event.allday}}</td>
+                        <td>{{dialog_event.inspector}}</td>
+                        <td>{{dialog_event.adjuster}}</td>
+                    </tr>
+                </tbody>
+                </table>
+
+                <hr>
+                <a href="/workorders/view/{{dialog_event.id}}">View Work Order</a>
             </div>
         <button type="button" ng-click="saveEvents()"><span>Save Calendar</span></button>
     </section>

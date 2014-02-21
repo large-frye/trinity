@@ -50,9 +50,11 @@ function CalendarCtrl($scope) {
         $scope.events.events.push({
             title: locations[l].inspection_type + " for " + locations[l].first_name + " " + locations[l].last_name,
             start: new Date(locations[l].date_of_inspection + " " + locations[l].time_of_inspection),
-            inspector: locations[l].adjuster_nanme,
+            inspector: locations[l].inspector_name,
+            adjuster: locations[l].adjuster_name,
             allDay: false,
             color: locations[l].inspector_color,
+            id: locations[l].id
         });
     }
 
@@ -83,7 +85,9 @@ function CalendarCtrl($scope) {
         $(function() {
             $scope.dialog_event = event;
             $("#dialog").removeClass('hide');
-            $( "#dialog" ).dialog();
+            $( "#dialog" ).dialog({ "width" : 800,
+                                    "height" : 250,
+                                    "title"  : event.title });
         });
     };
     /* alert on Drop */

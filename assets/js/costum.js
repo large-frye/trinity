@@ -338,30 +338,34 @@ $(document).ready(function() {
 	
 	// INPUT PLACEHOLDER
 	$('input[placeholder], textarea[placeholder]').placeholder();
+
+    var check = new RegExp("calendar", "g");
 	
-	// SELECTBOXES
-	$(function() {
-		$('.dataTables_length input, select').not("select.multiple").selectmenu({
-			style: 'dropdown',
-			transferClasses: true,
-			width: null,
-			change: function(e, obj) {
+    if(document.URL.match(check) === null) {
+	    // SELECTBOXES
+	    $(function() {
+		    $('.dataTables_length input, select').not("select.multiple").selectmenu({
+			    style: 'dropdown',
+			    transferClasses: true,
+			    width: null,
+			    change: function(e, obj) {
 			
-				if (! $(this).hasClass('wo-links'))
-				{
-					// $(".valid").validate().element(this);
-				}				
-			},
+				    if (! $(this).hasClass('wo-links'))
+				    {
+					    // $(".valid").validate().element(this);
+				    }				
+			    },
 			
-			select: function()
-			{
-				if ($(this).hasClass('wo-links'))
-				{
-					window.location.href = $(this).val();
-				}				
-			}
-		});
-	});
+			    select: function()
+			    {
+				    if ($(this).hasClass('wo-links'))
+				    {
+					    window.location.href = $(this).val();
+				    }				
+			    }
+		    });
+	    });
+    }
 	
 	// RADIOBUTTONS & CHECKBOXES
 	$("input[type=radio], input[type=checkbox]").each(function() {
