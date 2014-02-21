@@ -61,6 +61,7 @@ img { border: 0; }
 
 .no-bg {
 	background:none !important;
+	background-color: #ffffff !important;
 }
 
 #wrapper #main {
@@ -2881,5 +2882,41 @@ img { border: 0; }
 }
 
 .margin-top  { margin-top: 15px; }
+
+.fc-content {
+	left: -30px;
+	width: 960px;
+}
+
+.fc-header-left {
+	padding: 10px;
+	border: transparent;
+}
+
+.fc-header-right {
+	top: 5px;
+	border: transparent;
+	padding: 10px;
+}
+
+.fc-header {
+	margin-top: 20px;
+	left: -8px;
+	top: 19px;
+	position: relative;
+	border: none;
+	height: 60px;
+}
+
+.fc-button {
+	padding : 0 15px;
+	background: url(../gfx/forms-btn.gif) repeat-x left top #FFFFFF;
+	margin : 0;
+	font : 12px/25px Arial;
+	font-weight : bold;
+	letter-spacing : 0.08em;
+	color : #7d7c7c;
+	text-transform : uppercase;
+}
 
 /* This button was generated using CSSButtonGenerator.com */

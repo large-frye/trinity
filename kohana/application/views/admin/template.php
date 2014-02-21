@@ -11,9 +11,6 @@
 	<meta name="viewport" content="width=device-width,initial-scale=0.69,user-scalable=yes,maximum-scale=1.00" />
 	
 	<?php echo $css; ?>
-	<!-- {{#asset_css}}
-		<link type="text/css" rel="stylesheet" media="all" href="{{path}}" />
-	{{/asset_css}} -->
 	
 	<!--[if lte IE 8]>
 		<script type="text/javascript" src="js/excanvas.min.js"></script>
@@ -22,9 +19,16 @@
 	<?php if (isset($maps) && $maps) {
 		echo "<script type=\"text/javascript\">
 		          var locations = " . json_encode($locations->as_array()). ";" .
-		          "console.log(locations);
-		     	</script>"; 
+		     "</script>"; 
 	}
+
+	if (isset($events)) {
+        echo "<script type=\"text/javascript\">
+		          var locations = " . json_encode($events->as_array()). ";" .
+		     "</script>"; 
+	}
+
+
 
 	?>
 	

@@ -46,7 +46,7 @@ class Model_Account extends Model_Base {
         $result = DB::query(Database::SELECT, 'SELECT w.*, CONCAT(uf.first_name, " ", uf.last_name) as adjuster_name,
                                                       CONCAT(_uf.first_name, " ", _uf.last_name) as inspector_name,
                                                       wos.name as status_name, _is.name as inspection_status,
-                                                      IF(it.name IS NULL, "No Type", it.name) as inspection_type
+                                                      IF(it.name IS NULL, "No Type", it.name) as inspection_type, _uf.color as inspector_color
                                                FROM work_orders w
                                                LEFT JOIN users u ON u.id = w.user_id
                                                LEFT JOIN profiles uf ON uf.user_id = u.id

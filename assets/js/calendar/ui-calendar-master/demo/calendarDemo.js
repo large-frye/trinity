@@ -17,20 +17,28 @@ function CalendarCtrl($scope) {
             currentTimezone: 'America/Chicago' // an option!
     };
     /* event source that contains custom events on the scope */
+
     $scope.events = {
-        color: 'red',
         textColor: 'white',
-        events: [
-            {title: 'All Day Event',start: new Date(y, m, 1)},
+        events: []
+            /* {title: 'All Day Event',start: new Date(y, m, 1)},
             {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
             {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 17, 0), end: new Date(y, m, d - 3, 20, 30), allDay: false},
             {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 17, 0), end: new Date(y, m, d + 4, 20, 30), allDay: false},
             {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
             {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
-        ]
+        ] */
     };
 
-    console.log(new Date());
+    for(var l in locations) {
+        $scope.events.events.push({
+            title: locations[l].inspection_type + " for " + locations[l].first_name + " " + locations[l].last_name,
+            start: new Date(locations[l].date_of_inspection + " " + locations[l].time_of_inspection),
+            inspector: locations[l].adjuster_nanme,
+            allDay: false,
+            color: locations[l].inspector_color,
+        });
+    }
 
     /* event source that calls a function on every view switch */
     $scope.eventsF = function (start, end, callback) {
