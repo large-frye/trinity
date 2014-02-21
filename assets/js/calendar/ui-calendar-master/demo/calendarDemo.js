@@ -36,15 +36,14 @@ function CalendarCtrl($scope) {
                           { name: "Kati Frye"} ];
 
     $scope.filterInspectors = function() {
-        console.log($scope.inspector);
-        /*$('.fc-event').each(function() {
+        $('.fc-event').each(function() {
             $(this).show();
 
             var search = new RegExp($scope.inspector.name, "g");
             if($(this).text().match(search) === null) {
                 $(this).hide();
             }
-        });*/
+        });
     };
 
     for(var l in locations) {
