@@ -32,13 +32,15 @@ function CalendarCtrl($scope) {
 
     var _inspectors = [];
 
-    console.log(inspectors);
-
     for (var i in inspectors) {
         _inspectors.push({ name: inspectors[i].first_name + " " + inspectors[i].last_name });
     }
 
     $scope.inspectors = _inspectors;
+
+    $scope.reset_inspector = function() {
+        location.reload();
+    };
 
     $scope.filterInspectors = function() {
         $('.fc-event').each(function() {
