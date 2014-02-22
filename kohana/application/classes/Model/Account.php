@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Model_Account  {
+class Model_Account  extends Model_Base{
 
     const ADMIN     = 2;
     const INSPECTOR = 3;
