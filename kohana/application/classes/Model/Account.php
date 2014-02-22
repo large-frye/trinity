@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Model_Account extends Model {
+class Model_Account extends Model_Base {
 
     const ADMIN     = 2;
     const INSPECTOR = 3;
@@ -260,6 +260,22 @@ public function generateRandomString() {
      */
     public function check_if_inspection_report_exists ($workorder_id) {
         // $result = DB::query(Database::SELECT, "SELECT ")
+    }
+
+
+
+    /**
+     * Get all inspector information
+     *
+     */
+    public function get_inspectors_info () {
+        return DB::query(Database::SELECT, "SELECT p.*
+                                            FROM users u
+                                            LEFT JOIN roles_users ru ON u.id = ru.user_id
+                                            LEFT JOIN profiles p ON p.user_id = u.id
+                                            WHERE ru.role_id = 3")
+                   ->as_object()
+                   ->execute($this->db);
     }
 
 

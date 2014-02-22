@@ -16,7 +16,7 @@ class Controller_Calendar extends Controller_Account {
         $this->template->homepage = true;
         $this->template->calendar_app = "ng-app=\"calendarDemoApp\"";
         $this->template->events = $this->account_model->get_work_orders($this->_user->id, $this->user_type);
-        $this->template->inspectors = $this->workorders_model->get_inspectors();
+        $this->template->inspectors = $this->account_model->get_inspectors_info();
     }
 
 
