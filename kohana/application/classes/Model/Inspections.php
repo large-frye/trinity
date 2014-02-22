@@ -276,7 +276,7 @@ class Model_Inspections extends Model_Base {
                      'brick' => 'Brick',
                      'stucco' => 'Stucco',
                      'wood composite' => 'Wood Composite',
-                     'alumnium'       => 'Alumnium',
+                     'aluminum'       => 'Aluminum',
                      'cedar shake'    => 'Cedar Shake',
                      'metal panel'    => 'Metal Panel');
     }
@@ -289,7 +289,7 @@ class Model_Inspections extends Model_Base {
                      'mechanical damage'    => 'Mechanical Damage',
                      'high nailing'         => 'High Nailing',
                      'nail extrusions'      => 'Nail Extrusions',
-                     'water intrusion'      => 'Water Instrusion',
+                     'water intrusion'      => 'Water Intrusion',
                      'vent pipe failing failure' => 'Vent Pipe Flashing Failure',
                      'missing shingles'          => 'Missing Shingles',
                      'lichen growth'             => 'Lichen Growth',
