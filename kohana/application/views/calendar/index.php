@@ -44,7 +44,7 @@
                         <td>{{dialog_event.start | date:'medium'}}</td>
                         <td>{{dialog_event.end | date:'medium'}}</td>
                         <td>{{dialog_event.allday}}</td>
-                        <td>{{dialog_event.policy_holdere}}</td>
+                        <td>{{dialog_event.policy_holder}}</td>
                         <td>{{dialog_event.adjuster}}</td>
                     </tr>
                 </tbody>
