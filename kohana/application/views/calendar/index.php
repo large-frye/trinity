@@ -1,5 +1,6 @@
-<h2> Calendar</h2>
-
+<div class="section">
+    <div class="box">
+        <div class="title">Calendar</div>
 <!-- Calendar Controller #angular -->
 <div id="directives-calendar" class="margin-top" ng-controller="CalendarCtrl">
         <div>
@@ -41,6 +42,6 @@
                 <hr>
                 <a href="/workorders/view/{{dialog_event.id}}">View Work Order</a>
             </div>
-        <button type="button" ng-click="saveEvents()"><span>Save Calendar</span></button>
+      <!--  <button type="button" ng-click="saveEvents()"><span>Save Calendar</span></button>-->
 </div>
 <!-- End Calendar Controller #angular -->
