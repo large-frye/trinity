@@ -2896,7 +2896,8 @@ img { border: 0; }
 
 .fc-content {
 	left: -30px;
-	width: 960px;
+	/*darren */
+	width: 940px;
 }
 
 .fc-header-left {

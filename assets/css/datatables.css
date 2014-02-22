@@ -12,7 +12,7 @@ table {
 table, td, tr, th {
 	padding : 0;
 	margin : 0;
-	border-collapse : collapse;
+	/* darren border-collapse : collapse; */
 	text-align : left;
 }
 
@@ -32,7 +32,7 @@ table thead tr th{
 }
 
 table tbody td {
-	border : 1px solid #e6e6e6;
+	/* darren border : 1px solid #e6e6e6; */
 	border-top : none;
 	padding : 8px 10px;
 	line-height : 1.1em;

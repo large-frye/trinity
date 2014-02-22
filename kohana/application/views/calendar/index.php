@@ -44,4 +44,6 @@
             </div>
       <!--  <button type="button" ng-click="saveEvents()"><span>Save Calendar</span></button>-->
 </div>
+</div>
+</div>
 <!-- End Calendar Controller #angular -->

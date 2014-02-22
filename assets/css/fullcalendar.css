@@ -14,7 +14,7 @@ Version: 1.2
 }
 
 .fc-header {
-	background : url(../gfx/box-shadow.gif) repeat-x right top;
+/*	darren background : url(../gfx/box-shadow.gif) repeat-x right top;*/
 	border-bottom : 1px solid #E6E6E6;
 	overflow : hidden;
 	height : 36px;
@@ -43,7 +43,7 @@ Version: 1.2
 	top: -26px;
 	margin : 0 auto;
 	text-align : center;
-	width : 50%;
+	/* darren width : 50%;  */
 }
 
 .fc-header-right {
@@ -93,7 +93,7 @@ Version: 1.2
 ------------------------------------------------------------------------*/
 
 .fc-content {
-	padding : 18px 20px 20px;
+	padding : 18px 30px 20px;
 	clear : both;
 }
 
