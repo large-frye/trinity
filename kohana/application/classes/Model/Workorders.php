@@ -400,7 +400,7 @@ class Model_Workorders extends Model_Base {
 
     public function get_inspectors() {
     	$inspectors = array('' => '--Select Inspector');
-    	$results = DB::query(Database::SELECT, "SELECT u.username, u.id
+    	$results = DB::query(Database::SELECT, "SELECT u.username, u.id, 
     		                                    FROM users u 
                                                 LEFT JOIN roles_users ru ON ru.user_id = u.id
     		                                    WHERE ru.role_id = " . Model_Account::INSPECTOR)

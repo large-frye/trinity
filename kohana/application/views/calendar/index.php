@@ -2,13 +2,12 @@
 
 <!-- Calendar Controller #angular -->
 <div id="directives-calendar" ng-controller="CalendarCtrl">
-    <div class="page-header">
-        <h1>Trinity Calendar</h1>
+    <div class="box">
+        <div class="title">Calendar</div>
+        <div class="content">&nbsp;</div>
     </div>
     <section>
         <div>
-            <h3>Events</h3>
-            <p>Show the data binding between two differnet calendars using the same event sources.</p>
             <div class="calTools">
                 <!-- <button type="button" ng-click="addEvent()"><span>Add New Event</span></button>
                 <button type="submit" name="submit"><span>Save changes</span></button> -->

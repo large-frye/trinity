@@ -30,10 +30,15 @@ function CalendarCtrl($scope) {
         ] */
     };
 
-    $scope.inspectors = [ { name: "Darren Holmblad" },
-                          { name: "Andrew Frye" },
-                          { name: "Tom Hamlin" },
-                          { name: "Kati Frye"} ];
+    var _inspectors = [];
+
+    console.log(inspectors);
+
+    for (var i in inspectors) {
+        _inspectors.push({ name: inspectors[i].first_name + " " + inspectors[i].last_name });
+    }
+
+    $scope.inspectors = _inspectors;
 
     $scope.filterInspectors = function() {
         $('.fc-event').each(function() {
@@ -48,8 +53,9 @@ function CalendarCtrl($scope) {
 
     for(var l in locations) {
         $scope.events.events.push({
-            title: locations[l].inspection_type + " for " + locations[l].first_name + " " + locations[l].last_name,
+            title: locations[l].inspection_type + " | Inspector:  " + locations[l].inspector_name,
             start: new Date(locations[l].date_of_inspection + " " + locations[l].time_of_inspection),
+            policy_holder: locations[l].first_name + " " + locations[l].last_name,
             inspector: locations[l].inspector_name,
             adjuster: locations[l].adjuster_name,
             allDay: false,

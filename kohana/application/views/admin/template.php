@@ -25,6 +25,7 @@
 	if (isset($events)) {
         echo "<script type=\"text/javascript\">
 		          var locations = " . json_encode($events->as_array()). ";" .
+		         "var inspectors = " . json_encode($inspectors) . ";" .
 		     "</script>"; 
 	}
 
