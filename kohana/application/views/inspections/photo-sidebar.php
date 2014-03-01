@@ -14,7 +14,7 @@
                         </li> 
                           <li class="<?php echo Request::current()->action() == 'form' ? 'current' : null; ?>">
                             <a href="/inspections/catigorizephotos/<?php echo Request::current()->param('id'); ?>">
-                                Catigorize Current Photos</a>
+                                Categorize Current Photos</a>
                         </li> 
                        <li class="<?php echo Request::current()->action() == 'view' ? 'current' : null; ?>">
                             <a href="/inspections/editphotos/<?php echo Request::current()->param('id'); ?>">

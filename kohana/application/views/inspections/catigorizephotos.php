@@ -1,7 +1,7 @@
 <div class="section">
     <?php if ( isset( $post ) ) { echo "<div class=\"message info\"><span>Categories have been successfully saved</span></div>"; } ?>
     <div class="box">
-        <div class="title">Catigorize Photos<span class="hide"></span></div>
+        <div class="title">Categorize Photos<span class="hide"></span></div>
         <div class='hiddenForm'>
             <?php echo Form::open( '', array( 'enctype' => 'multipart/form-data', 'id' => 'catigorizephotos' ) ); ?></form>
             <button type="submit"  class="photoBut" id="catButton" name="catButton" value="Submit " /> Submit</button>
