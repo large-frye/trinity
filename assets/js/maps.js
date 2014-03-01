@@ -62,7 +62,7 @@
 				"</div>"+
 				"<div>"+
 				"<strong>Inspection ID: </strong>"+loc.id+"<br>"+
-				"<strong>Address: </strong>"+nonNull(loc.street_address)+"<br>"+
+				"<strong>Address: </strong>"+nonNull(loc.street_address)+ ','+nonNull(loc.city)+' ' + nonNull(loc.state)+' '+ nonNull(loc.zip)+"<br>"+
 				"<strong>Date: </strong>"+nonNull(loc.date_of_inspection)+"<br>"+
 				"<strong>Time: </strong>"+nonNull(loc.time_of_inspection)+"<br>"+
 				"<strong>Adjuster Name: </strong>"+nonNull(loc.adjuster_name)+"<br>"+
