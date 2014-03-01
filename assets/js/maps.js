@@ -106,9 +106,12 @@
 		
 		// loop through the json array
 		for (var key in locations) {
-			console.log(locations[key]);
+			
          if (locations.hasOwnProperty(key)) {
+         	if(!locations[key].inspection_status=='Completed'){
             addBalloon(locations[key]);
+            	console.log(locations[key]);
+        	}
        		}
   		}  
    
