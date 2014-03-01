@@ -2934,3 +2934,46 @@ img { border: 0; }
 .clear {
 	clear: both;
 }
+
+.inspectors {
+	padding: 10px;
+	position: relative;
+	left: -10px;
+	top: 7px;
+}
+
+.inspector-row hr {
+    margin: 25px 0;
+}
+
+.row .right {
+	margin-top: 7px;
+}
+
+.row { 
+    border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

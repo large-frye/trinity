@@ -215,6 +215,13 @@
 			<div class="title">Inspection Information</div>
 			
 			<div class="content">
+
+				<div class="row">
+					<label for="expert_upgrade">Auto-upgrade to expert: </label>
+					<div class="right">
+						<strong><?php echo $details->is_expert == 0 ? "No" : "Yes"; ?></strong>
+					</div>
+				</div>
 				
 				<div class="row">
 					<label for="damage_type">Type of Damage: </label>
@@ -224,9 +231,30 @@
 				</div>
 
 				<div class="row">
-					<label for="date_of_loss">Date of Loss: </label>
+					<label for="date_of_loss">Requested Date: </label>
 					<div class="right">
 						<strong><?php echo $details->date_of_loss; ?></strong>
+					</div>
+				</div>
+
+				<div class="row">
+					<label for="time_of_loss">Requested Time: </label>
+					<div class="right">
+						<strong><?php echo $details->time_of_loss; ?></strong>
+					</div>
+				</div>
+
+				<div class="row">
+					<label for="interior_inspection">Interior Inspection (Water Damage): </label>
+					<div class="right">
+						<strong><?php echo $details->interior_inspection == 0 ? "No" : "Yes"; ?></strong>
+					</div>
+				</div>
+
+				<div class="row">
+					<label for="adjuster_present">Adjuster Present: </label>
+					<div class="right">
+						<strong><?php echo $details->adjuster_present == 0 ? "No" : "Yes"; ?></strong>
 					</div>
 				</div>
 

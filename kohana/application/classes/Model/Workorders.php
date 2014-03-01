@@ -65,6 +65,7 @@ class Model_Workorders extends Model_Base {
      * @param array $post
      */
     public function add_workorder($post) {
+        $_date = str_replace('-', '/', $post['requested_date_of_inspection']);
         $parameters = array(':id'                         => null,
                             ':type'                       => $post['type'],
                             ':user_id'                    => $post['user_id'],
@@ -80,7 +81,10 @@ class Model_Workorders extends Model_Base {
                             ':created_on_utc'             => date('Y-m-d h:i:s'),
                             ':is_expert'                  => isset($post['is_expert']) ? true : false,
                             ':damage_type'                => null,
-                            ':date_of_loss'               => null,
+                            ':date_of_loss'               => date('Y-m-d', strtotime($_date)),
+                            ':time_of_loss'               => date('h:i:s', strtotime($post['hour_of_inspection'] . ":" . $post['min_of_inspection'])),
+                            ':interior_inspection'        => $post['interior_inspection'],
+                            ':adjuster_present'           => $post['adjuster_present'],
                             ':tarped'                     => $post['tarped'],
                             ':estimate_scope_requirement' => $post['estimate_scope_requirement'],
                             ':special_instructions'       => $post['special_instructions'],
@@ -400,7 +404,7 @@ class Model_Workorders extends Model_Base {
 
     public function get_inspectors() {
     	$inspectors = array('' => '--Select Inspector');
-    	$results = DB::query(Database::SELECT, "SELECT u.username, u.id, 
+    	$results = DB::query(Database::SELECT, "SELECT u.username, u.id
     		                                    FROM users u 
                                                 LEFT JOIN roles_users ru ON ru.user_id = u.id
     		                                    WHERE ru.role_id = " . Model_Account::INSPECTOR)
