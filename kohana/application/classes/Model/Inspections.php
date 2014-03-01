@@ -181,7 +181,7 @@ class Model_Inspections extends Model_Base {
             'downspouts' => 'Downspouts',
             'screens' => 'Screens', 
             'aluminum fascia' => 'Aluminum Fascia',
-            'fency material' => 'Fency Material',
+            'fence material' => 'Fence Material',
         );
     }
 

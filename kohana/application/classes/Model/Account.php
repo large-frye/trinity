@@ -43,7 +43,10 @@ class Model_Account extends Model_Base {
                 break;
         }
 
-        $result = DB::query(Database::SELECT, 'SELECT w.*, CONCAT(uf.first_name, " ", uf.last_name) as adjuster_name,
+        $result = DB::query(Database::SELECT, 'SELECT w.*, 
+                                                      date_format(date_of_inspection, "%m/%d%/%Y") as date_of_inspection,
+                                                      date_format(w.created_on_utc, "%m/%d%/%Y") as created_on_utc,
+                                                      CONCAT(uf.first_name, " ", uf.last_name) as adjuster_name,
                                                       CONCAT(_uf.first_name, " ", _uf.last_name) as inspector_name,
                                                       wos.name as status_name, _is.name as inspection_status,
                                                       IF(it.name IS NULL, "No Type", it.name) as inspection_type, _uf.color as inspector_color
