@@ -59,7 +59,8 @@ class Controller_Users extends Controller_Account {
                 if($this->_user_model->create_user($this->_post, $this->mailer_model)) {
                     $view->success = "New user was created.";
                 } else {
-                    $view->errors = array("Error processing user. It's possible this user already exists.");
+                    $view->user = (object) $this->_post;
+                    $view->errors = Model_Users::$errors;
                 }
                 
             } else {

@@ -51,6 +51,8 @@ class Controller_Workorders extends Controller_Account {
         $view->price = $this->workorders_model->get_price();
         $view->client = $this->_client;
         $view->user_id = $this->_client ? $this->_user->id : null;
+        $view->hours = $this->workorders_model->get_workorder_hours();
+        $view->minutes = $this->workorders_model->get_workorder_minutes();
         $type_selected = $this->request->param('id');
         $view->type_selected = isset($type_selected) ? $type_selected : null;
 

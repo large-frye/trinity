@@ -12,7 +12,7 @@ class Model_Users extends Model_Base {
 
 
     public function create_user($post, $mailer_model) {
-        try { 
+        try {
             $user = ORM::factory('User');
             $user->username = $post['username'];
             $user->email    = $post['email'];
@@ -21,19 +21,17 @@ class Model_Users extends Model_Base {
             $user->status   = 1;
             $user->save();
 
-
-              $parameters = array(':id' => null,
-                                        ':user_id' => $user->id,
-                                        ':first_name' => $post['first_name'],
-                                        ':last_name'  => $post['last_name'],
-                                        ':phone'      => $post['phone'],
-                                        ':geographic_region' => $post['geographic_region'],
-                                        ':insurance_company' => $post['insurance_company']);
-              $roles_params = array(':user_id' => $user->id,
-                                    ':role_id' => $post['role_id'],
-                                    ':_role_id' => 1);
-
-
+            $parameters = array(':id' => null,
+                                ':user_id' => $user->id,
+                                ':first_name' => $post['first_name'],
+                                ':last_name'  => $post['last_name'],
+                                ':phone'      => $post['phone'],
+                                ':geographic_region' => $post['geographic_region'],
+                                ':insurance_company' => $post['insurance_company'],
+                                ':color'             => null);
+            $roles_params = array(':user_id' => $user->id,
+                                  ':role_id' => $post['role_id'],
+                                  ':_role_id' => 1);
 
             // Need to add user_profiles
             DB::insert('profiles')
@@ -42,30 +40,28 @@ class Model_Users extends Model_Base {
                 ->execute($this->db);
 
        
-      $insert = DB::insert('roles_users'); 
-      $roles = array(1, $post['role_id']); 
-      foreach($roles as $role) { 
-          $insert->values(array($user->id, $role));
-      } 
+            $insert = DB::insert('roles_users'); 
+            $roles = array(1, $post['role_id']); 
+            foreach($roles as $role) { 
+                $insert->values(array($user->id, $role));
+            }
       
-          $insert->execute($this->db);
+            $insert->execute($this->db);
+            $mailer_model->send_mail($post['email'], 'a.frye4@gmail.com', 'An account for you at Trinity has been created', 16, array('::username::' => $post['username'],
+                                                                                                                                      '::password::' => $post['password']), null, null, null);
+            return true;
+        } catch (ORM_Validation_Exception $e) {
+            $this::$errors = $this->_handle_orm_user_error($e->errors());
+            return false;
+        }
 
-          $mailer_model->send_mail($post['email'], 'a.frye4@gmail.com', 'An account for you at Trinity has been created',
-                                   16, array('::username::' => $post['username'],
-                                             '::password::' => $post['password']), null, null, null);
-          return true;
-      } catch (ORM_Validation_Exception $e) {
-          var_dump($e->errors());
-          return false;
-      }
-
-      $post = array();
+        $post = array();
     }
 
 
 
     /**
-     * Send confirmationi email.
+     * Send confirmation email.
      *
      */
     public function send_confirmation_email($post){
@@ -240,5 +236,17 @@ class Model_Users extends Model_Base {
                     ->execute($this->db);
 
         return $user->count() > 0 ? true : false;
+    }
+
+
+
+    private function _handle_orm_user_error($errors) {
+        $_errors = array();
+
+        foreach ($errors as $error => $e_details) {
+            $_errors[] = $e_details[1][1] . ", " . $e_details[1][0] . " already exists in the database. Please try again.";
+        }
+
+        return $_errors;
     }
 }

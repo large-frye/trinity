@@ -12,7 +12,7 @@
                                                 <a href="/workorders/edit/<?php echo $workorder_id; ?>">Edit Work Order</a>
                                         </li>
                                         <li class="current">
-                                            <a href="/workorders/submit">Submit New Inspction</a>
+                                            <a href="/workorders/submit">Submit New Inspection</a>
                                         </li>
                                     </ul>
                                 </li>

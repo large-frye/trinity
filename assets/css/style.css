@@ -2946,6 +2946,14 @@ img { border: 0; }
     margin: 25px 0;
 }
 
+.row .right {
+	margin-top: 7px;
+}
+
+.row { 
+    border-bottom: 1px solid rgb(240, 240, 240);
+}
+
 
 
 

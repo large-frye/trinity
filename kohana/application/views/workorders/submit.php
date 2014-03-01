@@ -205,6 +205,37 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 						<input readonly="readonly" class="datepicker" type="text" name="requested_date_of_inspection" id="date_of_loss" value=""  placeholder="mm-dd-yyyy">	
 					</div>
 				</div>
+				<div class="row">						
+						<label for="id">Requested Time of Inspection: </label>
+						<div class="right">
+							<?php echo Form::select('hour_of_inspection', $hours, isset($post['hour_of_inspection']) ? $post['hour_of_inspection'] : null, array('class' => 'small')); ?>
+						&nbsp;<span style="display:inline-block;margin-top:4px;vertical-align:top;">:</span>&nbsp;	
+						    <?php echo Form::select('min_of_inspection', $minutes, isset($post['min_of_inspection']) ? $post['min_of_inspection'] : null, array('class' => 'small')); ?>
+						</div>					
+					</div>
+
+
+            <div class="row">
+                <label class="interior-inspection" for="interior_inspection">Perform interior inspection if water damage present? </label>
+
+                <div class="right">
+                    <?php echo Form::radio('interior_inspection', 1, isset($post['interior_inspection']) && $post['interior_inspection'] == 1 ? true : false, array('id' => 'interior_inspection0')) .
+                               Form::label('interior_inspection0', 'Yes') .
+                               Form::radio('interior_inspection', 0, isset($post['interior_inspection']) && $post['interior_inspection'] == 1 ? false : true, array('id' => 'interior_inspection1')) .
+                               Form::label('interior_inspection1', 'No'); ?>
+                </div>
+            </div> 
+
+            <div class="row">
+                <label for="adjuster_present">Will the adjuster be present? </label>
+
+                <div class="right">
+                    <?php echo Form::radio('adjuster_present', 1, isset($post['adjuster_present']) && $post['adjuster_present'] == 1 ? true : false, array('id' => 'adjuster_present0')) .
+                               Form::label('adjuster_present0', 'Yes') .
+                               Form::radio('adjuster_present', 0, isset($post['adjuster_present']) && $post['adjuster_present'] == 1 ? false : true, array('id' => 'adjuster_present1')) .
+                               Form::label('adjuster_present1', 'No'); ?>
+                </div>
+            </div> 
 
 				<div class="row">	
 					<label for="tarped">Tarped</label>
