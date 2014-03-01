@@ -108,13 +108,13 @@
 		for (var key in locations) {
 			console.log(locations[key]);
 			console.log(locations[key].inspection_status=='Complete');
-         if (locations.hasOwnProperty(key)) {
+         //if (locations.hasOwnProperty(key)) {
          	
          	if((locations[key].inspection_status=='Complete')==true){
             addBalloon(locations[key]);
             	
         		}
-       		}
+       	//	}
   		}  
    
 	
