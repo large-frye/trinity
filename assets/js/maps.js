@@ -56,12 +56,12 @@
 				"</div>"+
 				"<div>"+
 				"<strong>Inspection ID: </strong>"+loc.id+"<br>"+
-				"<strong>Address: </strong>"+loc.street_address+"<br>"+
-				"<strong>Date: </strong>"+loc.date_of_inspection+"<br>"+
-				"<strong>Time: </strong>"+loc.time_of_inspection+"<br>"+
-				"<strong>Adjuster Name: </strong>"+loc.adjuster_name+"<br>"+
-				"<strong>Policy Holder Name: </strong>"+loc.first_name +" "+ loc.last_name+"<br>"+
-				"<strong>Phone Number: </strong>"+loc.phone+"<br>"+
+				"<strong>Address: </strong>"+loc.street_address+''+"<br>"+
+				"<strong>Date: </strong>"+loc.date_of_inspection+''+"<br>"+
+				"<strong>Time: </strong>"+loc.time_of_inspection+''+"<br>"+
+				"<strong>Adjuster Name: </strong>"+loc.adjuster_name+''+"<br>"+
+				"<strong>Policy Holder Name: </strong>"+loc.first_name +''+" "+ loc.last_name+''+"<br>"+
+				"<strong>Phone Number: </strong>"+loc.phone+''+"<br>"+
 				"</div>"+
 				"</div>";
 			return _result;
