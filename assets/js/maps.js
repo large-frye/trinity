@@ -48,7 +48,13 @@
           legend.appendChild(div);
         }
 	
-
+        function nonNull(a){
+        	if (a==null){
+        		return '';
+        	}else {
+        		return a;
+        	}
+        }
 		function getInfoContent(loc){
 			var _result= "<div class='googft-info-window'>"+
 				"<div id='infoHeader'>"+
@@ -56,11 +62,11 @@
 				"</div>"+
 				"<div>"+
 				"<strong>Inspection ID: </strong>"+loc.id+"<br>"+
-				"<strong>Address: </strong>"+loc.street_address+''+"<br>"+
-				"<strong>Date: </strong>"+loc.date_of_inspection+''+"<br>"+
-				"<strong>Time: </strong>"+loc.time_of_inspection+''+"<br>"+
-				"<strong>Adjuster Name: </strong>"+loc.adjuster_name+''+"<br>"+
-				"<strong>Policy Holder Name: </strong>"+loc.first_name +''+" "+ loc.last_name+''+"<br>"+
+				"<strong>Address: </strong>"+nonNull(loc.street_address)+"<br>"+
+				"<strong>Date: </strong>"+nonNull(loc.date_of_inspection)+"<br>"+
+				"<strong>Time: </strong>"+nonNull(loc.time_of_inspection)+"<br>"+
+				"<strong>Adjuster Name: </strong>"+nonNull(loc.adjuster_name)+"<br>"+
+				"<strong>Policy Holder Name: </strong>"+nonNull(loc.first_name)+" "+ nonNull(loc.last_name)+"<br>"+
 				"<strong>Phone Number: </strong>"+loc.phone+''+"<br>"+
 				"</div>"+
 				"</div>";
