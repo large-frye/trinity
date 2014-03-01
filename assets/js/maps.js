@@ -103,7 +103,7 @@
 		  addClickHandler(balloon, loc, locationPosition(loc));
 		}
 
-	
+		console.log(locations);
 		// loop through the json array
 		for (var key in locations) {
          if (locations.hasOwnProperty(key)) {
