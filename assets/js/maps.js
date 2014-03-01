@@ -103,9 +103,10 @@
 		  addClickHandler(balloon, loc, locationPosition(loc));
 		}
 
-		console.log(locations);
+		
 		// loop through the json array
 		for (var key in locations) {
+			console.log(locations[key]);
          if (locations.hasOwnProperty(key)) {
             addBalloon(locations[key]);
        		}
