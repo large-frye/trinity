@@ -18,7 +18,7 @@ function addCategoryInfoToMultiple(){
 
   $(".catSelections").dialog({
         title: 'Categories',
-        width: 520,
+        width: 570,
         height: 400,
         modal: true,
         show: 'fade',
