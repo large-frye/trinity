@@ -80,7 +80,7 @@ p.lower { position: relative; top: 60px; }
 ul { padding-left: 15px; }
 li { padding: 10px; position: relative; left: 2em;}
 
-.page-break { page-break-after: always; }
+.page-break { page-break-after: always; position: absolute; top: 20px; }
 .clear { clear: both; }
 .header { color: rgb(117, 41, 43); font-weight: 600; }
 .row-header { text-align:  center; color: rgb(253, 0, 17); border: 1px solid black; padding: 5px; }
