@@ -74,7 +74,8 @@ $( "#deletebutton" ).click(function() {
   var delIcons = $('.delIcon');
   $(delIcons).each(function(i){
     var id = $(delIcons[i]).parent().attr('id');
-    $('#deletephotos').append('<input name="'+i+'" style="display:none;" type="text" id="'+i+'" value="'+id+'"/>');
+    var photoLoc = $(delIcons[i]).parent().find('.delPhotoImg').attr('src');
+    $('#deletephotos').append('<input name="'+i+'" style="display:none;" type="text" id="'+i+'" value="'+id+','+photoLoc+'"/>');
   });
   $('#deletephotos').submit();
 });

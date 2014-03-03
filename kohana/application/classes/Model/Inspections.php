@@ -925,9 +925,14 @@ class Model_Inspections extends Model_Base {
     public function delete_photos($post){
         $arrySize = count($post);
         for ($i = 0; $i < $arrySize; $i++) {
-             DB::delete('inspection_photos')->where('id', '=', ':id')->parameters(array(':id' => $post[$i]))->execute($this->db);
+            $tmpAry = explode(',', $post[$i]);
+            $pLoc = $tmpAry[1];
+            $id = $tmpAry[0];
+            echo $pLoc;
+            echo $id;
+         //    DB::delete('inspection_photos')->where('id', '=', ':id')->parameters(array(':id' => $id))->execute($this->db);
 
-            echo $post[$i];
+        
         }
     }
     public function save_photos($post,  $files, $id) {
