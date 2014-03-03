@@ -922,7 +922,10 @@ class Model_Inspections extends Model_Base {
 
     }
 
-    
+    public function delete_photos($post){
+        
+        
+    }
     public function save_photos($post,  $files, $id) {
         $path = "/assets/photos/";
 
@@ -969,5 +972,6 @@ class Model_Inspections extends Model_Base {
         return true;
           
     }
+
 }
 
