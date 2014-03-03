@@ -1,4 +1,8 @@
 
+.photoThumView:hover
+{ 
+background-color:yellow;
+}
 
 .photoBut {
     -moz-box-shadow:inset 0px 0px 0px 0px #ffffff;
