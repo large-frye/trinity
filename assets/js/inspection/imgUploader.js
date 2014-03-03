@@ -65,9 +65,13 @@ function addCategoryInfoToMultiple(){
 });
 
 
+$( ".delPhoto" ).click(function() {
+  console.log('hi');
+});
+
+
 
   $( "#deletebutton" ).click(function() {
-
   console.log('hi');
 });
 
