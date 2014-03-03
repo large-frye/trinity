@@ -97,6 +97,10 @@ li { padding: 10px; position: relative; left: 2em;}
 .padding-top: { padding-top: 25; }
 .damage-block : { position: relative; top: 20px; padding-bottom: 40px;}
 .sketch-helper { position: relative !important; left: -300px !important; }
+.imgCl { position: relative !important; left:  -80px !important; margin-top: 20px !important;}
+.imgCl span { 
+    margin-bottom: 20px !important;
+}
 
 
 </style>
@@ -115,15 +119,20 @@ li { padding: 10px; position: relative; left: 2em;}
             if($parentCategories[$i]->name!=='Sketches') {
                 $tmp = '<div class="imgDiv"><h4 class="parentCatHead">'.$parentCategories[$i]->name.'</h4>';
                 for ($j = 0; $j < $count; $j++) {
+                    $break = "";
+                    if ($j % 2 === 0) {
+                        $break = "<div class=\"page-break\"></div>";
+                    }
                     if ($photos[$j]->categoryParent_id == $parentCategories[$i]->id) {
                         $cTmp ="";
                         if($photos[$j]->name !='null') {
                             $cTmp = $photos[$j]->name;
                         }
 
-                        $tmp = $tmp."<div class='imgCl'>". $cTmp."<img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation.
-                               "' style='width: 600px; height: 400px; position: relative; left: -100px;' /></div>";
-                        $tmp = $tmp.'<br>';
+                        $tmp .= $break . "<div class='imgCl'><span>".$cTmp."</span>
+                                          <img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation.
+                                "' style='width: 600px; height: 400px; position: relative; left: -300px; top: 20px; margin-top: 20px;' /></div>";
+                        $tmp .= '<br>';
                     }
                 }
             
