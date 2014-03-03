@@ -63,8 +63,6 @@ function addCategoryInfoToMultiple(){
 
 
 $( ".delPhoto" ).click(function() {
-  console.log(this);
-  
   if($(this).find('img.delIcon').length != 0){
     //del
   $(this).find('img.delIcon').remove();    
@@ -78,11 +76,9 @@ $( ".delPhoto" ).click(function() {
 
 $( "#deletebutton" ).click(function() {
   var delIcons = $('.delIcon');
-
   $(delIcons).each(function(i){
-    var id = $(delIcons).parent();
+    var id = $(delIcons).parent().attr('id');
     console.log(id);
-
   });
 });
 
