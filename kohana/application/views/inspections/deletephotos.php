@@ -7,7 +7,7 @@
 						<div class="content nopadding">
 							<div class="gallery">
 							<div class="photoCatContainer">
-				 <?php echo Form::open('', array( 'id' => 'deletephotos' ) ); ?> 
+				 <?php echo Form::open('', array( 'id' => 'deletephotos' ) ); ?> </form>
 				    <button type="submit"  class="photoBut" id="deletebutton" name="deletebutton" value="Submit " /> Submit</button>
 <?php
 				
@@ -21,10 +21,10 @@
                                 	}
 
                                 	if($rwCnt<6){
-                                			echo "<td><div class=photoThumView'><img class='photoImgView' src=\"" . str_replace('..', '', $photos[$i]->fileLocation) . "\" style='width: 80px; height: 80px;' /></p></div></td>";
+                                			echo "<td><div class=delPhoto'><img class='photoImgView' src=\"" . str_replace('..', '', $photos[$i]->fileLocation) . "\" style='width: 80px; height: 80px;' /></p></div></td>";
                                 	$rwCnt++;
                                 	}else {
-                                		echo "<td><div  class=photoThumView'><img class='photoImgView' src='".str_replace('..', '', $photos[$i]->fileLocation)."' style='width: 80px; height: 80px;' /></p></div></td></tr>";
+                                		echo "<td><div  class=delPhoto'><img class='photoImgView' src='".str_replace('..', '', $photos[$i]->fileLocation)."' style='width: 80px; height: 80px;' /></p></div></td></tr>";
                                 	$rwCnt=0;
                                 	}
                                 	
@@ -35,7 +35,7 @@
 </div>
 
 
-						</form>
+
 							</div>
 						</div>
 					</div>
