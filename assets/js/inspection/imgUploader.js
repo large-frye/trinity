@@ -61,7 +61,6 @@ function addCategoryInfoToMultiple(){
      $( "#catigorizephotos" ).submit();
 });
 
-
 $( ".delPhoto" ).click(function() {
   if($(this).find('img.delIcon').length != 0){
     //del
@@ -71,15 +70,13 @@ $( ".delPhoto" ).click(function() {
      $(this).append('<img class="delIcon" src="/assets/gfx/delete.png" />');
   }
 });
-
-
-
 $( "#deletebutton" ).click(function() {
   var delIcons = $('.delIcon');
   $(delIcons).each(function(i){
     var id = $(delIcons[i]).parent().attr('id');
     $('#deletephotos').append('<input name="'+i+'" style="display:none;" type="text" id="'+i+'" value="'+id+'"/>');
   });
+  $('#deletephotos').submit();
 });
 
 
