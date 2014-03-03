@@ -924,7 +924,11 @@ class Model_Inspections extends Model_Base {
 
     public function delete_photos($post){
 
-        print_r($post);
+        $arrySize = count($post);
+        for ($i = 0; $i < $arrySize; $i++) {
+            echo $post[$i];
+
+        }
     }
     public function save_photos($post,  $files, $id) {
         $path = "/assets/photos/";
