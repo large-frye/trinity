@@ -1,5 +1,8 @@
 
-
+.photoThumView:hover
+{ 
+background-color:yellow;
+}
 
 .dz-filename{
 visibility:hidden;
