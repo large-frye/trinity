@@ -93,7 +93,8 @@ class Controller_Inspections extends Controller_Account {
         $this->template->side_bar = View::factory( 'inspections/photo-sidebar' );
         $this->template->content = $view;
     }
-     public function action_deletephotos() {
+
+      public function action_deletephotos() {
         $view = View::factory( 'inspections/deletephotos' );
 
         if ( $this->request->method() === 'POST' ) {
@@ -103,6 +104,7 @@ class Controller_Inspections extends Controller_Account {
         $this->template->side_bar = View::factory( 'inspections/photo-sidebar' );
         $this->template->content = $view;
     }
+
 
 
     public function action_editphotos() {
