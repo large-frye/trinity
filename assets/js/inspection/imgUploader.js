@@ -78,7 +78,7 @@ $( "#deletebutton" ).click(function() {
   var delIcons = $('.delIcon');
   $(delIcons).each(function(i){
     var id = $(delIcons).parent().attr('id');
-    console.log(id);
+    $('#deletephotos').append('<input name="'+i+'" style="display:none;" type="text" id="'+i+'" value="'+id+'"/>');
   });
 });
 
