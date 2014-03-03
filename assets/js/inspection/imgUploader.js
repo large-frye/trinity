@@ -52,26 +52,24 @@ function addCategoryInfoToMultiple(){
     $(".catSelections").focus();
 }
 
-
-
-
   $( "#catButton" ).click(function() {
   var hiddenInfo = $('.hiddenCatInfo');
   $(hiddenInfo).each(function( i ) {
       var hiddenInfoText= $(hiddenInfo[i]).text();
      $( "#catigorizephotos" ).append('<input name="'+i+'" style="display:none;" type="text" id="'+i+'" value="'+hiddenInfoText+'"/>');
-});
+  });
      $( "#catigorizephotos" ).submit();
 });
 
 
 $( ".delPhoto" ).click(function() {
-  console.log('hi');
+  console.log(this);
+  this.append('<img class="delIcon" src="../assets/gfx/delete.png" />');
 });
 
 
 
-  $( "#deletebutton" ).click(function() {
+$( "#deletebutton" ).click(function() {
   console.log('hi');
 });
 
