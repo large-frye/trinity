@@ -67,10 +67,8 @@ $( ".delPhoto" ).click(function() {
   
   if($(this).find('img.delIcon').length != 0){
     //del
-    console.log('if');
   $(this).find('img.delIcon').remove();    
   }else{
-    console.log('else');
     //add
      $(this).append('<img class="delIcon" src="/assets/gfx/delete.png" />');
   }
