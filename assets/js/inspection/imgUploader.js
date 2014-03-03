@@ -77,7 +77,13 @@ $( ".delPhoto" ).click(function() {
 
 
 $( "#deletebutton" ).click(function() {
-  console.log('hi');
+  var delIcons = $('.delIcon');
+
+  $(delIcons).each(function i){
+    var id = $(delIcons).parent().attr('id');
+    console.log(id);
+
+  }
 });
 
 
