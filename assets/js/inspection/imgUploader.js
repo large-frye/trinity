@@ -64,7 +64,14 @@ function addCategoryInfoToMultiple(){
 
 $( ".delPhoto" ).click(function() {
   console.log(this);
-  $(this).append('<img class="delIcon" src="/assets/gfx/delete.png" />');
+  contains
+  if($(this).find('img.delIcon').length != 0){
+    //del
+  $(this).find('img.delIcon').remove();    
+  }else{
+    //add
+     $(this).append('<img class="delIcon" src="/assets/gfx/delete.png" />');
+  }
 });
 
 
