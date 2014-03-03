@@ -80,7 +80,7 @@ $( "#deletebutton" ).click(function() {
   var delIcons = $('.delIcon');
 
   $(delIcons).each(function(i){
-    var id = $(delIcons).parent().attr('id');
+    var id = $(delIcons).parent();
     console.log(id);
 
   });
