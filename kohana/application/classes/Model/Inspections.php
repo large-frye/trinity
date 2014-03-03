@@ -931,7 +931,7 @@ class Model_Inspections extends Model_Base {
            // echo getcwd();
            // die();
             DB::delete('inspection_photos')->where('id', '=', ':id')->parameters(array(':id' => $id))->execute($this->db);
-           // unlink('..'.$pLoc);
+            unlink('..'.$pLoc);
         
         }
     }
