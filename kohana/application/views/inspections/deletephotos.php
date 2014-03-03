@@ -7,8 +7,10 @@
 						<div class="content nopadding">
 							<div class="gallery">
 							<div class="photoCatContainer">
+				 <?php echo Form::open(''); ?> 
+				    <button type="submit"  class="photoBut" id="catButton" name="catButton" value="Submit " /> Submit</button>
 <?php
-
+				
 				echo '<table>';
 						$count = count($photos);
 
@@ -33,7 +35,7 @@
 </div>
 
 
-								
+						</form>
 							</div>
 						</div>
 					</div>
