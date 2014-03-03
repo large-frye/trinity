@@ -8,7 +8,7 @@
 							<div class="gallery">
 							<div class="photoCatContainer">
 				 <?php echo Form::open(''); ?> 
-				    <button type="submit"  class="photoBut" id="catButton" name="catButton" value="Submit " /> Submit</button>
+				    <button type="submit"  class="photoBut" id="deletebutton" name="deletebutton" value="Submit " /> Submit</button>
 <?php
 				
 				echo '<table>';
