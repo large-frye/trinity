@@ -65,6 +65,18 @@ function addCategoryInfoToMultiple(){
 });
 
 
+
+  $( "#catButton" ).click(function() {
+  var hiddenInfo = $('.hiddenCatInfo');
+  $(hiddenInfo).each(function( i ) {
+      var hiddenInfoText= $(hiddenInfo[i]).text();
+     $( "#catigorizephotos" ).append('<input name="'+i+'" style="display:none;" type="text" id="'+i+'" value="'+hiddenInfoText+'"/>');
+});
+     $( "#catigorizephotos" ).submit();
+});
+
+
+
 	$( ".catClick" ).click(function() {
 		var copy = this;
 		if($(copy).attr('selected')===undefined){

@@ -7,7 +7,7 @@
 						<div class="content nopadding">
 							<div class="gallery">
 							<div class="photoCatContainer">
-				 <?php echo Form::open(''); ?> 
+				 <?php echo Form::open('', array( 'id' => 'deletephotos' ) ); ?> 
 				    <button type="submit"  class="photoBut" id="deletebutton" name="deletebutton" value="Submit " /> Submit</button>
 <?php
 				
