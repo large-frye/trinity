@@ -1,4 +1,7 @@
 
+.delPhoto{
+    height:85px;
+}
 .delPhotoImg{
     position: relative; 
     z-index: 1;
