@@ -923,8 +923,8 @@ class Model_Inspections extends Model_Base {
     }
 
     public function delete_photos($post){
-        
-        
+
+        print_r($post);
     }
     public function save_photos($post,  $files, $id) {
         $path = "/assets/photos/";
