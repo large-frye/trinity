@@ -931,8 +931,11 @@ class Model_Inspections extends Model_Base {
            // echo getcwd();
            // die();
             DB::delete('inspection_photos')->where('id', '=', ':id')->parameters(array(':id' => $id))->execute($this->db);
+           try {
             unlink('..'.$pLoc);
-        
+            }  catch (Exception $e) {
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+            }
         }
     }
     public function save_photos($post,  $files, $id) {
