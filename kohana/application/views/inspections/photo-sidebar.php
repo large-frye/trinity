@@ -17,8 +17,11 @@
                                 Categorize Current Photos</a>
                         </li> 
                        <li class="<?php echo Request::current()->action() == 'view' ? 'current' : null; ?>">
-                            <a href="/inspections/editphotos/<?php echo Request::current()->param('id'); ?>">
+                            <a href="/inspections/deletephotos/<?php echo Request::current()->param('id'); ?>">
                                 Order Current Photos</a></li>
+                      <li class="<?php echo Request::current()->action() == 'view' ? 'current' : null; ?>">
+                            <a href="/inspections/deletephotos/<?php echo Request::current()->param('id'); ?>">
+                                Delete Photos</a></li>
                     </ul>
             </li>
         </ul>
