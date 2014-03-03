@@ -12,8 +12,8 @@ class Model_Mailer extends Model_Base {
 // Updated upstream
     	$this->_host = 'smtp.gmail.com';
     	$this->_port = 465;
-    	$this->_username = 'a.frye4@gmail.com';
-    	$this->_password = 'mraybcnvbkczlndw';
+    	$this->_username = 'trinity.inspections@gmail.com';
+    	$this->_password = '7705trinity';
 
     }
 
