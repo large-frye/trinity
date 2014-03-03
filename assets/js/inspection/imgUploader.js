@@ -66,13 +66,9 @@ function addCategoryInfoToMultiple(){
 
 
 
-  $( "#catButton" ).click(function() {
-  var hiddenInfo = $('.hiddenCatInfo');
-  $(hiddenInfo).each(function( i ) {
-      var hiddenInfoText= $(hiddenInfo[i]).text();
-     $( "#catigorizephotos" ).append('<input name="'+i+'" style="display:none;" type="text" id="'+i+'" value="'+hiddenInfoText+'"/>');
-});
-     $( "#catigorizephotos" ).submit();
+  $( "#deletebutton" ).click(function() {
+
+  console.log('hi');
 });
 
 
