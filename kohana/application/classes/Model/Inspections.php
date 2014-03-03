@@ -929,7 +929,7 @@ class Model_Inspections extends Model_Base {
             $pLoc = $tmpAry[1];
             $id = $tmpAry[0];
            // DB::delete('inspection_photos')->where('id', '=', ':id')->parameters(array(':id' => $id))->execute($this->db);
-            unlink('trinity/'.$pLoc);
+            unlink('trinity'.$pLoc);
         
         }
     }
