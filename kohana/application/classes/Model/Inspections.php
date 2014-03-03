@@ -928,12 +928,11 @@ class Model_Inspections extends Model_Base {
             $tmpAry = explode(',', $post[$i]);
             $pLoc = $tmpAry[1];
             $id = $tmpAry[0];
-           echo $id;
            DB::delete('inspection_photos')->where('id', '=', ':id')->parameters(array(':id' => $id))->execute($this->db);
            try {
             unlink('..'.$pLoc);
             }  catch (Exception $e) {
-                echo 'Caught exception: ',  $e->getMessage(), "\n";
+               // echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
         }
     }
