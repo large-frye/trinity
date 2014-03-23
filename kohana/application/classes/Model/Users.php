@@ -28,7 +28,7 @@ class Model_Users extends Model_Base {
                                 ':phone'      => $post['phone'],
                                 ':geographic_region' => $post['geographic_region'],
                                 ':insurance_company' => $post['insurance_company'],
-                                ':color'             => null);
+                                ':color'             =>  $post['user_color'],);
             $roles_params = array(':user_id' => $user->id,
                                   ':role_id' => $post['role_id'],
                                   ':_role_id' => 1);
