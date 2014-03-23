@@ -23,10 +23,6 @@ table thead tr th, table tfoot tr th {
 table thead {
 	background : url(../gfx/box-title.gif) repeat-x right top #F6F6F6;
 	border-right : none;
-	position: fixed;
-	margin: auto;
-	z-index: 100000;
-	top: 285px;
 	
 }
 
