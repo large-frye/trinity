@@ -159,8 +159,8 @@ SC Adjusters License # 625784</p>
               <p><?php echo isset($static_damage_text[$damage]) ? $static_damage_text[$damage] : ""; ?></p>
               <ul>
               <?php 
-                  $directions = array("North", "South", "East", "West", "(Front)", "(Rear)", "(Left)", "(Right)", "NorthEast", "NorthWest", "SouthEast", "SouthWest");
-                  foreach ($damages as $type) {
+                  $directions =array("North", "South", "East", "West", "(Front)", "(Rear)", "(Left)", "(Right)", "NorthEast", "SouthEast", "SouthWest", "NorthWest");
+                foreach ($damages as $type) {
                       if (!is_array($type) && $type != "" && !is_numeric($type) && $type != "blank") { ?>
                       <li>
                       <?php 
@@ -173,10 +173,11 @@ SC Adjusters License # 625784</p>
                               }
                           }
                           
-                          $type = $finalStr;
-                          foreach ($directions as $value) {
-                              $type = str_replace($value, '<span class="red">'.$value.'</span>', $type);
-                          } echo $type; ?></li>
+                     $tmp=$finalStr;
+                    foreach ($directions as $value) {
+                        $tmp = str_replace($value, '<span class="redTxt">'.$value.'</span>', $tmp);
+                       }
+                    echo $tmp; ?></li>
               <?php } else if (is_array($type)) {
                   foreach ($type as $t => $val) {
                       echo "<li>" . $val . "</li>";
