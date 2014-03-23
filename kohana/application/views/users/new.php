@@ -109,6 +109,20 @@
 				    <?php echo Form::label('user_color', 'User Color') .
 					           "<div class=\"right\">" ?>
 					          <select name="user_color">
+					          	<?php
+					          	$colors =  =array("Green", "Purple", "Yellow", "Red", "Orange", "Pink", "Blue");
+            					
+            					 foreach ($colors as $val) {
+            					 	if(isset($user) && (strcmp($user->user_color, $val)==0){
+            					 		echo  '<option value="'.$val.'" selected="selected" >'.$val.'</option>';
+            					 	}else {
+            					 		echo  '<option value="'.$val.'" >'.$val.'</option>';
+            					 	}
+            					 }
+
+
+
+					          	?>
 								  <option value="green" style="background-color: Green">Green</option>
 								  <option value="purple" style="background-color: Purple">Purple</option>
 								  <option value="yellow" style="background-color: Yellow">Yellow</option>
