@@ -180,9 +180,9 @@ SC Adjusters License # 625784</p>
               <?php } else if (is_array($type)) {
                   foreach ($type as $t => $val) {
                     foreach ($directions as $value) {
-                      $tmp = str_replace($value, '<span class="red">'.$value.'</span>', $val);
+                      $val = str_replace($value, '<span class="red">'.$value.'</span>', $val);
                     }
-                     echo "<li>" . $tmp . "</li>";
+                     echo "<li>" . $val . "</li>";
                   }
               } ?>
               </ul>
