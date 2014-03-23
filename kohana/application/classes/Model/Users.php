@@ -119,7 +119,7 @@ class Model_Users extends Model_Base {
             $user->created_on_utc = date('Y:m:d H:i:s');
             $user->status   = 1;
             $user->save();
-
+            print_r($post);
             // Update `profiles`
             DB::update('profiles')->set(array('first_name' => $post['first_name'],
                                               'last_name'  => $post['last_name'],
