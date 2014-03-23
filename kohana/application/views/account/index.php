@@ -11,7 +11,7 @@
 		
 		<div class="content">
 			<table cellspacing="0" cellpadding="0" border="0" class="all"> 
-				<thead> 
+				<thead id="fixed-header"> 
 					<tr>
 						<th class="sorting" rowspan="1" colspan="1">ID Num.</th>
 						<th class="sorting" rowspan="1" colspan="1">Status</th>
