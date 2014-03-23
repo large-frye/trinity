@@ -97,7 +97,8 @@ class Model_Users extends Model_Base {
                                               'last_name'  => $post['last_name'],
                                               'phone'      => $post['phone'],
                                               'geographic_region' => $post['geographic_region'],
-                                              'insurance_company' => $post['insurance_company']))->where('user_id', '=', ':user_id')
+                                              'insurance_company' => $post['insurance_company']))->where('user_id', '=', ':user_id'),
+                                              'color'      => $post['user_color']
                 ->parameters(array(':user_id' => $user_id))
                 ->execute($this->db);
         } catch (ORM_Validation_Exception $e) {
@@ -119,8 +120,6 @@ class Model_Users extends Model_Base {
             $user->created_on_utc = date('Y:m:d H:i:s');
             $user->status   = 1;
             $user->save();
-            print_r($post);
-            die();
             // Update `profiles`
             DB::update('profiles')->set(array('first_name' => $post['first_name'],
                                               'last_name'  => $post['last_name'],
