@@ -175,7 +175,7 @@ SC Adjusters License # 625784</p>
                           
                      $tmp=$finalStr;
                     foreach ($directions as $value) {
-                        $tmp = str_replace($value, '<span class="redTxt">'.$value.'</span>', $tmp);
+                       // $tmp = str_replace($value, '<span class="redTxt">'.$value.'</span>', $tmp);
                        }
                     echo $tmp; ?></li>
               <?php } else if (is_array($type)) {
