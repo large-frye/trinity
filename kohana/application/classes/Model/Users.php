@@ -125,7 +125,9 @@ class Model_Users extends Model_Base {
                                               'last_name'  => $post['last_name'],
                                               'phone'      => $post['phone'],
                                               'geographic_region' => $post['geographic_region'],
-                                              'insurance_company' => isset($post['insurance_company']) ? $post['insurance_company'] : null))
+                                              'insurance_company' => isset($post['insurance_company']) ? $post['insurance_company'] : null
+                                              'color'      => $post['user_color'];
+                                              ))
                 ->where('user_id', '=', ':user_id')
                 ->parameters(array(':user_id' => $user_id))
                 ->execute($this->db);
