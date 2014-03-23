@@ -11,7 +11,7 @@
 		
 		<div class="content">
 			<table cellspacing="0" cellpadding="0" border="0" class="all"> 
-				<thead> 
+				<thead class="static-header"> 
 					<tr>
 						<th class="sorting" rowspan="1" colspan="1">ID Num.</th>
 						<th class="sorting" rowspan="1" colspan="1">Status</th>
@@ -26,7 +26,7 @@
 						<th class="sorting" rowspan="1" colspan="1">Actions</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="static-body">
 					<?php foreach($orders as $_order) { 
 						
 					    echo "<tr><td>" . $_order->id . "</td>" .

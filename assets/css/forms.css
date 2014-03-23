@@ -1,4 +1,23 @@
 /*
+static headers
+*/
+.static-header {
+	position: fixed;
+	z-index: 1;
+}
+
+
+.static-body{
+line-height: 4em;
+content: "-";
+color: white;
+display: block;
+}
+
+
+
+
+/*
 Template Name: Mustache
 Author: Rory Kranendonk
 Author URI: http://www.dreamwire.nl
