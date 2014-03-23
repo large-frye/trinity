@@ -105,6 +105,21 @@
 					           Form::input('password_confirm', '', array('id' => 'password_confirm')) .
 					           "</div>"; ?>
 				</div>
+				<div class="row">
+				    <?php echo Form::label('user_color', 'User Color') .
+					           "<div class=\"right\">" ?>
+					          <select name="user_color">
+								  <option value="green" style="background-color: Green">Green</option>
+								  <option value="purple" style="background-color: Purple">Purple</option>
+								  <option value="yellow" style="background-color: Yellow">Yellow</option>
+								  <option value="red" style="background-color: Red">Red</option>
+								  <option value="orange" style="background-color: Orange">Orange</option>
+								  <option value="pink" style="background-color: Pink">Pink</option>
+								  <option value="blue" style="background-color: Blue">Blue</option>
+								</select>
+					           </div>
+				</div>
+
 
 				<div class="row">
 					<input type="hidden" name="csrf_token" value="{{csrf_token}}">
