@@ -23,6 +23,7 @@ table thead tr th, table tfoot tr th {
 table thead {
 	background : url(../gfx/box-title.gif) repeat-x right top #F6F6F6;
 	border-right : none;
+	z-index:10000;
 	
 }
 
@@ -31,7 +32,7 @@ table thead tr th{
 	border : 1px solid #e6e6e6;
 	padding : 8px 10px 8px;
 	line-height : 1.1em;
-	z-index:10000;
+
 }
 
 table tbody td {
