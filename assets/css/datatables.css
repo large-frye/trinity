@@ -23,7 +23,18 @@ table thead tr th, table tfoot tr th {
 table thead {
 	background : url(../gfx/box-title.gif) repeat-x right top #F6F6F6;
 	border-right : none;
+	position: fixed;
+	z-index: 1;
 }
+
+tbody:before {
+line-height: 4em;
+content: "-";
+color: white;
+display: block;
+}
+
+
 
 table thead tr th{
 	border : 1px solid #e6e6e6;
