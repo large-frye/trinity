@@ -26,7 +26,7 @@
 						<th class="sorting" rowspan="1" colspan="1">Actions</th>
 					</tr>
 				</thead>
-				<tbody class="static-body">
+				<tbody >
 					<?php foreach($orders as $_order) { 
 						
 					    echo "<tr><td>" . $_order->id . "</td>" .
