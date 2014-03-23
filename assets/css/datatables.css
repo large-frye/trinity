@@ -27,12 +27,7 @@ table thead {
 	z-index: 1;
 }
 
-tbody:before {
-line-height: 4em;
-content: "-";
-color: white;
-display: block;
-}
+
 
 
 
