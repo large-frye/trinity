@@ -120,6 +120,7 @@ class Model_Users extends Model_Base {
             $user->status   = 1;
             $user->save();
             print_r($post);
+            die();
             // Update `profiles`
             DB::update('profiles')->set(array('first_name' => $post['first_name'],
                                               'last_name'  => $post['last_name'],
