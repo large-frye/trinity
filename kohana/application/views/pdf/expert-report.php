@@ -159,7 +159,7 @@ SC Adjusters License # 625784</p>
               <p><?php echo isset($static_damage_text[$damage]) ? $static_damage_text[$damage] : ""; ?></p>
               <ul>
               <?php 
-                  $directions =array("North", "South", "East", "West", "(Front)", "(Rear)", "(Left)", "(Right)", "NorthEast", "SouthEast", "SouthWest", "NorthWest");
+                  $directions =array("North", "South", "East", "West", "(Front)", "(Rear)", "(Left)", "(Right)", "NorthEast", "SouthEast", "SouthWest", "NorthWest", "North (Front)", "South (Rear)");
                 foreach ($damages as $type) {
                       if (!is_array($type) && $type != "" && !is_numeric($type) && $type != "blank") { ?>
                       <li>
