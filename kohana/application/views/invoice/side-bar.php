@@ -6,12 +6,12 @@
                 <a href="/account">Inspection Orders</a>
                     <ul>
                         <li class="<?php echo Request::current()->action() == 'view' ? 'current' : null; ?>">
-                            <a href="/workorders/view/<?php echo Request::current()->param('id'); ?>">
-                                Current Work Order</a>
+                            <a href="/invoice/index/<?php echo Request::current()->param('id'); ?>">
+                                Add Invoice Information</a>
                         </li> 
                         <li class="<?php echo Request::current()->action() == 'view' ? 'current' : null; ?>">
-                            <a href="/workorders/submit">
-                                Submit New Inspection</a>
+                            <a href="/invoice/generate/<?php echo Request::current()->param('id'); ?>">
+                                Generate Invoice</a>
                         </li> 
                     </ul>
             </li>

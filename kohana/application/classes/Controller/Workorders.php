@@ -195,12 +195,13 @@ class Controller_Workorders extends Controller_Account {
         $parentCategories = $this->settings_model->get_parent_categories();
         $photos =  $this->inspections_model-> get_photos_by_id($this->_workorder_id);
         $status = $this->workorders_model->generate_report($this->_workorder_id, $parentCategories,$photos);
+        $workorder_info = $this->workorders_model->get_workorder_details($this->_workorder_id);
         
         if ($status) {
             if (Model_Workorders::$type === Model_Workorders::EXPERT_INSPECTION) {
-                $this->request->redirect('/assets/pdf/reports/final_' . $this->_workorder_id . ".pdf");
+                $this->request->redirect('/assets/pdf/reports/'. $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf");
             } else {
-                $this->request->redirect('/assets/pdf/reports/final_' . $this->_workorder_id . ".pdf");
+                $this->request->redirect('/assets/pdf/reports/'. $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf");
             }
         } else {
             print_r(Model_Workorders::$errors);

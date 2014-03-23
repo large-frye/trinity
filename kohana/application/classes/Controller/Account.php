@@ -47,8 +47,6 @@ class Controller_Account extends Controller_Master {
             
         if (!$this::$logged_in) { 
             if (!in_array($this->request->action() , array('login','signup', 'forgotpassword'))) {
-                //echo "<pre>";
-                //print_r($_SERVER);
                 if (preg_match('/\/workorders\/submit/', $_SERVER['REQUEST_URI'])) {
                     Session::instance()->set('_redirect', $_SERVER['REQUEST_URI']);
                 }
@@ -197,12 +195,9 @@ class Controller_Account extends Controller_Master {
                 $this->_post['role_id']=4;
                 $this->_users_model->create_user($this->_post, $this->mailer_model);
                 $view->success = 'Your account has been created successfully. Please click <a href="/account">here</a> to sign in.';
-              //  $body = $this->get_template(DB::query(Database::SELECT, "SELECT value FROM settings WHERE name = 'email_template_rcovery_password'");
-                // $this->mailer_model->send_mail('dholmblad@gmail.com', 'a.frye4@gmail.com', 'test', 'rest');
-                // $this->request->redirect('/account/login');
             } else {
                 $view->errors=$validate_result['errors'];
-                $view->post = $this->_post;   
+                $view->post = $this->_post;
             }
         }
 

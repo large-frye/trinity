@@ -175,20 +175,20 @@ public function generateRandomString() {
 
     $valid_post = Validation::factory($post);
 
-         $valid_post->rule('first_name', 'not_empty')
-                    ->rule('last_name', 'not_empty')
-                    ->rule('phone', 'not_empty')
-                    ->rule('phone', 'Valid::phone')
-                    ->rule('geographic_region', 'not_empty')
-                    ->rule('username', 'not_empty')
-                    ->rule('username', 'Model_Account::unique_username')
-                    ->rule('email', 'Valid::email')
-                    ->rule('email', 'Model_Account::unique_email')
-                    ->rule('insurance_company', 'not_empty')
-                    ->rule('password', 'not_empty')
-                    ->rule('confirm-password', 'not_empty')
-                    ->rule('password', 'min_length', array(':value', '6'))
-                    ->rule('confirm-password', 'matches', array(':validation', 'confirm-password', 'password'));
+    $valid_post->rule('first_name', 'not_empty')
+               ->rule('last_name', 'not_empty')
+               ->rule('phone', 'not_empty')
+               ->rule('phone', 'Valid::phone')
+               ->rule('geographic_region', 'not_empty')
+               ->rule('username', 'not_empty')
+               ->rule('username', 'Model_Account::unique_username')
+               ->rule('email', 'Valid::email')
+               ->rule('email', 'Model_Account::unique_email')
+               ->rule('insurance_company', 'not_empty')
+               ->rule('password', 'not_empty')
+               ->rule('confirm-password', 'not_empty')
+               ->rule('password', 'min_length', array(':value', '6'))
+               ->rule('confirm-password', 'matches', array(':validation', 'confirm-password', 'password'));
           if ($valid_post->check()) {
               return array('error' => false);
           } else {

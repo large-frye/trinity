@@ -100,6 +100,8 @@ p {
 <?php foreach ($damages as $damage) {
     echo "<h5 class=\"damage-header\">" . $damage . "</h5>";
 } ?>
+<h4 class="row-header">INSPECTION SUMMARY</h4>
+
 </div>
 
 

@@ -224,8 +224,6 @@ class Model_Workorders extends Model_Base {
 
     public function add_comment($post, $workorder_id, $id){
         date_default_timezone_set("UTC");
-        echo $workorder_id;
-        echo $id;
               $parameters = array(':id' => null,
                             ':work_order_id' => $workorder_id,
                             ':date_time_utc' => date("Y-m-d H:i:s", time()),
@@ -622,9 +620,9 @@ class Model_Workorders extends Model_Base {
             $fp = null;
 
             if ($this::$type === $this::EXPERT_INSPECTION) {
-                $this->build_expert_pdf($view, $parentCategories, $photos, $workorder_id);
+                $this->build_expert_pdf($view, $parentCategories, $photos, $workorder_id, $view->report_data);
             } else {
-                $this->build_basic_pdf($view, $parentCategories, $photos, $workorder_id);
+                $this->build_basic_pdf($view, $parentCategories, $photos, $workorder_id, $view->report_data);
             }
             
             return true;
@@ -640,7 +638,9 @@ class Model_Workorders extends Model_Base {
      * Using DOMPDF build an expert inspection report
      *
      */
-    public function build_expert_pdf($view, $parent_categories, $photos, $workorder_id) {
+    public function build_expert_pdf($view, $parent_categories, $photos, $workorder_id, $report_data) {
+        $workorder_info = $this->get_workorder_details($workorder_id);
+
         // Photos
         $this->_build_photos_pdf($view, $parent_categories, $photos, $workorder_id);
 
@@ -653,8 +653,8 @@ class Model_Workorders extends Model_Base {
         $current_pdf_exp_damages_file = $this->_report_file_path . "step3_" . $workorder_id . ".pdf";
         $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
                     
-        if (file_exists($this->_report_file_path . "final_" . $workorder_id . ".pdf")) {
-            unlink($this->_report_file_path . "final_" . $workorder_id . ".pdf");
+        if (file_exists($this->_report_file_path . $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf")) {
+            unlink($this->_report_file_path . $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf");
         }
 
         if (Kohana::$environment === Kohana::DEVELOPMENT) {
@@ -663,8 +663,10 @@ class Model_Workorders extends Model_Base {
             $cmd = "/usr/bin/pdftk";
         }
 
+        $file_name = $this->_report_file_path . $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf";
+
         exec($cmd . " " . $current_pdf_file . " " . $xactimate_file . " " . $current_pdf_photos_file . " " . $current_pdf_exp_damages_file . " " . 
-             " cat output " . $this->_report_file_path . "final_" . $workorder_id . ".pdf", $retval);
+             " cat output " . $file_name, $retval);
     }
 
 
@@ -673,7 +675,7 @@ class Model_Workorders extends Model_Base {
      * Using DOMPDF build a basic inspection report
      *
      */
-    public function build_basic_pdf($view, $parent_categories, $photos, $workorder_id) {
+    public function build_basic_pdf($view, $parent_categories, $photos, $workorder_id, $report_data) {
         // Photos
         $this->_build_photos_pdf($view, $parent_categories, $photos, $workorder_id);
 
@@ -682,8 +684,8 @@ class Model_Workorders extends Model_Base {
         $current_pdf_photos_file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
         $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
 
-        if (file_exists($this->_report_file_path . "final_" . $workorder_id . ".pdf")) {
-            unlink($this->_report_file_path . "final_" . $workorder_id . ".pdf");
+        if (file_exists($this->_report_file_path . $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf")) {
+            unlink($this->_report_file_path . $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf");
         }
 
         if (Kohana::$environment === Kohana::DEVELOPMENT) {
@@ -693,7 +695,7 @@ class Model_Workorders extends Model_Base {
         }
 
         exec($cmd . " " . $current_pdf_file . " " . $xactimate_file . " " . $current_pdf_photos_file . " " . 
-             " cat output " . $this->_report_file_path . "final_" . $workorder_id . ".pdf", $retval);
+             " cat output " . $this->_report_file_path . $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf", $retval);
     }
 
 
