@@ -181,9 +181,8 @@ SC Adjusters License # 625784</p>
                   foreach ($type as $t => $val) {
                     foreach ($directions as $value) {
                       $tmp = str_replace($value, '<span class="red">'.$value.'</span>', $val);
-                      echo "<li>" . $tmp . "</li>";
-
                     }
+                     echo "<li>" . $tmp . "</li>";
                   }
               } ?>
               </ul>
