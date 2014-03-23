@@ -110,7 +110,7 @@
 					           "<div class=\"right\">" ?>
 					          <select name="user_color">
 					          	<?php
-					          	$colors =  =array("Green", "Purple", "Yellow", "Red", "Orange", "Pink", "Blue");
+					          	$colors = array("Green", "Purple", "Yellow", "Red", "Orange", "Pink", "Blue");
             					
             					 foreach ($colors as $val) {
             					 	if(isset($user) && (strcmp($user->user_color, $val)==0){
