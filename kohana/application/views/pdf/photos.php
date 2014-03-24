@@ -122,7 +122,6 @@ li { padding: 10px; position: relative; left: 2em;}
                     }
 
                     if ($photos[$j]->categoryParent_id == $parentCategories[$i]->id) {
-                        $currentParentId = $parentCategories[$i]->id;
                         $break = '';
                         $cTmp ="";
 
@@ -130,9 +129,11 @@ li { padding: 10px; position: relative; left: 2em;}
                             $cTmp = $photos[$j]->name;
                         }
 
-                        if ($break_count != 0 && $break_count % 2 === 0) {
+                        if ($currentParentId != 0 && $break_count % 2 === 0) {
                             $break = "<div class=\"page-break\"></div>";
                         }
+
+                        $currentParentId = $parentCategories[$i]->id;
 
                         $tmp .= $break . "<div class='imgCl'><span>".$cTmp."</span>
                                           <img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation.
