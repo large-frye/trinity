@@ -1,4 +1,4 @@
-m/*
+/*
  * File:        jquery.dataTables.min.js
  * Version:     1.8.2
  * Author:      Allan Jardine (www.sprymedia.co.uk)
