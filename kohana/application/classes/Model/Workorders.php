@@ -653,8 +653,8 @@ class Model_Workorders extends Model_Base {
         $current_pdf_exp_damages_file = $this->_report_file_path . "step3_" . $workorder_id . ".pdf";
         $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
                     
-        if (file_exists($this->_report_file_path . $workorder_info->last_name . "_Claim" . trim($workorder_info->policy_number) . ".pdf")) {
-            unlink($this->_report_file_path . $workorder_info->last_name . "_Claim" . trim($workorder_info->policy_number) . ".pdf");
+        if (file_exists($this->_report_file_path . trim($workorder_info->last_name) . "_Claim" . trim($workorder_info->policy_number) . ".pdf")) {
+            unlink($this->_report_file_path . trim($workorder_info->last_name) . "_Claim" . trim($workorder_info->policy_number) . ".pdf");
         }
 
         if (Kohana::$environment === Kohana::DEVELOPMENT) {
@@ -663,7 +663,7 @@ class Model_Workorders extends Model_Base {
             $cmd = "/usr/bin/pdftk";
         }
 
-        $file_name = $this->_report_file_path . $workorder_info->last_name . "_Claim" . trim($workorder_info->policy_number) . ".pdf";
+        $file_name = $this->_report_file_path . trim($workorder_info->last_name) . "_Claim" . trim($workorder_info->policy_number) . ".pdf";
 
         exec($cmd . " " . $current_pdf_file . " " . $xactimate_file . " " . $current_pdf_photos_file . " " . $current_pdf_exp_damages_file . " " . 
              " cat output " . $file_name, $retval);
@@ -686,8 +686,8 @@ class Model_Workorders extends Model_Base {
         $current_pdf_photos_file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
         $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
 
-        if (file_exists($this->_report_file_path . $workorder_info->last_name . "_Claim" . trim($workorder_info->policy_number) . ".pdf")) {
-            unlink($this->_report_file_path . $workorder_info->last_name . "_Claim" . trim($workorder_info->policy_number) . ".pdf");
+        if (file_exists($this->_report_file_path . trim($workorder_info->last_name) . "_Claim" . trim($workorder_info->policy_number) . ".pdf")) {
+            unlink($this->_report_file_path . trim($workorder_info->last_name) . "_Claim" . trim($workorder_info->policy_number) . ".pdf");
         }
 
         if (Kohana::$environment === Kohana::DEVELOPMENT) {
@@ -697,7 +697,7 @@ class Model_Workorders extends Model_Base {
         }
 
         exec($cmd . " " . $current_pdf_file . " " . $xactimate_file . " " . $current_pdf_photos_file . " " . 
-             " cat output " . $this->_report_file_path . $workorder_info->last_name . "_Claim" . trim($workorder_info->policy_number) . ".pdf", $retval);
+             " cat output " . $this->_report_file_path . trim($workorder_info->last_name) . "_Claim" . trim($workorder_info->policy_number) . ".pdf", $retval);
     }
 
 
