@@ -2,8 +2,8 @@
 $(document).ready(function() {
  
  try{
-  //  var div = $('#fixed-header');
-   // var start = $(div).offset().top;
+   var div = $('#fixed-header');
+   var start = $(div).offset().top;
  
     $.event.add(window, "scroll", function() {
         var p = $(window).scrollTop();
