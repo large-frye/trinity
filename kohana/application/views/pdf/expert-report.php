@@ -166,7 +166,7 @@ SC Adjusters License # 625784</p>
                       <?php 
                           $finalStr='';
                           foreach(explode(' ',$type) as $st) {
-                              if(is_numeric($st)){
+                              if(is_numeric(intval($st))){
                                   $finalStr=$finalStr.' <span class="red">'.$st.'</span>';
                               } else {
                                   $finalStr=$finalStr.' '.$st;
