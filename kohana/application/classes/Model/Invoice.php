@@ -55,8 +55,10 @@ class Model_Invoice extends Model_Base {
 
 
     public function view_invoice($workorder_id) {
-        if (file_exists($this->_file_path . $workorder_id . ".pdf")) {
-            Request::current()->redirect($this->_web_file_path . $workorder_id . ".pdf");
+        $workorder_info = $this->workorders_model->get_workorder_details($workorder_id);
+        
+        if (file_exists($this->_file_path . $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf")) {
+            Request::current()->redirect($this->_web_file_path . $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf");
         }
     }
 
@@ -73,6 +75,8 @@ class Model_Invoice extends Model_Base {
         ini_set('display_errors', 1);
         error_reporting(E_ALL);
 
+        $workorder_info = $this->workorders_model->get_workorder_details($workorder_id);
+
         try {
             $dompdf = new DOMPDF();
             $pdf_html = View::factory('pdf/invoice');
@@ -81,9 +85,9 @@ class Model_Invoice extends Model_Base {
             $pdf_html->invoice_meta = $this->invoice_meta($workorder_id);
             $dompdf->load_html($pdf_html);
             $dompdf->render();
-            $file = $this->_file_path . $workorder_id . ".pdf";
+            $file = $this->_file_path . $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf";
             file_put_contents($file, $dompdf->output());
-            $dompdf->stream('sample.pdf');
+            $dompdf->stream($workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf");
             return true;
         } catch (Exception $e) {
             $this::$errors = "Error processing this PDF." . $e;
@@ -107,7 +111,9 @@ class Model_Invoice extends Model_Base {
 
 
     public function check_if_invoice_pdf_exists($workorder_id) {
-        if (!file_exists($this->_file_path . $workorder_id . ".pdf")) {
+        $workorder_info = $this->workorders_model->get_workorder_details($workorder_id);
+
+        if (!file_exists($this->_file_path . $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf")) {
             self::$errors = "File does not exist. Try \"View PDF Invoice again.\".";
             return false;
         } else {

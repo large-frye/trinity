@@ -310,7 +310,7 @@ class Model_Workorders extends Model_Base {
     	                                           u.username, CONCAT(wo.first_name, ' ', wo.last_name) as insured,
                                                    CONCAT(wo.city, ', ', wo.state, ' ', wo.zip) as second_address,
                                                    CONCAT(p.first_name, ' ', p.last_name) as adjuster, 
-                                                   u2.email as adjuster_email
+                                                   u2.email as adjuster_email, p.insurance_company as company_name
     		                                FROM work_orders wo
     		                                LEFT JOIN work_order_statuses wos ON wos.id = wo.status
     		                                LEFT JOIN inspection_statuses _is ON _is.id = wo.inspection_status
