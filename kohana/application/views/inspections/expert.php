@@ -860,7 +860,7 @@
                         <input type="hidden" name="ice_damming" value="blank">
 
                         <input type="checkbox" name="ice_damming" id="ice_damming" value="1"
-                            <?php echo isset($data['ice_damming']) && $data['ice_damming'] ? "checked=checked" : null; ?> />
+                            <?php echo isset($data['ice_damming']) && $data['ice_damming'] != "blank" ? "checked=checked" : null; ?> />
                         <label for="ice_damming">Yes</label>
                     </div>
                 </div>        
@@ -1504,8 +1504,12 @@
                         <input type="hidden" name="workmanship_incorrect_materials" value="blank" />                    
 
                         <input type="checkbox" name="workmanship_incorrect_materials" id="workmanship_incorrect_materials" value="yes"
-                               <?php
-                                echo isset($data["workmanship_incorrect_materials"]) ? "checked" : null; ?>  />
+                        <?php
+                        
+                        echo isset($data["workmanship_incorrect_materials"]) && trim($data['workmanship_incorrect_materials']) != "blank" ? "checked" : null; 
+
+                        ?>  />
+
                         
                         <label for="workmanship_incorrect_materials">Yes</label>
                         

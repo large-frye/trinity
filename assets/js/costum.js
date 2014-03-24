@@ -912,6 +912,13 @@ $(document).ready(function() {
         window.location = "/workorders/generate/" + splitted[5];
     });
 
+    // Send email to client
+    $('#send-report').click(function() {
+        var splitted = document.URL.split('/');
+
+        window.location = "/workorders/send/" + splitted[5];
+    });
+
 
 
     //add (#) to all checked values
@@ -922,23 +929,11 @@ $(document).ready(function() {
 			if($(this).attr('value').indexOf('slopes')!=-1){
 				var label = $(this).parent().find('label');
 				if($(label).hasClass('checked')){
-				 var tmp = $(this).attr('value').match(r)[0];
-				 var result = '<span class="change-shingle-amount">&nbsp;(<a href="#">'+tmp+'</a>)</span>';
-				 $(label).append(result);
-				 }
-				} 
-			//if #
-			else if($(this).attr('value').indexOf('+c')!=-1){
-				var label = $(this).parent().find('label');
-				if($(label).hasClass('checked')){
-				var tmp = $(this).attr('value').split(':')[1].substring(1);
-				
-					//check if slope
-				var result = '<span class=\"extra-comment\">&nbsp;(<a href="#"><span class=\"italic\">+c</span></a>)</span>';
-				$(label).append(result.replace(':', ''));
-				
-			}
-			}
+                    var tmp = $(this).attr('value').match(r)[0];
+                    var result = '<span class="change-shingle-amount">&nbsp;(<a href="#">'+tmp+'</a>)</span>';
+                    $(label).append(result);
+                }
+            }
 	});
 
     $('.comment-box').each(function() {
@@ -947,14 +942,15 @@ $(document).ready(function() {
         var name_wo_brackets = name.substring(start + 1, name.length - 1);
         var el = $(this);
 
-        if (name_wo_brackets != el.val()) {
-            console.log('here');
+        console.log(name_wo_brackets + " ---- " + el.val());
+        if (name_wo_brackets != el.val() && el.val() != "") {
+            console.log($(this).parent().parent().parent());
             el.next().append("<span class=\"extra-comment\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
             el.val(el.val().replace(':', ''));
             el.next().addClass('checked');
         }
-    })
-
+    });
+    
 });
 
 
