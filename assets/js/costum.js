@@ -942,15 +942,13 @@ $(document).ready(function() {
         var name_wo_brackets = name.substring(start + 1, name.length - 1);
         var el = $(this);
 
-        console.log(name_wo_brackets + " ---- " + el.val());
         if (name_wo_brackets != el.val() && el.val() != "") {
-            console.log($(this).parent().parent().parent());
             el.next().append("<span class=\"extra-comment\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
             el.val(el.val().replace(':', ''));
             el.next().addClass('checked');
         }
     });
-    
+
 });
 
 
