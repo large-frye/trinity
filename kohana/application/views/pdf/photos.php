@@ -120,7 +120,7 @@ li { padding: 10px; position: relative; left: 2em;}
                 } else {
                     $tmp = '<div class="imgDiv"><h3 class="parentCatHead">'.$parentCategories[$i]->name.'</h3>'; 
                 }
-                
+
                 for ($j = 0; $j < $count; $j++) {
                     if ($currentParentId === 0 || $currentParentId != $parentCategories[$i]->id) {
                         $break_count = 0;
@@ -140,7 +140,7 @@ li { padding: 10px; position: relative; left: 2em;}
 
                         $currentParentId = $parentCategories[$i]->id;
 
-                        $tmp .= $break . "<div class='imgCl'><span>".$cTmp."</span>
+                        $tmp .= $break . "<div class='imgCl'><span>".$cTmp."</span><br>
                                           <img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation.
                                          "' style='width: 600px; height: 400px; position: relative; left: -100px; top: 20px; margin-top: 20px;' /></div>";
                         $tmp .= "<br>";
