@@ -565,7 +565,7 @@ class Model_Workorders extends Model_Base {
         }
 
         // Hack for collateral damages
-        if (isset($report['damages']['collateral_damamges_comments'])) {
+        if (isset($report['damages']['collateral_damamges_comments']) && $report['damages']['collateral_damamges_comments'] != "") {
             $report['damages']['collateral_damage_header']['collateral_damamges_comments'] = $report['damages']['collateral_damamges_comments'];
         }
 
@@ -950,14 +950,14 @@ class Model_Workorders extends Model_Base {
     private function _set_workmanship($data, $key, $value) {
         $str = "";
 
-        if ( is_array($value) ) {
+        if ( is_array($value) && !empty($value)) {
 
         foreach ( $value as $k => $v ) {
             $str .= $v . ", ";
         }
 
         $data['damages']['workmanship_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . str_replace('(+c):', '- comment: ', $str);
-        }else {
+        }else if ($value != "") {
         $data['damages']['workmanship_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . "<b>" . $value . "</b>"; 
     }
 
