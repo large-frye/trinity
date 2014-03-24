@@ -1491,7 +1491,6 @@
 
                         <input type="checkbox" name="workmanship_incorrect_materials" id="workmanship_incorrect_materials" value="yes"
                                <?php
-                               echo $data["workmanship_incorrect_materials"];
                                 echo isset($data["workmanship_incorrect_materials"]) ? "checked" : null; ?>  />
                         
                         <label for="workmanship_incorrect_materials">Yes</label>
