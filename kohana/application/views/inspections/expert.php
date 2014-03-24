@@ -1,4 +1,4 @@
-<div class="box">
+d<div class="box">
         <div class="title"><?php echo $inspection_type; ?> Report</div>
 
         <div class="content">
@@ -1506,6 +1506,7 @@
                                     $count = 0;
                                     $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
+                                        echo ($data['slope_workmanship_incorrect_materials'];
                                          echo Form::checkbox('slope_workmanship_incorrect_materials[' . $key . ']', $slope_values['slope_workmanship_incorrect_materials'][$key],
                                               isset($data['slope_workmanship_incorrect_materials']) && 
                                                    in_array($key, !is_array($data['slope_workmanship_incorrect_materials']) 
