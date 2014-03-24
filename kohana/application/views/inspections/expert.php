@@ -1489,7 +1489,7 @@
                     
                         <input type="hidden" name="workmanship_incorrect_materials" value="blank" />                    
 
-                        <input type="checkbox" name="workmanship_incorrect_materials" id="workmanship_incorrect_materials"
+                        <input type="checkbox" name="workmanship_incorrect_materials" id="workmanship_incorrect_materials" value="yes"
                                <?php echo isset($data["workmanship_incorrect_materials"]) ? "checked" : null; ?>  />
                         
                         <label for="workmanship_incorrect_materials">Yes</label>
