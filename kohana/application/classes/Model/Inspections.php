@@ -698,8 +698,8 @@ class Model_Inspections extends Model_Base {
     public function get_slope_values($data) {
         $slopes = array('wind_shingles_damaged_slope', 'slope_hail_amount_damaged', 'slope_wind_roof_peeled_back', 'slope_lightning_amount_damaged',
                         'slope_vermin_roofing_damage', 'slope_vermin_fascia_damage', 'slope_vermin_vent_damage',
-                        'slope_ice_damming', 'slope_fallen_ice', 'slope_excess_debris_location', 'slope_standing_water', 'slope_product_defects_asphalt',
-                        'slope_product_defects_blistering', 'slope_product_defects_flaking', 'slope_workmanship_improper_nailing', 'slope_workmanship_improper_overlap',
+                        'slope_ice_damming', 'slope_fallen_ice', 'slope_excess_debris_location', 'slope_standing_water', 'slope_shingle_anomalies_asphalt',
+                        'slope_shingle_anomalies_blistering', 'slope_shingle_anomalies_flaking', 'slope_workmanship_improper_nailing', 'slope_workmanship_improper_overlap',
                         'slope_workmanship_flashing', 'slope_workmanship_flashing_missing', 'slope_workmanship_venting', 'slope_workmanship_incorrect_materials',
                         'slope_workmanship_excessive_layers', 'slope_aged_worn');
         $keys = array_keys($this->get_slopes());
@@ -707,7 +707,7 @@ class Model_Inspections extends Model_Base {
 
         foreach ($slopes as $slope) {
             if (in_array($slope, array('slope_vermin_fascia_damage', 'slope_vermin_vent_damage', 'slope_excess_debris_location', 'slope_standing_water',
-                                       'slope_product_defects_asphalt', 'slope_product_defects_blistering', 'slope_product_defects_flaking',
+                                       'slope_shingle_anomalies_asphalt', 'slope_shingle_anomalies_blistering', 'slope_shingle_anomalies_flaking',
                                        'slope_workmanship_improper_nailing', 'slope_workmanship_improper_overlap', 'slope_workmanship_flashing', 
                                        'slope_workmanship_flashing_missing', 'slope_workmanship_venting', 'slope_workmanship_incorrect_materials',
                                        'slope_workmanship_excessive_layers', 'slope_aged_worn'))) {

@@ -70,9 +70,7 @@ width:450px;
   margin-right: auto;
 
 }
-.parentCatHead{
-   margin-bottom:20px;
-}
+.parentCatHead { margin-top: 30px; margin-bottom:20px; border-bottom: 1px solid black; }
 .imgCl{
    margin-bottom:20px;
   
@@ -97,7 +95,7 @@ li { padding: 10px; position: relative; left: 2em;}
 .padding-top: { padding-top: 25; }
 .damage-block : { position: relative; top: 20px; padding-bottom: 40px;}
 .sketch-helper { position: relative !important; left: -300px !important; }
-.imgCl { position: relative !important; left:  -80px !important; margin-top: 20px !important;}
+.imgCl { position: relative !important; left: 60px !important; margin-top: 20px !important;}
 .imgCl span { 
     margin-bottom: 20px !important;
 }
@@ -107,39 +105,47 @@ li { padding: 10px; position: relative; left: 2em;}
 </head>
 <body>
     <div id="page-wrap">
-        <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
 
         <!-- Photos -->
         <?php
 
         $parentCount = count($parentCategories);
         $count = count($photos);
-        echo '<div class="imgContainer">';
+        $currentParentId = 0;
+
         for ($i = 0; $i < $parentCount; $i++) {
             if($parentCategories[$i]->name!=='Sketches') {
-                $tmp = '<div class="imgDiv"><h4 class="parentCatHead">'.$parentCategories[$i]->name.'</h4>';
+                $tmp = '<div class="imgDiv"><h3 class="parentCatHead">'.$parentCategories[$i]->name.'</h3>';
                 for ($j = 0; $j < $count; $j++) {
-                    $break = "";
-                    if ($j % 2 === 0) {
-                        $break = "<div class=\"page-break\"></div>";
+                    if ($currentParentId === 0 || $currentParentId != $parentCategories[$i]->id) {
+                        $break_count = 0;
                     }
+
                     if ($photos[$j]->categoryParent_id == $parentCategories[$i]->id) {
+                        $currentParentId = $parentCategories[$i]->id;
+                        $break = '';
                         $cTmp ="";
+
                         if($photos[$j]->name !='null') {
                             $cTmp = $photos[$j]->name;
                         }
 
+                        if ($break_count != 0 && $break_count % 2 === 0) {
+                            $break = "<div class=\"page-break\"></div>";
+                        }
+
                         $tmp .= $break . "<div class='imgCl'><span>".$cTmp."</span>
                                           <img id='".$photos[$j]->id."' class='photoImgView' src='".$photos[$j]->fileLocation.
-                                "' style='width: 600px; height: 400px; position: relative; left: -300px; top: 20px; margin-top: 20px;' /></div>";
-                        $tmp .= '<br>';
+                                         "' style='width: 600px; height: 400px; position: relative; left: -100px; top: 20px; margin-top: 20px;' /></div>";
+                        $tmp .= "<br>";
+                        $break_count++;
                     }
                 }
             
                 if(preg_match('/<img/i', $tmp)) {
-                    echo '<div class="page-break"></div>';
+                    // echo '<div class="page-break"></div>';
                     echo $tmp;
-                    echo '<div>';
+                    echo "</div>";
                 }
             }
         }

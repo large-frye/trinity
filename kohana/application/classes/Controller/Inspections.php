@@ -257,7 +257,7 @@ class Controller_Inspections extends Controller_Account {
             $view->form->tree_information = $this->inspections_model->get_fall_tree_information();
             $view->form->debris = $this->inspections_model->get_excess_debris();
             $view->form->water_damages = $this->inspections_model->get_water_damages();
-            $view->form->product_defects = $this->inspections_model->get_product_defects();
+            $view->form->shingle_anomalies = $this->inspections_model->get_product_defects();
             $view->form->workmanship = $this->inspections_model->get_workmanship();
             $view->form->aged_worn = $this->inspections_model->get_aged_worn();
             $view->form->fire_damages = $this->inspections_model->get_fire_damages();

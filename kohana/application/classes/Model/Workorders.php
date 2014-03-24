@@ -700,11 +700,11 @@ class Model_Workorders extends Model_Base {
 
 
 
-    private function _build_photos_pdf($view, $parent_categories, $photos, $workorder_id) {
+    private function _build_photos_pdf($view, $parentCategories, $photos, $workorder_id) {
         // Create the photos seperate
         try {
             $photos_view = View::factory('pdf/photos');
-            $photos_view->parentCategories = $parent_categories;
+            $photos_view->parentCategories = $parentCategories;
             $photos_view->photos = $photos;
             $dompdf2 = new DOMPDF();
             $dompdf2->load_html($photos_view);
@@ -867,8 +867,15 @@ class Model_Workorders extends Model_Base {
 
     private function _handle_damages($data) {
         // $data = $this->_set_damage_str($data, array('metal_header' => 'metal_damage_str'));
+        // echo "<pre>";
+        // print_r($data);
 
         foreach ($data as $key => $value) {
+            // Remove all blanks.
+            if ($value == "blank") {
+                unset($data[$key]);
+            } else {
+
             if (preg_match('/metal_damages/', $key)) {
                 $data = $this->_handle_metal_damage_str($data, $key, $value);
             } else if (preg_match('/hail_size/', $key)) {
@@ -885,7 +892,7 @@ class Model_Workorders extends Model_Base {
                 $data = $this->_set_excess_debris($data, $key, $value);
             } else if ( preg_match('/standing_water/', $key) ) {
                 $data = $this->_set_standing_water($data, $key, $value);
-            } else if ( preg_match('/product_defects/', $key) ) {
+            } else if ( preg_match('/shingle_anomalies/', $key) ) {
                 if (!preg_match('/header/', $key)) {
                     $data = $this->_set_product_defects($data, $key, $value);
                 }
@@ -896,6 +903,7 @@ class Model_Workorders extends Model_Base {
             } else if ( preg_match('/fraud/', $key)) {
                 $data = $this->_set_fraud_input($data, $key, $value);
             }
+        }
         }
 
         return $data;
@@ -965,9 +973,9 @@ class Model_Workorders extends Model_Base {
             $str .= $v . ", ";
         }
 
-        $data['damages']['product_defects_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . str_replace('(+c):', '- comment: ', $str);
+        $data['damages']['shingle_anomalies_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . str_replace('(+c):', '- comment: ', $str);
     } else {
-        $data['damages']['product_defects_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . "<b>" . $value . "</b>"; 
+        $data['damages']['shingle_anomalies_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . "<b>" . $value . "</b>"; 
     }
 
         return $data;
