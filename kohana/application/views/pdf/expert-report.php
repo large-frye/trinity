@@ -166,7 +166,7 @@ SC Adjusters License # 625784</p>
                       <?php 
                           $finalStr='';
                           foreach(explode(' ',$type) as $st) {
-                              if(is_numeric(intval($st))){
+                              if(is_numeric($st)){
                                   $finalStr=$finalStr.' <span class="red">'.$st.'</span>';
                               } else {
                                   $finalStr=$finalStr.' '.$st;
@@ -182,7 +182,8 @@ SC Adjusters License # 625784</p>
                     foreach ($directions as $value) {
                       $val = str_replace($value, '<span class="red">'.$value.'</span>', $val);
                     }
-                     echo "<li>" . $val . "</li>";
+                     $_str = is_numeric($val) ? "<span class=\"red\">" . $val . "</span>" : $val;
+                     echo "<li>" . $_str . "</li>";
                   }
               } ?>
               </ul>
