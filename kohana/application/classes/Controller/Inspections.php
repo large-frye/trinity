@@ -129,7 +129,7 @@ class Controller_Inspections extends Controller_Account {
                 //redirectx
         //      $view->photos =  $this->inspections_model-> get_photos_by_id( $this->_workorder_id );
         //     $view->categories = $this->settings_model->get_categories();
-        //     $this->request->redirect('inspections/catigorizephotos/'+$this->_workorder_id  );
+                $this->request->redirect('/inspections/catigorizephotos/' . $this->_workorder_id);
             }
         }
  
@@ -184,7 +184,7 @@ class Controller_Inspections extends Controller_Account {
             $view->form->post = $this->_post;
 
             if ( $this->inspections_model->validate_inpsection_report( $this->_post, $this->_workorder_id ) ) {
-                $view->success = "Your inspection report was submitted successfully.";
+                $view->success = "Your inspection report was submitted successfully. Go to <a href=\"/inspections/uploadphotos/" . $this->_workorder_id . "\">upload photos</a>";
             } else {
                 $view->errors = Model_Inspections::$errors;
                 $view->form->errors = Model_Inspections::$errors;
