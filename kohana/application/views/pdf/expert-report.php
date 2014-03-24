@@ -187,13 +187,9 @@ SC Adjusters License # 625784</p>
                         $_str .= is_numeric($char) ? "<span class=\"red\">" . $char . "</span>" : $char;
                       }
                     }
-
-                    echo "value - " . $val;
-
-                    /* $_str = "";
                     
                     
-                     echo "<li>" . $_str . "</li>"; */
+                     echo "<li>" . $_str . "</li>"; 
                   }
               } ?>
               </ul>
