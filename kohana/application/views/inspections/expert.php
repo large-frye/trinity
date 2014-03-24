@@ -1245,7 +1245,7 @@
              
                 <div class="row">
                 <?php 
-                echo $data['workmanship_header'];
+               
                 echo Form::checkbox('workmanship_header', "1", isset($data['workmanship_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'workmanship_header')); ?>
                     <label for="workmanship_header"><strong>Check if apply</strong></label>
                 </div>
