@@ -12,7 +12,11 @@ $(document).ready(function() {
     });
   }catch(err){
     //dont care about errors
-  }
+    console.log('not on workorders page');
+  }finally {
+  //clean up
+  this.reset();
+}
  
 });
 
