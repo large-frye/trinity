@@ -1099,37 +1099,37 @@
 <div class="section">
     <div class="box">
             <div class="title slope-title-helper">
-                Shingle Anomalies
+                Product Defects
                 <span class="show"></span>
             </div>
             <div class="content">
             
                 <div class="row">
-                <?php echo Form::checkbox('shingle_anomalies_header', "1", isset($data['shingle_anomalies_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'shingle_anomalies_header')); ?>
-                    <label for="shingle_anomalies_header"><strong>Check if apply</strong></label>
+                <?php echo Form::checkbox('product_defects_header', "1", isset($data['product_defects_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'product_defects_header')); ?>
+                    <label for="product_defects_header"><strong>Check if apply</strong></label>
                 </div>
                 
-                <!-- {{#errors.shingle_anomalies}}
+                <!-- {{#errors.product_defects}}
                     <div class="row">
                         <div class="right">
-                            <label class="error">{{errors.shingle_anomalies}}</label>
+                            <label class="error">{{errors.product_defects}}</label>
                         </div>
                     </div>
-                {{/errors.shingle_anomalies}}        -->
+                {{/errors.product_defects}}        -->
 
                 <div class="row">
-                    <label for="shingle_anomalies_asphalt_coating_defect">Asphalt Coating Defect</label>
+                    <label for="product_defects_asphalt_coating_defect">Asphalt Coating Defect</label>
 
-                    <div class="right has_slope_select" rel="slope_shingle_anomalies_asphalt">
-                        <?php echo Form::select('shingle_anomalies_asphalt_coating_defect', $shingle_anomalies, isset($data['shingle_anomalies_asphalt_coating_defect']) ?
-                                                                                                            $data['shingle_anomalies_asphalt_coating_defect'] : 
+                    <div class="right has_slope_select" rel="slope_product_defects_asphalt">
+                        <?php echo Form::select('product_defects_asphalt_coating_defect', $product_defects, isset($data['product_defects_asphalt_coating_defect']) ?
+                                                                                                            $data['product_defects_asphalt_coating_defect'] : 
                                                                                                             'blank') .
-                                   Form::label('shingle_anomalies_asphalt_coating_defect', 'Asphalt Coating Defect');
+                                   Form::label('product_defects_asphalt_coating_defect', 'Asphalt Coating Defect');
                         ?>
                     </div>
                 </div>    
 
-                <div class="row slope" id="slope_shingle_anomalies_asphalt">
+                <div class="row slope" id="slope_product_defects_asphalt">
                     <div class="section">
                         <div class="box">
                             <div class="title">Select Slope (Asphalt Coating Defect)</div>
@@ -1138,13 +1138,13 @@
                                     $count = 0;
                                     $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                         echo Form::checkbox('slope_shingle_anomalies_asphalt[' . $key . ']', $slope_values['slope_shingle_anomalies_asphalt'][$key],
-                                              isset($data['slope_shingle_anomalies_asphalt']) && 
-                                                   in_array($key, !is_array($data['slope_shingle_anomalies_asphalt']) 
-                                                   ? array_keys(unserialize($data['slope_shingle_anomalies_asphalt'])) : array_keys($data['slope_shingle_anomalies_asphalt']))
+                                         echo Form::checkbox('slope_product_defects_asphalt[' . $key . ']', $slope_values['slope_product_defects_asphalt'][$key],
+                                              isset($data['slope_product_defects_asphalt']) && 
+                                                   in_array($key, !is_array($data['slope_product_defects_asphalt']) 
+                                                   ? array_keys(unserialize($data['slope_product_defects_asphalt'])) : array_keys($data['slope_product_defects_asphalt']))
                                                    ? true : false,
-                                 array('id' => 'slope_shingle_anomalies_asphalt' . $count, 'class' => 'comment-box')) .
-                                        Form::label('slope_shingle_anomalies_asphalt' . $count, $slope) . "\n";
+                                 array('id' => 'slope_product_defects_asphalt' . $count, 'class' => 'comment-box')) .
+                                        Form::label('slope_product_defects_asphalt' . $count, $slope) . "\n";
 
                                         $count++;
                                     } ?>
@@ -1157,18 +1157,18 @@
                     
 
                 <div class="row">
-                    <label for="shingle_anomalies_blistering">Blistering</label>
+                    <label for="product_defects_blistering">Blistering</label>
 
-                    <div class="right has_slope_select" rel="slope_shingle_anomalies_blistering">
-                        <?php echo Form::select('shingle_anomalies_blistering', $shingle_anomalies, isset($data['shingle_anomalies_blistering']) ?
-                                                                                                            $data['shingle_anomalies_blistering'] : 
+                    <div class="right has_slope_select" rel="slope_product_defects_blistering">
+                        <?php echo Form::select('product_defects_blistering', $product_defects, isset($data['product_defects_blistering']) ?
+                                                                                                            $data['product_defects_blistering'] : 
                                                                                                             'blank') .
-                                   Form::label('shingle_anomalies_blistering', 'Blistering');
+                                   Form::label('product_defects_blistering', 'Blistering');
                         ?>
                     </div>
                 </div>    
 
-                <div class="row slope" id="slope_shingle_anomalies_blistering">
+                <div class="row slope" id="slope_product_defects_blistering">
                     <div class="section">
                         <div class="box">
                             <div class="title">Select Slope (Blistering)</div>
@@ -1177,13 +1177,13 @@
                                     $count = 0;
                                     $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                         echo Form::checkbox('slope_shingle_anomalies_blistering[' . $key . ']', $slope_values['slope_shingle_anomalies_blistering'][$key],
-                                              isset($data['slope_shingle_anomalies_blistering']) && 
-                                                   in_array($key, !is_array($data['slope_shingle_anomalies_blistering']) 
-                                                   ? array_keys(unserialize($data['slope_shingle_anomalies_blistering'])) : array_keys($data['slope_shingle_anomalies_blistering']))
+                                         echo Form::checkbox('slope_product_defects_blistering[' . $key . ']', $slope_values['slope_product_defects_blistering'][$key],
+                                              isset($data['slope_product_defects_blistering']) && 
+                                                   in_array($key, !is_array($data['slope_product_defects_blistering']) 
+                                                   ? array_keys(unserialize($data['slope_product_defects_blistering'])) : array_keys($data['slope_product_defects_blistering']))
                                                    ? true : false,
-                                 array('id' => 'slope_shingle_anomalies_blistering' . $count, 'class' => 'comment-box')) .
-                                        Form::label('slope_shingle_anomalies_blistering' . $count, $slope) . "\n";
+                                 array('id' => 'slope_product_defects_blistering' . $count, 'class' => 'comment-box')) .
+                                        Form::label('slope_product_defects_blistering' . $count, $slope) . "\n";
 
                                         $count++;
                                     } ?>
@@ -1195,18 +1195,18 @@
                 </div>
 
                 <div class="row">
-                    <label for="shingle_anomalies_flaking">Flaking</label>
+                    <label for="product_defects_flaking">Flaking</label>
 
-                    <div class="right has_slope_select" rel="slope_shingle_anomalies_flaking">
-                        <?php echo Form::select('shingle_anomalies_flaking', $shingle_anomalies, isset($data['shingle_anomalies_flaking']) ?
-                                                                                                            $data['shingle_anomalies_flaking'] : 
+                    <div class="right has_slope_select" rel="slope_product_defects_flaking">
+                        <?php echo Form::select('product_defects_flaking', $product_defects, isset($data['product_defects_flaking']) ?
+                                                                                                            $data['product_defects_flaking'] : 
                                                                                                             'blank') .
-                                   Form::label('shingle_anomalies_flaking', 'Flaking');
+                                   Form::label('product_defects_flaking', 'Flaking');
                         ?>
                     </div>
                 </div>    
 
-                <div class="row slope" id="slope_shingle_anomalies_flaking">
+                <div class="row slope" id="slope_product_defects_flaking">
                     <div class="section">
                         <div class="box">
                             <div class="title">Select Slope (Flaking)</div>
@@ -1215,13 +1215,13 @@
                                     $count = 0;
                                     $slopes += array('Entire Roof' => 'Entire Roof');
                                     foreach($slopes as $key => $slope) {
-                                         echo Form::checkbox('slope_shingle_anomalies_flaking[' . $key . ']', $slope_values['slope_shingle_anomalies_flaking'][$key],
-                                              isset($data['slope_shingle_anomalies_flaking']) && 
-                                                   in_array($key, !is_array($data['slope_shingle_anomalies_flaking']) 
-                                                   ? array_keys(unserialize($data['slope_shingle_anomalies_flaking'])) : array_keys($data['slope_shingle_anomalies_flaking']))
+                                         echo Form::checkbox('slope_product_defects_flaking[' . $key . ']', $slope_values['slope_product_defects_flaking'][$key],
+                                              isset($data['slope_product_defects_flaking']) && 
+                                                   in_array($key, !is_array($data['slope_product_defects_flaking']) 
+                                                   ? array_keys(unserialize($data['slope_product_defects_flaking'])) : array_keys($data['slope_product_defects_flaking']))
                                                    ? true : false,
-                                 array('id' => 'slope_shingle_anomalies_flaking' . $count, 'class' => 'comment-box')) .
-                                        Form::label('slope_shingle_anomalies_flaking' . $count, $slope) . "\n";
+                                 array('id' => 'slope_product_defects_flaking' . $count, 'class' => 'comment-box')) .
+                                        Form::label('slope_product_defects_flaking' . $count, $slope) . "\n";
 
                                         $count++;
                                     } ?>
@@ -1244,9 +1244,7 @@
             <div class="content">
              
                 <div class="row">
-                <?php 
-               
-                echo Form::checkbox('workmanship_header', "1", isset($data['workmanship_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'workmanship_header')); ?>
+                <?php echo Form::checkbox('workmanship_header', "1", isset($data['workmanship_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'workmanship_header')); ?>
                     <label for="workmanship_header"><strong>Check if apply</strong></label>
                 </div>
                 
