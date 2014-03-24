@@ -129,7 +129,7 @@ li { padding: 10px; position: relative; left: 2em;}
                             $cTmp = $photos[$j]->name;
                         }
 
-                        if (($break_count != 0 && $break_count % 2 === 0) || $currentParentId != $parentCategories[$i]->id) { 
+                        if ($break_count != 0 && $break_count % 2 === 0) { 
                             $break = "<div class=\"page-break\"></div>";
                         }
 
