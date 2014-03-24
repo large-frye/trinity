@@ -172,16 +172,7 @@ SC Adjusters License # 625784</p>
                                   $finalStr=$finalStr.' '.$st;
                               }
                           }
-                          
                           $type = $finalStr;
-
-                           foreach(explode(' ',$type) as $st) {
-                              if(is_numeric($st)){
-                                $type = $type . ' <span class="redTxt">' . $st . '</span>';
-                                   } else {
-                                $type=$type.' '.$st;
-                                 }
-                             }
 
                           foreach ($directions as $value) {
                               $type = str_replace($value, '<span class="red">'.$value.'</span>', $type);
@@ -190,6 +181,14 @@ SC Adjusters License # 625784</p>
                   foreach ($type as $t => $val) {
                     foreach ($directions as $value) {
                       $val = str_replace($value, '<span class="red">'.$value.'</span>', $val);
+                       foreach(explode(' ',$val) as $st) {
+                              if(is_numeric($st)){
+                                  $val=$val.' <span class="red">'.$st.'</span>';
+                              } else {
+                                  $val=$val.' '.$st;
+                              }
+                          }
+
                     }
                      echo "<li>" . $val . "</li>";
                   }
