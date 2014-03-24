@@ -174,6 +174,15 @@ SC Adjusters License # 625784</p>
                           }
                           
                           $type = $finalStr;
+
+                           foreach(explode(' ',$type) as $st) {
+                              if(is_numeric($st)){
+                                $type = $type . ' <span class="redTxt">' . $st . '</span>';
+                                   } else {
+                                $type=$type.' '.$st;
+                                 }
+                             }
+
                           foreach ($directions as $value) {
                               $type = str_replace($value, '<span class="red">'.$value.'</span>', $type);
                           } echo $type; ?></li>
