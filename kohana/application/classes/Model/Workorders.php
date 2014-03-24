@@ -676,6 +676,8 @@ class Model_Workorders extends Model_Base {
      *
      */
     public function build_basic_pdf($view, $parent_categories, $photos, $workorder_id, $report_data) {
+        $workorder_info = $this->get_workorder_details($workorder_id);
+
         // Photos
         $this->_build_photos_pdf($view, $parent_categories, $photos, $workorder_id);
 
