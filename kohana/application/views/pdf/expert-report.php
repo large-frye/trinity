@@ -180,6 +180,7 @@ SC Adjusters License # 625784</p>
               <?php } else if (is_array($type)) {
                   foreach ($type as $t => $val) {
                     foreach ($directions as $value) {
+                      $_str = "";
 
                       foreach (explode(' ', $val) as $char) {
                         $_str .= is_numeric($char) ? "<span class=\"red\">" . $char . "</span> " : $char . " ";
