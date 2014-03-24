@@ -82,6 +82,10 @@
 	width: 170px;
 }
 
+#inspection-form .shingle_anomalies .custom-checkbox {
+	width: auto !important;
+}
+
 .fraud_wind_input .custom-checkbox {
 	width: 210px !important;
 }

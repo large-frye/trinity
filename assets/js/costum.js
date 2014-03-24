@@ -805,7 +805,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('.fallen-tree, .metal-damage, .excess-debris').click(function() {
+    $('.fallen-tree, .metal-damage, .excess-debris, .shingle-anomalies-comment-box').click(function() {
         load_comment_box($(this), false);
     });
 
@@ -816,17 +816,14 @@ $(document).ready(function() {
             comment_class.remove();
         }
 
-        if (el[0].checked) {	
-
+        if (el[0].checked) {
             var answer = prompt("Comment:");
             if (answer !== null && answer !== "") {
                 if (slope) {
-                	
                     el.next().append("<span class=\"extra-comment _slope\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
                     el.val(el.next().text() + ": " + answer);
                     el.next().addClass('checked');
                 } else {
-              
                     el.next().append("<span class=\"extra-comment\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
                     el.val(answer);
                     el.next().addClass('checked');
@@ -906,6 +903,12 @@ $(document).ready(function() {
     $('#save-report').click(function() {
         var splitted = document.URL.split('/');
 
+        if ($('.xact-report').val() == "0") {
+            alert("You need to attach an Xactimate Report to this Inspection. Find \"Please go here to upload file\" in the web page after clicking \"OK\" to close this alert." +
+                  "\n\n\nIF YOU DO NOT ADD AN XACTIMATE REPORT THIS WILL NOT ALLOW PDF GENERATION FOR THIS INSPECTION REPORT.");
+            return false;
+        }
+
         window.location = "/workorders/generate/" + splitted[5];
     });
 
@@ -932,11 +935,25 @@ $(document).ready(function() {
 				
 					//check if slope
 				var result = '<span class=\"extra-comment\">&nbsp;(<a href="#"><span class=\"italic\">+c</span></a>)</span>';
-				$(label).append(result);
+				$(label).append(result.replace(':', ''));
 				
 			}
 			}
-	}); 
+	});
+
+    $('.comment-box').each(function() {
+        var name = $(this).attr('name');
+        var start = name.toString().indexOf("[");
+        var name_wo_brackets = name.substring(start + 1, name.length - 1);
+        var el = $(this);
+
+        if (name_wo_brackets != el.val()) {
+            console.log('here');
+            el.next().append("<span class=\"extra-comment\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
+            el.val(el.val().replace(':', ''));
+            el.next().addClass('checked');
+        }
+    })
 
 });
 
