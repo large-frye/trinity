@@ -185,15 +185,15 @@ SC Adjusters License # 625784</p>
 
                         foreach ($val as $c) {
                           echo $c;
-                            if (is_numeric($c)) {
+                            /* if (is_numeric($c)) {
                                 // $_str .= "<span class=\"red\">" . $c . "</span>";
                             } else {
                               //  $_str .= $c;
-                            }
+                              } */
                         }
                     }
 
-                    echo "value - " . $val . $_str;
+                    echo "value - " . $val;
 
                     /* $_str = "";
                     
