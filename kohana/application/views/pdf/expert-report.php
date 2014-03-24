@@ -124,7 +124,7 @@ li { padding: 10px; position: relative; left: 2em;}
 </table>
 <table border="1" class="top position-right">
     <tr><th>Adjsuter Name:</th><td class="border">&nbsp;<?php echo $inspection_data['adjuster'];?></td></tr>
-    <tr><th>Insurance Company:</th><td class="border">...</td></tr>
+    <tr><th>Insurance Company:</th><td class="border"><?php echo $inspection_data['company_name']; ?></td></tr>
     <tr><th>Date:</th><td class="border">&nbsp;<?php echo $inspection_data['date_of_inspection'];?></td></tr>
 </table>
 <h4 class="center">Inspection Overview:</h4>
