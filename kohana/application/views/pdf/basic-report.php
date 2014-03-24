@@ -4,10 +4,11 @@
     <title>Basic Inspection</title>
 <style type="text/css">
 * {
-  margin:0; padding:0;
+  margin:0px; padding:0; margin-top: 10px;
 }
 body{
-  font:14px Georgia, serif; 
+  font:14px Georgia, serif;
+  line-height: 24px;
 }
 
 #page-wrap{
@@ -30,7 +31,7 @@ table.top {
 
 table.position-right{
     position: relative;
-    top: -70px;
+    top: -110px;
     left: 360px;
 }
 
@@ -137,8 +138,8 @@ ul
 <br /><br />
 <?php 
 
-$collateral_damage_header = $report_data['damages']['collateral_damage_header']; 
-$collateral_damages = $report_data['damages']['collateral_damage_header']['collateral_damages'];
+$collateral_damage_header = isset($report_data['damages']['collateral_damage_header']) ? $report_data['damages']['collateral_damage_header'] : null;
+$collateral_damages = isset($report_data['damages']['collateral_damage_header']['collateral_damages']) ? $report_data['damages']['collateral_damage_header']['collateral_damages'] : null;
 
 ?>
 
@@ -146,7 +147,7 @@ $collateral_damages = $report_data['damages']['collateral_damage_header']['colla
 <p>During our ground level walk around inspection of loss to the following building materials that may be more susceptible to wind or hail:</p>
 <p>During our ground level walk around inspection of the loss <span class="blue">
   <?php echo isset($collateral_damage_header) && !empty($collateral_damage_header) ? "we did find collateral damage" : "we did not find collateral damage"; ?></span> 
-   to the following building materials that may be more susceptible to wind or hail:</p>
+   to the following building materials that may be more susceptible to wind or hail.</p>
 <p class="blue"><?php echo isset($collateral_damages) && !empty($collateral_damages) ? implode(', ', $collateral_damages) : null; ?></p>
 <?php if(isset($report_data['damages']['collateral_damamges_comments'])) {
     echo "<h4>Collateral Damages Comments: </h4><p>" . $report_data['damages']['collateral_damamges_comments'] . "</p>";
@@ -171,7 +172,6 @@ roofing systems.</p>';
                      }
 
               ?></h5>
-              <br>
               <div class="damageUL">
               <ul>
               <?php 
@@ -231,23 +231,15 @@ roofing systems.</p>';
 
 <h4 class="row-header" style="margin-top: 50px; position: relative;">INSPECTION SUMMARY</h4>
 <?php 
-echo '<div class="hailDmg">';
- echo '<p>';
-
- if($windTotal>0){
-      echo '<span>We did find wind damage to the roofing system. There were also ('.$windTotal.') ridge cap shingles windblown.</span>';
-
-}else {
-  echo '<span>We did not find wind damage to the roofing system.</span>';
-}
-if($hailTotal>0){
-    echo 'We have come to the conclusion that hail damage has occurred to the roofing system. There were also ('.$hailTotal.') ridge cap shingles damaged by hail.</span>';
-}else {
-  echo '<span>We have come to the conclusion that the hail was too small to damage the roofing system.</span>';
-}
 
 if (isset($report_data['damages']['general_comments'])) {
-    echo "&nbsp;" . $report_data['damages']['general_comments'];
+    if (trim($report_data['damages']['general_comments']) == null || trim($report_data['damages']['general_comments']) == "") {
+        echo "There were no comments left about this report.";
+    } else {
+        echo "&nbsp;" . $report_data['damages']['general_comments'];
+    }
+} else {
+    echo "No comments.";
 }
 
 ?>

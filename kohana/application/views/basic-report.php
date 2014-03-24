@@ -94,14 +94,15 @@ p {
 </table>
 <br /><br />
 <h4 class="row-header">GROUND INSPECTION</h4>
-<p>During our ground level walk around inspection of loss <?php echo $collateral; ?> to the following building materials that may be more susceptible to wind or hail:</p>
-<?php echo $colllateral_damages; ?>
+<p>During our ground level walk around inspection of loss to the following building materials that may be more susceptible to wind or hail:</p>
 <h4 class="row-header">ROOF INSPECTION</h4>
-<?php foreach ($damages as $damage) {
-    echo "<h5 class=\"damage-header\">" . $damage . "</h5>";
+<?php foreach ($report_data['damages'] as $damage) {
+    if (preg_match('/header/', $damage)) {
+        echo "<h5 class=\"damage-header\">" . $damage . "</h5>";
+    }
+    
 } ?>
 <h4 class="row-header">INSPECTION SUMMARY</h4>
-
 </div>
 
 
