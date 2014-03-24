@@ -185,9 +185,9 @@ SC Adjusters License # 625784</p>
                       foreach (explode(' ', $val) as $char) {
                         $_str .= is_numeric($char) ? "<span class=\"red\">" . $char . "</span> " : $char . " ";
                       }
-                    }
 
-                    $_str = str_replace($value, '<span class="red">'.$value.'</span>', $val);
+                      $_str = str_replace($value, '<span class="red">'.$value.'</span>', $val);
+                    }
                     
                      echo "<li>" . $_str . "</li>"; 
                   }
