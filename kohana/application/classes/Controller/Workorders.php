@@ -199,9 +199,9 @@ class Controller_Workorders extends Controller_Account {
         
         if ($status) {
             if (Model_Workorders::$type === Model_Workorders::EXPERT_INSPECTION) {
-                $this->request->redirect('/assets/pdf/reports/'. $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf");
+                $this->request->redirect('/assets/pdf/reports/'. str_replace(' ', '', $workorder_info->last_name) . "_Claim" . str_replace(' ', '', $workorder_info->policy_number) . ".pdf");
             } else {
-                $this->request->redirect('/assets/pdf/reports/'. $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf");
+                $this->request->redirect('/assets/pdf/reports/'. str_replace(' ', '', $workorder_info->last_name) . "_Claim" . str_replace(' ', '', $workorder_info->policy_number) . ".pdf");
             }
         } else {
             print_r(Model_Workorders::$errors);
