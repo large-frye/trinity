@@ -1,3 +1,6 @@
+.ui-dialog {
+    z-index: 1000000;
+}
 
 .delPhoto{
     height:85px;
