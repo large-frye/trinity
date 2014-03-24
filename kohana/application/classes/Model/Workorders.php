@@ -983,9 +983,11 @@ class Model_Workorders extends Model_Base {
 
                 foreach ($value as $_k => $_v) {
                     if ($count + 1 == count($value)) {
-                        $stmt .= " and " . $_k . ".";
+                        $stmt .= " and " . $_k;
+                        $stmt .= trim($_v) != "" ? " (" . $_v . ") ." : ".";
                     } else {
-                        $stmt .= " " . $_k . ", ";
+                        $stmt .= " " . $_k;
+                        $stmt .= trim($_v) != "" ? " (" . $_v . ") ," : ", ";
                     }
 
                     $count++;
