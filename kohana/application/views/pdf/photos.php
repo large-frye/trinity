@@ -115,7 +115,12 @@ li { padding: 10px; position: relative; left: 2em;}
 
         for ($i = 0; $i < $parentCount; $i++) {
             if($parentCategories[$i]->name!=='Sketches') {
-                $tmp = '<div class="imgDiv"><h3 class="parentCatHead">'.$parentCategories[$i]->name.'</h3>'; 
+                if ($currentParentId != 0) {
+                    $tmp = "<div class=\"page-break\"></div>" . '<div class="imgDiv"><h3 class="parentCatHead">'.$parentCategories[$i]->name.'</h3>';
+                } else {
+                    $tmp = '<div class="imgDiv"><h3 class="parentCatHead">'.$parentCategories[$i]->name.'</h3>'; 
+                }
+                
                 for ($j = 0; $j < $count; $j++) {
                     if ($currentParentId === 0 || $currentParentId != $parentCategories[$i]->id) {
                         $break_count = 0;
