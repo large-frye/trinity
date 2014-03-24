@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
  
+ try{
     var div = $('#fixed-header');
     var start = $(div).offset().top;
  
@@ -9,6 +10,9 @@ $(document).ready(function() {
         $(div).css('position',((p)>start) ? 'fixed' : 'static');
         $(div).css('top',((p)>start) ? '0px' : '');
     });
+  }catch(err){
+    //dont care about errors
+  }
  
 });
 
