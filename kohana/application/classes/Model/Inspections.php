@@ -572,6 +572,16 @@ class Model_Inspections extends Model_Base {
 
 
 
+    public function get_shingle_anomalies() {
+        return array('large areas of granule release'        => 'Large areas of granule release',
+                     'small areas of granule release'        => 'Small areas of granule release',
+                     'overall widespread of granule release' => 'Overall widespread areas of early granule release',
+                     'stress fractures'                      => 'Stress Fractures',
+                     'craze cracking of asphalt'             => 'Craze cracking of asphalt');
+    }
+
+
+
     public function validate_inpsection_report($post, $id) {
         $valid = Validation::factory($post);
 
@@ -742,6 +752,7 @@ class Model_Inspections extends Model_Base {
         $fallen_tree_damages = $this->get_fall_tree_information();
         $workmanship = $this->get_workmanship();
         $_values = array('fallen_tree_damages' => array_keys($fallen_tree_damages['damages']),
+                         'shingle_anomalies_types' => array_keys($this->get_shingle_anomalies()),
                          'fraud_wind_input' => array_keys($this->get_fraud_wind_input()),
                          'fraud_hail_input' => array_keys($this->get_fraud_hail_input()),
                          'collateral_damages' => array_keys($this->get_collateral_damages()),

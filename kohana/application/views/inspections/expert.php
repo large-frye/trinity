@@ -966,7 +966,7 @@
                         
                         <div class="cl"></div>
                     </div>
-                    <p class="italic fallen-tree-p">Note: When saving a comment for a type, "c" appears next to the type letting you know that comment has been saved.</p>
+                    <p class="italic fallen-tree-p">Note: When saving a comment for a type, "c+" appears next to the type letting you know that comment has been saved.</p>
                 </div>                
             </div>
         </div>
@@ -1105,29 +1105,21 @@
             <div class="content">
             
                 <div class="row">
-                <?php echo Form::checkbox('shingle_anomalies_header', "1", isset($data['shingle_anomalies_header']) ? true : null, array('class' => 'check_if_apply', 'id' => 'shingle_anomalies_header')); ?>
+                <?php echo Form::checkbox('shingle_anomalies_header', "1", isset($data['shingle_anomalies_header']) ? true : null, 
+                                          array('class' => 'check_if_apply', 'id' => 'shingle_anomalies_header')); ?>
                     <label for="shingle_anomalies_header"><strong>Check if apply</strong></label>
                 </div>
-                
-                <!-- {{#errors.shingle_anomalies}}
-                    <div class="row">
-                        <div class="right">
-                            <label class="error">{{errors.shingle_anomalies}}</label>
-                        </div>
-                    </div>
-                {{/errors.shingle_anomalies}}        -->
 
                 <div class="row">
                     <label for="shingle_anomalies_asphalt_coating_defect">Asphalt Coating Defect</label>
 
                     <div class="right has_slope_select" rel="slope_shingle_anomalies_asphalt">
-                        <?php echo Form::select('shingle_anomalies_asphalt_coating_defect', $shingle_anomalies, isset($data['shingle_anomalies_asphalt_coating_defect']) ?
-                                                                                                            $data['shingle_anomalies_asphalt_coating_defect'] : 
-                                                                                                            'blank') .
+                        <?php echo Form::select('shingle_anomalies_asphalt_coating_defect', $shingle_anomalies, 
+                                                isset($data['shingle_anomalies_asphalt_coating_defect']) ? $data['shingle_anomalies_asphalt_coating_defect'] : 'blank') .
                                    Form::label('shingle_anomalies_asphalt_coating_defect', 'Asphalt Coating Defect');
                         ?>
                     </div>
-                </div>    
+                </div>
 
                 <div class="row slope" id="slope_shingle_anomalies_asphalt">
                     <div class="section">
@@ -1230,7 +1222,29 @@
                             </div>
                         </div>
                     </div>                
-                </div>    
+                </div>
+
+                <div class="row">
+                    <label for="shingle_anomalies_types">Damages</label>
+
+                    <div class="right shingle_anomalies">
+                        <?php
+                        $count = 0;
+                        foreach($shingle_anomalies_types as $key => $option) {
+                            echo Form::checkbox('shingle_anomalies_types[' . $key . ']', $data_values['shingle_anomalies_types'][$key],
+                                 isset($data['shingle_anomalies_types']) && 
+                                                   in_array($key, !is_array($data['shingle_anomalies_types']) 
+                                                   ? array_keys(unserialize($data['shingle_anomalies_types'])) : array_keys($data['shingle_anomalies_types']))
+                                                   ? true : false,
+                                 array('id' => 'shingle_anomalies_types' . $count, 'class' => 'shingle-anomalies-comment-box comment-box')) . 
+                                 Form::label('shingle_anomalies_types' . $count, $option);
+                            $count++;
+                        } ?>
+                        
+                        <div class="cl"></div>
+                    </div>
+                    <p class="italic fallen-tree-p">Note: When saving a comment for a type, "c+" appears next to the type letting you know that comment has been saved.</p>
+                </div>
             </div>
         </div>
 </div>

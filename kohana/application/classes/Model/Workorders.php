@@ -565,7 +565,7 @@ class Model_Workorders extends Model_Base {
         }
 
         // Hack for collateral damages
-        if (isset($report['damages']['collateral_damamges_comments'])) {
+        if (isset($report['damages']['collateral_damamges_comments']) && $report['damages']['collateral_damamges_comments'] != "") {
             $report['damages']['collateral_damage_header']['collateral_damamges_comments'] = $report['damages']['collateral_damamges_comments'];
         }
 
@@ -950,14 +950,14 @@ class Model_Workorders extends Model_Base {
     private function _set_workmanship($data, $key, $value) {
         $str = "";
 
-        if ( is_array($value) ) {
+        if ( is_array($value) && !empty($value)) {
 
         foreach ( $value as $k => $v ) {
             $str .= $v . ", ";
         }
 
         $data['damages']['workmanship_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . str_replace('(+c):', '- comment: ', $str);
-        }else {
+        }else if ($value != "") {
         $data['damages']['workmanship_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . "<b>" . $value . "</b>"; 
     }
 
@@ -971,14 +971,40 @@ class Model_Workorders extends Model_Base {
 
         if ( is_array($value) ) {
 
-        foreach ( $value as $k => $v ) {
-            $str .= $v . ", ";
-        }
+            if ($key === "shingle_anomalies_types") {
+                $verb = "were";
+                $count = 0;
 
-        $data['damages']['shingle_anomalies_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . str_replace('(+c):', '- comment: ', $str);
-    } else {
-        $data['damages']['shingle_anomalies_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . "<b>" . $value . "</b>"; 
-    }
+                if (count($value) === 1) {
+                    $verb = "was";
+                }
+
+                $stmt = "The shingle anomalies found " . $verb;
+
+                foreach ($value as $_k => $_v) {
+                    if ($count + 1 == count($value)) {
+                        $stmt .= " and " . $_k;
+                        $stmt .= trim($_v) != "" ? " (" . $_v . ") ." : ".";
+                    } else {
+                        $stmt .= " " . $_k;
+                        $stmt .= trim($_v) != "" ? " (" . $_v . ") ," : ", ";
+                    }
+
+                    $count++;
+                }
+
+                $data['damages']['shingle_anomalies_header'][$key] = "<b>" . $stmt . "</b>";
+            } else {
+
+                foreach ( $value as $k => $v ) {
+                    $str .= $v . ", ";
+                }
+
+                $data['damages']['shingle_anomalies_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . str_replace('(+c):', '- comment: ', $str);
+            }
+        } else {
+            $data['damages']['shingle_anomalies_header'][$key] = "<b>" . str_replace('_', ' ', $key) . ":</b> " . "<b>" . $value . "</b>"; 
+        }
 
         return $data;
     }

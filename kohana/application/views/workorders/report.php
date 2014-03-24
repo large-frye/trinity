@@ -175,6 +175,7 @@ echo '</table>'; ?>
     <div class="title">Xactimate Report</div>
     <div class="content">
          <?php echo $xactimate ? "File found and will be included in PDF creation." : "Please go <a href=\"/workorders/edit/" . $workorder_id . "\">here</a> to upload file"; ?>
+         <?php echo Form::hidden('xact_report', $xactimate ? "1" : "0", array('class' => 'xact-report')); ?>
     </div>
     </div>
 </div>

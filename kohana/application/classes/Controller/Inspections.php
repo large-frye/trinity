@@ -261,6 +261,7 @@ class Controller_Inspections extends Controller_Account {
             $view->form->workmanship = $this->inspections_model->get_workmanship();
             $view->form->aged_worn = $this->inspections_model->get_aged_worn();
             $view->form->fire_damages = $this->inspections_model->get_fire_damages();
+            $view->form->shingle_anomalies_types = $this->inspections_model->get_shingle_anomalies();
         }
 
 
