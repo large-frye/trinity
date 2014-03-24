@@ -1488,9 +1488,9 @@ d<div class="box">
                     <div class="right has_slope_checkbox" rel="slope_workmanship_incorrect_materials">
                     
                         <input type="hidden" name="workmanship_incorrect_materials" value="blank" />                    
-
-                        <input type="checkbox" name="workmanship_incorrect_materials" id="workmanship_incorrect_materials" value="yes"
-                               <?php echo isset($data["workmanship_incorrect_materials"]) ? "checked" : null; ?>  />
+                    <input type="checkbox" name="workmanship_incorrect_materials" id="workmanship_incorrect_materials" 
+                                value='yes' <?php echo isset($data["workmanship_incorrect_materials"]) ? "checked" : null; ?> />
+                       
                         
                         <label for="workmanship_incorrect_materials">Yes</label>
                         
@@ -1513,7 +1513,7 @@ d<div class="box">
                                                    ? true : false,
                                  array('id' => 'slope_workmanship_incorrect_materials' . $count, 'class' => 'comment-box')) .
                                         Form::label('slope_workmanship_incorrect_materials' . $count, $slope) . "\n";
-                                        
+
                                         $count++;
                                     } ?>
                                 
