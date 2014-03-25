@@ -1,7 +1,7 @@
 
 
 <div class="section">
-    <?php if ($report_send_session != null) { 
+    <?php if (isset($report_send_session) && $report_send_session != null) { 
         echo "<div class=\"message info\">
                   <p>The report has been sent successfully to the client.</p>
               </div>";
