@@ -1,4 +1,11 @@
+
+
 <div class="section">
+    <?php if ($report_send_session != null) { 
+        echo "<div class=\"message info\">
+                  <p>The report has been sent successfully to the client.</p>
+              </div>";
+    } ?>
     <div class="box">
         <div class="title">Details</div>
         <div class="content">
@@ -208,5 +215,6 @@ echo '</table>'; ?>
 <div class="section">
 <div class="row">
     <button type="redirect" name="save_report" id="save-report"><span>Create Report PDF</span></button>
+    <?php echo $send_report ? "<button type=\"redirect\" name=\"send_report\" id=\"send-report\"><span>Email Report to Client</span></button>" : null; ?>
 </div>
 </div>
