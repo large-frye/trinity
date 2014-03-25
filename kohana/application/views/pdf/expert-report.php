@@ -123,7 +123,7 @@ li { padding: 10px; position: relative; left: 2em;}
     <tr><th class="left">Contractor Present: <?php echo $report_data['was_roofer_present']; ?></th></tr>
 </table>
 <table border="1" class="top position-right">
-    <tr><th>Adjsuter Name:</th><td class="border">&nbsp;<?php echo $inspection_data['adjuster'];?></td></tr>
+    <tr><th>Adjuster Name:</th><td class="border">&nbsp;<?php echo $inspection_data['adjuster'];?></td></tr>
     <tr><th>Insurance Company:</th><td class="border"><?php echo $inspection_data['company_name']; ?></td></tr>
     <tr><th>Date:</th><td class="border">&nbsp;<?php echo $inspection_data['date_of_inspection'];?></td></tr>
 </table>
@@ -179,16 +179,16 @@ SC Adjusters License # 625784</p>
                           } echo $type; ?></li>
               <?php } else if (is_array($type)) {
                   foreach ($type as $t => $val) {
-                    foreach ($directions as $value) {
-                      $val = str_replace($value, '<span class="red">'.$value.'</span>', $val);
-                    }
-
                     $_str = "";
+                    foreach (explode(' ', $val) as $char) {
+                        $_str .= is_numeric($char) ? "<span class=\"red\">" . $char . "</span> " : $char . " ";
+                      }
+
+                    foreach ($directions as $value) {
+                      $_str = str_replace($value, "<span class=\"red\">" . $value . "</span>", $_str);
+                    }
                     
-                    /* foreach ($val as $char) {
-                        $_str .= is_numeric($char) ? "<span class=\"red\">" . $char . "</span>" : $char;
-                    } */
-                     echo "<li>" . preg_replace('/[0-9]/', "<span class=\"red\">${1}</span>", $val) . "</li>";
+                     echo "<li>" . $_str . "</li>"; 
                   }
               } ?>
               </ul>
