@@ -113,7 +113,7 @@
 					          	$colors = array("Green", "Purple", "Yellow", "Red", "Orange", "Pink", "Blue");
             					
             					 foreach ($colors as $val) {
-            					 	if(isset($user) && (strcmp($user->color, $val)==0)){
+            					 	if(isset($user) && isset($user->color) && (strcmp($user->color, $val)==0)){
             					 		echo  '<option value="'.$val.'" selected="selected" >'.$val.'</option>';
             					 	}else {
             					 		echo  '<option value="'.$val.'" >'.$val.'</option>';
