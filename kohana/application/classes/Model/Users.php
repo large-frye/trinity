@@ -85,6 +85,13 @@ class Model_Users extends Model_Base {
                         ->execute($this->db)
                         ->current();
 
+            if (!isset($role->role_id)) {
+                echo "<pre>";
+                print_r($post);
+                echo "</pre>";
+                die('<h1>There was no role found for this user.'); 
+            }
+
             // Update `roles_users`
             DB::update('roles_users')->set(array('role_id' => ':role_id'))->where('user_id', '=', ':user_id')->where('role_id', '=', ':old_role_id')
                 ->parameters(array(':role_id' => $post['role_id'],
