@@ -86,18 +86,16 @@ class Model_Users extends Model_Base {
                         ->current();
 
             if (!isset($role->role_id)) {
-                echo "<pre>";
-                print_r($post);
-                echo "</pre>";
-                die('<h1>There was no role found for this user.'); 
-            }
+                DB::insert('roles_users')->values(array(':user_id', ':role_id'))->parameters(array(':user_id' => $user_id, ':role_id' => $post['role_id']))->execute($this->db);
+            } else {
 
-            // Update `roles_users`
-            DB::update('roles_users')->set(array('role_id' => ':role_id'))->where('user_id', '=', ':user_id')->where('role_id', '=', ':old_role_id')
-                ->parameters(array(':role_id' => $post['role_id'],
-                                   ':old_role_id' => $role->role_id,
-                                   ':user_id' => $user_id))
-                ->execute($this->db);
+                // Update `roles_users`
+               DB::update('roles_users')->set(array('role_id' => ':role_id'))->where('user_id', '=', ':user_id')->where('role_id', '=', ':old_role_id')
+                   ->parameters(array(':role_id' => $post['role_id'],
+                                      ':old_role_id' => $role->role_id,
+                                      ':user_id' => $user_id))
+                   ->execute($this->db);
+            }
 
             // Update `profiles`
             DB::update('profiles')->set(array('first_name' => $post['first_name'],
