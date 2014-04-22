@@ -144,7 +144,7 @@ $collateral_damages = isset($report_data['damages']['collateral_damage_header'][
 ?>
 
 <h4 class="row-header">GROUND INSPECTION</h4>
-<p>During our ground level walk around inspection of loss to the following building materials that may be more susceptible to wind or hail:</p>
+<!-- <p>During our ground level walk around inspection of loss to the following building materials that may be more susceptible to wind or hail:</p>-->
 <p>During our ground level walk around inspection of the loss <span class="blue">
   <?php echo isset($collateral_damage_header) && !empty($collateral_damage_header) ? "we did find collateral damage" : "we did not find collateral damage"; ?></span> 
    to the following building materials that may be more susceptible to wind or hail.</p>
@@ -248,8 +248,6 @@ if (isset($report_data['damages']['general_comments'])) {
 </div>
 
 <div class="page-break"></div>
-
-<?php echo isset($sketch) ? "<img src=\"" . $sketch->fileLocation . "\" alt=\"sketch\" width=\"850\" class=\"sketch-helper\" style=\"margin-left: -75px;\" />" : null;  ?>
 
 </div>
 </div>
