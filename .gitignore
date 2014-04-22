@@ -8,3 +8,5 @@ _trinity*
 build.sh
 .DS_Store
 dompdf
+*extra-docs/*
+kohana/.htaccess

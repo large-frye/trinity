@@ -94,7 +94,7 @@ p {
 </table>
 <br /><br />
 <h4 class="row-header">GROUND INSPECTION</h4>
-<p>During our ground level walk around inspection of loss to the following building materials that may be more susceptible to wind or hail:</p>
+<!-- <p>During our ground level walk around inspection of loss to the following building materials that may be more susceptible to wind or hail:</p> -->
 <h4 class="row-header">ROOF INSPECTION</h4>
 <?php foreach ($report_data['damages'] as $damage) {
     if (preg_match('/header/', $damage)) {

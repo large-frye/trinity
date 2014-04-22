@@ -18,6 +18,7 @@ class Controller_Workorders extends Controller_Account {
         $this->settings_model = Model::factory('Settings');
         $this->invoice_model = Model::factory('Invoice');
         $this->_workorder_id = $this->request->param('id');
+        $this->_report_file_path = $_SERVER['DOCUMENT_ROOT'] . "/assets/pdf/reports/";
         
     }
 
@@ -164,6 +165,8 @@ class Controller_Workorders extends Controller_Account {
 
 
     public function action_report() {
+        $report_send_session = Session::instance()->get('report_sent');
+
         if ($this->invoice_model->check_if_inspection_report_exists($this->_workorder_id) <= 0) {
             Session::instance()->set('invoice_does_not_exist', 'There is no inspection for this workorder yet.');
             $this->request->redirect('/account');
@@ -182,6 +185,9 @@ class Controller_Workorders extends Controller_Account {
         $view->photos = $this->inspections_model->get_photos_by_id($this->_workorder_id);
         $view->categories = $this->settings_model->get_parent_categories();
         $view->xactimate = $this->workorders_model->check_if_xactimate_exists($this->_workorder_id);
+        $view->send_report = $this->workorders_model->check_if_report_exists($this->_workorder_id);
+        $view->report_send_session = $report_send_session;
+
         $this->template->content = $view;
     }
 
@@ -212,6 +218,22 @@ class Controller_Workorders extends Controller_Account {
 
     public function action_index() {
         Request::current()->redirect('/account');
+    }
+
+
+
+    public function action_send() { 
+        $workorder_info = $this->workorders_model->get_workorder_details($this->_workorder_id);
+        $status = $this->mailer_model->send_mail('a.frye4@gmail.com', 'a.frye4@gmail.com', 'Inspection Report for work order id : ' . $this->_workorder_id, 15, 
+                                                  array('::username::'      => $workorder_info->adjuster,
+                                                        '::workorder_id::'  => $this->_workorder_id), 
+                                                  null, null,
+                                                  array($this->_report_file_path . str_replace(' ', '', $workorder_info->last_name) . "_Claim" . 
+                                                        str_replace(' ', '', $workorder_info->policy_number) . ".pdf"));
+
+        // Redirect to the report page.
+        Session::instance()->set('report_sent', 'This report has been sent to the user successfully');
+        $this->request->redirect('/workorders/report/' . $this->request->param('id'));
     }
 
 

@@ -781,6 +781,18 @@ class Model_Workorders extends Model_Base {
 
 
 
+    public function check_if_report_exists($workorder_id) {
+        $workorder_info = $this->get_workorder_details($workorder_id);
+
+        if (file_exists($this->_report_file_path . str_replace(' ', '', $workorder_info->last_name) . "_Claim" . str_replace(' ', '', $workorder_info->policy_number) . ".pdf")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
     private function _set_exp_damages($data) {
         $damages = $this->_inspection_model->get_roof_conditions();
         $exp_damages = $this->_get_exp_damages();
@@ -868,44 +880,48 @@ class Model_Workorders extends Model_Base {
 
 
     private function _handle_damages($data) {
-        // $data = $this->_set_damage_str($data, array('metal_header' => 'metal_damage_str'));
-        // echo "<pre>";
-        // print_r($data);
 
         foreach ($data as $key => $value) {
             // Remove all blanks.
             if ($value == "blank") {
                 unset($data[$key]);
             } else {
-
-            if (preg_match('/metal_damages/', $key)) {
-                $data = $this->_handle_metal_damage_str($data, $key, $value);
-            } else if (preg_match('/hail_size/', $key)) {
-                $data['damages']['metal_header']['metal_damage_hail_size'] = 
-                    "Based on the dents of the soft metals and/or spatter on the roof and secondary indicators, the estimated hail diameter was measured at: " . 
-                    str_replace('_', '/', $data['damages']['metal_header']['metal_damage_hail_size']) . "\"";
-            } else if (preg_match('/slope_vermin_(roofing|fascia|vent)_damage$/', $key)) {
-                $data = $this->_set_vermin_damage($data, $key, $value);
-            } else if (preg_match('/lightning_damages/', $key)) {
-                $data = $this->_set_lightning_damage($data, $key, $value);
-            } else if (preg_match('/(slope_ice_damming|slope_fallen_ice)/', $key)) {
-                $data = $this->_set_ice_damage($data, $key, $value);
-            } else if (preg_match('/excess_debris/', $key)) {
-                $data = $this->_set_excess_debris($data, $key, $value);
-            } else if ( preg_match('/standing_water/', $key) ) {
-                $data = $this->_set_standing_water($data, $key, $value);
-            } else if ( preg_match('/shingle_anomalies/', $key) ) {
-                if (!preg_match('/header/', $key)) {
-                    $data = $this->_set_product_defects($data, $key, $value);
+                if (preg_match('/metal_damages/', $key)) {
+                    $data = $this->_handle_metal_damage_str($data, $key, $value);
+                } else if (preg_match('/hail_size/', $key)) {
+                    $data['damages']['metal_header']['metal_damage_hail_size'] = "Based on the dents of the soft metals and/or spatter
+                         on the roof and secondary indicators, the estimated hail diameter was measured at: " . 
+                         str_replace('_', '/', $data['damages']['metal_header']['metal_damage_hail_size']) . "\"";
+                } else if (preg_match('/slope_vermin_(roofing|fascia|vent)_damage$/', $key)) {
+                    $data = $this->_set_vermin_damage($data, $key, $value);
+                } else if (preg_match('/lightning_damages/', $key)) {
+                    $data = $this->_set_lightning_damage($data, $key, $value);
+                } else if (preg_match('/(slope_ice_damming|slope_fallen_ice)/', $key)) {
+                    $data = $this->_set_ice_damage($data, $key, $value);
+                } else if (preg_match('/excess_debris/', $key)) {
+                    $data = $this->_set_excess_debris($data, $key, $value);
+                } else if ( preg_match('/standing_water/', $key) ) {
+                    $data = $this->_set_standing_water($data, $key, $value);
+                } else if ( preg_match('/shingle_anomalies/', $key) ) {
+                    if (!preg_match('/header/', $key)) {
+                        $data = $this->_set_product_defects($data, $key, $value);
+                    }
+                } else if ( preg_match('/workmanship|improper/', $key)) {
+                    $data = $this->_set_workmanship($data, $key, $value);
+                } else if ( preg_match('/worn/', $key)) {
+                    $data = $this->_set_aged_worn($data, $key, $value);
+                } else if ( preg_match('/fraud/', $key)) {
+                    $data = $this->_set_fraud_input($data, $key, $value);
                 }
-            } else if ( preg_match('/workmanship|improper/', $key)) {
-                $data = $this->_set_workmanship($data, $key, $value);
-            } else if ( preg_match('/worn/', $key)) {
-                $data = $this->_set_aged_worn($data, $key, $value);
-            } else if ( preg_match('/fraud/', $key)) {
-                $data = $this->_set_fraud_input($data, $key, $value);
             }
         }
+
+        if (!isset($data['damages']['wind_header'])) {
+            $data['damages']['wind_header']['no_report'] = 'There was no wind damage found during our inspection.';
+        }
+
+        if (!isset($data['damages']['hail_header'])) {
+            $data['damages']['hail_header']['no_report'] = 'There was no hail damage found during our inspection.';
         }
 
         return $data;
