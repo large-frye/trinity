@@ -132,7 +132,7 @@ ul
 </table>
 <table border="1" class="top position-right">
     <tr><th>Adjuster Name:</th><td class="border">&nbsp;<?php echo $inspection_data['adjuster'];?></td></tr>
-    <tr><th>Insurance Company:</th><td class="border">...</td></tr>
+    <tr><th>Insurance Company:</th><td class="border"><?php echo $inspection_data['company_name'];?></td></tr>
     <tr><th>Date:</th><td class="border">&nbsp;<?php echo $inspection_data['date_of_inspection'];?></td></tr>
 </table>
 <br /><br />
@@ -149,7 +149,7 @@ $collateral_damages = isset($report_data['damages']['collateral_damage_header'][
   <?php echo isset($collateral_damage_header) && !empty($collateral_damage_header) ? "we did find collateral damage" : "we did not find collateral damage"; ?></span> 
    to the following building materials that may be more susceptible to wind or hail.</p>
 <p class="blue"><?php echo isset($collateral_damages) && !empty($collateral_damages) ? implode(', ', $collateral_damages) : null; ?></p>
-<?php if(isset($report_data['damages']['collateral_damamges_comments'])) {
+<?php if(isset($report_data['damages']['collateral_damamges_comments']) && trim($report_data['damages']['collateral_damamges_comments']) != "") {
     echo "<h4>Collateral Damages Comments: </h4><p>" . $report_data['damages']['collateral_damamges_comments'] . "</p>";
 }
 ?>
@@ -246,8 +246,6 @@ if (isset($report_data['damages']['general_comments'])) {
 
 </p>
 </div>
-
-<div class="page-break"></div>
 
 </div>
 </div>
