@@ -101,7 +101,7 @@ class Controller_Inspections extends Controller_Account {
             
             if(isset($this->_post['all'])){
                 print_r($this->_post);
-                echo 'all';
+                $view->photos =  $this->inspections_model-> delete_all_photos();
                 }else{
                 $view->photos =  $this->inspections_model-> delete_photos( $this->_post );
             }
