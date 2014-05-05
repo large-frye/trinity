@@ -102,8 +102,9 @@ class Controller_Inspections extends Controller_Account {
             if($this->_post['all']){
                 print_r($this->_post);
                 echo 'all';
-            }
+            }else{
             $view->photos =  $this->inspections_model-> delete_photos( $this->_post );
+        }
         }
         $view->photos =  $this->inspections_model-> get_photos_by_id( $this->_workorder_id );
         $this->template->side_bar = View::factory( 'inspections/photo-sidebar' );
