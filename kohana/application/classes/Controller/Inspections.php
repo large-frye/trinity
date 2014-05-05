@@ -98,6 +98,8 @@ class Controller_Inspections extends Controller_Account {
         $view = View::factory( 'inspections/deletephotos' );
 
         if ( $this->request->method() === 'POST' ) {
+            print_r($this->_post);
+            die();
             $view->photos =  $this->inspections_model-> delete_photos( $this->_post );
         }
         $view->photos =  $this->inspections_model-> get_photos_by_id( $this->_workorder_id );
