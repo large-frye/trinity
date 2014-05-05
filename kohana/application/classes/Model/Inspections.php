@@ -947,9 +947,11 @@ class Model_Inspections extends Model_Base {
             }
         }
     }
-        public function delete_all_photos($photos){
+        public function delete_all_photos($id){
+            $allPhotos = get_photos($id);
         
-        print_r($photos);
+        print_r($allPhotos);
+        die();
       /*  $arrySize = count($post);
         for ($i = 0; $i < $arrySize; $i++) {
             $tmpAry = explode(',', $post[$i]);
