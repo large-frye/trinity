@@ -99,7 +99,7 @@ class Controller_Inspections extends Controller_Account {
 
         if ( $this->request->method() === 'POST' ) {
             
-            if($this->_post[0] === 'all'){
+            if($this->_post['all']){
                 print_r($this->_post);
                 echo 'all';
             }
