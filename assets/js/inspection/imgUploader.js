@@ -102,6 +102,7 @@ $( "#deletebutton" ).click(function() {
 
 
 $( "#deleteAllButton" ).click(function() {
+  console.log('all del');
    $('#deletephotos').append('<input name="all" style="display:none;" type="text" id="all" value="all"/>');
    $('#deletephotos').submit();
 });
