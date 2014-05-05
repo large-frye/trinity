@@ -947,6 +947,20 @@ class Model_Inspections extends Model_Base {
             }
         }
     }
+        public function delete_all_photos($post){
+        $arrySize = count($post);
+        for ($i = 0; $i < $arrySize; $i++) {
+            $tmpAry = explode(',', $post[$i]);
+            $pLoc = $tmpAry[1];
+            $id = $tmpAry[0];
+           DB::delete('inspection_photos')->where('id', '=', ':id')->parameters(array(':id' => $id))->execute($this->db);
+           try {
+            unlink('..'.$pLoc);
+            }  catch (Exception $e) {
+               // echo 'Caught exception: ',  $e->getMessage(), "\n";
+            }
+        }
+    }
     public function save_photos($post,  $files, $id) {
         $path = "/assets/photos/";
 
