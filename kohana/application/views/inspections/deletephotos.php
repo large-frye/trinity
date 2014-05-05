@@ -9,7 +9,7 @@
 							<div class="photoCatContainer">
 				 <?php echo Form::open('', array( 'id' => 'deletephotos' ) ); ?> </form>
 				    <button style="float:left" type="submit"  class="photoBut" id="deletebutton" name="deletebutton" value="Submit " /> Submit</button>
-				    <?php echo Form::open('', array( 'id' => 'deleteAllPhotos' ) ); ?> </form>
+			
 				    <button style="float:left" type="submit"  class="photoBut" id="deleteAllButton" name="deleteAllButton" value="Submit " /> Delete All</button>
 <?php
 				
