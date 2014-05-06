@@ -75,7 +75,7 @@ p {
 }
 
 #right pre {
-	background : #fbfbfb;
+	background : red;
 	border : 1px solid #E5E5E5;
 	padding : 10px;
 	margin : 0;
@@ -143,4 +143,38 @@ h4:first-child,
 h5:first-child,
 h6:first-child {
 	margin : -3px 0 0;
+}
+
+.tt-dataset-items {
+	width: 310px;
+	background-color: #f2f2f2;
+	border: 1px solid #d2d2d2;
+	height: 220px;
+	overflow-y: scroll;
+}
+
+.tt-suggestion {
+    padding: 4px 10px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.tt-suggestion:hover {
+    cursor: pointer;
+    background-color: rgb(89,0,0);
+    color: white;
+}
+
+.big-icon {
+	font-size: 24px;
+}
+
+.wider-textbox {
+	width: 300px !important;
+}
+
+.resetTypeahead {
+    float: right;
+    position: relative;
+    top: 5px;
+    right: 50px;
 }

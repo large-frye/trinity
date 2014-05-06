@@ -87,9 +87,8 @@ class Controller_Master extends Controller_Template {
     private function _set_template() {
         $this->template = 'template';
         
-        if (in_array($this->request->current()->controller(), $this->_exception_controllers) && 
-            !in_array($this->request->action(), $this->_exception_actions)){
-            $this->template = 'admin/template';
+        if (in_array($this->request->current()->controller(), $this->_exception_controllers) && !in_array($this->request->action(), $this->_exception_actions)) {
+                $this->template = 'admin/template';
         }
     }
 

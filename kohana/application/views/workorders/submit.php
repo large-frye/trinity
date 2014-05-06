@@ -17,7 +17,11 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 				<div class="row">
 					<label for="username">Select Client</label>
 						<div class="right">
-							<?php echo Form::select('user_id', $clients); ?>
+                            <div id="the-basics">
+                            	<input name="client" class="typeahead wider-textbox" type="text" placeholder="Clients" 
+                            	       value="<?php echo isset($post) ? $post['client'] : null;?>">
+                            	<a href="#reset" class="resetTypeahead">Reset Client</a>
+                            </div>
 						</div>
 				</div>
 				<?php } else { echo Form::hidden('user_id', $user_id); } ?>
@@ -35,7 +39,7 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 
 <!-- Price of Work Order Section -->
 <?php if (!$client) { ?>
-<div class="section">
+<!-- <div class="section">
 			<div class="box">
 				<div class="title">Price of Work Order</div>
 				
@@ -49,7 +53,7 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 					</div>
 				</div>
 			</div>
-</div>
+</div> Commenting out for Anthony's updates -->
 <?php } ?>
 
 <!-- Insured's Information -->

@@ -22,7 +22,11 @@ echo Form::open('', array('enctype' => 'multipart/form-data', 'class' => 'workor
 				<div class="row">
 					<label for="username">Select Client</label>
 						<div class="right">
-							<?php echo Form::select('user_id', $clients, $details->user_id); ?>
+							<div id="the-basics">
+                            	<input name="client" class="typeahead wider-textbox" type="text" placeholder="Clients" 
+                            	       value="<?php echo $client; ?>">
+                            	<a href="#reset" class="resetTypeahead">Reset Client</a>
+                            </div>
 						</div>
 				</div>
 				<div class="row">	
