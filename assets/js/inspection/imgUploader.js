@@ -12,7 +12,6 @@ $(document).ready(function() {
     });
   }catch(err){
     //dont care about errors
-    console.log('not on workorders page');
   }
  
 });
@@ -82,7 +81,7 @@ function addCategoryInfoToMultiple(){
 });
 
 $( ".delPhoto" ).click(function() {
-  if($(this).find('img.delIcon').length != 0){
+  ifi($(this).find('img.delIcon').length != 0){
     //del
   $(this).find('img.delIcon').remove();    
   }else{
@@ -102,7 +101,6 @@ $( "#deletebutton" ).click(function() {
 
 
 $( "#deleteAllButton" ).click(function() {
-  console.log('all del');
    $('#deletephotos').append('<input name="all" style="display:none;" type="text" id="all" value="all"/>');
    $('#deletephotos').submit();
 });
