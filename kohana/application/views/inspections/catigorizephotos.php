@@ -61,12 +61,12 @@ for ( $i = 0; $i < $count; $i++ ) {
         echo '<li parentid="'.$p.'" id="'.$inner->id.'"  class="ui-widget-content" >'.$inner->name.'</li>';
       }
     }
-    echo '</ol></div>';
+   
   }
   else {
     break;
   }
- 
+  echo '</ol></div>';
 
 }
  echo '</div>';
