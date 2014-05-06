@@ -66,10 +66,10 @@ for ( $i = 0; $i < $count; $i++ ) {
   else {
     break;
   }
-  echo '</div>';
+ 
 
 }
-
+ echo '</div>';
 ?>
 
     </div>
