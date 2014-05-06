@@ -47,13 +47,13 @@ echo '</table>';
 </div>
 
  <?php
-echo '<div class="catSelections" style="display:none"><ol class="selectable">';
+echo '<div id="accordion"><div class="catSelections" style="display:none">';
 $innerCategories = $categories;
 $count = count( $categories );
 for ( $i = 0; $i < $count; $i++ ) {
   if ( $categories[$i]->parent_id==='0' ) {
     $cur =  $categories[$i]->id;
-    echo '<h3>'.$categories[$i]->name.'</h3><div>';
+    echo '<h3>'.$categories[$i]->name.'</h3><div><ol class="selectable">';
     // echo '<li class="ui-widget-content" id="'.$categories[$i]->id.'">';
     $p = $categories[$i]->id;
     foreach ( $innerCategories as $inner ) {
@@ -61,7 +61,7 @@ for ( $i = 0; $i < $count; $i++ ) {
         echo '<li parentid="'.$p.'" id="'.$inner->id.'"  class="ui-widget-content" >'.$inner->name.'</li>';
       }
     }
-    echo '<div';
+    echo '</ol></div>';
   }
   else {
     break;
