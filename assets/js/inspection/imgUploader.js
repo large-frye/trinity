@@ -1,11 +1,13 @@
  $(function() {
 $( "#accordion" ).accordion();
 
-$(  "#accordion"  ).accordion({
-  activate: function( event, ui ) {
-    $(this).css('height', 'auto');
-  }
-  });
+  $(  "#accordion"  ).accordion({
+    activate: function( event, ui ) {
+      console.log(ui.newHeader);
+      $($(ui.newHeader)[0]).css('height', 'auto');
+      $($($(ui.newHeader)[0]).next()).css('height', 'auto');
+    }
+    });
 });
 
 $(document).ready(function() {
