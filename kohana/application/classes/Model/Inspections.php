@@ -956,7 +956,7 @@ class Model_Inspections extends Model_Base {
                       ->as_object()
                       ->execute($this->db);
         $arrySize = count($allPhotos); 
-        echo $arrySize;
+        echo $allPhotos->Count();
         print_r($allPhotos);
 
         for ($i = 0; $i < $arrySize; $i++) {
