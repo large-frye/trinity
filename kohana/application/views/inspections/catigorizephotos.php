@@ -53,7 +53,7 @@ $count = count( $categories );
 for ( $i = 0; $i < $count; $i++ ) {
   if ( $categories[$i]->parent_id==='0' ) {
     $cur =  $categories[$i]->id;
-    echo '<h3>'.$categories[$i]->name.'</h3>';
+    echo '<h3>'.$categories[$i]->name.'</h3><div>';
     // echo '<li class="ui-widget-content" id="'.$categories[$i]->id.'">';
     $p = $categories[$i]->id;
     foreach ( $innerCategories as $inner ) {
@@ -61,7 +61,7 @@ for ( $i = 0; $i < $count; $i++ ) {
         echo '<li parentid="'.$p.'" id="'.$inner->id.'"  class="ui-widget-content" >'.$inner->name.'</li>';
       }
     }
-
+    echo '<div';
   }
   else {
     break;
