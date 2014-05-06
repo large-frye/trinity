@@ -948,7 +948,7 @@ class Model_Inspections extends Model_Base {
         }
     }
         public function delete_all_photos($id){
-            $allPhotos = get_photos($id);
+            $allPhotos = get_photos_by_id($id);
         
         print_r($allPhotos);
         die();
