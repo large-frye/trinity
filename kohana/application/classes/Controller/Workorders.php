@@ -19,7 +19,6 @@ class Controller_Workorders extends Controller_Account {
         $this->invoice_model = Model::factory('Invoice');
         $this->_workorder_id = $this->request->param('id');
         $this->_report_file_path = $_SERVER['DOCUMENT_ROOT'] . "/assets/pdf/reports/";
-        
     }
 
 
@@ -37,6 +36,8 @@ class Controller_Workorders extends Controller_Account {
         if ($this->_inspector) {
             $this->request->redirect('/account');
         }
+
+        $this->template->app = "ng-app=\"autocompleteApp\"";
     }
 
 
@@ -132,10 +133,10 @@ class Controller_Workorders extends Controller_Account {
 
         // Create view now and handle variables being passed.
         $view = View::factory('workorders/edit');
-        $view->clients = $this->account_model->get_clients();
         $view->inspection_types = array('Basic Inspections', 'Expert Inspections', 'Engineer Reports');
         $view->price = $this->workorders_model->get_price();
         $view->details = $this->workorders_model->get_workorder_details($request_param);
+        $view->client = $this->workorders_model->get_client_name($view->details->user_id);
         $view->is_expert = $view->details->is_expert == 0 ? "" : "checked";
         $view->is_tarped = $view->details->tarped == 0 ? 0 : 1;
 

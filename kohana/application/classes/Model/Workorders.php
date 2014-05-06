@@ -41,7 +41,8 @@ class Model_Workorders extends Model_Base {
     public function validate_workorder($post) {
         $valid_post = Validation::factory($post);
 
-        $valid_post->rule('policy_number', 'not_empty')
+        $valid_post->rule('client', 'not_empty')
+                   ->rule('policy_number', 'not_empty')
                    ->rule('first_name', 'not_empty')
                    ->rule('last_name', 'not_empty')
                    ->rule('street_address', 'not_empty')
@@ -68,7 +69,7 @@ class Model_Workorders extends Model_Base {
         $_date = str_replace('-', '/', $post['requested_date_of_inspection']);
         $parameters = array(':id'                         => null,
                             ':type'                       => $post['type'],
-                            ':user_id'                    => $post['user_id'],
+                            ':user_id'                    => $this->get_client_id($post['client']), // it is the client's id now. 
                             ':policy_number'              => $post['policy_number'],
                             ':first_name'                 => $post['first_name'],
                             ':last_name'                  => $post['last_name'],
@@ -118,6 +119,31 @@ class Model_Workorders extends Model_Base {
     }
 
 
+
+    private function get_client_id($name) {
+        return DB::query(Database::SELECT, "SELECT user_id FROM profiles WHERE CONCAT(TRIM(first_name), ' ', TRIM(last_name)) = :client")
+                   ->parameters(array(
+                       ':client' => $name))
+                   ->as_object()
+                   ->execute($this->db)
+                   ->current()
+                   ->user_id;
+    }
+
+
+
+    public function get_client_name($id) {
+        return DB::query(Database::SELECT, "SELECT CONCAT(TRIM(first_name), ' ', TRIM(last_name)) as name FROM profiles WHERE user_id = :user_id")
+                   ->parameters(array(
+                       ':user_id' => $id))
+                   ->as_object()
+                   ->execute($this->db)
+                   ->current()
+                   ->name;
+    }
+
+
+
     private function _get_price($type) {
         return DB::query(Database::SELECT, "SELECT value FROM settings WHERE name LIKE '%price_" . $type . "%'")->as_object()->execute($this->db)->current()->value;
     }
@@ -163,7 +189,7 @@ class Model_Workorders extends Model_Base {
        
         $parameters = array(':id'                         => $workorder_id,
                             ':type'                       => $post['type'],
-                            ':user_id'                    => $post['user_id'],
+                            ':user_id'                    => $this->get_client_id($post['client']),
                             ':policy_number'              => $post['policy_number'],
                             ':first_name'                 => $post['first_name'],
                             ':last_name'                  => $post['last_name'],
@@ -400,7 +426,7 @@ class Model_Workorders extends Model_Base {
 
 
 
-    public function get_inspectors() {
+    public function get_inspectors($type = '') {
     	$inspectors = array('' => '--Select Inspector');
     	$results = DB::query(Database::SELECT, "SELECT u.username, u.id
     		                                    FROM users u 
@@ -409,11 +435,45 @@ class Model_Workorders extends Model_Base {
     	               ->as_object()
     	               ->execute($this->db);
 
+        if ($type === "json") {
+            foreach($results as $result) {
+                $inspectors[] = array(
+                    'name' => $result->username,
+                    'abbreviation' => ''
+                    );
+            }
+
+            return json_encode($inspectors);
+        }
+
     	foreach($results as $result) {
     		$inspectors[$result->id] = $result->username;
     	}
 
+
     	return $inspectors;
+    }
+
+    public function get_clients($type = '') {
+        $results = DB::query(Database::SELECT, "SELECT u.username, u.id, CONCAT(TRIM(p.first_name), ' ', TRIM(p.last_name)) as name
+                                                FROM users u
+                                                LEFT JOIN roles_users ru ON ru.user_id = u.id
+                                                LEFT JOIN profiles p ON p.user_id = u.id
+                                                WHERE ru.role_id = " . Model_Account::CLIENT)
+                       ->as_object()
+                       ->execute($this->db);
+
+        if ($type === "json") {
+            foreach($results as $result) {
+                $clients[] = array(
+                    'name' => $result->name
+                    );
+            }
+
+            return json_encode($clients);
+        }
+
+        return $results;
     }
 
 

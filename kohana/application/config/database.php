@@ -2,10 +2,10 @@
 
 return array(
     'default' => array('type'       => 'MySQL',
-    	               'connection' => array('hostname'   => 'trinity.devfrye.com',
-    	               	                     'database'   => 'trinity_data',
-    	               	                     'username'   => 'adfrye',
-    	               	                     'password'   => 'Sprite20**',
+    	               'connection' => array('hostname'   => 'localhost',
+    	               	                     'database'   => 'trinity',
+    	               	                     'username'   => 'root',
+    	               	                     'password'   => 'root',
     	               	                     'persistent' => FALSE),
     	               'table_prefix' => '',
     	               'charset'      => 'utf8',

@@ -92,6 +92,8 @@ class Model_Master extends Model {
                           "/assets/js/admin/multi-row.js",
                           "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false",
                           "/assets/js/maps.js",
+                          "/assets/js/typeahead.jquery.min.js",
+                          "/assets/js/typeahead-helper.js"
                           );
 
         // Calendar specific js files
