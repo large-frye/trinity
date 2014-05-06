@@ -948,8 +948,15 @@ class Model_Inspections extends Model_Base {
         }
     }
         public function delete_all_photos($id){
-            $allPhotos = get_photos_by_id($id);
-        
+            $allPhotos = DB::query(Database::SELECT, 'SELECT p.*, c.name from inspection_photos p 
+                LEFT JOIN categories c
+                ON p.category_id = c.id 
+                WHERE workorder_id = :id 
+                ORDER BY categoryParent_id, FileOrder')
+                      ->parameters(array(':id' => $id))
+                      ->as_object()
+                      ->execute($this->db);
+
         print_r($allPhotos);
         die();
       /*  $arrySize = count($post);
