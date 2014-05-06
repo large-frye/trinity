@@ -958,7 +958,7 @@ class Model_Inspections extends Model_Base {
         $arrySize = count($allPhotos); 
         echo $arrySize;
         print_r($allPhotos);
-        die();
+
         for ($i = 0; $i < $arrySize; $i++) {
             echo $i;
            echo $allPhotos[$i]->fileName;
