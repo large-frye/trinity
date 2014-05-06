@@ -948,19 +948,16 @@ class Model_Inspections extends Model_Base {
         }
     }
         public function delete_all_photos($id){
-            echo $id;
-            echo '<br>';
+
             $allPhotos = DB::query(Database::SELECT, 'SELECT p.* from inspection_photos p 
                 WHERE workorder_id = :id')
                       ->parameters(array(':id' => $id))
                       ->as_object()
                       ->execute($this->db);
         $arrySize = count($allPhotos); 
-        echo $allPhotos->Count();
-        print_r($allPhotos);
+       
 
         for ($i = 0; $i < $arrySize; $i++) {
-            echo $i;
            //echo $allPhotos[$i]->filename;
           //   DB::delete('inspection_photos')->where('id', '=', ':id')->parameters(array(':id' => $allPhotos[$i]->id))->execute($this->db);
            try {
