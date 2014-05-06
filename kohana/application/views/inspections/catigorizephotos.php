@@ -47,9 +47,11 @@ echo '</table>';
 </div>
 
  <?php
+
 echo '<div class="catSelections" style="display:none"><div id="accordion">';
 $innerCategories = $categories;
 $count = count( $categories );
+echo $count;
 for ( $i = 0; $i < $count; $i++ ) {
   if ( $categories[$i]->parent_id==='0' ) {
     $cur =  $categories[$i]->id;
