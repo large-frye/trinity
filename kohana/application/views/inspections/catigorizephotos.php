@@ -47,7 +47,7 @@ echo '</table>';
 </div>
 
  <?php
-echo '<div id="accordion"><div class="catSelections" style="display:none">';
+echo '<div id="accordion">';
 $innerCategories = $categories;
 $count = count( $categories );
 for ( $i = 0; $i < $count; $i++ ) {
@@ -61,7 +61,7 @@ for ( $i = 0; $i < $count; $i++ ) {
         echo '<li parentid="'.$p.'" id="'.$inner->id.'"  class="ui-widget-content" >'.$inner->name.'</li>';
       }
     }
-    echo '</ol></div></div>';
+    echo '</ol></div>';
   }
   else {
     break;
