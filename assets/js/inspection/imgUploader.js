@@ -1,5 +1,11 @@
  $(function() {
 $( "#accordion" ).accordion();
+
+$(  "#accordion"  ).accordion({
+  activate: function( event, ui ) {
+    $(this).css('height', 'auto');
+  }
+  });
 });
 
 $(document).ready(function() {
