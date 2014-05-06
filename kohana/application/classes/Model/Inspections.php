@@ -950,7 +950,7 @@ class Model_Inspections extends Model_Base {
         public function delete_all_photos($id){
             echo $id;
 
-            $allPhotos = DB::query(Database::SELECT, 'SELECT p.*, c.name from inspection_photos p 
+            $allPhotos = DB::query(Database::SELECT, 'SELECT p.* from inspection_photos p 
                 WHERE workorder_id = :id')
                       ->parameters(array(':id' => $id))
                       ->as_object()
