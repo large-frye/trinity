@@ -51,7 +51,6 @@ echo '</table>';
 echo '<div class="catSelections" style="display:none"><div id="accordion">';
 $innerCategories = $categories;
 $count = count( $categories );
-echo $count;
 for ( $i = 0; $i < $count; $i++ ) {
   if ( $categories[$i]->parent_id==='0' ) {
     $cur =  $categories[$i]->id;
@@ -63,12 +62,12 @@ for ( $i = 0; $i < $count; $i++ ) {
         echo '<li parentid="'.$p.'" id="'.$inner->id.'"  class="ui-widget-content" >'.$inner->name.'</li>';
       }
     }
-   
+     echo '</ol></div>';
   }
   else {
     break;
   }
-  echo '</ol></div>';
+
 
 }
  echo '</div>';
