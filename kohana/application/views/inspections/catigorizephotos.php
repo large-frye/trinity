@@ -51,7 +51,6 @@ echo '<div class="catSelections" style="display:none"><div id="accordion">';
 $innerCategories = $categories;
 $count = count( $categories );
 for ( $i = 0; $i < $count; $i++ ) {
-  echo $categories[$i]->name;
   if ( $categories[$i]->parent_id==='0' ) {
     $cur =  $categories[$i]->id;
     echo '<h3>'.$categories[$i]->name.'</h3><div><ol class="selectable">';
