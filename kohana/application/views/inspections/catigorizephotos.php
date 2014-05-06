@@ -61,7 +61,7 @@ for ( $i = 0; $i < $count; $i++ ) {
         echo '<li parentid="'.$p.'" id="'.$inner->id.'"  class="ui-widget-content" >'.$inner->name.'</li>';
       }
     }
-    echo '</ol></div>';
+    echo '</ol></div></div>';
   }
   else {
     break;
@@ -69,7 +69,7 @@ for ( $i = 0; $i < $count; $i++ ) {
   //echo '</div>';
 
 }
-echo '</ol></div>';
+
 ?>
 
     </div>
