@@ -12,6 +12,7 @@ $(document).ready(function() {
     });
   }catch(err){
     //dont care about errors
+
   }
  
 });
@@ -81,7 +82,7 @@ function addCategoryInfoToMultiple(){
 });
 
 $( ".delPhoto" ).click(function() {
-  ifi($(this).find('img.delIcon').length != 0){
+  if($(this).find('img.delIcon').length != 0){
     //del
   $(this).find('img.delIcon').remove();    
   }else{
