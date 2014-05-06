@@ -957,9 +957,10 @@ class Model_Inspections extends Model_Base {
                       ->execute($this->db);
         $arrySize = count($allPhotos); 
         echo $arrySize;
+        print_r($allPhotos);
         die();
         for ($i = 0; $i < $arrySize; $i++) {
-           
+           echo $allPhotos[$i]->fileName;
           //   DB::delete('inspection_photos')->where('id', '=', ':id')->parameters(array(':id' => $allPhotos[$i]->id))->execute($this->db);
            try {
           //  unlink('..'.$allPhotos[$i]->fileLocation);
