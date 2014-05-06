@@ -956,8 +956,11 @@ class Model_Inspections extends Model_Base {
                       ->parameters(array(':id' => $id))
                       ->as_object()
                       ->execute($this->db);
-
-        print_r($allPhotos);
+        $arrySize = count($allPhotos);
+        for ($i = 0; $i < $arrySize; $i++) {
+            echo $allPhotos[$i]->id;
+        }
+       // print_r($allPhotos);
         die();
       /*  $arrySize = count($post);
         for ($i = 0; $i < $arrySize; $i++) {
