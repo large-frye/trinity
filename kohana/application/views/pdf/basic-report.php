@@ -117,12 +117,11 @@ ul
 
 <div id="page-wrap">
 <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
-<table>
+<table style="position:absolute; top: 40px; left: 45px">
     <tr><th class="header">Trinity Inspections, LLC</th></tr>
     <tr><td class="center">P.O. Box 938</td></tr>
     <tr><td class="center">Locust, NC 28097</td></tr>
 </table>
-
 
 <table class="top">
     <tr><th>Policy Holder:</th><td class="border"><?php echo $inspection_data['insured'];?></td></tr>
@@ -135,14 +134,13 @@ ul
     <tr><th>Insurance Company:</th><td class="border"><?php echo $inspection_data['company_name'];?></td></tr>
     <tr><th>Date:</th><td class="border">&nbsp;<?php echo $inspection_data['date_of_inspection'];?></td></tr>
 </table>
-<br /><br />
 <?php 
 
 $collateral_damage_header = isset($report_data['damages']['collateral_damage_header']) ? $report_data['damages']['collateral_damage_header'] : null;
 $collateral_damages = isset($report_data['damages']['collateral_damage_header']['collateral_damages']) ? $report_data['damages']['collateral_damage_header']['collateral_damages'] : null;
 
 ?>
-
+<div style="position:relative; top: -45px">
 <h4 class="row-header">GROUND INSPECTION</h4>
 <!-- <p>During our ground level walk around inspection of loss to the following building materials that may be more susceptible to wind or hail:</p>-->
 <p>During our ground level walk around inspection of the loss <span class="blue">
@@ -243,6 +241,7 @@ if (isset($report_data['damages']['general_comments'])) {
 }
 
 ?>
+</div>
 
 </p>
 </div>

@@ -757,7 +757,13 @@ class Model_Workorders extends Model_Base {
             $cmd = "/usr/bin/pdftk";
         }
 
-        exec($cmd . " " . $current_pdf_file . " " . $xactimate_file . " " . $current_pdf_photos_file . " " . 
+        if (file_exists($xactimate_file)) {
+            $xactimate = " " . $xactimate_file . " ";
+        } else {
+            $xactimate = " ";
+        }
+
+        exec($cmd . " " . $current_pdf_file . $xactimate . $current_pdf_photos_file . " " . 
              " cat output " . $this->_report_file_path . str_replace(' ', '', $workorder_info->last_name) . "_Claim" . str_replace(' ', '', $workorder_info->policy_number) . ".pdf", $retval);
     }
 
@@ -823,6 +829,22 @@ class Model_Workorders extends Model_Base {
         }
 
         return $data;
+    }
+
+
+
+    public function get_workorder_type($workorder_id) {
+        return DB::query(Database::SELECT, 'SELECT CASE type
+                                                       WHEN 0 THEN "Basic"
+                                                       WHEN 1 THEN "Expert"
+                                                   END as inspection_type
+                                            FROM work_orders
+                                            WHERE id = :id')
+                   ->parameters(array(':id' => $workorder_id))
+                   ->as_object()
+                   ->execute()
+                   ->current()
+                   ->inspection_type;
     }
 
 

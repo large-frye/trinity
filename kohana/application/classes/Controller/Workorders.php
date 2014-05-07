@@ -188,6 +188,7 @@ class Controller_Workorders extends Controller_Account {
         $view->xactimate = $this->workorders_model->check_if_xactimate_exists($this->_workorder_id);
         $view->send_report = $this->workorders_model->check_if_report_exists($this->_workorder_id);
         $view->report_send_session = $report_send_session;
+        $view->report_type = $this->workorders_model->get_workorder_type($this->_workorder_id);
 
         $this->template->content = $view;
     }
