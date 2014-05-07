@@ -6,7 +6,6 @@ return array(
     	               	                     'database'   => 'trinity',
     	               	                     'username'   => 'root',
     	               	                     'password'   => 'Sprite20**',
-    	               	                     'password'   => 'root',
     	               	                     'persistent' => FALSE),
     	               'table_prefix' => '',
     	               'charset'      => 'utf8',

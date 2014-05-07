@@ -151,6 +151,7 @@ class Model_Workorders extends Model_Base {
 
 
     private function _generate_lat_long($post) {
+
         $url = "http://maps.googleapis.com/maps/api/geocode/json?address=" . str_replace(' ', '+', $post['street_address']) . "+" . $post['city'] . "+" . $post['state'] . "+" . $post['zip'] . "&sensor=true";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
