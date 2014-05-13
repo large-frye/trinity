@@ -947,7 +947,7 @@ class Model_Inspections extends Model_Base {
             }
         }
     }
-    public function delete_all_photos($id){
+        public function delete_all_photos($id){
         $allPhotos = DB::query(Database::SELECT, 'SELECT p.* from inspection_photos p 
                 WHERE workorder_id = :id')
                       ->parameters(array(':id' => $id))
@@ -956,8 +956,6 @@ class Model_Inspections extends Model_Base {
         $arrySize = count($allPhotos); 
         for ($i = 0; $i < $arrySize; $i++) {
              DB::delete('inspection_photos')->where('id', '=', ':id')->parameters(array(':id' => $allPhotos[$i]->id))->execute($this->db);
-           //echo $allPhotos[$i]->filename;
-           DB::delete('inspection_photos')->where('id', '=', ':id')->parameters(array(':id' => $allPhotos[$i]->id))->execute($this->db);
            try {
             unlink('..'.$allPhotos[$i]->fileLocation);
             }  catch (Exception $e) {
