@@ -128,7 +128,9 @@
 		for (var key in locations) {
 		
          //if (locations.hasOwnProperty(key)) {
-         	
+         	console.log(today);
+         	console.log(locations[key].date_of_inspection);
+         	console.log(locations[key].date_of_inspection<today);
          	if((locations[key].inspection_status=='Complete')==false && (locations[key].date_of_inspection<today)){
          	
             addBalloon(locations[key]);
