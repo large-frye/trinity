@@ -36,9 +36,15 @@
 					<div class="row">						
 						<label for="id">Time of Inspection: </label>
 						<div class="right">
-							<?php echo Form::select('hour_of_inspection', $hours, date('h', strtotime($details->time_of_inspection)), array('class' => 'small')); ?>
+							<?php echo Form::select('hour_of_inspection', $hours, isset($details->time_of_inspection) ?
+							                                                      date('h', strtotime($details->time_of_inspection)) : '01', array('class' => 'small')); ?>
 						&nbsp;<span style="display:inline-block;margin-top:4px;vertical-align:top;">:</span>&nbsp;	
 						    <?php echo Form::select('min_of_inspection', $minutes, date('i', strtotime($details->time_of_inspection)), array('class' => 'small')); ?>
+						    <?php 
+                            $ampm = isset($post['am_or_pm']) ? $post['am_or_pm'] : 'am';
+                            $ampm = isset($details->time_of_inspection) && date('H', strtotime($details->time_of_inspection)) > 12 ? 'pm' : 'am';
+
+						    echo Form::select('am_or_pm', array('am' => 'AM', 'pm' => 'PM'), $ampm, array('class' => 'small')); ?>
 						</div>					
 					</div>		
 
