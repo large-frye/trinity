@@ -109,15 +109,30 @@
 		  addClickHandler(balloon, loc, locationPosition(loc));
 		}
 
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+
+		if(dd<10) {
+		    dd='0'+dd
+		} 
+
+		if(mm<10) {
+		    mm='0'+mm
+		} 
+
+		today = mm+'/'+dd+'/'+yyyy;
 		
 		// loop through the json array
 		for (var key in locations) {
 		
          //if (locations.hasOwnProperty(key)) {
+         	console.log(today);
+         	console.log(locations[key].date_of_inspection);
+         	console.log(locations[key].date_of_inspection>today);
+         	if((locations[key].inspection_status=='Complete')==false && (locations[key].date_of_inspection>today)){
          	
-         	if((locations[key].inspection_status=='Complete')==false){
-         	console.log(locations[key]);
-			console.log(locations[key].inspection_status=='Complete');
             addBalloon(locations[key]);
             	
         		}
