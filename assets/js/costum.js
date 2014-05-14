@@ -14,6 +14,21 @@ $(document).ready(function() {
 
 
     //HIDE INSPECTION OPTIONS IF was_roofer_present_entire1
+    $('#was_roofer_present1').click(function() {
+        $('was_roofer_present_entire1').parent().parent().parent().hide();
+        $('#was_roof_climbed0').parent().parent().parent().hide();
+        $('#agreed_wind0').parent().parent().parent().hide();
+        $('#agreed_hail0').parent().parent().parent().hide();
+        $('#refused_test_squares0').parent().parent().parent().hide();
+    });
+
+     $('#was_roofer_present0').click(function() {
+        $('was_roofer_present_entire1').parent().parent().parent().show();
+        $('#was_roof_climbed0').parent().parent().parent().show();
+        $('#agreed_wind0').parent().parent().parent().show();
+        $('#agreed_hail0').parent().parent().parent().show();
+        $('#refused_test_squares0').parent().parent().parent().show();
+    });
 
     $('#was_roofer_present_entire1').click(function() {
         $('#was_roof_climbed0').parent().parent().parent().hide();
