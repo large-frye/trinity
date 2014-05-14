@@ -807,7 +807,7 @@ class Model_Workorders extends Model_Base {
      */
     public function first_page_data_output($data) {
         if (!isset($data['report_type'])) {
-            $checks = array('Yes' => 'policyholder was present and we were able ',
+            $checks = array('Yes' => 'policyholder was present and we were ',
                             'No'  => 'policyholder was not present and we were unable ');
 
             if ($data['was_insured_present'] === "Yes") {
@@ -1240,7 +1240,7 @@ class Model_Workorders extends Model_Base {
         if ($data['was_roof_climbed'] === "Yes" && $data['was_roofer_present_str'] != $no_inspector) {
             $data['was_roof_climbed'] = " and climbed the roof.";
         } else if ($data['was_roofer_present_str'] != $no_inspector) {
-            $data['was_roof_climbed'] = " and did not climb the roof.";
+            $data['was_roof_climbed'] = " and did not climb the roof. ";
         } else {
             $data['was_roof_climbed'] = "";
         }

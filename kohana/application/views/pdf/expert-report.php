@@ -133,12 +133,22 @@ li { padding: 10px; position: relative; left: 2em;}
     an inspection was made of this <?php echo str_replace('<br>', '', $report_data['roof_height']); ?>, 
     <?php echo str_replace('<br>', ', ', $report_data['siding_type']); ?> 
     sided dwelling with <?php echo str_replace('<br>', ', ', $report_data['type_of_roofing']); ?> shingle roofing material. 
-    The <?php echo $report_data['was_insured_present_str']; ?> to explain the extent of the damages present on the property.
+    The <?php 
+        if($report_data['was_insured_present']=='No'){
+           echo $report_data['was_insured_present_str'].' to explain the extent of the damages present on the property.';
+         } else if($report_data['was_insured_present']=='Yes' && $report_data['was_insured_present_entire']=='0' ){
+            echo $report_data['was_insured_present_str'].' unable to explain the extent of the damages as they left the property prior to the inspection being completed.';
+       } else{
+          echo $report_data['was_insured_present_str'].' able to explain the extent of the damages present on the property.';
+       }
+?>
+     
     <?php 
-        if($report_data['was_roofer_present']=='0'){
+    
+        if($report_data['was_roofer_present']=='No'){
            echo $report_data['was_roofer_present_str'];
         }
-        else if($report_data['was_roofer_present_entire']=='1' && $report_data['was_roofer_present']=='1'){
+        else if($report_data['was_roofer_present_entire']=='1' && $report_data['was_roofer_present']=='Yes'){
           echo $report_data['was_roofer_present_str']; 
           echo $report_data['was_roof_climbed'];
           echo $report_data['roofing_agree_str'];
