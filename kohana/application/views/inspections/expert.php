@@ -168,7 +168,7 @@
                                Form::label('was_roofer_present1', 'No'); ?>
                 </div>
             </div>    
-
+            
             <div class="row">
                 <label for="roofer_present_entire">Did roofer stay for entire inspection? </label>
 
