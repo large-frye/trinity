@@ -11,14 +11,53 @@
               </div>";
     } ?>
 
+<?php echo Form::open(''); ?>
 
 <div class="section">
     <div class="box">
-        <div class="title">Extra Invoice Data</div>
+        <div class="title">Invoice: Pre-populated Options</div>
+        
+        <div class="content">
+                <div class="row">
+
+                <div class="invoice-options">
+                    <?php 
+                    $count = 0;
+                    foreach($invoice_options as $key => $option) {
+
+                        $class = '';
+
+                        if ($count > 0) {
+                            $class = 'notfirst';
+                        }
+
+                        echo Form::checkbox('invoice_options[]', $key, false, array('id' => 'invoice_option' . $count)) . "\n" .
+                             Form::label('invoice_option' . $count, $option['name'] . ": &nbsp;&nbsp;&nbsp;<em><b>$" . $option['cost'] . ".00</b></em>", array('class' => $class)) . "\n";
+
+                        $count++;
+                    } ?>
+                    
+                    <div class="cl"></div>
+                </div>
+
+                <?php if (isset($errors['type_of_roofing'])) { 
+                    echo "<div class=\"error\"><p>" . $errors['type_of_roofing'] . "</p></div>";
+                      }
+                ?>
+            </div>    
+                
+        
+        </div>
+    </div>
+</div>
+
+
+<div class="section">
+    <div class="box">
+        <div class="title">Add a new invoice option</div>
         
         <div class="content">
 
-            <?php echo Form::open(''); ?>
                 <table cellspacing="0" cellpadding="0" border="0" class="multi-row-table">
                     <thead>
                         <tr>
@@ -67,7 +106,6 @@
                 <div class="row">
                     <button type="submit" name="save"><span>Save</span></button>
                 </div>
-            </form>
             
             <table class="new-row-container" style="display:none;">
                 <tr>
@@ -86,3 +124,5 @@
         </div>
     </div>
 </div>
+
+</form>

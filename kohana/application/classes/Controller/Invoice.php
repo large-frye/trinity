@@ -42,6 +42,7 @@ class Controller_Invoice extends Controller_Account {
         }
 
         $view->invoice_meta = $this->invoice_model->invoice_meta($this->_workorder_id);
+        $view->invoice_options = $this->invoice_model->get_invoice_options();
         $this->template->content = $view;
     }
 
