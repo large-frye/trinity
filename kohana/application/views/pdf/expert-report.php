@@ -134,16 +134,19 @@ li { padding: 10px; position: relative; left: 2em;}
     <?php echo str_replace('<br>', ', ', $report_data['siding_type']); ?> 
     sided dwelling with <?php echo str_replace('<br>', ', ', $report_data['type_of_roofing']); ?> shingle roofing material. 
     The <?php echo $report_data['was_insured_present_str']; ?> to explain the extent of the damages present on the property.
-    <?php if($report_data['was_roofer_present_entire']=='0'){
-          echo $report_data['was_roofer_present_str']; 
-          echo 'The roofer did not stay for the entire inspection';
-        } else if($report_data['was_roofer_present_entire']=='0' && $report_data['was_roofer_present']=='1'){
+    <?php 
+        if($report_data['was_roofer_present']=='0'){
+           echo $report_data['was_roofer_present_str'];
+        }
+        else if($report_data['was_roofer_present_entire']=='1' && $report_data['was_roofer_present']=='1'){
           echo $report_data['was_roofer_present_str']; 
           echo $report_data['was_roof_climbed'];
           echo $report_data['roofing_agree_str'];
-          } else {
-           echo $report_data['was_roofer_present_str'];
-          }?></p>
+         }
+         else if($report_data['was_roofer_present_entire']=='0'){
+          echo $report_data['was_roofer_present_str']; 
+          echo 'The roofer did not stay for the entire inspection';
+        } ?></p>
 <p class="small lower">All opinions expressed in this report are based on factual evidence found at the dwelling listed above, at the date and time of inspection. 
    It is understood by all parties involved that this inspection and report is provided on a “Limited Liability” basis, and the maximum liability 
    by the inspector and/or Trinity Inspections LLC for errors and omissions, negligence, or from damage of surrounding roofing products that 
