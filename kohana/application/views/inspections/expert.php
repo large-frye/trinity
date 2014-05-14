@@ -118,6 +118,16 @@
                                Form::label('was_insured_present1', 'No'); ?>
                 </div>
             </div>
+             <div class="row">
+                <label for="was_insured_present">Did insured stay for entire inspection?</label>
+
+                <div class="right">
+                    <?php echo Form::radio('was_insured_present_entire', 1, isset($data['was_insured_present_entire']) && $data['was_insured_present_entire'] == 1 ? true : false, array('id' => 'was_insured_present_entire0')) .
+                               Form::label('was_insured_present_entire0', 'Yes') .
+                               Form::radio('was_insured_present_entire', 0, isset($data['was_insured_present_entire']) && $data['was_insured_present_entire'] == 1 ? false : true, array('id' => 'was_insured_present_entire1')) .
+                               Form::label('was_insured_present_entire1', 'No'); ?>
+                </div>
+            </div>
 
             <!-- <div class="row">
                 <label for="if_rolled">If rolled: </label>
@@ -168,7 +178,7 @@
                                Form::label('was_roofer_present1', 'No'); ?>
                 </div>
             </div>    
-            
+
             <div class="row">
                 <label for="roofer_present_entire">Did roofer stay for entire inspection? </label>
 

@@ -807,7 +807,7 @@ class Model_Workorders extends Model_Base {
      */
     public function first_page_data_output($data) {
         if (!isset($data['report_type'])) {
-            $checks = array('Yes' => 'policyholder was present and we were able ',
+            $checks = array('Yes' => 'policyholder was present and we were ',
                             'No'  => 'policyholder was not present and we were unable ');
 
             if ($data['was_insured_present'] === "Yes") {
