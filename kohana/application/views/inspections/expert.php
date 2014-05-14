@@ -215,7 +215,7 @@
                                Form::label('agreed_wind0', 'Yes') .
                                Form::radio('agreed_wind', 0, isset($data['agreed_wind']) && $data['agreed_wind'] == 1 ? false : true, array('id' => 'agreed_wind1')) .
                                Form::label('agreed_wind1', 'No')
-                               Form::radio('agreed_wind', 2, isset($data['agreed_wind']) && $data['agreed_wind'] == 2 ? false : true, array('id' => 'agreed_wind2')) .
+                               Form::radio('agreed_wind', 2, isset($data['agreed_wind']) && $data['agreed_wind'] == 1 ? false : true, array('id' => 'agreed_wind2')) .
                                Form::label('agreed_wind1', 'NA'); ?>
                 </div>
             </div>    
