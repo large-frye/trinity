@@ -13,7 +13,15 @@ $(document).ready(function() {
     });
 
 
+    //HIDE INSPECTION OPTIONS IF was_roofer_present_entire1
 
+    $('#was_roofer_present_entire1').click(function() {
+        $('#was_roof_climbed0').parent().parent().parent().toggle();
+        $('#agreed_wind0').parent().parent().parent().toggle();
+        $('#agreed_hail0').parent().parent().parent().toggle();
+        $('#refused_test_squares0').parent().parent().parent().toggle();
+  
+    });
 
     // HIDE LEFT PANEL
     $(".hide-btn").click(function() {
