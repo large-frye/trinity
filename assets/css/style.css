@@ -2968,6 +2968,22 @@ img { border: 0; }
 	left: -20px !important;
 }
 
+.form-group {
+	float: left;
+	width: 700px;
+}
+
+.form-group label {
+	float: none !important;
+}
+
+.fix-invoice-option {
+	position: relative;
+	top: -40px;
+	right: 25px;
+	float: right;
+}
+
 
 
 
