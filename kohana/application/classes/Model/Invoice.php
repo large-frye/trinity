@@ -138,6 +138,88 @@ class Model_Invoice extends Model_Base {
     }
 
 
+    public function get_invoice_options() {
+        return array(
+            'bir' => array(
+                'cost' => '200',
+                'name' => 'Basic Inspection Report'
+            ),
+
+            'ssd_up_7_pitch' => array(
+                'cost' => '250', 
+                'name' => 'Single Story Dwelling Up to a 7 Pitch'
+                ),
+
+            'tsd_up_7_pitch' => array(
+                'cost' => '300',
+                'name' => 'Two Story Dwelling Up to a 7 Pitch'
+                ),
+
+            'ssd_over_7_pitch' => array(
+                'cost' => '350',
+                'name' => 'Single Story Dwelling Over a 7 Pitch'
+                ),
+
+            'tsd_over_7_pitch' => array(
+                'cost' => '375',
+                'name' => 'Two Story Dwelling Over a 7 Pitch'
+                ),
+
+            'ida_m' => array(
+                'cost' => '50',
+                'name' => 'Interior Damage Assessment and Measurements'
+                ),
+            'ler' => array(
+                'cost' => '500',
+                'name' => 'Licensed Engineer\'s Report, Inspected By An Engineer. Add this to base price above.'
+                ),
+                     
+
+            'ads' => array(
+                'cost' => '50',
+                'name' => 'Additional detached structures (base price includes dwelling plus one detached structure)',
+                ),
+
+            'any_70' => array(
+                'cost' => '100',
+                'name' => 'Any Structure over 70 Squares'
+                ),
+
+            'any_200' => array(
+                'cost' => '200',
+                'name' => 'Any Structure over 200 Squares'
+                ),
+            
+            'add_story_2' => array(
+                'cost' => '100', 
+                'name' => 'Any additional story over 2 Stories'
+                ),
+                     
+            'add_story' => array(
+                'cost' => '100',
+                'name' => 'Additional story'
+                ),
+
+            'extra' => array(
+                'cost' => '50',
+                'name' => 'Extra Building (:type:)',
+                'types' => array('Third', 'Fourth', 'Fifth', 'Sixth')
+                ),
+
+            'discount' => array(
+                'cost' => '-50',
+                'name' => 'Multiple Building Discount',
+                ),
+
+            'est_o_dam' => array(
+                'cost' => '50',
+                'name' => 'Estimate of Damages'
+                )
+
+            );
+    }
+
+
 
     private function _insert_invoice_meta($post, $id) {
         $parameters = array();
