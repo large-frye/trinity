@@ -2954,6 +2954,20 @@ img { border: 0; }
     border-bottom: 1px solid rgb(240, 240, 240);
 }
 
+.invoice-options label {
+	width: 600px !important;
+	border-bottom: 1px dotted #e2e2e2;
+	margin-bottom: 15px !important;
+}
+
+.invoice-options label em {
+	padding-bottom: 2px !important;
+}
+
+.invoice-options label.notfirst {
+	left: -20px !important;
+}
+
 
 
 
