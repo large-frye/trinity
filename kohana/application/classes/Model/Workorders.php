@@ -1240,7 +1240,7 @@ class Model_Workorders extends Model_Base {
         if ($data['was_roof_climbed'] === "Yes" && $data['was_roofer_present_str'] != $no_inspector) {
             $data['was_roof_climbed'] = " and climbed the roof.";
         } else if ($data['was_roofer_present_str'] != $no_inspector) {
-            $data['was_roof_climbed'] = " and did not climb the roof.";
+            $data['was_roof_climbed'] = " and did not climb the roof. ";
         } else {
             $data['was_roof_climbed'] = "";
         }
