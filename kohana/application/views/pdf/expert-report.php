@@ -135,12 +135,11 @@ li { padding: 10px; position: relative; left: 2em;}
     sided dwelling with <?php echo str_replace('<br>', ', ', $report_data['type_of_roofing']); ?> shingle roofing material. 
     The <?php echo $report_data['was_insured_present_str']; ?> to explain the extent of the damages present on the property.
     <?php 
-    echo $report_data['was_roofer_present'];
-     echo $report_data['was_roofer_present_entire'];
-        if($report_data['was_roofer_present']=='0'){
+    
+        if($report_data['was_roofer_present']=='No'){
            echo $report_data['was_roofer_present_str'];
         }
-        else if($report_data['was_roofer_present_entire']=='1' && $report_data['was_roofer_present']=='1'){
+        else if($report_data['was_roofer_present_entire']=='1' && $report_data['was_roofer_present']=='Yes'){
           echo $report_data['was_roofer_present_str']; 
           echo $report_data['was_roof_climbed'];
           echo $report_data['roofing_agree_str'];
