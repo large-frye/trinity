@@ -137,7 +137,7 @@ li { padding: 10px; position: relative; left: 2em;}
     <?php if($report_data['was_roofer_present_entire']=='0'){
           echo $report_data['was_roofer_present_str']; 
           echo 'The roofer did not stay for the entire inspection';
-        } else if($report_data['was_roofer_present_entire']=='0' && $report_data['was_roofer_present']=='was_roofer_present'){
+        } else if($report_data['was_roofer_present_entire']=='0' && $report_data['was_roofer_present']=='1'){
           echo $report_data['was_roofer_present_str']; 
           echo $report_data['was_roof_climbed'];
           echo $report_data['roofing_agree_str'];
