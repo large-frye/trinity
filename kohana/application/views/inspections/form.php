@@ -45,7 +45,7 @@
 
 				<div class="right">
 					<?php echo date("m-d-Y", strtotime($workorder_details->date_of_inspection)) . 
-					               " / " . $workorder_details->time_of_inspection; ?>&nbsp;
+					               " / " . date('h:i:s A', strtotime($workorder_details->time_of_inspection)); ?>&nbsp;
 				</div>
 			</div>
 			

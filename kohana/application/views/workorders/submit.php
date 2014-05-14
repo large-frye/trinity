@@ -215,6 +215,7 @@ echo Form::open('', array('class' => 'workorders-submit-form')); ?>
 							<?php echo Form::select('hour_of_inspection', $hours, isset($post['hour_of_inspection']) ? $post['hour_of_inspection'] : null, array('class' => 'small')); ?>
 						&nbsp;<span style="display:inline-block;margin-top:4px;vertical-align:top;">:</span>&nbsp;	
 						    <?php echo Form::select('min_of_inspection', $minutes, isset($post['min_of_inspection']) ? $post['min_of_inspection'] : null, array('class' => 'small')); ?>
+						    <?php echo Form::select('am_or_pm', array('am' => 'AM', 'pm' => 'PM'), isset($post['am_or_pm']) ? $post['am_or_pm'] : null, array('class' => 'small')); ?>
 						</div>					
 					</div>
 

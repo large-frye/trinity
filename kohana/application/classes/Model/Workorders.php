@@ -67,6 +67,7 @@ class Model_Workorders extends Model_Base {
      */
     public function add_workorder($post) {
         $_date = str_replace('-', '/', $post['requested_date_of_inspection']);
+        $hour = $post['am_or_pm'] == 'pm' && $post['hour_of_inspection'] != "12" ? intval($post['hour_of_inspection']) + 12 : $post['hour_of_inspection'];
         $parameters = array(':id'                         => null,
                             ':type'                       => $post['type'],
                             ':user_id'                    => $this->get_client_id($post['client']), // it is the client's id now. 
@@ -83,7 +84,7 @@ class Model_Workorders extends Model_Base {
                             ':is_expert'                  => isset($post['is_expert']) ? true : false,
                             ':damage_type'                => null,
                             ':date_of_loss'               => date('Y-m-d', strtotime($_date)),
-                            ':time_of_loss'               => date('h:i:s', strtotime($post['hour_of_inspection'] . ":" . $post['min_of_inspection'])),
+                            ':time_of_loss'               => date('h:i:s', strtotime($hour . ":" . $post['min_of_inspection'])),
                             ':interior_inspection'        => $post['interior_inspection'],
                             ':adjuster_present'           => $post['adjuster_present'],
                             ':tarped'                     => $post['tarped'],
@@ -277,8 +278,8 @@ class Model_Workorders extends Model_Base {
      * @return boolean
      */
     public function set_workorder_status($post, $workorder_id) {
-        $hour = $post['hour_of_inspection'] < 10 ? '0' . $post['hour_of_inspection'] : $post['hour_of_inspection'];
-        $min = $post['min_of_inspection'] < 10 ? '0' . $post['min_of_inspection'] : $post['min_of_inspection'];
+        $hour = $hour = $post['am_or_pm'] == 'pm' && $post['hour_of_inspection'] != "12" ? intval($post['hour_of_inspection']) + 12 : $post['hour_of_inspection'];
+        $min = $post['min_of_inspection'];
         $parameters = array(':id'                 => $workorder_id,
                             ':status'             => $post['status'],
                             ':date_of_inspection' => date('Y-m-d', strtotime(str_replace('-', '/', $post['date_of_inspection']))),
@@ -394,7 +395,7 @@ class Model_Workorders extends Model_Base {
      */
     public function get_workorder_hours() {
     	$hours = array();
-        for($i = 0; $i < 24; $i++) {
+        for($i = 1; $i <= 12; $i++) {
         	if ($i < 10) {
         		$hours[$i] = '0' . $i;
         	} else {
@@ -413,16 +414,7 @@ class Model_Workorders extends Model_Base {
      * @return array
      */
     public function get_workorder_minutes() {
-    	$minutes = array();
-        for($i = 0; $i < 60; $i++) {
-        	if ($i < 10) {
-        		$minutes[$i] = '0' . $i;
-        	} else {
-        		$minutes[$i] = $i;
-        	}
-        }
-
-        return $minutes;
+        return array('00' => '00', '15' => '15', '30' => '30', '45' => '45');
     }
 
 
