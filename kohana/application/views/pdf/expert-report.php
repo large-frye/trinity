@@ -141,7 +141,7 @@ li { padding: 10px; position: relative; left: 2em;}
        } else{
           echo $report_data['was_insured_present_str'].' able to explain the extent of the damages present on the property.';
        }
-
+?>
      
     <?php 
     
