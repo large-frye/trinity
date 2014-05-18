@@ -216,6 +216,6 @@ echo '</table>'; ?>
 <div class="section">
 <div class="row">
     <button type="redirect" name="save_report" id="save-report"><span>Create Report PDF</span></button>
-    <?php /* echo $send_report ? "<button type=\"redirect\" name=\"send_report\" id=\"send-report\"><span>Email Report to Client</span></button>" : null; */ ?>
+    <?php  echo $send_report ? "<button type=\"redirect\" name=\"send_report\" id=\"send-report\"><span>Email Report to Client</span></button>" : null;  ?>
 </div>
 </div>
