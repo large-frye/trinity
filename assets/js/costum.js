@@ -22,7 +22,7 @@ $(document).ready(function() {
         $('#refused_test_squares0').parent().parent().parent().hide();
     });
 
-     $('#was_roofer_present0').click(function() {
+    $('#was_roofer_present0').click(function() {
         $('was_roofer_present_entire1').parent().parent().parent().show();
         $('#was_roof_climbed0').parent().parent().parent().show();
         $('#agreed_wind0').parent().parent().parent().show();
@@ -36,7 +36,7 @@ $(document).ready(function() {
         $('#agreed_hail0').parent().parent().parent().hide();
         $('#refused_test_squares0').parent().parent().parent().hide();
     });
-     $('#was_roofer_present_entire0').click(function() {
+    $('#was_roofer_present_entire0').click(function() {
         $('#was_roof_climbed0').parent().parent().parent().show();
         $('#agreed_wind0').parent().parent().parent().show();
         $('#agreed_hail0').parent().parent().parent().show();
@@ -414,11 +414,13 @@ $(document).ready(function() {
     }
 
     // RADIOBUTTONS & CHECKBOXES
-    $("input[type=radio], input[type=checkbox]").each(function() {
-        if ($(this).parents("table").length === 0) {
-            $(this).customInput();
-        }
-    });
+    if (document.URL.match(/invoice/) === null) {
+        $("input[type=radio], input[type=checkbox]").each(function() {
+            if ($(this).parents("table").length === 0) {
+                $(this).customInput();
+            }
+        });
+    }
 
     // FILE INPUT STYLE
     $("input[type=file]").filestyle({

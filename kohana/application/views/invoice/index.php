@@ -11,42 +11,42 @@
               </div>";
     } ?>
 
-<?php echo Form::open(''); ?>
+<div ng-controller="invoiceCtrl" class="ng-cloak" ng-cloak>
+
+<form name="invoiceOptions" ng-submit="addItems()" snovalidate>
+
+<div class="section" ng-show="successMsg">
+    <div class="message info">
+        <span>You have upated your invoice. Click on "View Invoice" below to prepare your report for a PDF deliverable.</span>
+    </div>
+</div>
 
 <div class="section">
     <div class="box">
         <div class="title">Invoice: Pre-populated Options</div>
-        
         <div class="content">
-                <div class="row">
-
+            <div class="row">
                 <div class="invoice-options">
-                    <?php 
-                    $count = 0;
-                    foreach($invoice_options as $key => $option) {
-
-                        $class = '';
-
-                        if ($count > 0) {
-                            $class = 'notfirst';
-                        }
-
-                        echo Form::checkbox('invoice_options[]', $key, false, array('id' => 'invoice_option' . $count)) . "\n" .
-                             Form::label('invoice_option' . $count, $option['name'] . ": &nbsp;&nbsp;&nbsp;<em><b>$" . $option['cost'] . ".00</b></em>", array('class' => $class)) . "\n";
-
-                        $count++;
-                    } ?>
+                    <div class="form-group" ng-repeat="item in items">
+                        <input type="checkbox" name="invoiceOptions[]" ng-model="item.checked" ng-checked="item.checked" ng-click="addItem(item)" />
+                        <label ng-model="item.name">{{ item.name }}</label>
+                        <input type="text" name="invoice_option" ng-model="item.cost" class="fix-invoice-option" />
+                    </div>
                     
                     <div class="cl"></div>
                 </div>
+            </div>
 
-                <?php if (isset($errors['type_of_roofing'])) { 
-                    echo "<div class=\"error\"><p>" . $errors['type_of_roofing'] . "</p></div>";
-                      }
-                ?>
-            </div>    
-                
-        
+            <div class="row">
+                <button type="submit" name="addToReport" class="left"><span>Add to Report <span ng-show="loading">Adding Items...</span></span></button>
+                <div ng-show="addToReportBtn" class="left margin-left">
+                    <button type="button" ng-click="redirect('/invoice/generate/<?php echo Request::current()->param('id') ?>')">
+                        <span>View Invoice</span>
+                    </button>
+                </div>
+
+                <div class="cl"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -57,72 +57,33 @@
         <div class="title">Add a new invoice option</div>
         
         <div class="content">
-
-                <table cellspacing="0" cellpadding="0" border="0" class="multi-row-table">
-                    <thead>
-                        <tr>
-                            <th>Description</th><th>Amount</th><th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    <?php 
-
-                    if ($invoice_meta->count() > 0) {
-                        foreach ($invoice_meta as $meta) {
-                            echo "<tr>" .
-                                     "<td>" . Form::input('descriptions[]', $meta->description) . "</td>" .
-                                     "<td>" . Form::input('amounts[]', $meta->amount) . "</td>" .
-                                     "<td><a href=\"javascript:void(0);\" class=\"remove-row\">Remove</a></td>" .
-                                 "</tr>";
-                        }
-                    } else {
-                        echo "<tr>
-                                  <td>
-                                      <input type=\"text\" name=\"descriptions[]\" value=\"\">
-                                      <!-- {{#description_error}}
-                                      <br><label class=\"error\">{{description_error}}</label>
-                                      {{/description_error}} -->
-                                  </td>
-                                  <td>
-                                       <input type=\"text\" name=\"amounts[]\" value=\"\">
-                                       <!-- {{#amount_error}}
-                                       <br><label class=\"error\">{{amount_error}}</label>
-                                       {{/amount_error}} -->
-                                  </td>
-                                  <td>
-                                      <a href=\"javascript:void(0);\" class=\"remove-row\">Remove</a>
-                                  </td>
-                              </tr>";
-                    } ?>
-
-                    </tbody>
-                </table>
-                
-                <div class="row">
-                    <a href="javascript:void(0);" class="add-new-row"><span>Add row</span></a>
-                </div>
-                
-                <div class="row">
-                    <button type="submit" name="save"><span>Save</span></button>
-                </div>
-            
-            <table class="new-row-container" style="display:none;">
-                <tr>
-                    <td>
-                        <input type="text" name="descriptions[]" value="">
-                    </td>
-                    <td>
-                        <input type="text" name="amounts[]" value="">
-                    </td>
-                    <td>
-                        <a href="javascript:void(0);" class="remove-row">Remove</a>
-                    </td>
-                </tr>
+            <table cellspacing="0" cellpadding="0" border="0" class="multi-row-table">
+                <thead>
+                    <tr>
+                        <th>Description</th><th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="newItemName" ng-model="add.item.name"></td>
+                        <td>
+                            <input type="number" name="newItemAmt" ng-model="add.item.cost" ng-required="invoiceOptions.newItemAmt.$dirty">
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-        
+
+            <p class="error" ng-show="invoiceOptions.newItemAmt.$dirty && invoiceOptions.newItemAmt.$invalid">
+                Your amount for this item needs to be a number.
+            </p>
+                
+            <div class="row">
+                <button type="button" ng-click="pushItem(add.item)" ng-disabled="!invoiceOptions.$valid"><span>Add Item</span></button>
+            </div>
         </div>
     </div>
 </div>
 
 </form>
+
+</div>

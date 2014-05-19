@@ -96,6 +96,30 @@ class Model_Invoice extends Model_Base {
     }
 
 
+    public function add_invoice_items($req, $workorder_id) {
+
+        // Delete from `invoice_meta`
+        DB::delete('invoice_meta')
+            ->where('workorder_id', '=', ':id')
+            ->parameters(array(
+                ':id' => $workorder_id
+                ))
+            ->execute($this->db);
+
+        foreach ($req as $item) {
+            $parameters = array(
+                ':id' => null,
+                ':workorder_id' => $workorder_id,
+                ':description' => $item->name,
+                ':amount' => $item->cost
+                );
+
+            DB::insert('invoice_meta')->values(array_keys($parameters))->parameters($parameters)->execute($this->db);
+        }
+
+    }
+
+
 
     public function send_invoice($workorder_id, $details, $mailer_model) {
         if (!$this->check_if_invoice_pdf_exists($workorder_id)) {
@@ -138,8 +162,8 @@ class Model_Invoice extends Model_Base {
     }
 
 
-    public function get_invoice_options() {
-        return array(
+    public function get_invoice_options($workorder_id) {
+        $items = array(
             'bir' => array(
                 'cost' => '200',
                 'name' => 'Basic Inspection Report'
@@ -200,10 +224,24 @@ class Model_Invoice extends Model_Base {
                 'name' => 'Additional story'
                 ),
 
-            'extra' => array(
+            'extra_third' => array(
                 'cost' => '50',
-                'name' => 'Extra Building (:type:)',
-                'types' => array('Third', 'Fourth', 'Fifth', 'Sixth')
+                'name' => 'Extra Building (Third)',
+                ),
+
+            'extra_fourth' => array(
+                'cost' => '50',
+                'name' => 'Extra Building (Fourth)',
+                ),
+
+            'extra_fifth' => array(
+                'cost' => '50',
+                'name' => 'Extra Building (Fifth)',
+                ),
+
+            'extra_sixth' => array(
+                'cost' => '50',
+                'name' => 'Extra Building (Sixth)',
                 ),
 
             'discount' => array(
@@ -217,6 +255,44 @@ class Model_Invoice extends Model_Base {
                 )
 
             );
+
+        // CHeck to see if any of the $item are in the DB
+        $itemsDB = DB::query(Database::SELECT, "SELECT description, amount FROM invoice_meta WHERE workorder_id = :id")
+            ->parameters(array(
+                ':id' => $workorder_id
+                ))
+            ->as_object()
+            ->execute($this->db);
+
+        $count = 0;
+
+        foreach ($items as $key => $item) {
+
+            foreach ($itemsDB as $itemDB) {
+                if ($item['name'] == $itemDB->description) {
+                    $items[$key]['checked'] = true;
+                    $items[$key]['cost'] = $itemDB->amount;
+                }
+            }
+        }
+
+        $names = array();
+
+        foreach ($items as $key => $value) {
+            $names[] = $value['name'];
+        }
+
+        foreach ($itemsDB as $itemDB) {
+            if (!in_array($itemDB->description, $names)) {
+                $items[strtolower(str_replace(' ', '_', $itemDB->description))] = array(
+                    'cost' => $itemDB->amount,
+                    'name' => $itemDB->description,
+                    'checked' => true,
+                    );
+            }
+        }
+
+        return $items;
     }
 
 

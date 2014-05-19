@@ -41,8 +41,10 @@ class Controller_Invoice extends Controller_Account {
             }
         }
 
+        // Add JS 
+        $this->template->calendar_app = "ng-app=\"invoicingApp\"";
+
         $view->invoice_meta = $this->invoice_model->invoice_meta($this->_workorder_id);
-        $view->invoice_options = $this->invoice_model->get_invoice_options();
         $this->template->content = $view;
     }
 
