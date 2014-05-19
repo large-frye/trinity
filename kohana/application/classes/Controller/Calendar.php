@@ -27,7 +27,6 @@ class Controller_Calendar extends Controller_Account {
     }
 
 
-
     public function after() {
         parent::after();
         // code...

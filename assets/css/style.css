@@ -2970,18 +2970,22 @@ img { border: 0; }
 
 .form-group {
 	float: left;
-	width: 700px;
+	width: 650px;
+	margin: 5px 0;
+	clear: both;
 }
 
 .form-group label {
-	float: none !important;
+	position: relative;
+	top: 0;
 }
 
-.fix-invoice-option {
-	position: relative;
-	top: -40px;
-	right: 25px;
+.form-group input[type=text] {
 	float: right;
+}
+
+.left {
+	float: left;
 }
 
 

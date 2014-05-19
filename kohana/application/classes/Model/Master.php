@@ -107,6 +107,16 @@ class Model_Master extends Model {
             unset($js_files[4]);
         }
 
+        if (preg_match('/invoice/', Request::current()->uri())) {
+            $js_files = array_merge($js_files, array(
+                '/assets/js/angular/angular.min.js',
+                '/assets/js/angular-resource/angular-resource.min.js',
+                '/assets/js/invoice.js'
+                ));
+
+            unset($js_files[14]);
+        }
+ 
 
     	foreach($js_files as $js_file) {
     		$this->js[] = $js_file;
