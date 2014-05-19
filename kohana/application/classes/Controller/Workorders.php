@@ -226,7 +226,9 @@ class Controller_Workorders extends Controller_Account {
 
     public function action_send() { 
         $workorder_info = $this->workorders_model->get_workorder_details($this->_workorder_id);
-        $status = $this->mailer_model->send_mail('dholmblad@gmail.com', 'dholmblad@gmail.com', 'Inspection Report for work order id : ' . $this->_workorder_id, 15, 
+        print_r($workorder_info);
+        die();
+        $status = $this->mailer_model->send_mail('dholmblad@gmail.com', 'admin@trinity.is', 'Inspection Report for work order id : ' . $this->_workorder_id, 15, 
                                                   array('::username::'      => $workorder_info->adjuster,
                                                         '::workorder_id::'  => $this->_workorder_id), 
                                                   null, null,
