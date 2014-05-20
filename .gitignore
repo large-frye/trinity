@@ -7,6 +7,6 @@ _trinity*
 *logs*
 build.sh
 .DS_Store
-dompdf
+*dompdf*
 *extra-docs/*
 kohana/.htaccess
