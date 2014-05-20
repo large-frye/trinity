@@ -948,20 +948,20 @@ class Model_Inspections extends Model_Base {
         }
     }
         public function delete_all_photos($id){
-        $allPhotos = DB::query(Database::SELECT, 'SELECT p.* from inspection_photos p 
-                WHERE workorder_id = :id')
-                      ->parameters(array(':id' => $id))
-                      ->as_object()
-                      ->execute($this->db);
-        $arrySize = count($allPhotos); 
-        for ($i = 0; $i < $arrySize; $i++) {
-             DB::delete('inspection_photos')->where('id', '=', ':id')->parameters(array(':id' => $allPhotos[$i]->id))->execute($this->db);
-           try {
+    //    $allPhotos = DB::query(Database::SELECT, 'SELECT p.* from inspection_photos p 
+     //           WHERE workorder_id = :id')
+      //                ->parameters(array(':id' => $id))
+       //               ->as_object()
+        //              ->execute($this->db);
+   //     $arrySize = count($allPhotos); 
+     //   for ($i = 0; $i < $arrySize; $i++) {
+             DB::delete('inspection_photos')->where('workorder_id', '=', ':id')->parameters(array(':id' => $id))->execute($this->db);
+        //   try {
            // unlink('..'.$allPhotos[$i]->fileLocation);
-            }  catch (Exception $e) {
+         //   }  catch (Exception $e) {
                // echo 'Caught exception: ',  $e->getMessage(), "\n";
-            }
-        }
+           // }
+      //  }
     }
     public function save_photos($post,  $files, $id) {
         $path = "/assets/photos/";

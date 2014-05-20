@@ -140,7 +140,7 @@ $collateral_damage_header = isset($report_data['damages']['collateral_damage_hea
 $collateral_damages = isset($report_data['damages']['collateral_damage_header']['collateral_damages']) ? $report_data['damages']['collateral_damage_header']['collateral_damages'] : null;
 
 ?>
-<div style="position:relative; top: -45px">
+<div style="position:absolute; top: 315px"> <!-- Don't really like using position:absolute -->
 <h4 class="row-header">GROUND INSPECTION</h4>
 <!-- <p>During our ground level walk around inspection of loss to the following building materials that may be more susceptible to wind or hail:</p>-->
 <p>During our ground level walk around inspection of the loss <span class="blue">
