@@ -768,6 +768,7 @@ class Model_Workorders extends Model_Base {
             $photos_view->parentCategories = $parentCategories;
             $photos_view->photos = $photos;
             print_r($photos_view);
+            die();
             $dompdf2 = new DOMPDF();
             $dompdf2->load_html($photos_view);
             $dompdf2->render();
