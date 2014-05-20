@@ -108,6 +108,7 @@ ul
 .row-header { text-align:  center; color: rgb(253, 0, 17); border: 1px solid black; padding: 5px; }
 .blue { color: rgb(45, 130, 253); font-weight: 600; }
 .red { color: rgb(253, 0, 17); text-decoration: underline; }
+.sketch-helper { position: relative !important; left: -300px !important; }
 
 </style>
 </head>
