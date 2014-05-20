@@ -765,6 +765,7 @@ class Model_Workorders extends Model_Base {
         // Create the photos seperate
         try {
             print_r($photos);
+            die();
             $photos_view = View::factory('pdf/photos');
             $photos_view->parentCategories = $parentCategories;
             $photos_view->photos = $photos;
