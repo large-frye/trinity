@@ -249,5 +249,8 @@ if (isset($report_data['damages']['general_comments'])) {
 </div>
 </div>
 </div>
+<div class="page-break"></div>
+
+<?php echo isset($sketch) ? "<img src=\"" . $sketch->fileLocation . "\" alt=\"sketch\" width=\"850\" class=\"sketch-helper\" style=\"margin-left: -75px;\" />" : null;  ?>
 </body>
 </html>  
