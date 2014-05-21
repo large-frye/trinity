@@ -61,7 +61,7 @@ function addCategoryInfoToMultiple(){
              close: function() {
             $( this ).dialog( "close" );
             //this is where we will set the customName value
-            var allSelected = $('.catSelections ').find('.ui-selected');
+            var allSelected = $('#categoryTbl').find('.ui-selected');
             $(allSelected).each(function( i ) {
             var div = $(allSelected[i]).find('div');
             $(allSelected[i]).find('.hiddenCatInfo').remove();
