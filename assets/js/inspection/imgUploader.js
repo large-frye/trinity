@@ -61,7 +61,7 @@ function addCategoryInfoToMultiple(){
              close: function() {
             $( this ).dialog( "close" );
             //this is where we will set the customName value
-            var allSelected = $('#categoryTbl').find('.ui-selected');
+            var allSelected = $('.catSelections ').find('.ui-selected');
             $(allSelected).each(function( i ) {
             var div = $(allSelected[i]).find('div');
             $(allSelected[i]).find('.hiddenCatInfo').remove();
@@ -75,7 +75,7 @@ function addCategoryInfoToMultiple(){
             $(allSelected[i]).append('<div class="hiddenCatInfo" style="display:none;">'+  photoID+':'+parentID+':'+catID+'</div>');
             $(customName).text(catID+' :'+textVal);
               }
-            $(allSelected[i]).removeClass('ui-selected');
+            $('.catSelections ').find('.ui-selected').removeClass('ui-selected');
             });
          },
           }
