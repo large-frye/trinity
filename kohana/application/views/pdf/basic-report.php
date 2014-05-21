@@ -108,6 +108,7 @@ ul
 .row-header { text-align:  center; color: rgb(253, 0, 17); border: 1px solid black; padding: 5px; }
 .blue { color: rgb(45, 130, 253); font-weight: 600; }
 .red { color: rgb(253, 0, 17); text-decoration: underline; }
+.sketch-helper { position: relative !important; left: -300px !important; }
 
 </style>
 </head>
@@ -140,7 +141,7 @@ $collateral_damage_header = isset($report_data['damages']['collateral_damage_hea
 $collateral_damages = isset($report_data['damages']['collateral_damage_header']['collateral_damages']) ? $report_data['damages']['collateral_damage_header']['collateral_damages'] : null;
 
 ?>
-<div style="position:relative; top: -45px">
+<div style="position:absolute; top: 315px"> <!-- Don't really like using position:absolute -->
 <h4 class="row-header">GROUND INSPECTION</h4>
 <!-- <p>During our ground level walk around inspection of loss to the following building materials that may be more susceptible to wind or hail:</p>-->
 <p>During our ground level walk around inspection of the loss <span class="blue">
@@ -249,5 +250,8 @@ if (isset($report_data['damages']['general_comments'])) {
 </div>
 </div>
 </div>
+<div class="page-break"></div>
+
+<?php echo isset($sketch) ? "<img src=\"" . $sketch->fileLocation . "\" alt=\"sketch\" width=\"850\" class=\"sketch-helper\" style=\"margin-left: -75px;\" />" : null;  ?>
 </body>
 </html>  
