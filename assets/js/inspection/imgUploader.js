@@ -3,7 +3,6 @@ $( "#accordion" ).accordion({active: false, collapsible: true});
 
   $(  "#accordion"  ).accordion({
     activate: function( event, ui ) {
-      console.log(ui.newHeader);
       $($(ui.newHeader)[0]).css('height', 'auto');
       $($($(ui.newHeader)[0]).next()).css('height', 'auto');
     }
@@ -29,7 +28,11 @@ $(document).ready(function() {
 });
 
 
-
+$('.catSelections').on( 'submit', function(e) {
+    if (e.keyCode == $.ui.keyCode.ESC) {
+         $( ".catSelections" ).dialog( "close" );
+    }
+});
 
 $(".photoTable").selectable({
   filter: ".tdItem"
