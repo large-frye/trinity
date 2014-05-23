@@ -75,8 +75,9 @@ function addCategoryInfoToMultiple(){
             $(allSelected[i]).append('<div class="hiddenCatInfo" style="display:none;">'+  photoID+':'+parentID+':'+catID+'</div>');
             $(customName).text(catID+' :'+textVal);
               }
-            $('.catSelections ').find('.ui-selected').removeClass('ui-selected');
+        
             });
+                $('.catSelections ').find('.ui-selected').removeClass('ui-selected');
          },
           }
         );
