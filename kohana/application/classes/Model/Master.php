@@ -90,8 +90,6 @@ class Model_Master extends Model {
                           // "/trinity/assets/js/jqueryUI.js",
                           "/assets/js/inspection/imgUploader.js",
                           "/assets/js/admin/multi-row.js",
-                          "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false",
-                          "/assets/js/maps.js",
                           "/assets/js/typeahead.jquery.min.js",
                           "/assets/js/typeahead-helper.js"
                           );
@@ -115,6 +113,13 @@ class Model_Master extends Model {
                 ));
 
             unset($js_files[14]);
+        }
+
+        if (preg_match('/maps/', Request::current()->uri())) {
+            $js_files = array_merge($js_files, array(
+                "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false",
+                "/assets/js/maps.js",
+                ));
         }
  
 

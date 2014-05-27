@@ -183,9 +183,9 @@
                 <label for="roofer_present_entire">Did roofer stay for entire inspection? </label>
 
                 <div class="right">
-                    <?php echo Form::radio('was_roofer_present_entire', 1, isset($data['was_roofer_present_entire']) && $data['was_roofer_present_entire'] == 1 ? true : false, array('id' => 'was_roofer_present_entire0', 'class' => 'roofer-present')) .
+                    <?php echo Form::radio('was_roofer_present_entire', 1, isset($data['was_roofer_present_entire']) && $data['was_roofer_present_entire'] == 1 ? true : false, array('id' => 'was_roofer_present_entire0', 'class' => 'roofer-present-entire')) .
                                Form::label('was_roofer_present_entire0', 'Yes') .
-                               Form::radio('was_roofer_present_entire', 0, isset($data['was_roofer_present_entire']) && $data['was_roofer_present_entire'] == 1 ? false : true, array('id' => 'was_roofer_present_entire1', 'class' => 'roofer-present')) .
+                               Form::radio('was_roofer_present_entire', 0, isset($data['was_roofer_present_entire']) && $data['was_roofer_present_entire'] == 1 ? false : true, array('id' => 'was_roofer_present_entire1', 'class' => 'roofer-present-entire')) .
                                Form::label('was_roofer_present_entire1', 'No'); ?>
                 </div>
             </div> 
@@ -210,14 +210,14 @@
                 <label for="roofer_climbed">Was the roof climbed by the roofer? </label>
 
                 <div class="right">
-                    <?php echo Form::radio('was_roof_climbed', 1, isset($data['roofer_climbed']) && $data['roofer_climbed'] == 1 ? true : false, array('id' => 'was_roof_climbed0')) .
+                    <?php echo Form::radio('was_roof_climbed', 1, isset($data['roofer_climbed']) && $data['roofer_climbed'] == 1 ? true : false, array('id' => 'was_roof_climbed0', 'class' => 'roof-climbed')) .
                                Form::label('was_roof_climbed0', 'Yes') .
-                               Form::radio('was_roof_climbed', 0, isset($data['roofer_climbed']) && $data['roofer_climbed'] == 1 ? false : true, array('id' => 'was_roof_climbed1')) .
+                               Form::radio('was_roof_climbed', 0, isset($data['roofer_climbed']) && $data['roofer_climbed'] == 1 ? false : true, array('id' => 'was_roof_climbed1', 'class' => 'roof-climbed')) .
                                Form::label('was_roof_climbed1', 'No'); ?>
                 </div>
             </div>    
 
-            <div class="row">
+            <div class="row roofer-present-check">
                 <label for="agreed_wind">Did the roofer agree with wind assessment? </label>
 
                 <div class="right">
@@ -228,7 +228,7 @@
                 </div>
             </div>    
 
-            <div class="row">
+            <div class="row roofer-present-check">
                 <label for="agreed_hail ">Did the roofer agree with hail assessment? </label>
 
                 <div class="right">
@@ -239,7 +239,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row roofer-present-check">
                 <label for="refused_test_squares">Did the roofer refuse test squares? </label>
 
                 <div class="right">

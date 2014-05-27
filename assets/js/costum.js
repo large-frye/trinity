@@ -1069,6 +1069,25 @@ $(document).ready(function() {
         }
     });
 
+    $(document).on('click', '.roof-climbed', function() {
+        var items = ['.roofer-present', '.roofer-present-entire'];
+        var flag = false;
+
+        for (i = 0; i < items.length; i++) {
+            if ($(items[i])[0].checked) { // = "No"
+                flag = true;
+            } else {
+                flag = false;
+            }
+        }
+
+        if (flag && $(this).val() == "0") {
+            $('.roofer-present-check').addClass('hide');
+        } else {
+            $('.roofer-present-check').removeClass('hide');
+        }
+    });
+
 });
 
 
