@@ -20,7 +20,7 @@
 						<!-- <th class="sorting" rowspan="1" colspan="1">Policy Number</th> -->
 						<th class="sorting" rowspan="1" colspan="1">Inspector Name</th>
 						<th class="sorting" rowspan="1" colspan="1">Date of inspection</th>
-						<th class="sorting" rowspan="1" colspan="1">Progress State</th>
+						<!-- <th class="sorting" rowspan="1" colspan="1">Progress State</th> -->
 						<th class="sorting" rowspan="1" colspan="1">Date Created</th>
 						<th class="sorting" rowspan="1" colspan="1">Inspection Type</th>
 						<th class="sorting" rowspan="1" colspan="1">Actions</th>
@@ -37,7 +37,7 @@
 						         echo # "<td>" . $_order->policy_number . "</td>" .
 						         "<td>" . $_order->inspector_name . "</td>" .
 						         "<td>" . $_order->date_of_inspection . "</td>" .
-						         "<td>" . $_order->inspection_status . "</td>" .
+						         # "<td>" . $_order->inspection_status . "</td>" .
 						         "<td>" . $_order->created_on_utc . "</td>" .
 						         "<td>" . $_order->inspection_type . "</td>"; ?>
 						    <td>

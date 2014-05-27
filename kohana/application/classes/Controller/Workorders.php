@@ -234,6 +234,9 @@ class Controller_Workorders extends Controller_Account {
                                                   array($this->_report_file_path . str_replace(' ', '', $workorder_info->last_name) . "_Claim" . 
                                                         str_replace(' ', '', $workorder_info->policy_number) . ".pdf"));
 
+        // The status of the workorder needs to be updated to "Sent".
+        $this->workorders_model->update_workorder_status($this->_workorder_id, 5);
+
         // Redirect to the report page.
         Session::instance()->set('report_sent', 'This report has been sent to the user successfully');
         $this->request->redirect('/workorders/report/' . $this->request->param('id'));

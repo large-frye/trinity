@@ -46,10 +46,6 @@ if (isset($success)) {
                 </thead>
                 
                 <tbody>
-                <tr>
-                    <td>Base price of the workorder</td>
-                    <td><?php echo $workorder_details->price; ?></td>
-                </tr>
                 <?php 
                 if ($invoice_meta->count() > 0) {
                     foreach ($invoice_meta as $meta) { 
