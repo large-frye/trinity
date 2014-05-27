@@ -132,7 +132,7 @@ li { padding: 10px; position: relative; left: 2em;}
     <?php echo date('h:m A', strtotime($inspection_data['time_of_inspection'])); ?> 
     an inspection was made of this <?php echo str_replace('<br>', '', $report_data['roof_height']); ?>, 
     <?php echo str_replace('<br>', ', ', $report_data['siding_type']); ?> 
-    sided dwelling with <?php echo str_replace('<br>', ', ', $report_data['type_of_roofing']); ?> shingle roofing material. 
+    sided dwelling with <?php echo str_replace('<br>', ', ', $report_data['type_of_roofing']); ?> roofing material. 
     The <?php 
         if($report_data['was_insured_present']=='No'){
            echo $report_data['was_insured_present_str'].' to explain the extent of the damages present on the property.';
