@@ -102,7 +102,7 @@
         <!-- </div> -->
         <div id="page-wrap">
             <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center; margin-top: -40px;">
-            <?php if (isset($data['damages']['wind_header']) && !isset($data['damages']['wind_header']['no_report'])) { ?>
+            <?php if (isset($data['damages']['wind_header']) || !isset($data['damages']['wind_header']['no_report'])) { ?>
             <h3>Wind Damage</h3>
             <p>During the course of inspection of said roof, we found the presence of wind damage to the roofing system. Wind damage is defined as creased or missing shingles,
                or shingles that have been torn from their fasteners. The negative and positive pressures that are applied to a roof slope due to wind gusts is the reason 
@@ -113,7 +113,7 @@
                have sealant strips. New wind damage can be differentiated from old wind damage by comparing the color of the creasing. Creasing which has recently occurred 
                will appear to be dark black, showing the freshness of the asphalt exposure. Old wind damage will start to weather and become the same shade of gray as the 
                rest of the exposed asphalt on the shingle, thus dating the wind damage.</p>
-            <?php } if (isset($data['damages']['hail_header']) && !isset($data['damages']['hail_header']['no_report'])) { ?>
+            <?php } if (isset($data['damages']['hail_header']) || !isset($data['damages']['hail_header']['no_report'])) { ?>
             <h3 style="margin-top:20px">Hail Damage</h3>
             <p>During the course of inspection of said roof we found there to be hail damage to the shingles on the roof. The industry standards for hail damage are 
                 specified as a loss in water shedding capability, or the reduction of the long term service life of the shingle. The damaging effects of hail 
