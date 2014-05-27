@@ -67,6 +67,10 @@ class Controller_Invoice extends Controller_Account {
             } else {
                 if ($this->invoice_model->send_invoice($this->_workorder_id, $view->workorder_details, $this->mailer_model)) {
                     $view->success = "Your email was sent successfully.";
+
+                    // Update status to be "Invoiced".
+                    $this->workorders_model->update_workorder_status($this->_workorder_id, 6);
+
                 } else {
                     $view->errors = Model_Invoice::$errors;
                 }

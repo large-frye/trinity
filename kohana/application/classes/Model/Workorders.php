@@ -760,6 +760,13 @@ class Model_Workorders extends Model_Base {
     }
 
 
+    public function update_workorder_status($id, $status) {
+        DB::update('work_orders')->set(array('status' => ':status'))->where('id', '=', ':id')->parameters(array(
+            ':status' => $status,
+            ':id'     => $id))->execute($this->db);
+    }
+
+
 
     private function _build_photos_pdf($view, $parentCategories, $photos, $workorder_id) {
         // Create the photos seperate
