@@ -121,6 +121,14 @@ class Model_Workorders extends Model_Base {
 
 
 
+    public function get_workorder_status($id) {
+        return DB::query(Database::SELECT, "SELECT status FROM work_orders WHERE id = :id")->parameters(array(
+            ':id' => $id
+            ))->as_object()->execute($this->db)->current()->status;
+    }
+
+
+
     private function get_client_id($name) {
         return DB::query(Database::SELECT, "SELECT user_id FROM profiles WHERE CONCAT(TRIM(first_name), ' ', TRIM(last_name)) = :client")
                    ->parameters(array(
