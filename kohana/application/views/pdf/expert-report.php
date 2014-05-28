@@ -239,7 +239,7 @@ if (isset($report_data['collateral_damages_to_property'])) {
 
 if (isset($report_data['damages']['collateral_damamges_comments']) && $report_data['damages']['collateral_damamges_comments'] != "") {
     echo "<p>Collateral Damage Comments: <b>" . str_replace("<br>", "", $report_data['damages']['collateral_damamges_comments']) 
-         . "</b>(<em>" . $report_data['damages']['collateral_damamges_comments'] . "</em>)</p>";
+         . "</b></p>";
 }
 
 if (isset($report_data['damages']['general_comments']) && $report_data['damages']['general_comments'] != "") {
