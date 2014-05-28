@@ -325,16 +325,13 @@ class Model_Invoice extends Model_Base {
 
     private function _get_total($workorder_id, $price) {
         $invoice_meta = $this->invoice_meta($workorder_id);
-        $total = $price;
+        $total = 0;
 
-        if ($invoice_meta->count() == 0) {
-            return $price;
-        } else {
-            foreach ($invoice_meta as $meta) {
-                $total += $meta->amount;
-            }
-
-            return $total;
+        foreach ($invoice_meta as $meta) {
+            $total += $meta->amount;
         }
+
+        return $total;
+        
     }
 }
