@@ -794,6 +794,9 @@ class Model_Workorders extends Model_Base {
             $exp_damages = View::factory('pdf/explanation-of-damages');
             $exp_damages->damages = $this->_set_exp_damages($view->report_data);
             $exp_damages->data = $view->report_data;
+            echo "<pre>";
+            print_r($view->report_data);
+            die();
             $dompdf3 = new DOMPDF();
             $dompdf3->load_html($exp_damages);
             $dompdf3->render();
