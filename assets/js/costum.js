@@ -411,6 +411,8 @@ $(document).ready(function() {
                 }
             });
         });
+    } else {
+        console.log('here');
     }
 
     // RADIOBUTTONS & CHECKBOXES
