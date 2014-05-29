@@ -2857,6 +2857,14 @@ img { border: 0; }
 	background: #e3f7fc !important;
 	border: 1px solid #8ed9f6 !important;
 }
+.dark-blue {
+	background: #0000FF !important;
+	border: 1px solid #0011FF !important;
+}
+.orange {
+	background: rgb(249, 169, 56) !important;
+	border: rgb(249, 169, 56) !important;;
+}
 
 .font-green { color: #e9ffd9; }
 
