@@ -476,7 +476,6 @@ $(document).ready(function() {
     // DATATABLE
     $('table.all').dataTable({
         "bInfo": false,
-        "iDisplayLength": 300,
         "aLengthMenu": [
             [5, 10, 25, 50, 100],
             [5, 10, 25, 50, 100]
