@@ -398,13 +398,13 @@ $(document).ready(function() {
                 transferClasses: true,
                 width: null,
                 change: function(e, obj) {
-
                     if (!$(this).hasClass('wo-links')) {
                         // $(".valid").validate().element(this);
                     }
                 },
 
                 select: function() {
+                    console.log('here');
                     if ($(this).hasClass('wo-links')) {
                         window.location.href = $(this).val();
                     }
