@@ -415,6 +415,10 @@ $(document).ready(function() {
         console.log('here');
     }
 
+    $('.wo-links').click(function(event) {
+        console.log($(this));
+    })
+
     // RADIOBUTTONS & CHECKBOXES
     if (document.URL.match(/invoice/) === null) {
         $("input[type=radio], input[type=checkbox]").each(function() {
