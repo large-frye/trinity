@@ -393,7 +393,7 @@ $(document).ready(function() {
     if (document.URL.match(check) === null) {
         // SELECTBOXES
         $(function() {
-            $('.dataTables_length input, select').not("select.multiple").selectmenu({
+            $('input, select').not("select.multiple").selectmenu({
                 style: 'dropdown',
                 transferClasses: true,
                 width: null,
@@ -416,7 +416,7 @@ $(document).ready(function() {
     }
 
     $('.wo-links').click(function(event) {
-        console.log($(this));
+        // console.log($(this));
     })
 
     // RADIOBUTTONS & CHECKBOXES
