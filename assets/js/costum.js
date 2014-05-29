@@ -393,7 +393,7 @@ $(document).ready(function() {
     if (document.URL.match(check) === null) {
         // SELECTBOXES
         $(function() {
-            $('input, select').not("select.multiple").selectmenu({
+            $('.dataTables_length input, select').not("select.multiple").selectmenu({
                 style: 'dropdown',
                 transferClasses: true,
                 width: null,
