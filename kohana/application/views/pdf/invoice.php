@@ -94,7 +94,6 @@ p {
 <br /><br />
 <table border="1">
     <tr class="header"><th style="width:500px">QUANTITY</th><th>PRICE</th></tr>
-    <tr><td class="border">Base price of the workorder</td><td class="border">$<?php echo $inspection_data['price']; ?></td></tr>
     <?php if ($invoice_meta->count() > 0) {
         foreach($invoice_meta as $meta) { ?>
             <tr><td class="border"><?php echo $meta->description; ?></td><td class="border">$<?php echo $meta->amount; ?></td></tr>

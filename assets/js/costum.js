@@ -398,20 +398,26 @@ $(document).ready(function() {
                 transferClasses: true,
                 width: null,
                 change: function(e, obj) {
-
                     if (!$(this).hasClass('wo-links')) {
                         // $(".valid").validate().element(this);
                     }
                 },
 
                 select: function() {
+                    console.log('here');
                     if ($(this).hasClass('wo-links')) {
                         window.location.href = $(this).val();
                     }
                 }
             });
         });
+    } else {
+        console.log('here');
     }
+
+    $('.wo-links').click(function(event) {
+        // console.log($(this));
+    })
 
     // RADIOBUTTONS & CHECKBOXES
     if (document.URL.match(/invoice/) === null) {
@@ -470,7 +476,7 @@ $(document).ready(function() {
     // DATATABLE
     $('table.all').dataTable({
         "bInfo": false,
-        "iDisplayLength": 100,
+        "iDisplayLength": 9999,
         "aLengthMenu": [
             [5, 10, 25, 50, 100],
             [5, 10, 25, 50, 100]
@@ -1066,6 +1072,25 @@ $(document).ready(function() {
             el.next().append("<span class=\"extra-comment\">&nbsp;(<a href='#'><span class=\"italic\">+c</span></a>)</span>");
             el.val(el.val().replace(':', ''));
             el.next().addClass('checked');
+        }
+    });
+
+    $(document).on('click', '.roof-climbed', function() {
+        var items = ['.roofer-present', '.roofer-present-entire'];
+        var flag = false;
+
+        for (i = 0; i < items.length; i++) {
+            if ($(items[i])[0].checked) { // = "No"
+                flag = true;
+            } else {
+                flag = false;
+            }
+        }
+
+        if (flag && $(this).val() == "0") {
+            $('.roofer-present-check').addClass('hide');
+        } else {
+            $('.roofer-present-check').removeClass('hide');
         }
     });
 

@@ -121,6 +121,14 @@ class Model_Workorders extends Model_Base {
 
 
 
+    public function get_workorder_status($id) {
+        return DB::query(Database::SELECT, "SELECT status FROM work_orders WHERE id = :id")->parameters(array(
+            ':id' => $id
+            ))->as_object()->execute($this->db)->current()->status;
+    }
+
+
+
     private function get_client_id($name) {
         return DB::query(Database::SELECT, "SELECT user_id FROM profiles WHERE CONCAT(TRIM(first_name), ' ', TRIM(last_name)) = :client")
                    ->parameters(array(
@@ -757,6 +765,13 @@ class Model_Workorders extends Model_Base {
 
         exec($cmd . " " . $current_pdf_file . $xactimate . $current_pdf_photos_file . " " . 
              " cat output " . $this->_report_file_path . str_replace(' ', '', $workorder_info->last_name) . "_Claim" . str_replace(' ', '', $workorder_info->policy_number) . ".pdf", $retval);
+    }
+
+
+    public function update_workorder_status($id, $status) {
+        DB::update('work_orders')->set(array('status' => ':status'))->where('id', '=', ':id')->parameters(array(
+            ':status' => $status,
+            ':id'     => $id))->execute($this->db);
     }
 
 

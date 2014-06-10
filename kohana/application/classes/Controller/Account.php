@@ -103,7 +103,13 @@ class Controller_Account extends Controller_Master {
         $view->inspector = $this->user_type == 3 ? true : false;
         $view->orders = $this->account_model->get_work_orders($this->_user->id, $this->user_type);
         $view->options = $this->_get_options($view->orders);
-        $view->statuses = array('New' => 'yellow', 'Called PH' => 'blue', 'Alert' => 'red', 'Scheduled' => 'green');
+        $view->statuses = array(
+            'New' => 'yellow', 
+            'Alert' => 'red', 
+            'Called PH' => 'dark-blue', 
+            'Scheduled' => 'blue', 
+            'Sent' => 'orange', 
+            'Invoiced' => 'green');
         $this->template->content = $view;
     }
 
