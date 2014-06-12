@@ -223,7 +223,6 @@ roofing systems.</p>';
             } ?>
             </ul>
           </div>
-            <br>
     <?php }
 
   } ?>
@@ -253,6 +252,6 @@ if (isset($report_data['damages']['general_comments'])) {
 <div class="padding-top"></div>
 <br><br><br>
 
-<?php //echo isset($sketch) ? "<img src=\"" . $sketch->fileLocation . "\" alt=\"sketch\" width=\"850\" class=\"sketch-helper\" style=\"margin-right: auto; margin-left: auto;\" />" : null;  ?>
+<?php echo isset($sketch) ? "<img src=\"" . $sketch->fileLocation . "\" alt=\"sketch\" width=\"850\" class=\"sketch-helper\" style=\"margin-right: auto; margin-left: auto;\" />" : null;  ?>
 </body>
 </html>  
