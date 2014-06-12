@@ -229,6 +229,7 @@ roofing systems.</p>';
   } ?>
 
 <h4 class="row-header" style="margin-top: 50px; position: relative;">INSPECTION SUMMARY</h4>
+<p>
 <?php 
 
 if (isset($report_data['damages']['general_comments'])) {
@@ -242,14 +243,12 @@ if (isset($report_data['damages']['general_comments'])) {
 }
 
 ?>
-</div>
-
 </p>
 </div>
 
 </div>
-</div>
-</div>
+
+
 <div class="page-break"></div>
 <div class="padding-top"></div>
 <br><br><br>
