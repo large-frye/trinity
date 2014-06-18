@@ -785,7 +785,7 @@ class Model_Workorders extends Model_Base {
 
 
     private function _build_sketch_pdf($view, $photos, $workorder_id) {
-        $sketches = [];
+        $sketches = array();
         foreach($photos as $photo) {
             if ($photo->name === 'Sketch') {
                 $sketches[] = $photo;
