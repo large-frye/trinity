@@ -227,9 +227,13 @@ roofing systems.</p>';
 
   } ?>
 
-<h4 class="row-header" style="margin-top: 50px; position: relative;">INSPECTION SUMMARY</h4>
+</div>
+
+<div class="page-break"></div>
+<div style="position: absolute; top: 0">
+<h4 class="row-header">INSPECTION SUMMARY</h4>
 <p>
-<?php 
+<?php
 
 if (isset($report_data['damages']['general_comments'])) {
     if (trim($report_data['damages']['general_comments']) == null || trim($report_data['damages']['general_comments']) == "") {
@@ -245,13 +249,11 @@ if (isset($report_data['damages']['general_comments'])) {
 </p>
 </div>
 
-</div>
 
-
-<div class="page-break"></div>
+<!-- <div class="page-break"></div> -->
 <div class="padding-top"></div>
 <br><br><br>
 
-<?php echo isset($sketch) ? "<img src=\"" . $sketch->fileLocation . "\" alt=\"sketch\" width=\"850\" class=\"sketch-helper\" style=\"margin-right: auto; margin-left: auto;\" />" : null;  ?>
+<?php // echo isset($sketch) ? "<img src=\"" . $sketch->fileLocation . "\" alt=\"sketch\" width=\"850\" class=\"sketch-helper\" style=\"margin-right: auto; margin-left: auto;\" />" : null;  ?>
 </body>
 </html>  

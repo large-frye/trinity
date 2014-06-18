@@ -702,6 +702,9 @@ class Model_Workorders extends Model_Base {
     public function build_expert_pdf($view, $parent_categories, $photos, $workorder_id, $report_data) {
         $workorder_info = $this->get_workorder_details($workorder_id);
 
+        // Build Sketches.
+        $this->_build_sketch_pdf($view, $photos, $workorder_id);
+
         // Photos
         $this->_build_photos_pdf($view, $parent_categories, $photos, $workorder_id);
 
@@ -712,6 +715,7 @@ class Model_Workorders extends Model_Base {
         $current_pdf_file = $this->_report_file_path . "step1_" . $workorder_id . ".pdf";
         $current_pdf_photos_file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
         $current_pdf_exp_damages_file = $this->_report_file_path . "step3_" . $workorder_id . ".pdf";
+        $current_pdf_sketches_file = $this->_report_file_path . "step4_" . $workorder_id . ".pdf";
         $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
                     
         if (file_exists($this->_report_file_path . str_replace(' ', '', $workorder_info->last_name) . "_Claim" . str_replace(' ', '', $workorder_info->policy_number) . ".pdf")) {
@@ -726,7 +730,7 @@ class Model_Workorders extends Model_Base {
 
         $file_name = $this->_report_file_path . str_replace(' ', '', $workorder_info->last_name) . "_Claim" . str_replace(' ', '', $workorder_info->policy_number) . ".pdf";
 
-        exec($cmd . " " . $current_pdf_file . " " . $xactimate_file . " " . $current_pdf_photos_file . " " . $current_pdf_exp_damages_file . " " . 
+        exec($cmd . " " . $current_pdf_file . " " . $current_pdf_sketches_file . " " . $xactimate_file . " " . $current_pdf_photos_file . " " . $current_pdf_exp_damages_file . " " .
              " cat output " . $file_name, $retval);
     }
 
@@ -739,11 +743,15 @@ class Model_Workorders extends Model_Base {
     public function build_basic_pdf($view, $parent_categories, $photos, $workorder_id, $report_data) {
         $workorder_info = $this->get_workorder_details($workorder_id);
 
+        // Build Sketches.
+        $this->_build_sketch_pdf($view, $photos, $workorder_id);
+
         // Photos
         $this->_build_photos_pdf($view, $parent_categories, $photos, $workorder_id);
 
         // Combine all the reports together
         $current_pdf_file = $this->_report_file_path . "step1_" . $workorder_id . ".pdf";
+        $current_pdf_sketches_file = $this->_report_file_path . "step4_" . $workorder_id . ".pdf";
         $current_pdf_photos_file = $this->_report_file_path . "step2_" . $workorder_id . ".pdf";
         $xactimate_file = $_SERVER['DOCUMENT_ROOT'] . "/assets/xact/" . $workorder_id .".pdf";
 
@@ -758,12 +766,12 @@ class Model_Workorders extends Model_Base {
         }
 
         if (file_exists($xactimate_file)) {
-            $xactimate = " " . $xactimate_file . " ";
+            $xactimate = " " . $xactimate_file;
         } else {
             $xactimate = " ";
         }
 
-        exec($cmd . " " . $current_pdf_file . $xactimate . $current_pdf_photos_file . " " . 
+        exec($cmd . " " . $current_pdf_file . " " . $current_pdf_sketches_file . $xactimate . " " . $current_pdf_photos_file . " " .
              " cat output " . $this->_report_file_path . str_replace(' ', '', $workorder_info->last_name) . "_Claim" . str_replace(' ', '', $workorder_info->policy_number) . ".pdf", $retval);
     }
 
@@ -772,6 +780,32 @@ class Model_Workorders extends Model_Base {
         DB::update('work_orders')->set(array('status' => ':status'))->where('id', '=', ':id')->parameters(array(
             ':status' => $status,
             ':id'     => $id))->execute($this->db);
+    }
+
+
+
+    private function _build_sketch_pdf($view, $photos, $workorder_id) {
+        $sketches = [];
+        foreach($photos as $photo) {
+            if ($photo->name === 'Sketch') {
+                $sketches[] = $photo;
+            }
+        }
+
+        try {
+            $view = View::factory('pdf/sketches');
+            $view->sketches = $sketches;
+            $dompdf = new DOMPDF();
+            $dompdf->set_paper('letter', 'landscape');
+            $dompdf->load_html($view);
+            $dompdf->render();
+            $file = $this->_report_file_path . "step4_" . $workorder_id . ".pdf";
+            $fp = fopen($file, 'w+');
+            fwrite($fp, $dompdf->output());
+            fclose($fp);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
 
