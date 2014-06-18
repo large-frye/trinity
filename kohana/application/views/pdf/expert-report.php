@@ -253,9 +253,9 @@ if (isset($report_data['damages']['general_comments']) && $report_data['damages'
 <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
 <h3 class="center">Symbol Breakdown</h3>
 <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/symbol_breakdown.jpg'; ?>" alt="symbol_breakdown" />
-<div class="page-break"></div>
+<!-- <div class="page-break"></div> -->
 
-<?php echo isset($sketch) ? "<img src=\"" . $sketch->fileLocation . "\" alt=\"sketch\" width=\"850\" class=\"sketch-helper\" style=\"margin-left: -75px;\" />" : null;  ?>
+<?php // echo isset($sketch) ? "<img src=\"" . $sketch->fileLocation . "\" alt=\"sketch\" width=\"850\" class=\"sketch-helper\" style=\"margin-left: -75px;\" />" : null;  ?>
 
 </div>
 </div>
