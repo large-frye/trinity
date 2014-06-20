@@ -74,7 +74,6 @@ ul
 .damageUL{
   position:relative;
   left:2em;
-  height:100%;
 }
 .redTxt{
   color: red ;
@@ -231,6 +230,9 @@ roofing systems.</p>';
 
 </div>
 <br>
+<br><br>
+<br><br>
+<br><br>
 <br>
 <div class="page-break"></div>
 <div style="position: absolute; top: 0">
