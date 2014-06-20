@@ -74,6 +74,7 @@ ul
 .damageUL{
   position:relative;
   left:2em;
+  height:100%;
 }
 .redTxt{
   color: red ;
