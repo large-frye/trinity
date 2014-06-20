@@ -230,6 +230,7 @@ roofing systems.</p>';
 
 </div>
 <br>
+<br>
 <div class="page-break"></div>
 <div style="position: absolute; top: 0">
 <h4 class="row-header">INSPECTION SUMMARY</h4>
