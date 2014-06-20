@@ -227,13 +227,10 @@ roofing systems.</p>';
     <?php }
 
   } ?>
-
+<br>
+<br><br>
+<br>
 </div>
-<br>
-<br><br>
-<br><br>
-<br><br>
-<br>
 <div class="page-break"></div>
 <div style="position: absolute; top: 0">
 <h4 class="row-header">INSPECTION SUMMARY</h4>
