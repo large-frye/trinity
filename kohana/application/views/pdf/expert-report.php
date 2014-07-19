@@ -198,6 +198,7 @@ SC Adjusters License # 625784</p>
                               $type = str_replace($value, '<span class="red">'.$value.'</span>', $type);
                           } echo $type; ?></li>
               <?php } else if (is_array($type)) {
+                  
                   foreach ($type as $t => $val) {
                     $_str = "";
                     foreach (explode(' ', $val) as $char) {
@@ -207,8 +208,12 @@ SC Adjusters License # 625784</p>
                     foreach ($directions as $value) {
                       $_str = str_replace($value, "<span class=\"red\">" . $value . "</span>", $_str);
                     }
-                    
-                     echo "<li>" . $_str . "</li>"; 
+
+                    if (preg_match('/hail/', $damage) && preg_match('/hail-damaged shingles/', $_str)) {
+                        echo "<li>" . str_replace('hail-damaged shingles.', 'hail-damaged shingles per test square.', $_str) . "</li>";
+                    } else {
+                        echo "<li>" . $_str . "</li>";
+                    }
                   }
               } ?>
               </ul>
