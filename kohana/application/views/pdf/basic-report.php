@@ -193,29 +193,34 @@ roofing systems.</p>';
                                 } else {
                                     $finalStr .= " " . $opt;
                                 }
-                           }
-                           $finalStr .= "<br />";
-                        }
-                    } else {
-                    foreach(explode(' ',$tmp) as $st) {
-                        if(is_numeric($st)){
-                            if (preg_match('/wind/', $damage)) {
-                               $windTotal = $windTotal + $st;
-                            }
-                            else if (preg_match('/hail/', $damage)) {
-                              $hailTotal = $hailTotal + $st;
                             }
 
-                            $finalStr = $finalStr . ' <span class="redTxt">' . $st . '</span>';
-                        } else {
-                            $finalStr=$finalStr.' '.$st;
+                            $finalStr .= "<br />";
                         }
-                    }
+                    } else {
+                        foreach(explode(' ',$tmp) as $st) {
+                            if(is_numeric($st)){
+                                if (preg_match('/wind/', $damage)) {
+                                    $windTotal = $windTotal + $st;
+                                }
+                                else if (preg_match('/hail/', $damage)) {
+                                    $hailTotal = $hailTotal + $st;
+                                }
+
+                                $finalStr = $finalStr . ' <span class="redTxt">' . $st . '</span>';
+                            } else {
+                                $finalStr=$finalStr.' '.$st;
+                            }
+                        }
                     }
 
                     $tmp=$finalStr;
                     foreach ($directions as $value) {
                         $tmp = str_replace($value, '<span class="redTxt">'.$value.'</span>', $tmp);
+                    }
+
+                    if (preg_match('/hail-damaged shingles/', $tmp)) {
+                        $tmp = str_replace('hail-damaged shingles', 'hail-damaged shingles per test square', $tmp);
                     }
                  ?>
                   <li class="damageLi"><?php echo $tmp; ?></li>
