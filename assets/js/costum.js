@@ -831,7 +831,7 @@ $(document).ready(function() {
                 "left": "Northeast",
                 "right": "Southwest",
                 "rear": "Southeast",
-                "front": "Norhtwest"
+                "front": "Northwest"
             },
             "right": {
                 "right": "Northeast",
