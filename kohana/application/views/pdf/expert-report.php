@@ -150,7 +150,7 @@ li { padding: 10px; position: relative; left: 2em;}
         }
         else if(isset($report_data['was_insured_present_entire']) && $report_data['was_roofer_present_entire']=='1' && $report_data['was_roofer_present']=='Yes'){
           echo $report_data['was_roofer_present_str']; 
-          echo str_replace('and', ' '. $report_data['was_roof_climbed']) . ' ';
+          echo $report_data['was_roof_climbed'];
           echo $report_data['roofing_agree_str'];
          }
          else if(isset($report_data['was_insured_present_entire']) && $report_data['was_roofer_present_entire']=='0'){
