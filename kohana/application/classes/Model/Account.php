@@ -2,9 +2,10 @@
 
 class Model_Account extends Model_Base {
 
-    const ADMIN     = 2;
-    const INSPECTOR = 3;
-    const CLIENT    = 4;
+    const ADMIN       = 2;
+    const INSPECTOR   = 3;
+    const CLIENT      = 4;
+    const OFFICE_USER = 5;
 
       public function __construct() {
             parent::__construct();
@@ -33,6 +34,7 @@ class Model_Account extends Model_Base {
 
     public function get_work_orders($user_id, $user_type) {
         $where_clause = "1=1";
+        $option_clause = '';
 
         switch ($user_type) {
             case '3' :
@@ -40,6 +42,8 @@ class Model_Account extends Model_Base {
                 break;
             case '4' :
                 $where_clause = "uf.user_id = :user_id";
+            case '5' :
+                $option_clause = ' LIMIT 200';
                 break;
         }
 
@@ -60,7 +64,8 @@ class Model_Account extends Model_Base {
                                                LEFT JOIN inspection_types it ON it.id = w.type
                                                LEFT JOIN inspections i ON i.work_order_id = w.id
                                                WHERE ' . $where_clause . '
-                                               ORDER BY id DESC')
+                                               ORDER BY id DESC' . 
+                                               $option_clause)
                       ->parameters(array(':user_id' => $user_id))
                       ->as_object()
                       ->execute($this->db);
@@ -251,6 +256,8 @@ public function generateRandomString() {
                     return $this::INSPECTOR;
                 case $this::CLIENT :
                     return $this::CLIENT;
+                case $this::OFFICE_USER :
+                    return $this::OFFICE_USER;
             }
         }
     }
