@@ -13,8 +13,7 @@ class Model_Mailer extends Model_Base {
     	$this->_host = 'smtp.gmail.com';
     	$this->_port = 465;
     	$this->_username = 'trinity.inspections@gmail.com';
-    	$this->_password = '7705trinity';
-
+    	$this->_password = 'trinity7705';
     }
 
 
@@ -32,7 +31,7 @@ class Model_Mailer extends Model_Base {
         $mail->Username = $this->_username;
         $mail->Password = $this->_password;
         $mail->IsHTML(true);
-        $mail->SetFrom('admin@trinity.is', "Trinity Roof Inspections");
+        $mail->SetFrom('trinity.inspections@gmail.com', "Trinity Roof Inspections");
         $mail->Subject = $subject;
         $mail->addAddress($to);
 
