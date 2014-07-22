@@ -10,8 +10,9 @@
 		</div>
 		
 		<div class="content">
-			<table cellspacing="0" cellpadding="0" border="0" class="all"> 
-				<thead id="fixed-header"> 
+			<table cellspacing="0" cellpadding="0" border="0" class="stripe row-border data-table"> 
+				<!-- <thead id="fixed-header"> -->
+				<thead>
 					<tr>
 						<th class="sorting" rowspan="1" colspan="1">ID Num.</th>
 						<th class="sorting" rowspan="1" colspan="1">Status</th>

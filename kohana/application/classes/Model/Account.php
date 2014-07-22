@@ -59,7 +59,8 @@ class Model_Account extends Model_Base {
                                                LEFT JOIN inspection_statuses _is ON _is.id = w.inspection_status
                                                LEFT JOIN inspection_types it ON it.id = w.type
                                                LEFT JOIN inspections i ON i.work_order_id = w.id
-                                               WHERE ' . $where_clause)
+                                               WHERE ' . $where_clause . '
+                                               ORDER BY id DESC')
                       ->parameters(array(':user_id' => $user_id))
                       ->as_object()
                       ->execute($this->db);
