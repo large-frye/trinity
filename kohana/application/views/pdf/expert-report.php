@@ -129,7 +129,7 @@ li { padding: 10px; position: relative; left: 2em;}
 </table>
 <h4 class="center">Inspection Overview:</h4>
 <p>On <?php echo date('n/j/Y', strtotime($inspection_data['date_of_inspection'])); ?>, at 
-    <?php echo date('h:m A', strtotime($inspection_data['time_of_inspection'])); ?> 
+    <?php echo date('h:i A', strtotime($inspection_data['time_of_inspection'])); ?> 
     an inspection was made of this <?php echo str_replace('<br>', '', $report_data['roof_height']); ?>, 
     <?php echo str_replace('<br>', ', ', $report_data['siding_type']); ?> 
     sided dwelling with <?php echo str_replace('<br>', ', ', $report_data['type_of_roofing']); ?> roofing material. 
