@@ -283,6 +283,7 @@ class Controller_Account extends Controller_Master {
         foreach($orders as $_order) {
             switch ($this->user_type) {
                 case Model_Account::ADMIN : 
+                case Model_Account::OFFICE_USER :
                     $options[$_order->id] = array('/workorders/view/' . $_order->id => 'View',
                                                   '/workorders/edit/' . $_order->id => 'Edit',
                                                   '/inspections/form/' . $_order->id => 'Inspection Form',
