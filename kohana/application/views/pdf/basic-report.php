@@ -25,14 +25,13 @@ table{
 
 table.top {
     width: 49.5%;
-    position: relative;
-    top: 30px;
+    margin-top: 20px;
 }
 
 table.position-right{
-    position: relative;
-    top: -110px;
-    left: 360px;
+    margin-top: -130px !important;
+    margin-left: 280px !important;
+    width: 85%;
 }
 
 tr.header {
@@ -117,12 +116,14 @@ ul
 <!-- </div> -->
 
 <div id="page-wrap">
-<img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center">
-<table style="position:absolute; top: 40px; left: 45px">
-    <tr><th class="header">Trinity Inspections, LLC</th></tr>
-    <tr><td class="center">P.O. Box 938</td></tr>
-    <tr><td class="center">Locust, NC 28097</td></tr>
-</table>
+<div class="top-bar">
+    <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . '/assets/gfx/logo-icon.png'; ?>" width="100" height="100" alt="test" style="text-align:center;">
+    <table style="margin-top: -75px">
+        <tr><th class="header">Trinity Inspections, LLC</th></tr>
+        <tr><td class="center">P.O. Box 938</td></tr>
+        <tr><td class="center">Locust, NC 28097</td></tr>
+    </table>
+</div>
 
 <table class="top">
     <tr><th>Policy Holder:</th><td class="border"><?php echo $inspection_data['insured'];?></td></tr>
@@ -141,7 +142,7 @@ $collateral_damage_header = isset($report_data['damages']['collateral_damage_hea
 $collateral_damages = isset($report_data['damages']['collateral_damage_header']['collateral_damages']) ? $report_data['damages']['collateral_damage_header']['collateral_damages'] : null;
 
 ?>
-<div style="position:absolute; top: 315px"> <!-- Don't really like using position:absolute -->
+<div style="position:relative;"> <!-- Don't really like using position:absolute -->
 <h4 class="row-header">GROUND INSPECTION</h4>
 <!-- <p>During our ground level walk around inspection of loss to the following building materials that may be more susceptible to wind or hail:</p>-->
 <p>During our ground level walk around inspection of the loss <span class="blue">
