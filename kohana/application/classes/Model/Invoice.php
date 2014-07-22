@@ -85,9 +85,9 @@ class Model_Invoice extends Model_Base {
             $pdf_html->invoice_meta = $this->invoice_meta($workorder_id);
             $dompdf->load_html($pdf_html);
             $dompdf->render();
-            $file = $this->_file_path . $workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf";
+            $file = $this->_file_path . $workorder_info->last_name . "_Invoice" . $workorder_info->policy_number . ".pdf";
             file_put_contents($file, $dompdf->output());
-            $dompdf->stream($workorder_info->last_name . "_Claim" . $workorder_info->policy_number . ".pdf");
+            $dompdf->stream($workorder_info->last_name . "_Invoice" . $workorder_info->policy_number . ".pdf");
             return true;
         } catch (Exception $e) {
             $this::$errors = "Error processing this PDF." . $e;
