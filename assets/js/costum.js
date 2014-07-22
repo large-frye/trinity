@@ -474,7 +474,7 @@ $(document).ready(function() {
     });
 
     // DATATABLE
-    $('table.all').dataTable({
+    $('table.data-table').dataTable({
         "bInfo": false,
         "iDisplayLength": 9999,
         "aLengthMenu": [
@@ -483,6 +483,9 @@ $(document).ready(function() {
         ],
         "sPaginationType": "full_numbers",
         "bPaginate": true,
+        "aaSorting": [
+            [0, "desc"]
+        ],
         "sDom": '<f>t<pl>'
     });
 
