@@ -1,4 +1,4 @@
-<?php if ($user_type === Model_Account::ADMIN) { ?>
+<?php if (in_array($user_type, array(Model_Account::ADMIN, Model_Account::OFFICE_USER))) { ?>
 
 <div id="menu">
 	<ul> 
