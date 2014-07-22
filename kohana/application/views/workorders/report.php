@@ -19,7 +19,7 @@
             <div class="row">
                 <label for="inspection_date">Inspection Date/ Time: </label>
                 <div class="right">
-                    <strong><?php echo $inspection_details->date_of_inspection . " / " . $inspection_details->time_of_inspection; ?></strong>
+                    <strong><?php echo $inspection_details->date_of_inspection . " / " . date('H:i A', strtotime($inspection_details->time_of_inspection)); ?></strong>
                 </div>
             </div>
 
