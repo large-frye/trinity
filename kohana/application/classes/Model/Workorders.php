@@ -656,8 +656,8 @@ class Model_Workorders extends Model_Base {
         // Set fraud input and other damage information here. 
         $view->report_data = $this->_handle_damages($view->report_data);
 
-        print_r($view->report_data);
-        die();
+        // Check for duplicates
+        echo "<pre>"; print_r($view->report_data['damages']); echo "<pre>";
 
         // Get all of inspection data and report. 
         $view->inspection_data = (array) $this->get_workorder_details($workorder_id);
