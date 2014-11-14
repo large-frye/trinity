@@ -39,7 +39,7 @@
 						&nbsp;&nbsp;
 						<a href="/account/forgotpassword" class="forgot-password"><em>Forgot your password?</em></a>
 						&nbsp;|&nbsp;
-						<a href="/account/signup" class="forgot-password"><em>Don`t have account? Sign up here</em></a>
+						<!-- <a href="/account/signup" class="forgot-password"><em>Don`t have account? Sign up here</em></a> -->
 					</div>
 				</div>
 			<?php echo Form::close(); ?>
