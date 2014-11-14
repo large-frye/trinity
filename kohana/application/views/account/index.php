@@ -42,7 +42,7 @@
 						         "<td>" . $_order->created_on_utc . "</td>" .
 						         "<td>" . $_order->inspection_type . "</td>"; ?>
 						    <td>
-							<?php echo Form::select('wo-actions', $options[$_order->id], '', array('class' => 'wo-actions wo-links')); ?>
+							<?php #echo Form::select('wo-actions', $options[$_order->id], '', array('class' => 'wo-actions wo-links')); ?>
 						    </td>
 					</tr>
 				<?php } ?>
