@@ -47,7 +47,7 @@ class Model_Account extends Model_Base {
                 break;
         }
 
-        $result = DB::query(Database::SELECT, 'SELECT w.first_name, w.last_name, w.id, w.status_name, 
+        $result = DB::query(Database::SELECT, 'SELECT w.first_name, w.last_name, w.id,
                                                       date_format(date_of_inspection, "%m/%d%/%Y") as date_of_inspection,
                                                       date_format(w.created_on_utc, "%m/%d%/%Y") as created_on_utc,
                                                       CONCAT(uf.first_name, " ", uf.last_name) as adjuster_name,
