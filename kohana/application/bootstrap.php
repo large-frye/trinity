@@ -94,7 +94,7 @@ if (isset($_SERVER['KOHANA_ENV']))
 	Kohana::$environment = constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV']));
 }
 
-error_reporting(E_ALL);
+error_reporting(E_ALL ^ E_DEPRECATED);
 
 /**
  * Initialize Kohana, setting the default options.
