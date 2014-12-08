@@ -7,7 +7,7 @@
 RewriteBase /kohana/
 
 # Set directory index.
-DirectoryIndex /kohana/index.php/welcome
+# DirectoryIndex /kohana/index.php/welcome
 
 
 # Protect hidden files from being viewed

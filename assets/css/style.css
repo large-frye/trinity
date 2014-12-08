@@ -2996,26 +2996,97 @@ img { border: 0; }
 	float: left;
 }
 
+.links {
+	width: 80px;
+}
 
+.menu li a {
+	text-decoration: none;
+	text-align: left;
+}
 
+.menu li ul {
+	display: none;
+	border: 1px solid #d1d1d1;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	background-color: #e8e8e8;
+	z-index: 10;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	margin-left: -50px !important;
+	width: 120px;
+}
 
+.menu li ul li {
+	padding-left: 0 !important;
+}
 
+.menu li ul li a {
+	border-bottom: 1px solid #d1d1d1;
+	padding: .5em 0 !important;
+	text-align: center;
+	text-decoration: none;
+	width: 100%;
+	float: left;
+}
 
+.menu li ul li a:hover {
+	background-color: #e2e2e2;
+}
 
+.pagination {
+	float: right;
+	margin: 1em 0 !important;
+	width: 55%;
+}
 
+.pagination li a {
+	float: left;
+	padding: 0 .5em;
+	border: 1px solid #b2b2b2;
+	padding: 0 10px;
+	margin-right: 5px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
 
+.pagination li.active a {
+	background-color: #e2e2e2;
+}
 
+.dotted {
+	border: 1px dotted #d2d2d2;
+}
 
+#workorders.box {
+	padding-bottom: 40px;
+}
 
+#searchBox {
+	float:right;
+	margin: 1em 0;
+	padding-right: 20px;
+}
 
+#searchBox input[type=text] {
+	padding: .4em;
+	font-size: 12px;
+	width: 200px;
+}
 
-
-
-
-
-
-
-
-
-
-
+.alert {
+	position: fixed;
+	top: 65px;
+	left: 0;
+	z-index: 1031;
+	width: 90%;
+	margin-left: 5%;
+	padding: 1em;
+	background-color: rgb(173, 216, 230);
+	border: 1px solid rgb(135, 206, 250);
+	color: white;
+}

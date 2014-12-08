@@ -793,6 +793,15 @@ class Kohana_Request implements HTTP_Request {
 	}
 
 	/**
+     * Dumbasses didn't put this in Kohana 3.3 ...
+     *
+     * @param string $url
+     */
+    public function redirect($url) {
+    	HTTP::redirect($url);
+    }
+
+	/**
 	 * Sets and gets the route from the request.
 	 *
 	 * @param   string $route
@@ -831,15 +840,6 @@ class Kohana_Request implements HTTP_Request {
 
 		return $this;
 	}
-
-    /**
-     * Dumbasses didn't put this in Kohana 3.3 ...
-     *
-     * @param string $url
-     */
-    public function redirect($url) {
-    	HTTP::redirect($url);
-    }
 
 	/**
 	 * Sets and gets the controller for the matched route.

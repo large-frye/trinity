@@ -787,6 +787,10 @@ class Model_Workorders extends Model_Base {
             ':id'     => $id))->execute($this->db);
     }
 
+    public function get_count_of_workorders() {
+        return DB::query(Database::SELECT, "SELECT count(*) as count FROM work_orders")->as_object()->execute($this->db)->current()->count;
+    }
+
 
 
     private function _build_sketch_pdf($view, $photos, $workorder_id) {

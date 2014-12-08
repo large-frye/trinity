@@ -1,0 +1,58 @@
+<div class="section">
+    <div>&nbsp;</div>
+    <div ng-if="loading" class="alert">
+        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;Loading Workorders...
+    </div>
+    <div class="content">
+        <a ng-if="admin || client" href="workorders/submit" class="button-three-d">Submit New</a>
+    </div>
+    <div id="workorders" class="box">
+        <div class="title">
+            Workorders
+            <span class="hide"></span>
+        </div>
+
+        <pagination class="pagination" total-items="totalItems" ng-model="currentPage" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" ng-change="pageChanged()"></pagination>
+        <div class="clear"></div>
+
+        <div id="searchBox">
+            <input type="text" ng-model="searchText" placeholder="Type to start search..."/>
+        </div>
+
+        <div class="content">
+            <table cellspacing="0" cellpadding="0" border="0" class="stripe row-border data-table">
+                <thead>
+                    <tr>
+                        <th class="sorting" rowspan="1" colspan="1" ng-click="reverse=!reverse;order('id',reverse)">ID Num.</th>
+                        <th class="sorting" rowspan="1" colspan="1" ng-click="reverse=!reverse;order('status_name',reverse)">Status</th>
+                        <th class="sorting" rowspan="1" colspan="1" ng-click="reverse=!reverse;order('insured', reverse)">Insured</th>
+                        <th class="sorting" rowspan="1" colspan="1" ng-if="!inspector" ng-click="reverse=!reverse;order('adjuster_name', reverse)">Adjuster Name</th>
+                        <th class="sorting" rowspan="1" colspan="1" ng-click="reverse=!reverse;order('inspector_name', reverse)">Inspector Name</th>
+                        <th class="sorting" rowspan="1" colspan="1" ng-click="reverse=!reverse;order('date_of_inspection', reverse)">Date of inspection</th>
+                        <th class="sorting" rowspan="1" colspan="1" ng-click="reverse=!reverse;order('created_on_utc', reverse)">Date Created</th>
+                        <th class="sorting" rowspan="1" colspan="1" ng-click="reverse=!reverse;order('inspection_type', reverse)">Inspection Type</th>
+                        <th class="sorting" rowspan="1" colspan="1">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="order in orders | filter:searchText">
+                        <td>{{order.id}}</td>
+                        <td ng-class="{blue: order.status_name=='Scheduled', yellow: order.status_name=='New', red: order.status_name=='Alert', 'dark-blue': order.status_name=='Called PH', orange: order.status_name=='Sent', green: 'Invoiced'}">{{order.status_name}}</td>
+                        <td>{{order.insured}}</td>
+                        <td ng-if="!inspector">{{order.adjuster_name}}</td>
+                        <td>{{order.inspector_name}}</td>
+                        <td>{{order.date_of_inspection}}</td>
+                        <td>{{order.created_on_utc}}</td>
+                        <td>{{order.inspection_type}}</td>
+                        <td class="links">
+                            <div dropdown order="order" usertype="usertype"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr class="dotted">
+            <pagination class="pagination" total-items="totalItems" ng-model="currentPage" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" ng-change="pageChanged()"></pagination>
+        </div>
+    </div>
+</div>
+</div>
