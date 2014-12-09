@@ -34,7 +34,7 @@ class Controller_Workorders extends Controller_Account {
         $this->_client = $this->user_type === Model_Account::CLIENT ? true : false;
 
         if ($this->_inspector) {
-            $this->request->redirect('/account');
+            // $this->request->redirect('/account');
         }
 
         $this->template->app = "ng-app=\"autocompleteApp\"";
