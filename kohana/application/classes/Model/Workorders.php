@@ -787,8 +787,23 @@ class Model_Workorders extends Model_Base {
             ':id'     => $id))->execute($this->db);
     }
 
-    public function get_count_of_workorders() {
-        return DB::query(Database::SELECT, "SELECT count(*) as count FROM work_orders")->as_object()->execute($this->db)->current()->count;
+    public function get_count_of_workorders($id, $type) {
+        $where = ' WHERE 1=1';
+
+        switch ($type) {
+            case 3: 
+                $where = ' WHERE inspector_id = :user_id';
+                break;
+            case 4: 
+                $where = ' WHERE p.user_id = :user_id';
+                break;
+        }
+
+        return DB::query(Database::SELECT, "SELECT count(o.id) as count 
+                                            FROM work_orders o
+                                            LEFT JOIN profiles p ON o.user_id = p.user_id" .
+                                            $where)
+            ->parameters(array(':user_id' => $id))->as_object()->execute($this->db)->current()->count;
     }
 
 

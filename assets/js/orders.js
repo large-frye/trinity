@@ -7,6 +7,7 @@ app.config(['$routeProvider', function($routeProvider) {
     });
 }]);
 
+// dropdown directive with 'dropit' plugin support. 
 app.directive('dropdown', function() {
     return {
         'scope': {
@@ -26,8 +27,9 @@ app.directive('dropdown', function() {
         },
         'templateUrl': 'assets/js/orders/partials/dropdown.html'
     }
-})
+});
 
+// our asynchronus services
 app.factory('orderFactory', ['$resource',
     function($resource) {
         return $resource('/api/:action/:id/:pageNumber', {
