@@ -32,9 +32,17 @@ class Model_Account extends Model_Base {
 
 
 
-    public function get_work_orders($user_id, $user_type) {
+    public function get_work_orders($user_id, $user_type, $pageNumber = null) {
         $where_clause = "1=1";
         $option_clause = '';
+        $limit = '';
+
+        // determine page limit
+        if ($pageNumber !== null) {
+            $startLimit = ($pageNumber - 1) * 100;
+            $endLimit = $pageNumber * 100;
+            $limit = " LIMIT " . $startLimit . ", 100";
+        }
 
         switch ($user_type) {
             case '3' :
@@ -43,17 +51,19 @@ class Model_Account extends Model_Base {
             case '4' :
                 $where_clause = "uf.user_id = :user_id";
             case '5' :
-                $option_clause = ' LIMIT 200';
+                # $option_clause = ' LIMIT 200';
                 break;
         }
 
         $result = DB::query(Database::SELECT, 'SELECT w.first_name, w.last_name, w.id,
+                                                      CONCAT(w.first_name, " ", w.last_name) as insured, 
                                                       date_format(date_of_inspection, "%m/%d%/%Y") as date_of_inspection,
                                                       date_format(w.created_on_utc, "%m/%d%/%Y") as created_on_utc,
                                                       CONCAT(uf.first_name, " ", uf.last_name) as adjuster_name,
                                                       CONCAT(_uf.first_name, " ", _uf.last_name) as inspector_name,
                                                       wos.name as status_name, _is.name as inspection_status,
-                                                      IF(it.name IS NULL, "No Type", it.name) as inspection_type, _uf.color as inspector_color
+                                                      IF(it.name IS NULL, "No Type", it.name) as inspection_type, _uf.color as inspector_color,
+                                                      (select count(id) from invoice_meta where workorder_id = w.id) as invoice_exists
                                                FROM work_orders w
                                                LEFT JOIN users u ON u.id = w.user_id
                                                LEFT JOIN profiles uf ON uf.user_id = u.id
@@ -65,7 +75,8 @@ class Model_Account extends Model_Base {
                                                LEFT JOIN inspections i ON i.work_order_id = w.id
                                                WHERE ' . $where_clause . '
                                                ORDER BY id DESC' . 
-                                               $option_clause)
+                                               $option_clause .
+                                               $limit)
                       ->parameters(array(':user_id' => $user_id))
                       ->as_object()
                       ->execute($this->db);

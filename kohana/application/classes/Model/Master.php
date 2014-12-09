@@ -47,6 +47,8 @@ class Model_Master extends Model {
                 $this->css[] = '/assets/css/inspection/' . $inspection_file;
             }
         }
+
+        array_push($this->css, "/assets/js/bower_components/dropit/dropit.css");
     }
 
 
@@ -113,6 +115,17 @@ class Model_Master extends Model {
                 ));
 
             unset($js_files[14]);
+        }
+
+        if (preg_match('/account$/', Request::current()->uri())) {
+            $js_files = array_merge($js_files, array(
+                '/assets/js/bower_components/angular/angular.min.js',
+                '/assets/js/bower_components/angular-resource/angular-resource.min.js',
+                '/assets/js/bower_components/angular-route/angular-route.min.js',
+                '/assets/js/ui-bootstrap-tpls.min.js',
+                '/assets/js/orders.js',
+                '/assets/js/bower_components/dropit/dropit.js'
+                ));
         }
 
         if (preg_match('/maps/', Request::current()->uri())) {

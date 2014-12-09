@@ -94,7 +94,7 @@ if (isset($_SERVER['KOHANA_ENV']))
 	Kohana::$environment = constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV']));
 }
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+// error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
 /**
  * Initialize Kohana, setting the default options.

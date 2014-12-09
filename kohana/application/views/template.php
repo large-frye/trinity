@@ -11,9 +11,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=0.69,user-scalable=yes,maximum-scale=1.00" />
     
     <?php echo $css; ?>
-    <!-- {{#asset_css}}
-        <link type="text/css" rel="stylesheet" media="all" href="{{path}}" />
-    {{/asset_css}} -->
+
+    <!-- font awesome -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     
     <!--[if lte IE 8]>
         <script type="text/javascript" src="js/excanvas.min.js"></script>
@@ -27,26 +27,9 @@
             
             <div id="top">
                 <h1 id="logo"><a href="./"></a></h1>
-                
-                <!-- {{#is_logged_in}} -->
-                <div id="labels">
-                    <ul>
-                    <!--     
-                            <li>
-                                <a href="{{url_profile}}" class="user">
-                                    <span class="bar">Welcome {{username}}</span>
-                                </a>
-                            </li>
-                            <li><a href="{{url_settings}}" class="settings"></a></li>
-                            <li><a href="{{url_logout}}" class="logout"></a></li>-->
-                    </ul>
-                </div>
-                <!-- {{/is_logged_in}}
-                {{^is_logged_in}} -->
                 <div id="labels">
                     <?php echo $logged_in; ?>
                 </div>
-                <!-- {{/is_logged_in}} !-->
 
                 <?php if ($admin) {
                     echo '<div id="menu">
@@ -107,19 +90,7 @@
                     </ul>
                 </div>
                 <?php } ?>
-
             </div>
-    
-            <!-- <div class="plain">
-                {{#is_alert}} <div class="section"> {{/is_alert}}                 
-                    {{#status_messages}}
-                        <div class="message {{message_type}}">
-                            <span>{{message_content}}</span>
-                        </div>
-                    {{/status_messages}}
-                
-                {{#is_alert}} </div> {{/is_alert}}
-            </div> !-->
       <?php if (!isset($whole_page)) {
     echo '<div id="leftside" class="lft-no-margin">';
 }
@@ -246,11 +217,6 @@
     
         </div>
     </div>
-    
     <?php echo $js; ?>
-
-    <!-- {{#js_options}}
-    <script type="text/javascript">{{& js_options}}</script>
-    {{/js_options}} -->
 </body>
 </html>

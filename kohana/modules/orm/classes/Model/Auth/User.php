@@ -160,7 +160,6 @@ class Model_Auth_User extends ORM {
 	 */
 	public function create_user($values, $expected)
 	{
-		print_r($values);
 		// Validation for passwords
 		$extra_validation = Model_User::get_password_validation($values)
 			->rule('password', 'not_empty');

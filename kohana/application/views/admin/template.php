@@ -9,7 +9,12 @@
         </title>
         <meta name="apple-mobile-web-app-capable" content="no">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="viewport" content="width=device-width,initial-scale=0.69,user-scalable=yes,maximum-scale=1.00"><?php echo $css; ?><!--[if lte IE 8]>
+        <meta name="viewport" content="width=device-width,initial-scale=0.69,user-scalable=yes,maximum-scale=1.00">
+        <?php echo $css; ?>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.css" rel="stylesheet" type="text/css"></script>
+
+        <!--[if lte IE 8]>
         <script type="text/javascript" src="js/excanvas.min.js"></script>
     <![endif]-->
         <?php if (isset($maps) && $maps) {
@@ -24,7 +29,6 @@
                          "var inspectors = " . json_encode($inspectors->as_array()) . ";" .
                      "</script>"; 
             }
-
 
 
             ?>
@@ -66,6 +70,8 @@
                     <?php echo isset($success_message) ? "<div class=\"section\"><div class=\"message info\"><span>" . $success_message . "</span></div></div>" : null; ?><?php echo isset($error) ? "<div class=\"section\"><div class=\"message error\"><span>" . $error . "</span></div></div>" : null; ?><?php echo $content; ?>
                 </div>
             </div>
-        </div><?php echo $js; ?>
+        </div>
+        <?php echo $js; ?>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.js"></script>
     </body>
 </html>

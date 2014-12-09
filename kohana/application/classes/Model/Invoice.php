@@ -126,9 +126,11 @@ class Model_Invoice extends Model_Base {
            return false;
         }
 
-        $mailer_model->send_mail($details->adjuster_email, 'a.frye4@gmail.com', 'Trinity Inspection Invoice for Work Order: ' . $workorder_id,
+        print_r($details);
+
+        /* $mailer_model->send_mail($details->adjuster_email, 'a.frye4@gmail.com', 'Trinity Inspection Invoice for Work Order: ' . $workorder_id,
                                        13, array('::first_name::' => $details->first_name,
-                                                 '::last_name::'  => $details->last_name), null, null, array($this->_file_path . $workorder_id . ".pdf"));
+                                                 '::last_name::'  => $details->last_name), null, null, array($this->_file_path . $workorder_id . ".pdf")); */
         return true;
     }
 

@@ -1096,7 +1096,6 @@ $(document).ready(function() {
             $('.roofer-present-check').removeClass('hide');
         }
     });
-
 });
 
 

@@ -41,9 +41,7 @@ class Controller_Account extends Controller_Master {
         $this->_auth = Auth::instance();
         $this->_post= $this->request->post();
         $this->_user = $this->_auth->get_user();
-
         $this::$logged_in = !isset($this->_user->id) ? false : true;
-        
             
         if (!$this::$logged_in) { 
             if (!in_array($this->request->action() , array('login','signup', 'forgotpassword'))) {
@@ -87,6 +85,8 @@ class Controller_Account extends Controller_Master {
                 Session::instance()->delete($key);
             }
         }
+
+        // 
     }
 
 
@@ -96,21 +96,22 @@ class Controller_Account extends Controller_Master {
      *
      */
     public function action_index() {
-        $this->template->hide_right_side = true;
-        $view = View::factory('account/index');
+        /*$this->template->hide_right_side = true;
+        
         $view->admin = $this->user_type == 2 ? true : false;
         $view->client = $this->user_type == 4 ? true : false;
         $view->inspector = $this->user_type == 3 ? true : false;
         $view->orders = $this->account_model->get_work_orders($this->_user->id, $this->user_type);
-        $view->options = $this->_get_options($view->orders);
-        $view->statuses = array(
+        $view->options = $this->_get_options($view->orders);*/
+        /*$view->statuses = array(
             'New' => 'yellow', 
             'Alert' => 'red', 
             'Called PH' => 'dark-blue', 
             'Scheduled' => 'blue', 
             'Sent' => 'orange', 
-            'Invoiced' => 'green');
-        $this->template->content = $view;
+            'Invoiced' => 'green');*/
+        $view = View::factory('account/index');
+        $this->template->content = $view; // re-writing with angular
     }
 
 
