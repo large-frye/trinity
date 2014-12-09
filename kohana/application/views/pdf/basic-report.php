@@ -21,6 +21,7 @@ table{
    border-collapse: collapse; width: 100%;
    margin-top: 20px;
    margin-bottom: 20px;
+   padding-bottom: 1em;
 }
 
 table.top {
@@ -101,6 +102,12 @@ ul
    margin-bottom:20px;
 }
 
+.ground-inspection {
+    position: relative;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
 .page-break { page-break-after: always; }
 .clear { clear: both; }
 .header { color: rgb(117, 41, 43); font-weight: 600; }
@@ -142,7 +149,7 @@ $collateral_damage_header = isset($report_data['damages']['collateral_damage_hea
 $collateral_damages = isset($report_data['damages']['collateral_damage_header']['collateral_damages']) ? $report_data['damages']['collateral_damage_header']['collateral_damages'] : null;
 
 ?>
-<div style="position:relative;"> <!-- Don't really like using position:absolute -->
+<div class="ground-inspection"> <!-- Don't really like using position:absolute -->
 <h4 class="row-header">GROUND INSPECTION</h4>
 <!-- <p>During our ground level walk around inspection of loss to the following building materials that may be more susceptible to wind or hail:</p>-->
 <p>During our ground level walk around inspection of the loss <span class="blue">
@@ -233,12 +240,10 @@ roofing systems.</p>';
     <?php }
 
   } ?>
-<br>
-<br><br>
-<br>
+
 </div>
-<div class="page-break"></div>
-<div style="position: absolute; top: 0">
+<!-- <div class="page-break"></div> -->
+<div style="ground-inspection">
 <h4 class="row-header">INSPECTION SUMMARY</h4>
 <p>
 <?php

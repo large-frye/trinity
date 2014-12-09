@@ -551,7 +551,6 @@ class Model_Workorders extends Model_Base {
         foreach ($report_serialized as $row) {
             if ($row->key != "csrf") {
                 if (preg_match('/a:/', $row->value)) {
-                    var_dump($row->value);
                     $array = unserialize($row->value);
                     $report[$row->key] = "";
 

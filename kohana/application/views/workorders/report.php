@@ -1,5 +1,3 @@
-
-
 <div class="section">
     <?php if (isset($report_send_session) && $report_send_session != null) { 
         echo "<div class=\"message info\">
