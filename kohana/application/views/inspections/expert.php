@@ -252,9 +252,8 @@
 
             <div class="row">
                 <label for="condition">Condition: </label>
-
                 <div class="right">
-                    <?php echo Form::select('condition', $conditions); ?>
+                    <?php echo Form::select('condition', $conditions, isset($data['condition']) ? $data['condition'] : null); ?>
                 </div>
             </div>    
 
