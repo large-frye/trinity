@@ -17,3 +17,4 @@ build*
 assets/photos*
 node_modules*
 kohana_old*
+dompdf/
