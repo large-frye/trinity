@@ -174,6 +174,8 @@ class Controller_Inspections extends Controller_Account {
 
     public function action_form() {
         $view = View::factory( 'inspections/form' );
+        
+        echo $this->user_type;
 
         // Check for auto_upgrade
         $view->auto_upgrade = $this->inspections_model->check_for_auto_upgrade( $this->_workorder_id, $this->_auto_upgrade );

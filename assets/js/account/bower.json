@@ -1,0 +1,12 @@
+{
+    "name": "Trinity Account",
+    "version": "1.0",
+    "dependencies": {
+        "jquery": "latest",
+        "bootstrap": "latest",
+        "requirejs": "latest",
+        "angular": "latest",
+        "angular-route": "latest",
+        "angular-resource": "latest"
+    }
+}

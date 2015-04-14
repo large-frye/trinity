@@ -1,0 +1,22 @@
+{{inspector}}
+        <h4>Andrew</h4>
+<div class="section">
+    <div class="content">
+        <table cellspacing="0" cellpadding="0" border="0" class="stripe row-border data-table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Number of Inspections</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="inspector in inspectors">
+                <td>{{inspector.name}}</td>
+                <td>{{inspector.inspections}}</td>
+                <td><a ng-href="/account/#/inspectors/{{inspector.id}}"><i class="fa fa-eye"></i>&nbsp;View</a></td>
+            </tr>
+            </tbody>
+            </table>
+    </div>
+</div>

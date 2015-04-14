@@ -1,0 +1,21 @@
+<ul class="menu">
+    <li>
+        <a href="#" ng-click="dropdown($event)">Actions&nbsp;<i class="fa fa-caret-down"></i></a>
+        <ul>
+            <li ng-if="!usertype.client"><a href="/workorders/edit/{{order.id}}">Edit Workorder</a>
+            </li>
+            <li><a href="/workorders/view/{{order.id}}">View Workorder</a>
+            </li>
+            <li ng-if="!usertype.client"><a href="/inspections/form/{{order.id}}">Inspection Form</a>
+            </li>
+            <li><a href="/inspections/viewphotos/{{order.id}}">Photos</a>
+            </li>
+            <li ng-if="usertype.admin || usertype.officeUser"><a href="/invoice/index/{{order.id}}">Invoice</a>
+            </li>
+            <li ng-if="usertype.admin || usertype.officeUser"><a href="/invoice/generate/{{order.id}}">Generate Invoice</a>
+            </li>
+            <li ng-if="usertype.admin || usertype.officeUser"><a href="/workorders/report/{{order.id}}">Report</a>
+            </li>
+        </ul>
+    </li>
+</ul>

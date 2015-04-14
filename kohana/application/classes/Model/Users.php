@@ -244,6 +244,13 @@ class Model_Users extends Model_Base {
 
         return $user->count() > 0 ? true : false;
     }
+    
+    public function get_type($id) {
+        return DB::query(Database::SELECT, "SELECT role_id FROM roles_users WHERE user_id = :user_id")
+            ->parameters(array(':user_id' => $id))
+            ->as_object()
+            ->execute($this->db);
+    }
 
 
 
