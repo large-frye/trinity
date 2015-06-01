@@ -164,3 +164,18 @@
 #4 /Users/frye/Documents/trinity/kohana/system/classes/Kohana/Request.php(995): Kohana_Request_Client->execute(Object(Request))
 #5 /Users/frye/Documents/trinity/kohana/index.php(118): Kohana_Request->execute()
 #6 {main} in /Users/frye/Documents/trinity/kohana/application/classes/Controller/Api.php:14
+2015-05-31 20:09:32 --- EMERGENCY: Database_Exception [ 2 ]: mysql_connect(): Can't connect to MySQL server on '198.74.52.114' (60) ~ MODPATH/database/classes/Kohana/Database/MySQL.php [ 67 ] in /Users/frye/Documents/trinity/kohana/modules/database/classes/Kohana/Database/MySQL.php:431
+2015-05-31 20:09:32 --- DEBUG: #0 /Users/frye/Documents/trinity/kohana/modules/database/classes/Kohana/Database/MySQL.php(431): Kohana_Database_MySQL->connect()
+#1 /Users/frye/Documents/trinity/kohana/modules/database/classes/Kohana/Database.php(478): Kohana_Database_MySQL->escape('andrew')
+#2 [internal function]: Kohana_Database->quote('andrew')
+#3 /Users/frye/Documents/trinity/kohana/modules/database/classes/Kohana/Database/Query.php(196): array_map(Array, Array)
+#4 /Users/frye/Documents/trinity/kohana/modules/database/classes/Kohana/Database/Query.php(234): Kohana_Database_Query->compile(Object(Database_MySQL))
+#5 /Users/frye/Documents/trinity/kohana/application/classes/Model/Users.php(243): Kohana_Database_Query->execute(Object(Database_MySQL))
+#6 /Users/frye/Documents/trinity/kohana/application/classes/Controller/Account.php(137): Model_Users->check_if_user_is_deleted('andrew')
+#7 /Users/frye/Documents/trinity/kohana/system/classes/Kohana/Controller.php(84): Controller_Account->action_login()
+#8 [internal function]: Kohana_Controller->execute()
+#9 /Users/frye/Documents/trinity/kohana/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Account))
+#10 /Users/frye/Documents/trinity/kohana/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#11 /Users/frye/Documents/trinity/kohana/system/classes/Kohana/Request.php(995): Kohana_Request_Client->execute(Object(Request))
+#12 /Users/frye/Documents/trinity/kohana/index.php(118): Kohana_Request->execute()
+#13 {main} in /Users/frye/Documents/trinity/kohana/modules/database/classes/Kohana/Database/MySQL.php:431

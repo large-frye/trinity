@@ -1,5 +1,4 @@
 # Hide these file extensions
-kohana/application/config
 node_modules
 extra-docs
 dompdf
