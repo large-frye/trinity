@@ -1,5 +1,6 @@
 # Hide these file extensions
-kohana/application/config/*.php
+/kohana/application/config/*
+/kohana/application/config
 *.pdf
 *.xlsx
 *.xls
