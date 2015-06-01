@@ -1,5 +1,0 @@
-trinity
-=======
-
-PixelChocolate - Trinity Project
-
