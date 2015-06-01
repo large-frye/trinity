@@ -11,7 +11,7 @@
             </div>
 
 <?php } ?>
-	<div class="box">
+	<div class="box login-margin">
 		<div class="title">Sign In</div>
 		
 		<div class="content" style="width:auto;">

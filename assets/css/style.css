@@ -1747,14 +1747,18 @@ img { border: 0; }
 #wrapper #main #rightside {
 	display : block;
 	width:30%;
-	float : right;
+	float : left;
 	position : relative;
 	padding : 0 0 61px;
 }
 
+#wrapper #main #leftside .section .box.login-margin {
+	margin:4em 1em;
+}
+
 #wrapper #main #rightside .box {
 	display : block;
-	float : right;
+	float:right;
 	position : relative;
 	width : 260px;
 	margin-right: 20px;

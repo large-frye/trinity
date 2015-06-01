@@ -6,5 +6,5 @@ assets/photos
 build
 .idea
 _trinity
-
+kohana/application/logs
 
