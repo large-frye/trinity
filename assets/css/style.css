@@ -305,14 +305,15 @@ img { border: 0; }
 #wrapper #container #top #menu {
 	display : block;
 	background : url(../gfx/menu.png) repeat-x right top;
-	height: 48px;
+	border-bottom: 1px solid #ddd;
+	height:44px;
 }
 
 #wrapper #main #top #menu {
 	display : block;
+	height:44px;
 	background:url("../gfx/menu.png") 0 0 repeat-x #f2f2f2;
-
-	height: 48px;
+	border-bottom: 1px solid #ddd;
 }
 
 #wrapper #container #left {

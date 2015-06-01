@@ -84,19 +84,14 @@ Version: 1.2
 	position : relative;
 	z-index : 999;
 	border-right : 1px solid #f9f9f9;
-	padding : 8px 18px 0;
+	padding: 1.5em;
 	color : #868686;
 	text-decoration : none;
 	white-space : nowrap;
-	height : 40px;
 -moz-border-radius-topleft: 3px;
 border-top-left-radius: 3px;
 -moz-border-radius-topright: 3px;
 border-top-right-radius: 3px;
-}
-
-#menu ul li:first-child a{
-	padding : 8px 19px 0;
 }
 
 #menu ul li li a, #menu ul li li a:link, #menu ul li li a:active, #menu ul li li a:visited,
