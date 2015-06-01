@@ -24,24 +24,26 @@ var substringMatcher = function(strs) {
     };
 };
 
-$.get("/api/getClients", function(data) {
-    var items = [];
-    data = $.parseJSON(data);
+if (!document.location.href.match('login')) {
+    $.get("/api/getClients", function(data) {
+        var items = [];
+        data = $.parseJSON(data);
 
-    for (i = 0; i < data.length; i++) {
-        items.push(data[i].name);
-    }
+        for (i = 0; i < data.length; i++) {
+            items.push(data[i].name);
+        }
 
-    $('#the-basics .typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    }, {
-        name: 'items',
-        displayKey: 'value',
-        source: substringMatcher(items)
+        $('#the-basics .typeahead').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        }, {
+            name: 'items',
+            displayKey: 'value',
+            source: substringMatcher(items)
+        });
     });
-});
+}
 
 $('.resetTypeahead').click(function() {
     $('.typeahead').val('');

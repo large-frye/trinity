@@ -1746,7 +1746,7 @@ img { border: 0; }
 /*-------------- new rightside box  ------------ */
 #wrapper #main #rightside {
 	display : block;
-	width:30%
+	width:30%;
 	float : right;
 	position : relative;
 	padding : 0 0 61px;
@@ -3080,4 +3080,8 @@ img { border: 0; }
 	background-color: rgb(173, 216, 230);
 	border: 1px solid rgb(135, 206, 250);
 	color: white;
+}
+
+#wrapper #main #leftside .section .box.sign-in-box {
+	margin: 1em .5em;
 }

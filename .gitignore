@@ -1,22 +1,11 @@
 # Hide these file extensions
-kohana/application/config/*
 kohana/application/config
-*.pdf
-*.xlsx
-*.xls
-*.DS_Store
-_trinity*
-*logs*
-build.sh
-.DS_Store
-*dompdf*
-*extra-docs/*
-kohana/.htaccess
+node_modules
+extra-docs
+dompdf
+assets/photos
+build
+.idea
+_trinity
 
 
-build*
-.idea*
-assets/photos*
-node_modules*
-kohana_old*
-dompdf/
