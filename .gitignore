@@ -11,7 +11,7 @@ build.sh
 *extra-docs/*
 kohana/.htaccess
 kohana/application/bootstrap.php
-kohana/application/config/*
+kohana/application/config
 build*
 .idea*
 assets/photos*
