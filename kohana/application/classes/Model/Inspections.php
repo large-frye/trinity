@@ -978,8 +978,8 @@ class Model_Inspections extends Model_Base
 
     public function save_photos($post, $files, $id)
     {
-        // $path = "/assets/photos/";
-        $uploaddir = '..' . $this->photo_path . $id . '/';
+        $path = "/assets/photos/";
+        $uploaddir = '..' . $path . $id . '/';
         if (!is_dir($uploaddir) && !mkdir($uploaddir)) {
             die("Error creating folder");
         }
