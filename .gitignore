@@ -1,4 +1,5 @@
 # Hide these file extensions
+kohana/application/config/*.php
 *.pdf
 *.xlsx
 *.xls
@@ -10,8 +11,8 @@ build.sh
 *dompdf*
 *extra-docs/*
 kohana/.htaccess
-kohana/application/bootstrap.php
-kohana/application/config
+
+
 build*
 .idea*
 assets/photos*
