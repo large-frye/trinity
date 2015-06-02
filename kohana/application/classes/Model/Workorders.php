@@ -1291,10 +1291,11 @@ class Model_Workorders extends Model_Base {
         return array('wind_header' => 'Our wind damage inspection consists of inspecting every roof slope to verify any and 
                                       all wind damaged components to all types of roofing systems.',
                      'hail_header' => 'Our hail damage inspection consists of looking on all directional slopes for granular 
-                                       displacement on the shingles that are about the size in diameter of a dime, and supported 
-                                       by mat fracture. These areas of granular displacement must be found consistently across 
-                                       the entire directional slope that we are assessing (which is a characteristic of hail damage). 
-                                       We use a 10’ X 10’ test square on all 4 directional slopes to test the statistical average of hail.');
+                                       displacement on the shingles that are about the size in diameter of a dime, which
+                                       may or may not be supported by mat fracture. These areas of granular displacement
+                                       must be found consistently across the entire directional slope that we are
+                                       assessing (which is a characteristic of hail damage). We use a 10’ X 10’ test
+                                       square on all 4 directional slopes to test the statistical average of hail.');
     }
 
 
