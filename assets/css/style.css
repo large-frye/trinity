@@ -3090,3 +3090,41 @@ img { border: 0; }
 #wrapper #main #leftside .section .box.sign-in-box {
 	margin: 1em .5em;
 }
+
+#line-header {
+	text-align:center;
+	line-height:0.5px;
+	margin: 1em 0 3em 0;
+}
+
+#line-header span {
+	display:inline-block;
+	position:relative;
+	top: 10px;
+}
+
+#line-header span:before,
+#line-header span:after {
+	content: "";
+	position: absolute;
+	border-top: 1px dotted #444;
+	top: 0;
+	width:275px;
+}
+
+#line-header span:before {
+	right: 100%;
+	margin-right: 15px;
+}
+#line-header span:after {
+	left: 100%;
+	margin-left: 15px;
+}
+
+#insuree-form .row {
+	margin: .5em 0;
+}
+
+#insuree-form .row input {
+	margin-top: -8px;
+}

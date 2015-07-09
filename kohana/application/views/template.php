@@ -102,7 +102,7 @@
     } else { ?>
     <div id="rightside">
     <div>
-        <a href="/schedule" target="_self">
+        <a href="/account" target="_self">
             <img src="/assets/gfx/_banner-02.jpg" onmouseover="this.src=' /assets/gfx/_banner-02-high.jpg '" onmouseout="this.src=' /assets/gfx/_banner-02.jpg '" width="300" />
         </a>
     </div>
