@@ -750,6 +750,10 @@ $(document).ready(function() {
         "display": "block"
     });
 
+    $('#slope_shingles #content').css({
+        "display": "block"
+    });
+
     var previousPoint = null;
     $(".flot-graph").bind("plothover", function(event, pos, item) {
         $("#x").text(pos.x);
