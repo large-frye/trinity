@@ -810,7 +810,7 @@ img { border: 0; }
 
 #wrapper.login .box .content,
 #wrapper #container #right .section .box .content {
-	display : block;
+	display : block !important;
 	background : url(../gfx/box-shadow.gif) repeat-x left top;
 	padding : 20px;
 }
