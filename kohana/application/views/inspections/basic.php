@@ -372,7 +372,7 @@
                     <label for="wind_header"><strong>Check if apply</strong></label>
                 </div>
 
-                <div class="row slope" id="slope_shingles" style="display: block !important;">
+                <div class="row slope" id="slope_shingles" style="display:none;">
                     <div class="section">
                         <div class="box">
                             <div class="title">Select Slope (Shingles Damaged)</div>

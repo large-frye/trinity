@@ -746,6 +746,10 @@ $(document).ready(function() {
         }).appendTo("body").fadeIn("fast");
     }
 
+    $('#slope_shingles').css({
+        "display": "block"
+    });
+
     var previousPoint = null;
     $(".flot-graph").bind("plothover", function(event, pos, item) {
         $("#x").text(pos.x);
