@@ -480,11 +480,11 @@
 
                 </div>
 
-                <div class="row slope" id="slope_hail_amount_damaged" style="display: block !important">
+                <div class="row slope" id="slope_hail_amount_damaged">
                     <div class="section">
                         <div class="box">
                             <div class="title">Select Slope (Amount Damaged)</div>
-                            <div class="content" style="display: block !important">
+                            <div class="content">
                                 <?php
                                     $count = 0;
                                     foreach($slopes as $key => $slope) {
