@@ -16,3 +16,5 @@ libraryDependencies ++= Seq( jdbc , cache , ws,
   "org.scala-lang" % "scala-reflect" % scalaVersion.value)
 
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )  
+
+fork in run := true
