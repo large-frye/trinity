@@ -1,10 +1,9 @@
 package models
 
+import slick.driver.MySQLDriver.api._
+
 /** Slick data model trait for extension, choice of backend or usage in the cake pattern. (Make sure to initialize this late.) */
 trait User {
-  val profile: slick.driver.JdbcProfile
-
-  import profile.api._
   // NOTE: GetResult mappers for plain SQL are only generated for tables where Slick knows how to map the types of all columns.
   import slick.jdbc.{GetResult => GR}
 

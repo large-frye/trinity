@@ -33,10 +33,7 @@ object Users extends Controller {
 //        errors => {
 //          BadRequest(Json.obj("status" -> "KO", "message" -> JsError.toFlatJson(errors)))
 //        },
-//        user => {
-//          println(Json.toJson(user))
-//          Ok(Json.toJson(user))
-//        }
+//        `
 //
 //      )
 //    }.getOrElse {

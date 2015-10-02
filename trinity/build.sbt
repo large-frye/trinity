@@ -15,6 +15,8 @@ libraryDependencies ++= Seq( jdbc , cache , ws,
   "mysql" % "mysql-connector-java" % "5.1.34",
   "org.scala-lang" % "scala-reflect" % scalaVersion.value)
 
+libraryDependencies += filters
+
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )  
 
-fork in run := true
+fork in run := false
